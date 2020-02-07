@@ -1,0 +1,21 @@
+{
+  "name": "yard-block/cards",
+  "category": "layout",
+  "attributes": {
+    "cardCount": {
+      "type": "number"
+    },
+    "overflowOnMobile": {
+      "type": "boolean",
+      "default": false
+    },
+    "cardsEqualHeight": {
+      "type": "boolean",
+      "default": false
+    },
+    "cardsPerRow": {
+      "type": "number",
+      "default": 0
+    }
+  }
+}

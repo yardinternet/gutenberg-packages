@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cards render cards 1`] = `
+<ul
+  className=""
+  style={
+    Object {
+      "listStyleType": "none",
+      "paddingLeft": 0,
+    }
+  }
+>
+  <li>
+    <div
+      className="yard-block-card__inner "
+    />
+  </li>
+</ul>
+`;
+
+exports[`Cards render cards with props 1`] = `
+<ul
+  className="className has-overflow-on-mobile has-cards-equal-height"
+  style={
+    Object {
+      "listStyleType": "none",
+      "paddingLeft": 0,
+    }
+  }
+>
+  <li>
+    <div
+      className="yard-block-card__inner "
+    />
+  </li>
+</ul>
+`;
