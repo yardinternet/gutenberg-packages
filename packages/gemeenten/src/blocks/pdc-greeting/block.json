@@ -1,0 +1,18 @@
+{
+	"name": "gemeenten/pdc-greeting",
+	"category": "layout",
+	"attributes": {
+		"labelMorning": {
+			"type": "string",
+			"default": "Goedemorgen"
+		},
+		"labelDay": {
+			"type": "string",
+			"default": "Goedemiddag"
+		},
+		"labelNight": {
+			"type": "string",
+			"default": "Goedenavond"
+		}
+	}
+}

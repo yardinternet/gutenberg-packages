@@ -1,0 +1,32 @@
+{
+	"name": "gemeenten/list-posts-openpub",
+	"attributes": {
+		"selectedTerms": {
+			"type": "array",
+			"default": null
+		},
+		"stickyPostSelection": {
+			"type": "boolean",
+			"default": false
+		},
+		"selectedStickyPostID": {
+			"type": "number"
+		},
+		"postsToShow": {
+			"type": "number",
+			"default": 6
+		},
+		"displayDate": {
+			"type": "boolean",
+			"default": true
+		},
+		"displayExcerpt": {
+			"type": "boolean",
+			"default": true
+		},
+		"displayFeaturedImage": {
+			"type": "boolean",
+			"default": true
+		}
+	}
+}

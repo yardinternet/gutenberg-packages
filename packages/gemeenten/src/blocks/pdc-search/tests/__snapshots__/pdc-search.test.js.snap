@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic tests metadata should not change 1`] = `
+Object {
+  "attributes": Object {
+    "label": Object {
+      "default": "Waar bent u naar op zoek",
+      "type": "string",
+    },
+  },
+  "category": "layout",
+  "name": "gemeenten/pdc-search",
+}
+`;

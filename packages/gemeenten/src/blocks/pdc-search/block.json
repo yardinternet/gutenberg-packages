@@ -1,0 +1,13 @@
+{
+	"name": "gemeenten/pdc-search",
+	"category": "layout",
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Waar bent u naar op zoek"
+		},
+		"searchUrl": {
+			"type": "string"
+		}
+	}
+}
