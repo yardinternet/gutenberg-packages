@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic form component should not change 1`] = `
+<div
+  className="gemeenten-block gemeenten-block--pdc-search css-1397tlk"
+>
+  <form
+    action=""
+    className="gemeenten-block--pdc-search__form css-15tjs5z"
+    method="get"
+    onSubmit={[Function]}
+    role="search"
+  >
+    <label
+      className="gemeenten-block--pdc-search__label css-g9ytq4"
+      htmlFor="pdc-search"
+    >
+      Label
+    </label>
+    <input
+      className="gemeenten-block--pdc-search__input css-10ttl3o"
+      id="pdc-search"
+      name="s"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      type="text"
+      value=""
+    />
+    <button
+      aria-label={false}
+      className="gemeenten-block--pdc-search__btn css-186vljf"
+      disabled={true}
+      type="submit"
+    >
+      <i
+        className="far fa-search"
+      />
+    </button>
+  </form>
+</div>
+`;
