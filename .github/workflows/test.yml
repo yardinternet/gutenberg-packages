@@ -1,0 +1,25 @@
+name: tests
+
+on:
+    push:
+        branches:
+            - master
+            - develop
+    pull_request:
+        branches:
+            - master
+            - develop
+
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Setup Node
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 12.x.x
+            - run: npm install
+            - run: npm run lerna:test
+              env:
+                  CI: true

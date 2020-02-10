@@ -3,7 +3,8 @@
 	"private": true,
 	"scripts": {
 		"lint": "wp-scripts lint-js ./packages",
-		"format": "wp-scripts format-js ./packages"
+		"format": "wp-scripts format-js ./packages",
+		"lerna:test": "lerna run test"
 	},
 	"husky": {
 		"hooks": {
