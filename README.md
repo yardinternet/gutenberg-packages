@@ -1,5 +1,5 @@
 ![format & lint](https://github.com/yardinternet/gutenberg-packages/workflows/format%20&%20lint/badge.svg)
-![tests](https://github.com/yardinternet/gutenberg-packages/workflows/Tests/badge.svg)
+![tests](https://github.com/yardinternet/gutenberg-packages/workflows/tests/badge.svg)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
