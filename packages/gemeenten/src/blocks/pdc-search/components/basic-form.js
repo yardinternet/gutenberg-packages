@@ -134,7 +134,7 @@ function BasicForm( props ) {
 					className="gemeenten-block--pdc-search__input"
 					type="text"
 					value={ searchTerm }
-					name="s"
+					name="q"
 					id="pdc-search"
 					onBlur={ onBlur }
 					onFocus={ onFocus }

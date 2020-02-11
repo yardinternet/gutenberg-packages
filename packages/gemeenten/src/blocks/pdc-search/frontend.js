@@ -7,7 +7,7 @@ import { domID } from './config';
 function SearchWrapper() {
 	const dataAttributes = useDataAttributes( domID );
 
-	return <BasicForm { ...dataAttributes } />;
+	return <BasicForm disabled={ false } { ...dataAttributes } />;
 }
 
 export { domID, SearchWrapper as Component };
