@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`backgroundControl settings attributes of backgroundControl should not change 1`] = `
+Object {
+  "backgroundFixed": Object {
+    "default": false,
+    "type": "boolean",
+  },
+  "bgColor": Object {
+    "type": "string",
+  },
+  "bgImgUrl": Object {
+    "type": "string",
+  },
+  "bgRepeat": Object {
+    "type": "string",
+  },
+  "bgSize": Object {
+    "type": "string",
+  },
+  "dimRatio": Object {
+    "default": 0,
+    "type": "number",
+  },
+  "focalPoint": Object {
+    "type": "object",
+  },
+}
+`;
