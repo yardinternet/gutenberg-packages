@@ -14,5 +14,8 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
+	},
+	"dependencies": {
+		"@yardinternet/gutenberg-editor-components": "^1.1.15"
 	}
 }

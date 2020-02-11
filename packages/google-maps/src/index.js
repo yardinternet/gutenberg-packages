@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+
+/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -32,6 +37,7 @@ export function registerGoogleMaps() {
 		icon: {
 			background: '#0293b0',
 			foreground: '#fff',
+			src: <BlockIcon faClasses="fas fa-images" />,
 		},
 	} );
 }

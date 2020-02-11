@@ -1,7 +1,10 @@
+import Inspector from './inspector';
+
 function edit() {
 	return (
 		<>
-			<p>Eedit</p>
+			<Inspector />
+			<p>Edit</p>
 		</>
 	);
 }
