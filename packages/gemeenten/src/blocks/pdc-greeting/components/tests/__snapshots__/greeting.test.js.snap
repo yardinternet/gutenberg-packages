@@ -4,7 +4,8 @@ exports[`greeting greeting should render column block with attributes 1`] = `
 <div
   className="gemeenten-block gemeenten-block--pdc-greeting"
 >
-  Goedemorgen
-  , 
+  Goedemiddag
+  ,
+   
 </div>
 `;
