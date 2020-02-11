@@ -27,7 +27,8 @@
 		"@wordpress/dom-ready": "^2.5.1",
 		"@wordpress/scripts": "^6.0.0",
 		"@wordpress/server-side-render": "^1.6.0",
-		"@yardinternet/gutenberg-editor-components": "^1.1.14"
+		"@yardinternet/gutenberg-editor-components": "^1.1.14",
+		"react-select": "^3.0.4"
 	},
 	"devDependencies": {
 		"@storybook/addon-a11y": "^5.2.8",
