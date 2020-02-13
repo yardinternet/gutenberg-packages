@@ -16,7 +16,6 @@ import metadata from './block.json';
 import edit from './edit';
 
 export const Icon = <BlockIcon faClasses="fal fa-list-alt" />;
-const icon = 'fal fa-list-alt';
 
 const { name, attributes } = metadata;
 
@@ -31,4 +30,4 @@ const settings = {
 	save: () => () => null,
 };
 
-export { icon, name, settings };
+export { name, settings };

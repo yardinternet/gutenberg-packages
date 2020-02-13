@@ -14,22 +14,20 @@ import { __ } from '@wordpress/i18n';
 import { NAMESPACE } from '../../config/settings';
 import metadata from './block.json';
 import edit from './edit';
-import save from './save';
 
-const Icon = <BlockIcon faClasses="fal fa-list-alt" />;
+export const Icon = <BlockIcon faClasses="fas fa-location-arrow" />;
 
 const { name, attributes } = metadata;
-const icon = 'fas fa-th';
 
 const settings = {
-	title: __( 'Locaties', NAMESPACE ),
-	description: __( 'Toont locaties van de PDC' ),
+	title: __( 'Servicepunten', NAMESPACE ),
+	description: __( 'Haal servicepunten op uit openPDC', NAMESPACE ),
 	icon: {
 		src: Icon,
 	},
-	edit,
 	attributes,
-	save,
+	edit,
+	save: () => () => null,
 };
 
-export { icon, name, settings };
+export { name, settings };

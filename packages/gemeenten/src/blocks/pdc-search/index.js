@@ -19,7 +19,6 @@ import save from './save';
 const Icon = <BlockIcon faClasses="fal fa-search" />;
 
 const { name, attributes } = metadata;
-const icon = 'fas fa-th';
 
 const settings = {
 	title: __( 'Zoeken', NAMESPACE ),
@@ -36,4 +35,4 @@ const settings = {
 	save,
 };
 
-export { icon, name, settings };
+export { name, settings };
