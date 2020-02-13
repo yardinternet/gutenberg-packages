@@ -1,7 +1,7 @@
 import * as PdcSearch from './blocks/pdc-search';
 import * as PdcLocations from './blocks/pdc-locations';
 import * as PdcGreeting from './blocks/pdc-greeting';
-import * as PubLatestPosts from './blocks/ListPostsOpenPub';
+import * as PubLatestPosts from './blocks/pdc-listposts';
 
 import { BLOCK_CATEGORY, ICON_SETTINGS } from './config/settings';
 import { registerBlockType } from '@wordpress/blocks';
