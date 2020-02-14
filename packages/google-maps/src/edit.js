@@ -1,9 +1,14 @@
+/**
+ * Internal dependencies
+ */
 import Inspector from './inspector';
+import Map from './map';
 
-function edit() {
+function edit( props ) {
 	return (
 		<>
 			<Inspector />
+			<Map />
 			<p>Edit</p>
 		</>
 	);
