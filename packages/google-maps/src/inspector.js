@@ -6,7 +6,8 @@ import { useState } from '@wordpress/element';
 
 import ListControl from './inspector/list-control';
 
-function Inspector( { attributes, setAttributes } ) {
+function Inspector( props ) {
+	const { attributes, setAttributes } = props;
 	const { categories } = attributes;
 
 	// const [ categoryItem, setCategoryItem ] = useState( {} );
