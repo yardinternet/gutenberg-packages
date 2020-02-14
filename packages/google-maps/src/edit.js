@@ -7,8 +7,8 @@ import Map from './map';
 function edit( props ) {
 	return (
 		<>
-			<Inspector />
-			<Map />
+			<Inspector { ...props } />
+			<Map { ...props } />
 			<p>Edit</p>
 		</>
 	);

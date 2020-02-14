@@ -15,6 +15,7 @@ function Map( props ) {
 	const [ markers, setMarkers ] = useState( [] );
 	const [ shapes, setShapes ] = useState( [] );
 	const { attributes } = props;
+	const { points, areas } = attributes;
 
 	let map = false;
 
@@ -68,7 +69,6 @@ function Map( props ) {
 	 * Plot all markers on the map instance
 	 */
 	const plotMarkers = () => {
-		const { points } = attributes;
 		points.map( ( point ) => addMarker( point ) );
 	};
 
@@ -76,7 +76,6 @@ function Map( props ) {
 	 * Plot all shapes on the map instance
 	 */
 	const plotAreas = () => {
-		const { areas } = attributes;
 		areas.map( ( area ) => addShape( area ) );
 	};
 

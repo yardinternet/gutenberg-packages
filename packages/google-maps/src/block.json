@@ -4,11 +4,11 @@
 	"attributes": {
 		"points": {
 			"type": "array",
-			"default": "[]"
+			"default": []
 		},
 		"areas": {
 			"type": "array",
-			"default": "[]"
+			"default": []
 		},
 		"apiKey": {
 			"type": "string",
@@ -16,7 +16,7 @@
 		},
 		"mapOptions": {
 			"type": "object",
-			"default": "{}"
+			"default": {}
 		},
 		"markerIcon": {
 			"type": "string"
