@@ -1,5 +1,25 @@
 {
 	"name": "yardinternet/google-maps",
 	"category": "layout",
-	"attributes": {}
+	"attributes": {
+		"points": {
+			"type": "array",
+			"default": "[]"
+		},
+		"areas": {
+			"type": "array",
+			"default": "[]"
+		},
+		"apiKey": {
+			"type": "string",
+			"default": ""
+		},
+		"mapOptions": {
+			"type": "object",
+			"default": "{}"
+		},
+		"markerIcon": {
+			"type": "string"
+		}
+	}
 }
