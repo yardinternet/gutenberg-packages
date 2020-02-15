@@ -1,10 +1,9 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { Button, PanelBody, TextControl } from '@wordpress/components';
+import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { config } from './config';
-import { useState } from '@wordpress/element';
 
-import ListControl from './inspector/list-control';
+import ListControl from './inspector/list-control/list-control';
 
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
@@ -31,6 +30,9 @@ function Inspector( props ) {
 				<ListControl
 					data={ categories }
 					setAttributes={ setAttributes }
+					callback={ ( newCategories ) =>
+						setAttributes( { categories: newCategories } )
+					}
 					controls={ [
 						{
 							type: 'TextControl',
