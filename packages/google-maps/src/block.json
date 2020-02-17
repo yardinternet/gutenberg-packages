@@ -6,7 +6,7 @@
 			"type": "array",
 			"default": []
 		},
-		"areas": {
+		"polygons": {
 			"type": "array",
 			"default": []
 		},
