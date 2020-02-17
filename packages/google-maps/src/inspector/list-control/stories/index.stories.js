@@ -3,8 +3,8 @@ import ListControlModal from '../list-control-modal';
 import List from '../list';
 
 export default {
-	title: 'GoogleMaps',
-	component: List,
+	title: 'GoogleMaps/Inspector',
+	component: ListControl,
 };
 
 const controls = [
