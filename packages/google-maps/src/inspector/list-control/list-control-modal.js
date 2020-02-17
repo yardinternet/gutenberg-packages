@@ -1,4 +1,9 @@
-import { Button, Modal, TextControl } from '@wordpress/components';
+import {
+	Button,
+	Modal,
+	TextControl,
+	TextareaControl,
+} from '@wordpress/components';
 import { createElement } from '@wordpress/element';
 
 function ListControlModal( {
@@ -12,6 +17,8 @@ function ListControlModal( {
 		switch ( type ) {
 			case 'TextControl':
 				return TextControl;
+			case 'TextAreaControl':
+				return TextareaControl;
 			default:
 				throw new Error( 'Fieldtype not supported' );
 		}
@@ -35,13 +42,19 @@ function ListControlModal( {
 		<Modal title="titlee" onRequestClose={ onRequestClose }>
 			<form id="editModalForm" onSubmit={ onHandleSubmit }>
 				{ controls.map( ( control, index ) => {
+					// Modify value before showing the value
+					const preRender =
+						typeof control.preRender === 'function'
+							? control.preRender
+							: ( value ) => value;
+
 					return createElement( getField( control.type ), {
 						onChange: () => {},
 						...control.attr,
 						key: index,
 						name: control.id,
 						defaultValue: ! hasFormData.length
-							? hasFormData[ control.id ]
+							? preRender( hasFormData[ control.id ] )
 							: '',
 					} );
 				} ) }

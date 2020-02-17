@@ -2,6 +2,14 @@
 	"name": "yardinternet/google-maps",
 	"category": "layout",
 	"attributes": {
+		"categories": {
+			"type": "array",
+			"default": []
+		},
+		"markerGroups": {
+			"type": "array",
+			"default": []
+		},
 		"points": {
 			"type": "array",
 			"default": []
