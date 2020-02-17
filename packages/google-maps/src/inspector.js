@@ -1,12 +1,18 @@
-import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody } from '@wordpress/components';
+import { InspectorControls, BlockControls } from '@wordpress/block-editor';
+import {
+	Button,
+	PanelBody,
+	Toolbar,
+	IconButton,
+	Dashicon,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { config } from './config';
 
 import ListControl from './inspector/list-control/list-control';
 
 function Inspector( props ) {
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, togglePopover } = props;
 	const { categories } = attributes;
 
 	// const [ categoryItem, setCategoryItem ] = useState( {} );
