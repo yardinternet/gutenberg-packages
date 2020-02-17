@@ -2,11 +2,9 @@
 
 namespace Yard\Blocks\GemeentenBlocks\ListPostsOpenPub;
 
-use Yard\Blocks\Blocks\AbstractBlock;
-
 require_once 'OpenPub.php';
 
-class ListPostsOpenPub extends AbstractBlock
+class ListPostsOpenPub
 {
 
     protected $attributes = [
