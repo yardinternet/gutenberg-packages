@@ -17,6 +17,7 @@ export function ListControl( {
 	hookFormData = ( formData ) => {
 		return formData;
 	},
+	title = '',
 } ) {
 	const [ store, setStore ] = useState( data );
 	const [ addModalVisible, setAddModalVisible ] = useState( false );
@@ -73,6 +74,7 @@ export function ListControl( {
 		<>
 			{ addModalVisible && (
 				<ListControlModal
+					title={ title }
 					controls={ controls }
 					onSubmit={ onAddModalSubmit }
 					onRequestClose={ () => setAddModalVisible( false ) }
