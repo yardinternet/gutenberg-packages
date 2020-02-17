@@ -1,6 +1,6 @@
 import { omit } from 'lodash';
 
-import { Button } from '@wordpress/components';
+import { Button, PanelRow } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -13,6 +13,10 @@ export function ListControl( {
 	data = [],
 	callback = () => {},
 	entityLabel = 'Item',
+	// Modify formData before it's dispatched
+	hookFormData = ( formData ) => {
+		return formData;
+	},
 } ) {
 	const [ store, setStore ] = useState( data );
 	const [ addModalVisible, setAddModalVisible ] = useState( false );
@@ -49,7 +53,7 @@ export function ListControl( {
 	};
 
 	const onAddModalSubmit = ( formData ) => {
-		dispatch( { type: 'add', payload: formData } );
+		dispatch( { type: 'add', payload: hookFormData( formData ) } );
 		setAddModalVisible( false );
 	};
 
@@ -60,7 +64,7 @@ export function ListControl( {
 
 		dispatch( {
 			type: 'edit',
-			payload: { index: formData.index, ...formData },
+			payload: { index: formData.index, ...hookFormData( formData ) },
 		} );
 		setEditModalVisible( false );
 	};
@@ -84,33 +88,46 @@ export function ListControl( {
 					hasFormData={ editModalData }
 					controls={ controls }
 					onSubmit={ onEditModalSubmit }
+					preOnSubmit={ ( formData ) => {
+						console.log( formData, 'weeee' );
+					} }
 					entityLabel={ __(
 						'Wijzigingen opslaan',
 						config.textDomain
 					) }
 				/>
 			) }
-			<List
-				data={ store }
-				onModify={ ( index ) => {
-					const item = dispatch( { type: 'get', payload: index } );
-					setEditModalData( {
-						...{ ...item },
-						index,
-					} );
-					setEditModalVisible( true );
-				} }
-				onRemove={ ( index ) =>
-					dispatch( { type: 'remove', payload: index } )
-				}
-			/>
-			<Button
-				isLarge
-				isPrimary
-				onClick={ () => setAddModalVisible( true ) }
-			>
-				{ `${ entityLabel } ${ __( 'toevoegen', config.textDomain ) }` }
-			</Button>
+			<PanelRow>
+				<List
+					data={ store }
+					onModify={ ( index ) => {
+						const item = dispatch( {
+							type: 'get',
+							payload: index,
+						} );
+						setEditModalData( {
+							...{ ...item },
+							index,
+						} );
+						setEditModalVisible( true );
+					} }
+					onRemove={ ( index ) =>
+						dispatch( { type: 'remove', payload: index } )
+					}
+				/>
+			</PanelRow>
+			<PanelRow>
+				<Button
+					isLarge
+					isPrimary
+					onClick={ () => setAddModalVisible( true ) }
+				>
+					{ `${ entityLabel } ${ __(
+						'toevoegen',
+						config.textDomain
+					) }` }
+				</Button>
+			</PanelRow>
 		</>
 	);
 }
