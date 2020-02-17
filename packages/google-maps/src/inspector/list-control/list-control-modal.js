@@ -1,8 +1,10 @@
 import {
 	Button,
 	Modal,
+	BaseControl,
 	TextControl,
 	TextareaControl,
+	ColorPicker,
 } from '@wordpress/components';
 import { createElement } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -13,13 +15,18 @@ function ListControlModal( {
 	onRequestClose = () => {},
 	onSubmit = () => {},
 	entityLabel = '',
+	title = '',
 } ) {
 	const getField = ( type ) => {
 		switch ( type ) {
 			case 'TextControl':
 				return TextControl;
-			case 'TextAreaControl':
+			case 'TextareaControl':
 				return TextareaControl;
+			case 'ColorPicker':
+				return ColorPicker;
+			case 'BaseControl':
+				return BaseControl;
 			default:
 				throw new Error( 'Fieldtype not supported' );
 		}
@@ -40,7 +47,7 @@ function ListControlModal( {
 	};
 
 	return (
-		<Modal title="titlee" onRequestClose={ onRequestClose }>
+		<Modal title={ title } onRequestClose={ onRequestClose }>
 			<form id="editModalForm" onSubmit={ onHandleSubmit }>
 				{ controls.map( ( control, index ) => {
 					// Modify value before showing the value

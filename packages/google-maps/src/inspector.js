@@ -116,6 +116,49 @@ function Inspector( props ) {
 						] }
 					/>
 				</PanelBody>
+				<PanelBody title={ __( 'Gebieden', config.textDomain ) }>
+					<ListControl
+						title={ __( 'Gebieden', config.textDomain ) }
+						data={ polygons }
+						setAttributes={ setAttributes }
+						callback={ ( newPolygons ) =>
+							setAttributes( { polygons: newPolygons } )
+						}
+						controls={ [
+							{
+								type: 'TextControl',
+								id: 'name',
+								attr: { label: 'Naam' },
+							},
+							{
+								type: 'TextControl',
+								id: 'category',
+								attr: { label: 'Categorie' },
+							},
+							{
+								type: 'TextareaControl',
+								id: 'coords',
+								attr: { label: 'Coordinaten' },
+							},
+							{
+								type: 'BaseControl',
+								id: 'BaseControl',
+								attr: {
+									label: 'Kleur',
+									help: __(
+										'Kies een kleur voor de polygon.',
+										config.textDomain
+									),
+								},
+							},
+							{
+								type: 'ColorPicker',
+								id: 'colorPicker',
+								attr: { label: 'Naam' },
+							},
+						] }
+					/>
+				</PanelBody>
 			</InspectorControls>
 		</>
 	);
