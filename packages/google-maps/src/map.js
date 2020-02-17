@@ -6,18 +6,18 @@ import { loadScript } from './helpers';
 /**
  * WordPress dependencies
  */
-import { useEffect, createRef, useState } from '@wordpress/element';
+import { useEffect, useState, useRef } from '@wordpress/element';
 import { Spinner } from '@wordpress/components';
 
+import QueryPopOver from './components/query-popover';
+
 function Map( props ) {
-	const mapRef = createRef();
+	const [ map, setMap ] = useState( false );
 	const [ loading, setLoading ] = useState( true );
 	const [ markers, setMarkers ] = useState( [] );
-	const [ shapes, setShapes ] = useState( [] );
-	const { attributes } = props;
-	const { points, areas } = attributes;
-
-	let map = false;
+	const { attributes, togglePopover, setAttributes, popoverVisible } = props;
+	const { points, polygons } = attributes;
+	const ref = useRef( null );
 
 	useEffect( () => {
 		try {
@@ -30,6 +30,13 @@ function Map( props ) {
 		}
 	}, [] );
 
+	useEffect( () => {
+		if ( typeof map === 'object' ) {
+			plotMarkers();
+			plotPolygons();
+		}
+	}, [ map ] );
+
 	/**
 	 * Init google map
 	 */
@@ -40,9 +47,8 @@ function Map( props ) {
 			disableDefaultUI: true,
 		};
 
-		map = new google.maps.Map( mapRef.current, mapOptions );
-		plotMarkers();
-		plotAreas();
+		setMap( new google.maps.Map( ref.current, mapOptions ) );
+		// polygols
 	};
 
 	/**
@@ -75,8 +81,8 @@ function Map( props ) {
 	/**
 	 * Plot all shapes on the map instance
 	 */
-	const plotAreas = () => {
-		areas.map( ( area ) => addShape( area ) );
+	const plotPolygons = () => {
+		polygons.map( ( polygon ) => addPolygon( polygon ) );
 	};
 
 	/**
@@ -99,12 +105,13 @@ function Map( props ) {
 	};
 
 	/**
-	 * @param {string} area gmap location id
+	 * @param polygonn
+	 * @param {string} polygon gmap location id
 	 */
-	const addShape = ( area ) => {
+	const addPolygon = ( polygonn ) => {
 		const shape = {
 			polygon: new google.maps.Polygon( {
-				paths: area.coords,
+				paths: polygonn.coords,
 				strokeColor: '#FF0000',
 				strokeOpacity: 0.8,
 				strokeWeight: 2,
@@ -113,15 +120,32 @@ function Map( props ) {
 			} ),
 		};
 
-		setShapes( [ ...shapes, shape ] ); // nalezen
-
 		shape.polygon.setMap( map );
+	};
+
+	/**
+	 * Called from querypopover
+	 *
+	 * @param {Object} point contains name, id and latLng
+	 */
+	const addPoint = ( point ) => {
+		setAttributes( {
+			points: [ ...points, point ],
+		} );
+
+		addMarker( point );
 	};
 
 	return (
 		<>
 			{ loading && <Spinner /> }
-			<div className="yard-blocks-google-map" ref={ mapRef }></div>
+			<div className="yard-blocks-google-map" ref={ ref }></div>
+			{ popoverVisible && (
+				<QueryPopOver
+					addPoint={ addPoint }
+					togglePopover={ togglePopover }
+				/>
+			) }
 		</>
 	);
 }
