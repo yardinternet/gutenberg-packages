@@ -65,12 +65,9 @@ class QueryPopover extends Component {
 								return options;
 							}
 						} )
-						.catch( () => [
-							{
-								name: noResultMsg,
-								id: term,
-							},
-						] );
+						.catch( ( error ) => {
+							console.log( 'error', error );
+						} );
 				},
 				getOptionLabel: ( option ) => <span>{ option.name }</span>,
 				isOptionDisabled: ( option ) => option.name === noResultMsg,
