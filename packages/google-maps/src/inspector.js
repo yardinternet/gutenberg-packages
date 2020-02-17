@@ -25,24 +25,19 @@ function Inspector( props ) {
 		return formData;
 	};
 
-	// const [ categoryItem, setCategoryItem ] = useState( {} );
+	console.log( markerGroups );
 
-	// const onChange = ( { item, value } ) => {
-	// 	setCategoryItem( {
-	// 		...categoryItem,
-	// 		...{
-	// 			[ item ]: value,
-	// 		},
-	// 	} );
-	// };
-
-	// const onSubmit = () => {
-	// 	console.log( categoryItem );
-	// };
+	const addMarkerGroup = ( group ) => {
+		setAttributes( {
+			markerGroups: markerGroups.concat( group ),
+		} );
+	};
 
 	return (
 		<>
-			{ showAddMarkerGroupModal && <AddMarkerGroupModal /> }
+			{ showAddMarkerGroupModal && (
+				<AddMarkerGroupModal onSubmit={ addMarkerGroup } />
+			) }
 			<BlockControls>
 				<Toolbar>
 					<IconButton
@@ -58,6 +53,10 @@ function Inspector( props ) {
 				</Toolbar>
 			</BlockControls>
 			<InspectorControls>
+				{ !! markerGroups.length &&
+					markerGroups.map( ( markerGroup, index ) => (
+						<p key={ index }>wee</p>
+					) ) }
 				<PanelBody title={ __( 'Categorieen', config.textDomain ) }>
 					<ListControl
 						data={ categories }
