@@ -18,6 +18,11 @@ export function ListControl( {
 		return formData;
 	},
 	title = '',
+	// Modify formData before it's dispatched
+	hookFormData = ( formData ) => {
+		return formData;
+	},
+	title = '',
 } ) {
 	const [ store, setStore ] = useState( data );
 	const [ addModalVisible, setAddModalVisible ] = useState( false );
@@ -90,6 +95,9 @@ export function ListControl( {
 					hasFormData={ editModalData }
 					controls={ controls }
 					onSubmit={ onEditModalSubmit }
+					preOnSubmit={ ( formData ) => {
+						console.log( formData, 'weeee' );
+					} }
 					entityLabel={ __(
 						'Wijzigingen opslaan',
 						config.textDomain
