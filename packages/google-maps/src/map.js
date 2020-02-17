@@ -7,7 +7,7 @@ import { loadScript } from './helpers';
  * WordPress dependencies
  */
 import { useEffect, useState, useRef } from '@wordpress/element';
-import { Spinner } from '@wordpress/components';
+import { Spinner, Button } from '@wordpress/components';
 
 import QueryPopOver from './components/query-popover';
 
@@ -18,6 +18,9 @@ function Map( props ) {
 	const { attributes, togglePopover, setAttributes, popoverVisible } = props;
 	const { points, polygons } = attributes;
 	const ref = useRef( null );
+	const testPath = useRef( [] );
+
+	let poly = {};
 
 	useEffect( () => {
 		try {
@@ -34,6 +37,39 @@ function Map( props ) {
 		if ( typeof map === 'object' ) {
 			plotMarkers();
 			plotPolygons();
+
+			poly = new google.maps.Polyline( {
+				strokeColor: '#000000',
+				strokeOpacity: 1.0,
+				strokeWeight: 3,
+			} );
+			poly.setMap( map );
+
+			// map.addListener( 'click', function( e ) {
+			// 	console.log( e.latLng.toString() );
+			// } );
+
+			// Add a listener for the click event
+			map.addListener( 'click', ( event ) => {
+				const path = poly.getPath();
+
+				console.log( testPath );
+
+				// Because path is an MVCArray, we can simply append a new coordinate
+				// and it will automatically appear.
+				path.push( event.latLng );
+				testPath.current.push( {
+					lat: event.latLng.lat(),
+					lng: event.latLng.lng(),
+				} );
+
+				// Add a new marker at the new plotted point on the polyline.
+				const marker = new google.maps.Marker( {
+					position: event.latLng,
+					title: '#' + path.getLength(),
+					map,
+				} );
+			} );
 		}
 	}, [ map ] );
 
@@ -108,10 +144,10 @@ function Map( props ) {
 	 * @param polygonn
 	 * @param {string} polygon gmap location id
 	 */
-	const addPolygon = ( polygonn ) => {
+	const addPolygon = () => {
 		const shape = {
 			polygon: new google.maps.Polygon( {
-				paths: polygonn.coords,
+				paths: testPath.current,
 				strokeColor: '#FF0000',
 				strokeOpacity: 0.8,
 				strokeWeight: 2,
@@ -139,6 +175,13 @@ function Map( props ) {
 	return (
 		<>
 			{ loading && <Spinner /> }
+			<Button
+				onClick={ () => {
+					addPolygon();
+				} }
+			>
+				Finish
+			</Button>
 			<div className="yard-blocks-google-map" ref={ ref }></div>
 			{ popoverVisible && (
 				<QueryPopOver
