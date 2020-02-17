@@ -17,3 +17,23 @@ export function loadScript( src = '', async = false ) {
 		document.body.appendChild( script );
 	} );
 }
+
+/**
+ * Load google maps
+ *
+ * @return {Promise} resolves when gmaps is loaded
+ */
+export function loadGoogleMaps() {
+	return new Promise( ( resolve, reject ) => {
+		window.resolveGoogleMapsPromise = () => {
+			resolve();
+		};
+
+		loadScript(
+			`https://maps.googleapis.com/maps/api/js?key=AIzaSyDjyUL9_S1E4INlI53pqe9t04OtCHhrJ_A&callback=resolveGoogleMapsPromise&sensor=true`,
+			true
+		).catch( () => {
+			reject();
+		} );
+	} );
+}

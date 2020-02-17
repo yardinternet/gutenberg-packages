@@ -5,6 +5,7 @@ import {
 	TextareaControl,
 } from '@wordpress/components';
 import { createElement } from '@wordpress/element';
+import QueryPopOver from '../../components/query-popover';
 
 function ListControlModal( {
 	hasFormData = {},
@@ -19,6 +20,10 @@ function ListControlModal( {
 				return TextControl;
 			case 'TextAreaControl':
 				return TextareaControl;
+
+			case 'QueryPopOver':
+				return QueryPopOver;
+
 			default:
 				throw new Error( 'Fieldtype not supported' );
 		}

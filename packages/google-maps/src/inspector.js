@@ -12,6 +12,7 @@ import { config } from './config';
 
 import ListControl from './inspector/list-control/list-control';
 import AddMarkerGroupModal from './inspector/add-marker-group-modal';
+import MarkerGroups from './inspector/marker-groups';
 
 function Inspector( props ) {
 	const { attributes, setAttributes, togglePopover } = props;
@@ -24,8 +25,6 @@ function Inspector( props ) {
 		console.log( 'do something with polygoon data', formData );
 		return formData;
 	};
-
-	console.log( markerGroups );
 
 	const addMarkerGroup = ( group ) => {
 		setAttributes( {
@@ -53,10 +52,7 @@ function Inspector( props ) {
 				</Toolbar>
 			</BlockControls>
 			<InspectorControls>
-				{ !! markerGroups.length &&
-					markerGroups.map( ( markerGroup, index ) => (
-						<p key={ index }>wee</p>
-					) ) }
+				<MarkerGroups markerGroups={ markerGroups } { ...props } />
 				<PanelBody title={ __( 'Categorieen', config.textDomain ) }>
 					<ListControl
 						data={ categories }
