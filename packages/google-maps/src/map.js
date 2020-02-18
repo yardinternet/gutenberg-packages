@@ -3,23 +3,39 @@
  */
 import { loadGoogleMaps } from './helpers';
 import React from 'react';
+import { __ } from '@wordpress/i18n';
+
 /**
  * WordPress dependencies
  */
 import { useEffect, useState, useRef } from '@wordpress/element';
 import { Spinner, Button } from '@wordpress/components';
+import GeocodeAdress from './inspector/geocode-autocomplete';
+import AddPolygonModal from './components/add-polygon-modal';
 
 function Map( props ) {
 	const [ map, setMap ] = useState( false );
 	const [ loading, setLoading ] = useState( true );
 	const [ markers, setMarkers ] = useState( [] );
-	const { attributes, setAttributes } = props;
+	const [ currentPolyLines, setCurrentPolyLines ] = useState( [] );
+	const [ triggerMarker, setTriggerMarker ] = useState( [] );
+	const [ currentPolyGon, setCurrentPolyGon ] = useState( null );
+	const [ showAddPolygonModal, setShowAddPolygonModal ] = useState( false );
+	const {
+		attributes,
+		togglePopover,
+		setAttributes,
+		popoverVisible,
+		drawerModusActive,
+	} = props;
 	const { points, polygons } = attributes;
 	const ref = useRef( null );
 	const testPath = useRef( [] );
+	const currentMarker = useRef( [] );
 
-	let poly = {};
-
+	/**
+	 * Initiate map
+	 */
 	useEffect( () => {
 		try {
 			initMap();
@@ -31,45 +47,74 @@ function Map( props ) {
 		}
 	}, [] );
 
+	const listenerTest = () => {
+		map.addListener( 'click', ( event ) => {
+			populatePaths( event );
+		} );
+	};
+
+	/**
+	 * Watch state variable 'drawerModusActive'
+	 */
+	useEffect( () => {
+		if ( typeof map === 'object' ) {
+			if ( drawerModusActive ) {
+				listenerTest();
+			} else {
+				google.maps.event.clearListeners( map, 'click' );
+			}
+		}
+	}, [ drawerModusActive ] );
+
+	/**
+	 * Watch state variable 'map'
+	 */
 	useEffect( () => {
 		if ( typeof map === 'object' ) {
 			plotMarkers();
 			plotPolygons();
-
-			poly = new google.maps.Polyline( {
-				strokeColor: '#000000',
-				strokeOpacity: 1.0,
-				strokeWeight: 3,
-			} );
-			poly.setMap( map );
-
-			// map.addListener( 'click', function( e ) {
-			// 	console.log( e.latLng.toString() );
-			// } );
-
-			// Add a listener for the click event
-			map.addListener( 'click', ( event ) => {
-				const path = poly.getPath();
-
-				console.log( testPath );
-
-				// Because path is an MVCArray, we can simply append a new coordinate
-				// and it will automatically appear.
-				path.push( event.latLng );
-				testPath.current.push( {
-					lat: event.latLng.lat(),
-					lng: event.latLng.lng(),
-				} );
-
-				// Add a new marker at the new plotted point on the polyline.
-				const marker = new google.maps.Marker( {
-					position: event.latLng,
-					title: '#' + path.getLength(),
-					map,
-				} );
-			} );
 		}
 	}, [ map ] );
+
+	/**
+	 * Listener event 'click'
+	 *
+	 * @param {Object} event
+	 */
+	const populatePaths = ( event ) => {
+		const poly = new google.maps.Polyline( {
+			path: testPath.current,
+			strokeColor: '#000000',
+			strokeOpacity: 1.0,
+			strokeWeight: 3,
+		} );
+
+		poly.setMap( map );
+		currentPolyLines.push( poly );
+		setCurrentPolyLines( currentPolyLines ); // trigger re-render
+
+		const path = poly.getPath();
+
+		path.push( event.latLng );
+		testPath.current.push( {
+			lat: event.latLng.lat(),
+			lng: event.latLng.lng(),
+		} );
+
+		// Add a new marker at the new plotted point on the polyline.
+		const marker = new google.maps.Marker( {
+			position: event.latLng,
+			title: '#' + path.getLength(),
+			map,
+			icon: {
+				path: google.maps.SymbolPath.CIRCLE,
+				scale: 3,
+			},
+		} );
+
+		currentMarker.current = currentMarker.current.concat( [ marker ] );
+		setTriggerMarker( [ marker ] ); // trigger re-render after updating ref
+	};
 
 	/**
 	 * Init google map
@@ -82,7 +127,6 @@ function Map( props ) {
 		};
 
 		setMap( new google.maps.Map( ref.current, mapOptions ) );
-		// polygols
 	};
 
 	/**
@@ -119,8 +163,7 @@ function Map( props ) {
 	};
 
 	/**
-	 * @param polygonn
-	 * @param {string} polygon gmap location id
+	 * Add polygon to the map
 	 */
 	const addPolygon = () => {
 		const shape = {
@@ -135,6 +178,39 @@ function Map( props ) {
 		};
 
 		shape.polygon.setMap( map );
+
+		setCurrentPolyGon( shape.polygon );
+		setShowAddPolygonModal( true );
+	};
+
+	/**
+	 * Reset the drawing on the map
+	 */
+	const resetDrawing = () => {
+		testPath.current = [];
+		if ( currentPolyLines.length > 0 ) {
+			currentPolyLines.map( function( item ) {
+				return item.setMap( null );
+			} );
+
+			currentPolyLines.length = 0;
+		}
+
+		if ( currentMarker.current.length > 0 ) {
+			currentMarker.current.map( function( item ) {
+				return item.setMap( null );
+			} );
+		}
+
+		if ( currentPolyGon !== null ) {
+			currentPolyGon.setMap( null );
+		}
+
+		// empty the google maps object variables
+		currentMarker.current = [];
+		setCurrentPolyLines( currentPolyLines );
+		setCurrentPolyGon( null );
+		setTriggerMarker( [] ); // trigger re-render after updating ref
 	};
 
 	/**
@@ -142,25 +218,86 @@ function Map( props ) {
 	 *
 	 * @param {Object} point contains name, id and latLng
 	 */
-	// const addPoint = ( point ) => {
-	// 	setAttributes( {
-	// 		points: [ ...points, point ],
-	// 	} );
+	const addPoint = ( point ) => {
+		setAttributes( {
+			points: [ ...points, point ],
+		} );
 
-	// 	addMarker( point );
-	// };
+		addMarker( point );
+	};
+
+	/**
+	 *
+	 * @param {string} name
+	 * @param {Object} coordinates
+	 */
+	const addPolygonToAttributes = ( name, coordinates ) => {
+		const polygon = {
+			name,
+			category: '',
+			coords: coordinates,
+			color: '#000000',
+		};
+
+		setAttributes( {
+			polygons: [ ...polygons, polygon ],
+		} );
+
+		resetDrawing();
+		setShowAddPolygonModal( false );
+	};
+
+	/**
+	 * Close the modal
+	 */
+	const onRequestClose = () => {
+		setShowAddPolygonModal( false );
+	};
 
 	return (
 		<>
 			{ loading && <Spinner /> }
-			<Button
-				onClick={ () => {
-					addPolygon();
-				} }
-			>
-				Finish
-			</Button>
+			<div className="d-flex flex-row">
+				{ drawerModusActive && currentMarker.current.length > 0 && (
+					<div className="mr-1 mb-1">
+						<Button
+							isPrimary
+							isLarge
+							onClick={ () => {
+								addPolygon();
+							} }
+						>
+							Finish
+						</Button>
+					</div>
+				) }
+				{ drawerModusActive && (
+					<div className="mb-1">
+						<Button
+							isLarge
+							onClick={ () => {
+								resetDrawing();
+							} }
+						>
+							Reset
+						</Button>
+					</div>
+				) }
+			</div>
 			<div className="yard-blocks-google-map" ref={ ref }></div>
+			{ popoverVisible && (
+				<GeocodeAdress
+					addPoint={ addPoint }
+					togglePopover={ togglePopover }
+				/>
+			) }
+			{ showAddPolygonModal && (
+				<AddPolygonModal
+					coordinates={ testPath.current }
+					onSubmit={ addPolygonToAttributes }
+					onRequestClose={ onRequestClose }
+				/>
+			) }
 		</>
 	);
 }
