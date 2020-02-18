@@ -1,7 +1,6 @@
 import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 import { useState } from '@wordpress/element';
 import {
-	Button,
 	PanelBody,
 	Toolbar,
 	IconButton,
@@ -11,8 +10,8 @@ import { __ } from '@wordpress/i18n';
 import { config } from './config';
 
 import ListControl from './inspector/list-control/list-control';
-import AddMarkerGroupModal from './inspector/add-marker-group-modal';
-import MarkerGroups from './inspector/marker-groups';
+import AddMarkerGroupModal from './inspector/marker-group/add-marker-group-modal';
+import MarkerGroups from './inspector/marker-group/marker-groups';
 
 function Inspector( props ) {
 	const { attributes, setAttributes, togglePopover } = props;
@@ -22,7 +21,6 @@ function Inspector( props ) {
 	);
 
 	const hookPolygonShapes = ( formData ) => {
-		console.log( 'do something with polygoon data', formData );
 		return formData;
 	};
 

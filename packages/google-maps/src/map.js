@@ -9,13 +9,11 @@ import { loadGoogleMaps } from './helpers';
 import { useEffect, useState, useRef } from '@wordpress/element';
 import { Spinner, Button } from '@wordpress/components';
 
-import QueryPopOver from './components/query-popover';
-
 function Map( props ) {
 	const [ map, setMap ] = useState( false );
 	const [ loading, setLoading ] = useState( true );
 	const [ markers, setMarkers ] = useState( [] );
-	const { attributes, togglePopover, setAttributes, popoverVisible } = props;
+	const { attributes, setAttributes } = props;
 	const { points, polygons } = attributes;
 	const ref = useRef( null );
 	const testPath = useRef( [] );
@@ -144,13 +142,13 @@ function Map( props ) {
 	 *
 	 * @param {Object} point contains name, id and latLng
 	 */
-	const addPoint = ( point ) => {
-		setAttributes( {
-			points: [ ...points, point ],
-		} );
+	// const addPoint = ( point ) => {
+	// 	setAttributes( {
+	// 		points: [ ...points, point ],
+	// 	} );
 
-		addMarker( point );
-	};
+	// 	addMarker( point );
+	// };
 
 	return (
 		<>
@@ -163,12 +161,6 @@ function Map( props ) {
 				Finish
 			</Button>
 			<div className="yard-blocks-google-map" ref={ ref }></div>
-			{ popoverVisible && (
-				<QueryPopOver
-					addPoint={ addPoint }
-					togglePopover={ togglePopover }
-				/>
-			) }
 		</>
 	);
 }
