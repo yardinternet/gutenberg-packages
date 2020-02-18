@@ -2,7 +2,6 @@
  * External dependencies
  */
 import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
-
 /**
  * WordPress dependencies
  */
