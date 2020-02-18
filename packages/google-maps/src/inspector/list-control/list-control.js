@@ -18,11 +18,6 @@ export function ListControl( {
 		return formData;
 	},
 	title = '',
-	// Modify formData before it's dispatched
-	hookFormData = ( formData ) => {
-		return formData;
-	},
-	title = '',
 } ) {
 	const [ store, setStore ] = useState( data );
 	const [ addModalVisible, setAddModalVisible ] = useState( false );

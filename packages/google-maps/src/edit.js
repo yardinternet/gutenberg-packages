@@ -11,7 +11,7 @@ import { useState } from '@wordpress/element';
 
 function Edit( props ) {
 	const { setAttributes, attributes } = props;
-	const { points } = attributes;
+	const { points, polygons } = attributes;
 	const [ popoverVisible, setPopoverVisible ] = useState( false );
 	const [ drawerModusActive, setDrawerModusActive ] = useState( false );
 
@@ -20,6 +20,12 @@ function Edit( props ) {
 	 */
 	const togglePopover = () => {
 		setPopoverVisible( ! popoverVisible );
+	};
+
+	const passPolygons = ( polygon ) => {
+		setAttributes( {
+			polygons: [ ...polygons, polygon ],
+		} );
 	};
 
 	return (
@@ -36,6 +42,7 @@ function Edit( props ) {
 				popoverVisible={ popoverVisible }
 				drawerModusActive={ drawerModusActive }
 				refresh={ drawerModusActive }
+				passPolygons={ passPolygons }
 				points={ points }
 				{ ...props }
 			/>
