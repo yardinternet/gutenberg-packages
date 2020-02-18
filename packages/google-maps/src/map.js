@@ -2,7 +2,7 @@
  * Internal dependencies
  */
 import { loadGoogleMaps } from './helpers';
-
+import React from 'react';
 /**
  * WordPress dependencies
  */
