@@ -88,9 +88,6 @@ export function ListControl( {
 					hasFormData={ editModalData }
 					controls={ controls }
 					onSubmit={ onEditModalSubmit }
-					preOnSubmit={ ( formData ) => {
-						console.log( formData, 'weeee' );
-					} }
 					entityLabel={ __(
 						'Wijzigingen opslaan',
 						config.textDomain

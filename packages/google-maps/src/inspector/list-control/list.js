@@ -5,7 +5,7 @@ import {
 	BaseControl,
 } from '@wordpress/components';
 
-function List( { data, onRemove, onModify, children } ) {
+function List( { data, onRemove = () => {}, onModify = () => {}, children } ) {
 	return (
 		<div>
 			{ data && data.length > 0 && (
