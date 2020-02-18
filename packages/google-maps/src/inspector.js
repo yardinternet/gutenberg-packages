@@ -1,3 +1,14 @@
+/**
+ * Internal dependencies
+ */
+import { config } from './config';
+import ListControl from './inspector/list-control/list-control';
+import AddMarkerGroupModal from './inspector/add-marker-group-modal';
+import MarkerGroups from './inspector/marker-groups';
+
+/**
+ * Wordpress dependencies
+ */
 import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 import { useState } from '@wordpress/element';
 import {
@@ -7,15 +18,16 @@ import {
 	Dashicon,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { config } from './config';
-
-import ListControl from './inspector/list-control/list-control';
-import AddMarkerGroupModal from './inspector/marker-group/add-marker-group-modal';
-import MarkerGroups from './inspector/marker-group/marker-groups';
 
 function Inspector( props ) {
-	const { attributes, setAttributes, togglePopover } = props;
-	const { categories, markerGroups } = attributes;
+	const {
+		attributes,
+		setAttributes,
+		togglePopover,
+		drawerModusActive,
+		setDrawerModusActive,
+	} = props;
+	const { categories, markerGroups, polygons } = attributes;
 	const [ showAddMarkerGroupModal, setShowAddMarkerGroupModal ] = useState(
 		false
 	);
@@ -43,9 +55,16 @@ function Inspector( props ) {
 						onClick={ () => togglePopover() }
 					/>
 					<IconButton
-						icon={ <Dashicon icon="location" /> }
+						icon={ <Dashicon icon="grid-view" /> }
 						label={ __( 'Add group location' ) }
 						onClick={ () => setShowAddMarkerGroupModal( true ) }
+					/>
+					<IconButton
+						icon={ <Dashicon icon="edit" /> }
+						label={ __( 'Drawer modus' ) }
+						onClick={ () =>
+							setDrawerModusActive( ! drawerModusActive )
+						}
 					/>
 				</Toolbar>
 			</BlockControls>
@@ -74,10 +93,10 @@ function Inspector( props ) {
 				</PanelBody>
 				<PanelBody title={ __( 'Polygoon test', config.textDomain ) }>
 					<ListControl
-						data={ categories }
+						data={ polygons }
 						setAttributes={ setAttributes }
-						callback={ ( newCategories ) =>
-							setAttributes( { categories: newCategories } )
+						callback={ ( newPolygons ) =>
+							setAttributes( { polygons: newPolygons } )
 						}
 						hookFormData={ hookPolygonShapes }
 						controls={ [
