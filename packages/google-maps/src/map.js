@@ -27,6 +27,7 @@ function Map( props ) {
 		setAttributes,
 		popoverVisible,
 		drawerModusActive,
+		passPolygons,
 	} = props;
 	const { points, polygons } = attributes;
 	const ref = useRef( null );
@@ -144,6 +145,26 @@ function Map( props ) {
 	};
 
 	/**
+	 * Add polygon to the map from attributes
+	 *
+	 * @param {Object} polygon
+	 */
+	const addPolygon = ( polygon ) => {
+		const shape = {
+			polygon: new google.maps.Polygon( {
+				paths: JSON.parse( polygon.coords ),
+				strokeColor: '#FF0000',
+				strokeOpacity: 0.8,
+				strokeWeight: 2,
+				fillColor: '#FF0000',
+				fillOpacity: 0.35,
+			} ),
+		};
+
+		shape.polygon.setMap( map );
+	};
+
+	/**
 	 * @param {string} point gmap location id
 	 */
 	const addMarker = ( point ) => {
@@ -163,9 +184,9 @@ function Map( props ) {
 	};
 
 	/**
-	 * Add polygon to the map
+	 * Add polygon drawing temporary to the map
 	 */
-	const addPolygon = () => {
+	const addPolygonDrawing = () => {
 		const shape = {
 			polygon: new google.maps.Polygon( {
 				paths: testPath.current,
@@ -174,6 +195,7 @@ function Map( props ) {
 				strokeWeight: 2,
 				fillColor: '#FF0000',
 				fillOpacity: 0.35,
+				editable: true,
 			} ),
 		};
 
@@ -235,16 +257,17 @@ function Map( props ) {
 		const polygon = {
 			name,
 			category: '',
-			coords: coordinates,
+			coords: JSON.stringify( coordinates ),
 			color: '#000000',
 		};
 
-		setAttributes( {
-			polygons: [ ...polygons, polygon ],
-		} );
+		// setAttributes( {
+		// 	polygons: [ ...polygons, polygon ],
+		// } );
 
 		resetDrawing();
 		setShowAddPolygonModal( false );
+		passPolygons( polygon );
 	};
 
 	/**
@@ -264,7 +287,7 @@ function Map( props ) {
 							isPrimary
 							isLarge
 							onClick={ () => {
-								addPolygon();
+								addPolygonDrawing();
 							} }
 						>
 							Finish
