@@ -3,13 +3,15 @@ import {
 	Dashicon,
 	ButtonGroup,
 	BaseControl,
+	PanelRow,
 } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 function List( { data, onRemove = () => {}, onModify = () => {}, children } ) {
 	return (
-		<div>
-			{ data && data.length > 0 && (
-				<>
+		<>
+			{ data && data.length > 0 ? (
+				<div style={ { width: '100%' } }>
 					{ data.map( ( item, index ) => (
 						<List.Item
 							key={ index }
@@ -19,25 +21,47 @@ function List( { data, onRemove = () => {}, onModify = () => {}, children } ) {
 							onModify={ onModify }
 						/>
 					) ) }
-				</>
+				</div>
+			) : (
+				<span>
+					{ __(
+						'Er zijn geen items beschikbaar of voeg een item toe.',
+						'DOMAIN'
+					) }
+				</span>
 			) }
 			{ children }
-		</div>
+		</>
 	);
 }
 
 function ListItem( { item, index, onRemove, onModify } ) {
 	return (
-		<div key={ index }>
-			<ButtonGroup>
+		<div
+			style={ {
+				display: 'flex',
+				alignItems: 'center',
+				width: '100%',
+				marginBottom: '.5rem',
+			} }
+			key={ index }
+		>
+			<div style={ { marginRight: '10px', fontSize: '1rem' } }>
 				<BaseControl.VisualLabel>{ item }</BaseControl.VisualLabel>
-				<Button isSmall isDefault onClick={ () => onModify( index ) }>
+			</div>
+			<div style={ { display: 'flex', marginLeft: 'auto' } }>
+				<Button
+					style={ { marginRight: '5px' } }
+					isSmall
+					isDefault
+					onClick={ () => onModify( index ) }
+				>
 					<Dashicon icon="edit" />
 				</Button>
 				<Button isSmall isDefault onClick={ () => onRemove( index ) }>
 					<Dashicon icon="trash" />
 				</Button>
-			</ButtonGroup>
+			</div>
 		</div>
 	);
 }
