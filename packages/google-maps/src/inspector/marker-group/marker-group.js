@@ -10,32 +10,42 @@ import { useState, useReducer, useEffect } from '@wordpress/element';
 import MarkerModal from './marker-modal';
 import List from '../list-control/list';
 
-function Markergroup( { name, index, markers = [], setData = () => {} } ) {
+function Markergroup( {
+	name,
+	index,
+	markers = [],
+	parentDispatch = () => {},
+} ) {
 	const [ state, dispatch ] = useReducer( reducer, markers );
 
 	useEffect( () => {
-		setData( state, index );
+		parentDispatch( {
+			type: 'editMarkers',
+			payload: { name, markers: state, index },
+		} );
 	}, [ state ] );
 
 	const onChangePanelName = ( val ) => {
 		if ( val.length > 0 ) {
-			setPanelName( val );
+			parentDispatch( {
+				type: 'editPanelName',
+				payload: { name: val, index },
+			} );
 		}
 	};
 
-	const [ panelName, setPanelName ] = useState( name );
 	const [ showAddMarkerModal, setShowAddMarkerModal ] = useState( false );
 	const [ showEditMarkerModal, setShowEditMarkerModal ] = useState( false );
 
 	const [ markerData, setMarkerData ] = useState( {} );
 
 	return (
-		<PanelBody title={ panelName } key={ index }>
+		<PanelBody title={ name } key={ index }>
 			<PanelHeader>Markergroep</PanelHeader>
 			<PanelRow>
 				<TextControl
 					onChange={ ( val ) => onChangePanelName( val ) }
-					value={ panelName }
+					value={ name }
 					label={ 'naam' }
 				/>
 			</PanelRow>
@@ -56,10 +66,15 @@ function Markergroup( { name, index, markers = [], setData = () => {} } ) {
 					) }
 					{ showEditMarkerModal && (
 						<MarkerModal
-							onSubmit={ ( marker ) => {
+							onSubmit={ ( marker, indexVal ) => {
+								if ( indexVal === null ) {
+									throw new Error(
+										'index value is null, provide a index to update the marker'
+									);
+								}
 								dispatch( {
 									type: 'edit',
-									payload: { marker, index: 0 },
+									payload: { marker, index: indexVal },
 								} );
 							} }
 							onRequestClose={ () =>
@@ -71,7 +86,7 @@ function Markergroup( { name, index, markers = [], setData = () => {} } ) {
 					<List
 						data={ state }
 						onModify={ ( indexVal ) => {
-							setMarkerData( { indexVal, ...state[ index ] } );
+							setMarkerData( { indexVal, ...state[ indexVal ] } );
 							setShowEditMarkerModal( true );
 						} }
 						onRemove={ ( indexVal ) => {

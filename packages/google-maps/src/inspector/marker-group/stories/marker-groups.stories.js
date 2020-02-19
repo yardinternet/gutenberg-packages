@@ -2,6 +2,8 @@ import { action } from '@storybook/addon-actions';
 import MarkerGroups from '../marker-groups';
 import { loadGoogleMaps } from '../../../helpers';
 
+import '@wordpress/components/build-style/style.css'; // d
+
 export default {
 	title: 'GoogleMaps/Inspector',
 };

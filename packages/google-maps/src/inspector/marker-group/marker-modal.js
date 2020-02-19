@@ -9,13 +9,14 @@ function MarkerModal( {
 	markerData = {
 		latLng: false,
 		name: '',
+		indexVal: null,
 	},
 } ) {
 	const [ marker, setMarker ] = useState( markerData );
 
 	const onClick = () => {
 		setMarker( {} );
-		onSubmit( marker );
+		onSubmit( marker, markerData.indexVal );
 		onRequestClose();
 	};
 
