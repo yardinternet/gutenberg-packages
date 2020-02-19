@@ -39,26 +39,30 @@ function Inspector( props ) {
 	};
 
 	const addMarkerGroup = ( group ) => {
+		const defaultMarkerGroup = {
+			name: group,
+			markers: [],
+		};
+
 		setAttributes( {
-			markerGroups: markerGroups.concat( group ),
+			markerGroups: markerGroups.concat( defaultMarkerGroup ),
 		} );
+		setShowAddMarkerGroupModal( false );
 	};
 
 	return (
 		<>
 			{ showAddMarkerGroupModal && (
-				<AddMarkerGroupModal onSubmit={ addMarkerGroup } />
+				<AddMarkerGroupModal
+					onRequestClose={ () => setShowAddMarkerGroupModal( false ) }
+					onSubmit={ addMarkerGroup }
+				/>
 			) }
 			<BlockControls>
 				<Toolbar>
 					<IconButton
-						icon={ <Dashicon icon="location" /> }
-						label={ __( 'Marker toevoegen' ) }
-						onClick={ () => togglePopover() }
-					/>
-					<IconButton
-						icon={ <Dashicon icon="grid-view" /> }
-						label={ __( 'Add group location' ) }
+						icon={ <Dashicon icon="plus" /> }
+						label={ __( 'Voeg markergroep toe' ) }
 						onClick={ () => setShowAddMarkerGroupModal( true ) }
 					/>
 					<IconButton
@@ -71,8 +75,19 @@ function Inspector( props ) {
 				</Toolbar>
 			</BlockControls>
 			<InspectorControls>
-				<MarkerGroups markerGroups={ markerGroups } { ...props } />
-				<PanelBody title={ __( 'Categorieen', config.textDomain ) }>
+				<MarkerGroups
+					setAttributesCb={ ( data ) => {
+						setAttributes( {
+							markerGroups: data,
+						} );
+					} }
+					markerGroups={ markerGroups }
+					{ ...props }
+				/>
+				<PanelBody
+					initialOpen={ false }
+					title={ __( 'Categorieen', config.textDomain ) }
+				>
 					<ListControl
 						data={ categories }
 						entityLabel={ __( 'Categorie' ) }
@@ -89,7 +104,10 @@ function Inspector( props ) {
 						] }
 					/>
 				</PanelBody>
-				<PanelBody title={ __( 'Gebieden', config.textDomain ) }>
+				<PanelBody
+					initialOpen={ false }
+					title={ __( 'Gebieden', config.textDomain ) }
+				>
 					<ListControl
 						title={ __( 'Gebieden', config.textDomain ) }
 						data={ polygons }
