@@ -14,6 +14,7 @@ function Edit( props ) {
 	const { points, polygons, markerGroups } = attributes;
 	const [ popoverVisible, setPopoverVisible ] = useState( false );
 	const [ drawerModusActive, setDrawerModusActive ] = useState( false );
+	const [ polygonsObjects, setPolygonsObjects ] = useState( [] );
 
 	/**
 	 * Toggle querypopover
@@ -22,10 +23,14 @@ function Edit( props ) {
 		setPopoverVisible( ! popoverVisible );
 	};
 
-	const passPolygons = ( polygon ) => {
+	const passPolygonsToAttributes = ( polygon ) => {
 		setAttributes( {
 			polygons: [ ...polygons, polygon ],
 		} );
+	};
+
+	const passPolygonsObjects = ( polygon ) => {
+		setPolygonsObjects( polygonsObjects.concat( polygon ) );
 	};
 
 	return (
@@ -34,6 +39,7 @@ function Edit( props ) {
 				togglePopover={ togglePopover }
 				setDrawerModusActive={ setDrawerModusActive }
 				drawerModusActive={ drawerModusActive }
+				polygonsObjects={ polygonsObjects }
 				{ ...props }
 			/>
 			<Map
@@ -42,9 +48,13 @@ function Edit( props ) {
 				popoverVisible={ popoverVisible }
 				drawerModusActive={ drawerModusActive }
 				refresh={ drawerModusActive }
-				passPolygons={ passPolygons }
 				markerGroups={ markerGroups }
+				passPolygonsToAttributes={ passPolygonsToAttributes }
+				passPolygonsObjects={ passPolygonsObjects }
 				points={ points }
+				polygonsObjects={ polygonsObjects }
+				setPolygonsObjects={ setPolygonsObjects }
+				polygons={ polygons }
 				{ ...props }
 			/>
 		</>
