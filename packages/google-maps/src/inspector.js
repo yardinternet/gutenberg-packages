@@ -34,7 +34,6 @@ function Inspector( props ) {
 
 	const hookPolygonShapes = ( formData ) => {
 		formData.coords = [ JSON.stringify( formData.coords ) ];
-		console.log( formData );
 		return formData;
 	};
 
@@ -49,6 +48,8 @@ function Inspector( props ) {
 		} );
 		setShowAddMarkerGroupModal( false );
 	};
+
+	console.log( showAddMarkerGroupModal, markerGroups );
 
 	return (
 		<>

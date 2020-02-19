@@ -36,6 +36,8 @@ export function ListControl( {
 			case 'add':
 				return updateStore( store.concat( [ action.payload ] ) );
 			case 'remove':
+				store.map( ( item ) => item.polygon.setMap( null ) );
+
 				return updateStore(
 					store.filter( ( item, index ) => index !== action.payload )
 				);
