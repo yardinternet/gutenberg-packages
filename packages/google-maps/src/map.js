@@ -11,7 +11,7 @@ import { useEffect, useState, useRef } from '@wordpress/element';
 import { Button } from '@wordpress/components';
 import AddPolygonModal from './components/add-polygon-modal';
 
-const mappie = '';
+var markers = []; // eslint-disable-line
 
 function Map( {
 	polygons = [],
@@ -21,8 +21,7 @@ function Map( {
 	markerGroups = [],
 	googleMapStyles = { minHeight: '400px' },
 } ) {
-	const [ map, setMap ] = useState( mappie );
-	const [ markers, setMarkers ] = useState( [] );
+	const [ map, setMap ] = useState( false );
 	const [ currentPolyLines, setCurrentPolyLines ] = useState( [] );
 	const [ triggerMarker, setTriggerMarker ] = useState( [] );
 	const [ currentPolyGon, setCurrentPolyGon ] = useState( null );
@@ -49,7 +48,7 @@ function Map( {
 	 */
 	useEffect( () => {
 		if ( map ) {
-			plotMarkers();
+			plotMarkers( markers );
 		}
 	}, [ markerGroups ] );
 
@@ -81,6 +80,15 @@ function Map( {
 			plotPolygons();
 		}
 	}, [ map ] );
+
+	/**
+	 * Watch props variable 'polygons'
+	 */
+	useEffect( () => {
+		if ( typeof map === 'object' ) {
+			plotPolygons();
+		}
+	}, [ polygons ] );
 
 	/**
 	 * Listener event 'click'
@@ -139,6 +147,11 @@ function Map( {
 	 * Plot all markers on the map instance
 	 */
 	const plotMarkers = () => {
+		// Unset all current markers
+		markers.map( ( item ) => {
+			return item.setMap( null );
+		} );
+
 		parseMarkerGroupMarkers( markerGroups ).map( ( point ) =>
 			addMarker( point )
 		);
@@ -157,37 +170,24 @@ function Map( {
 	 * @param {Object} polygon
 	 */
 	const addPolygon = ( polygon ) => {
-		const shape = {
-			polygon: new google.maps.Polygon( {
-				paths: JSON.parse( polygon.coords ),
-				strokeColor: '#FF0000',
-				strokeOpacity: 0.8,
-				strokeWeight: 2,
-				fillColor: '#FF0000',
-				fillOpacity: 0.35,
-			} ),
-		};
-
-		shape.polygon.setMap( map );
+		if ( Object.keys( polygon ).length > 0 ) {
+			polygon.polygon.setMap( map );
+		}
 	};
 
 	/**
 	 * @param {string} point gmap location id
 	 */
 	const addMarker = ( point ) => {
-		const marker = {
-			id: point.id,
-			gMarker: new google.maps.Marker( {
-				position: point.latLng,
-				// icon: Object.keys( this.props.markerIcon ).length
-				// 	? this.props.markerIcon
-				// 	: undefined,
-			} ),
-		};
+		const marker = new google.maps.Marker( {
+			position: point.latLng,
+			// icon: Object.keys( this.props.markerIcon ).length
+			// 	? this.props.markerIcon
+			// 	: undefined,
+		} );
 
-		setMarkers( [ ...markers, marker ] ); // nalezen
-
-		marker.gMarker.setMap( map );
+		markers.push( marker ); // nalezen
+		marker.setMap( map );
 	};
 
 	/**
@@ -266,11 +266,17 @@ function Map( {
 			category: '',
 			coords: JSON.stringify( coordinates ),
 			color: '#000000',
+			polygon: new google.maps.Polygon( {
+				paths: coordinates,
+				strokeColor: '#FF0000',
+				strokeOpacity: 0.8,
+				strokeWeight: 2,
+				fillColor: '#FF0000',
+				fillOpacity: 0.35,
+			} ),
 		};
 
-		// setAttributes( {
-		// 	polygons: [ ...polygons, polygon ],
-		// } );
+		console.log( polygon );
 
 		resetDrawing();
 		setShowAddPolygonModal( false );
