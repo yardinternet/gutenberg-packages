@@ -7,6 +7,7 @@ import { __ } from '@wordpress/i18n';
 import { config } from '../../config';
 import ListControlModal from './list-control-modal';
 import List from './list';
+import { use } from '@wordpress/data';
 
 export function ListControl( {
 	controls = [],
@@ -17,6 +18,7 @@ export function ListControl( {
 	hookFormData = ( formData ) => {
 		return formData;
 	},
+	polygonsObjects = [],
 } ) {
 	const [ store, setStore ] = useState( data );
 	const [ addModalVisible, setAddModalVisible ] = useState( false );
@@ -43,8 +45,6 @@ export function ListControl( {
 			case 'add':
 				return updateStore( store.concat( [ action.payload ] ) );
 			case 'remove':
-				store.map( ( item ) => item.polygon.setMap( null ) );
-
 				return updateStore(
 					store.filter( ( item, index ) => index !== action.payload )
 				);

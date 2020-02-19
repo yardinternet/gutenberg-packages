@@ -26,6 +26,7 @@ function Inspector( props ) {
 		togglePopover,
 		drawerModusActive,
 		setDrawerModusActive,
+		polygonsObjects,
 	} = props;
 	const { categories, markerGroups, polygons } = attributes;
 	const [ showAddMarkerGroupModal, setShowAddMarkerGroupModal ] = useState(
@@ -48,8 +49,6 @@ function Inspector( props ) {
 		} );
 		setShowAddMarkerGroupModal( false );
 	};
-
-	console.log( showAddMarkerGroupModal, markerGroups );
 
 	return (
 		<>
@@ -112,6 +111,7 @@ function Inspector( props ) {
 					<ListControl
 						title={ __( 'Gebieden', config.textDomain ) }
 						data={ polygons }
+						polygonsObjects={ polygonsObjects }
 						setAttributes={ setAttributes }
 						callback={ ( newPolygons ) =>
 							setAttributes( { polygons: newPolygons } )
@@ -127,21 +127,6 @@ function Inspector( props ) {
 								type: 'TextControl',
 								id: 'category',
 								attr: { label: 'Categorie' },
-							},
-							{
-								type: 'TextareaControl',
-								id: 'coords',
-								attr: { label: 'Coordinaten' },
-								preRender: ( value ) => {
-									// if ( value ) {
-									// 	return convertCoordToJSON(
-									// 		value.coords
-									// 	);
-									// }
-									console.log( value + 'pre-render' );
-
-									// hier terug converteren naar string
-								},
 							},
 							{
 								type: 'BaseControl',

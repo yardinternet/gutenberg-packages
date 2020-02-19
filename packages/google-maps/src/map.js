@@ -17,7 +17,10 @@ function Map( {
 	polygons = [],
 	drawerModusActive = false,
 	setAttributes = () => {},
-	passPolygons = [],
+	passPolygonsObjects = () => {},
+	passPolygonsToAttributes = () => {},
+	setPolygonsObjects = () => {},
+	polygonsObjects = [],
 	markerGroups = [],
 	googleMapStyles = { minHeight: '400px' },
 } ) {
@@ -76,6 +79,7 @@ function Map( {
 	 */
 	useEffect( () => {
 		if ( typeof map === 'object' ) {
+			createPolygonObjects();
 			plotMarkers();
 			plotPolygons();
 		}
@@ -86,9 +90,63 @@ function Map( {
 	 */
 	useEffect( () => {
 		if ( typeof map === 'object' ) {
-			plotPolygons();
+			filterPolygonObjects();
 		}
 	}, [ polygons ] );
+
+	/**
+	 * Watch props variable 'polygonsObjects'
+	 */
+	useEffect( () => {
+		if ( typeof map === 'object' ) {
+			plotPolygons();
+		}
+	}, [ polygonsObjects ] );
+
+	/**
+	 * Create polygon objects from attributes
+	 */
+	const createPolygonObjects = () => {
+		const handler = [];
+
+		polygons.map( function( item ) {
+			const polygon = {
+				polygon: new google.maps.Polygon( {
+					id: item.id,
+					paths: JSON.parse( item.coords ),
+					strokeColor: '#FF0000',
+					strokeOpacity: 0.8,
+					strokeWeight: 2,
+					fillColor: '#FF0000',
+					fillOpacity: 0.35,
+				} ),
+			};
+
+			return handler.push( polygon );
+		} );
+
+		setPolygonsObjects( handler );
+	};
+
+	const filterPolygonObjects = () => {
+		const handler = polygonsObjects.filter( function( item ) {
+			let found = false;
+
+			for ( let i = 0; i < polygons.length; i++ ) {
+				if ( polygons[ i ].id === item.polygon.id ) {
+					found = true;
+				}
+			}
+
+			if ( ! found ) {
+				item.polygon.setMap( null );
+			}
+
+			return found;
+		} );
+
+		setPolygonsObjects( handler );
+	};
 
 	/**
 	 * Listener event 'click'
@@ -161,7 +219,7 @@ function Map( {
 	 * Plot all shapes on the map instance
 	 */
 	const plotPolygons = () => {
-		polygons.map( ( polygon ) => addPolygon( polygon ) );
+		polygonsObjects.map( ( polygon ) => addPolygon( polygon ) );
 	};
 
 	/**
@@ -202,7 +260,6 @@ function Map( {
 				strokeWeight: 2,
 				fillColor: '#FF0000',
 				fillOpacity: 0.35,
-				editable: true,
 			} ),
 		};
 
@@ -261,12 +318,9 @@ function Map( {
 	 * @param {Object} coordinates
 	 */
 	const addPolygonToAttributes = ( name, coordinates ) => {
-		const polygon = {
-			name,
-			category: '',
-			coords: JSON.stringify( coordinates ),
-			color: '#000000',
+		const polygonObject = {
 			polygon: new google.maps.Polygon( {
+				id: Math.floor( Math.random() * 100 ) + 1,
 				paths: coordinates,
 				strokeColor: '#FF0000',
 				strokeOpacity: 0.8,
@@ -276,11 +330,20 @@ function Map( {
 			} ),
 		};
 
-		console.log( polygon );
+		polygonObject.polygon.setMap( map );
+
+		const polygon = {
+			id: polygonObject.polygon.id,
+			name,
+			category: '',
+			coords: JSON.stringify( coordinates ),
+			color: '#000000',
+		};
 
 		resetDrawing();
 		setShowAddPolygonModal( false );
-		passPolygons( polygon );
+		passPolygonsToAttributes( polygon );
+		passPolygonsObjects( polygonObject );
 	};
 
 	/**
