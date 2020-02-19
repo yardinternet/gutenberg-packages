@@ -17,7 +17,6 @@ export function ListControl( {
 	hookFormData = ( formData ) => {
 		return formData;
 	},
-	title = '',
 } ) {
 	const [ store, setStore ] = useState( data );
 	const [ addModalVisible, setAddModalVisible ] = useState( false );
@@ -74,18 +73,16 @@ export function ListControl( {
 		<>
 			{ addModalVisible && (
 				<ListControlModal
-					title={ title }
+					title={ `${ entityLabel } ${ __( 'toevoegen' ) }` }
 					controls={ controls }
 					onSubmit={ onAddModalSubmit }
 					onRequestClose={ () => setAddModalVisible( false ) }
-					entityLabel={ `${ entityLabel } ${ __(
-						'opslaan',
-						config.textDomain
-					) }` }
+					entityLabel={ __( 'opslaan', config.textDomain ) }
 				/>
 			) }
 			{ editModalVisible && (
 				<ListControlModal
+					title={ `${ entityLabel } ${ __( 'wijzigen' ) }` }
 					onRequestClose={ () => setEditModalVisible( false ) }
 					hasFormData={ editModalData }
 					controls={ controls }
@@ -93,10 +90,7 @@ export function ListControl( {
 					preOnSubmit={ ( formData ) => {
 						console.log( formData, 'weeee' );
 					} }
-					entityLabel={ __(
-						'Wijzigingen opslaan',
-						config.textDomain
-					) }
+					entityLabel={ __( 'opslaan', config.textDomain ) }
 				/>
 			) }
 			<PanelRow>

@@ -1,28 +1,13 @@
 import { useState, useEffect, useReducer } from '@wordpress/element';
 import Markergroup from './marker-group';
 
-function reducer( state, action ) {
-	switch ( action.type ) {
-		case 'add':
-			return state.concat( action.payload );
-		case 'edit':
-			return state.map( ( item, index ) =>
-				index === action.payload.index ? action.payload.marker : item
-			);
-		case 'remove':
-			return state.filter( ( item, index ) => index !== action.payload );
-		default:
-			throw new Error();
-	}
-}
-
 function MarkerGroups( { markerGroups = [], setAttributesCb = () => {} } ) {
 	const [ data, setData ] = useState( markerGroups );
-	const [ state, dispatch ] = useReducer( markerGroups );
+	const [ state, dispatch ] = useReducer( reducer, markerGroups );
 
 	useEffect( () => {
-		setAttributesCb( data );
-	}, [ data ] );
+		setAttributesCb( state );
+	}, [ state ] );
 
 	const markerData = ( markers, index ) => {
 		setData(
@@ -33,17 +18,43 @@ function MarkerGroups( { markerGroups = [], setAttributesCb = () => {} } ) {
 	};
 
 	return (
-		!! markerGroups.length &&
-		markerGroups.map( ( { name, markers }, index ) => (
+		!! state.length &&
+		state.map( ( { name, markers }, index ) => (
 			<Markergroup
 				key={ index }
 				index={ index }
 				name={ name }
 				markers={ markers }
 				setData={ markerData }
+				parentDispatch={ dispatch }
 			/>
 		) )
 	);
+}
+
+function reducer( state, action ) {
+	switch ( action.type ) {
+		case 'editMarkers':
+			return state.map( ( item, index ) =>
+				index === action.payload.index
+					? {
+							...item,
+							markers: action.payload.markers,
+					  }
+					: item
+			);
+		case 'editPanelName':
+			return state.map( ( item, index ) =>
+				index === action.payload.index
+					? {
+							...item,
+							name: action.payload.name,
+					  }
+					: item
+			);
+		default:
+			throw new Error();
+	}
 }
 
 export default MarkerGroups;

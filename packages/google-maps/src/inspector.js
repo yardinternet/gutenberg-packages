@@ -75,20 +75,16 @@ function Inspector( props ) {
 				<PanelBody title={ __( 'Categorieen', config.textDomain ) }>
 					<ListControl
 						data={ categories }
+						entityLabel={ __( 'Categorie' ) }
 						setAttributes={ setAttributes }
 						callback={ ( newCategories ) =>
 							setAttributes( { categories: newCategories } )
 						}
 						controls={ [
 							{
-								type: 'TextAreaControl',
+								type: 'TextControl',
 								id: 'name',
 								attr: { label: 'Naam' },
-							},
-							{
-								type: 'TextControl',
-								id: 'age',
-								attr: { label: 'Leeftijd' },
 							},
 						] }
 					/>

@@ -22,7 +22,10 @@ const controls = [
 
 export const listControl = () => (
 	<ListControl
-		data={ [ { name: 'Jansen', age: '42' } ] }
+		data={ [
+			{ name: 'Jansen', age: '42' },
+			{ name: 'Very Long Long Long Title', age: '42' },
+		] }
 		controls={ controls }
 		entityLabel={ 'Categorie' }
 	/>
