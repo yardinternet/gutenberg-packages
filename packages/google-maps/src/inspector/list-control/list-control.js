@@ -1,7 +1,7 @@
 import { omit } from 'lodash';
 
 import { Button, PanelRow } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import { config } from '../../config';
@@ -22,6 +22,13 @@ export function ListControl( {
 	const [ addModalVisible, setAddModalVisible ] = useState( false );
 	const [ editModalVisible, setEditModalVisible ] = useState( false );
 	const [ editModalData, setEditModalData ] = useState( {} );
+
+	/**
+	 * Watch state variable 'map'
+	 */
+	useEffect( () => {
+		setStore( data );
+	}, [ data ] );
 
 	const updateStore = ( newStore ) => {
 		const storeOmitIndex = newStore.map( ( item ) =>
