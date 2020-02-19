@@ -37,3 +37,21 @@ export function loadGoogleMaps() {
 		} );
 	} );
 }
+
+/**
+ * Parse all markers from markergroups
+ *
+ * @param {Object} markergroups
+ * @return {Array} markers
+ */
+export function parseMarkerGroupMarkers( markergroups ) {
+	return markergroups
+		.map( ( group ) =>
+			group.markers.map( ( marker ) => {
+				return {
+					latLng: marker.latLng,
+				};
+			} )
+		)
+		.flat();
+}

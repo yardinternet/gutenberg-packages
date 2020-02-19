@@ -11,7 +11,7 @@ import { useState } from '@wordpress/element';
 
 function Edit( props ) {
 	const { setAttributes, attributes } = props;
-	const { points, polygons } = attributes;
+	const { points, polygons, markerGroups } = attributes;
 	const [ popoverVisible, setPopoverVisible ] = useState( false );
 	const [ drawerModusActive, setDrawerModusActive ] = useState( false );
 
@@ -43,6 +43,7 @@ function Edit( props ) {
 				drawerModusActive={ drawerModusActive }
 				refresh={ drawerModusActive }
 				passPolygons={ passPolygons }
+				markerGroups={ markerGroups }
 				points={ points }
 				{ ...props }
 			/>
