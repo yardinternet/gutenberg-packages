@@ -1,35 +1,26 @@
-import { useState, useEffect, useReducer } from '@wordpress/element';
+import { useEffect, useReducer } from '@wordpress/element';
+import { Panel } from '@wordpress/components';
 import Markergroup from './marker-group';
 
 function MarkerGroups( { markerGroups = [], setAttributesCb = () => {} } ) {
-	const [ data, setData ] = useState( markerGroups );
 	const [ state, dispatch ] = useReducer( reducer, markerGroups );
 
 	useEffect( () => {
 		setAttributesCb( state );
 	}, [ state ] );
 
-	const markerData = ( markers, index ) => {
-		setData(
-			data.map( ( item, i ) =>
-				index === i ? { ...item, markers } : item
-			)
-		);
-	};
-
-	return (
-		!! state.length &&
+	const renderGroups = () =>
 		state.map( ( { name, markers }, index ) => (
 			<Markergroup
 				key={ index }
 				index={ index }
 				name={ name }
 				markers={ markers }
-				setData={ markerData }
 				parentDispatch={ dispatch }
 			/>
-		) )
-	);
+		) );
+
+	return !! state.length && renderGroups();
 }
 
 function reducer( state, action ) {

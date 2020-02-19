@@ -28,6 +28,7 @@ const markers = [
 const Markers = [
 	{ name: 'Lelystad', markers },
 	{ name: 'RandStad', markers },
+	{ name: 'RandStaddd', markers },
 ];
 
 loadGoogleMaps();

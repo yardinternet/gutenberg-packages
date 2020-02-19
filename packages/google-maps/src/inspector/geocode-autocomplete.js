@@ -5,6 +5,7 @@ import React from 'react';
 import AsyncSelect from 'react-select/async';
 
 function GeocodeAutocomplete( {
+	styles = {},
 	onChange = () => {},
 	defaultInputValue = '',
 } ) {
@@ -38,14 +39,14 @@ function GeocodeAutocomplete( {
 	};
 
 	return (
-		<>
+		<div style={ styles }>
 			<AsyncSelect
 				cacheOptions={ true }
 				onChange={ onChange }
 				defaultInputValue={ defaultInputValue }
 				loadOptions={ geocodeAdress }
 			/>
-		</>
+		</div>
 	);
 }
 

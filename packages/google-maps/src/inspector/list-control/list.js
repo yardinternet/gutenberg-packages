@@ -46,7 +46,7 @@ function ListItem( { item, index, onRemove, onModify } ) {
 			} }
 			key={ index }
 		>
-			<div style={ { marginRight: '10px', fontSize: '1rem' } }>
+			<div style={ { marginRight: '10px', fontSize: '0.8rem' } }>
 				<BaseControl.VisualLabel>{ item }</BaseControl.VisualLabel>
 			</div>
 			<div style={ { display: 'flex', marginLeft: 'auto' } }>

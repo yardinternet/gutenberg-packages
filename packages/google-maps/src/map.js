@@ -1,35 +1,32 @@
 /**
  * Internal dependencies
  */
-import { loadGoogleMaps } from './helpers';
+import { loadGoogleMaps, parseMarkerGroupMarkers } from './helpers';
 import React from 'react';
-import { __ } from '@wordpress/i18n';
 
 /**
  * WordPress dependencies
  */
 import { useEffect, useState, useRef } from '@wordpress/element';
-import { Spinner, Button } from '@wordpress/components';
-import GeocodeAdress from './inspector/geocode-autocomplete';
+import { Button } from '@wordpress/components';
 import AddPolygonModal from './components/add-polygon-modal';
 
-function Map( props ) {
-	const [ map, setMap ] = useState( false );
-	const [ loading, setLoading ] = useState( true );
+const mappie = '';
+
+function Map( {
+	polygons = [],
+	drawerModusActive = false,
+	setAttributes = () => {},
+	passPolygons = [],
+	markerGroups = [],
+	googleMapStyles = { minHeight: '400px' },
+} ) {
+	const [ map, setMap ] = useState( mappie );
 	const [ markers, setMarkers ] = useState( [] );
 	const [ currentPolyLines, setCurrentPolyLines ] = useState( [] );
 	const [ triggerMarker, setTriggerMarker ] = useState( [] );
 	const [ currentPolyGon, setCurrentPolyGon ] = useState( null );
 	const [ showAddPolygonModal, setShowAddPolygonModal ] = useState( false );
-	const {
-		attributes,
-		togglePopover,
-		setAttributes,
-		popoverVisible,
-		drawerModusActive,
-		passPolygons,
-	} = props;
-	const { points, polygons } = attributes;
 	const ref = useRef( null );
 	const testPath = useRef( [] );
 	const currentMarker = useRef( [] );
@@ -43,10 +40,18 @@ function Map( props ) {
 		} catch ( error ) {
 			loadGoogleMaps().then( () => {
 				initMap();
-				setLoading( false );
 			} );
 		}
 	}, [] );
+
+	/**
+	 * Plot markers when groupMarkers is changed
+	 */
+	useEffect( () => {
+		if ( map ) {
+			plotMarkers();
+		}
+	}, [ markerGroups ] );
 
 	const listenerTest = () => {
 		map.addListener( 'click', ( event ) => {
@@ -134,7 +139,9 @@ function Map( props ) {
 	 * Plot all markers on the map instance
 	 */
 	const plotMarkers = () => {
-		points.map( ( point ) => addMarker( point ) );
+		parseMarkerGroupMarkers( markerGroups ).map( ( point ) =>
+			addMarker( point )
+		);
 	};
 
 	/**
@@ -242,7 +249,7 @@ function Map( props ) {
 	 */
 	const addPoint = ( point ) => {
 		setAttributes( {
-			points: [ ...points, point ],
+			latLngCollection: [ ...latLngCollection, point ],
 		} );
 
 		addMarker( point );
@@ -279,7 +286,6 @@ function Map( props ) {
 
 	return (
 		<>
-			{ loading && <Spinner /> }
 			<div className="d-flex flex-row">
 				{ drawerModusActive && currentMarker.current.length > 0 && (
 					<div className="mr-1 mb-1">
@@ -307,13 +313,11 @@ function Map( props ) {
 					</div>
 				) }
 			</div>
-			<div className="yard-blocks-google-map" ref={ ref }></div>
-			{ popoverVisible && (
-				<GeocodeAdress
-					addPoint={ addPoint }
-					togglePopover={ togglePopover }
-				/>
-			) }
+			<div
+				style={ googleMapStyles }
+				className="yard-blocks-google-map"
+				ref={ ref }
+			></div>
 			{ showAddPolygonModal && (
 				<AddPolygonModal
 					coordinates={ testPath.current }

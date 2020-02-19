@@ -1,9 +1,10 @@
 import { useState } from '@wordpress/element';
-import { Button, Modal } from '@wordpress/components';
+import { Button, Modal, PanelRow } from '@wordpress/components';
 
 import GeocodeAutocomplete from '../geocode-autocomplete';
 
 function MarkerModal( {
+	title = 'Marker toevoegen',
 	onSubmit = () => {},
 	onRequestClose = () => {},
 	markerData = {
@@ -21,21 +22,28 @@ function MarkerModal( {
 	};
 
 	return (
-		<Modal onRequestClose={ onRequestClose }>
-			<GeocodeAutocomplete
-				defaultInputValue={ markerData.name }
-				onChange={ ( option ) => {
-					setMarker( {
-						latLng: {
-							lat: option.latLng.lat(),
-							lng: option.latLng.lng(),
-						},
-						name: option.value,
-					} );
-					return option.value;
-				} }
-			/>
-			<Button onClick={ () => onClick() }>Opslaan</Button>
+		<Modal title={ title } onRequestClose={ onRequestClose }>
+			<PanelRow>
+				<GeocodeAutocomplete
+					styles={ { width: '100%' } }
+					defaultInputValue={ markerData.name }
+					onChange={ ( option ) => {
+						setMarker( {
+							latLng: {
+								lat: option.latLng.lat(),
+								lng: option.latLng.lng(),
+							},
+							name: option.value,
+						} );
+						return option.value;
+					} }
+				/>
+			</PanelRow>
+			<PanelRow>
+				<Button isPrimary onClick={ () => onClick() }>
+					Opslaan
+				</Button>
+			</PanelRow>
 		</Modal>
 	);
 }

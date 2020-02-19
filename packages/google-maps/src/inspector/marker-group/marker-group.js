@@ -1,10 +1,10 @@
 import {
 	Button,
 	PanelBody,
-	PanelHeader,
 	PanelRow,
 	TextControl,
 } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 import { useState, useReducer, useEffect } from '@wordpress/element';
 
 import MarkerModal from './marker-modal';
@@ -40,68 +40,72 @@ function Markergroup( {
 	const [ markerData, setMarkerData ] = useState( {} );
 
 	return (
-		<PanelBody title={ name } key={ index }>
-			<PanelHeader>Markergroep</PanelHeader>
+		<PanelBody initialOpen={ false } title={ name } key={ index }>
 			<PanelRow>
 				<TextControl
 					onChange={ ( val ) => onChangePanelName( val ) }
 					value={ name }
-					label={ 'naam' }
+					label={ 'Groepnaam' }
 				/>
 			</PanelRow>
 			<PanelRow>
-				<>
-					{ showAddMarkerModal && (
-						<MarkerModal
-							onSubmit={ ( marker ) => {
-								dispatch( {
-									type: 'add',
-									payload: { ...marker },
-								} );
-							} }
-							onRequestClose={ () =>
-								setShowAddMarkerModal( false )
-							}
-						/>
-					) }
-					{ showEditMarkerModal && (
-						<MarkerModal
-							onSubmit={ ( marker, indexVal ) => {
-								if ( indexVal === null ) {
-									throw new Error(
-										'index value is null, provide a index to update the marker'
-									);
-								}
-								dispatch( {
-									type: 'edit',
-									payload: { marker, index: indexVal },
-								} );
-							} }
-							onRequestClose={ () =>
-								setShowEditMarkerModal( false )
-							}
-							markerData={ markerData }
-						/>
-					) }
-					<List
-						data={ state }
-						onModify={ ( indexVal ) => {
-							setMarkerData( { indexVal, ...state[ indexVal ] } );
-							setShowEditMarkerModal( true );
+				<div style={ { fontSize: '1rem' } }>Markers</div>
+			</PanelRow>
+			<PanelRow>
+				{ showAddMarkerModal && (
+					<MarkerModal
+						onSubmit={ ( marker ) => {
+							dispatch( {
+								type: 'add',
+								payload: { ...marker },
+							} );
 						} }
-						onRemove={ ( indexVal ) => {
-							dispatch( { type: 'remove', payload: indexVal } );
-						} }
+						onRequestClose={ () => setShowAddMarkerModal( false ) }
 					/>
-					<Button
-						isPrimary
-						isLarge
-						onClick={ () => setShowAddMarkerModal( true ) }
-						type="submit"
-					>
-						Marker toevoegen
-					</Button>
-				</>
+				) }
+				{ showEditMarkerModal && (
+					<MarkerModal
+						onSubmit={ ( marker, indexVal ) => {
+							if ( indexVal === null ) {
+								throw new Error(
+									'index value is null, provide a index to update the marker'
+								);
+							}
+							dispatch( {
+								type: 'edit',
+								payload: { marker, index: indexVal },
+							} );
+						} }
+						onRequestClose={ () => setShowEditMarkerModal( false ) }
+						markerData={ markerData }
+					/>
+				) }
+				<List
+					data={ state }
+					onModify={ ( indexVal ) => {
+						setMarkerData( {
+							indexVal,
+							...state[ indexVal ],
+						} );
+						setShowEditMarkerModal( true );
+					} }
+					onRemove={ ( indexVal ) => {
+						dispatch( {
+							type: 'remove',
+							payload: indexVal,
+						} );
+					} }
+				/>
+			</PanelRow>
+			<PanelRow>
+				<Button
+					isPrimary
+					isLarge
+					onClick={ () => setShowAddMarkerModal( true ) }
+					type="submit"
+				>
+					Marker toevoegen
+				</Button>
 			</PanelRow>
 		</PanelBody>
 	);
