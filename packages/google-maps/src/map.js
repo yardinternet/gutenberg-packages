@@ -236,9 +236,10 @@ function Map( {
 	/**
 	 * @param {string} point gmap location id
 	 */
-	const addMarker = ( point ) => {
+	const addMarker = ( { latLng, icon } ) => {
 		const marker = new google.maps.Marker( {
-			position: point.latLng,
+			position: latLng,
+			icon,
 			// icon: Object.keys( this.props.markerIcon ).length
 			// 	? this.props.markerIcon
 			// 	: undefined,

@@ -1,6 +1,5 @@
 import {
 	Button,
-	Dashicon,
 	PanelBody,
 	PanelRow,
 	TextControl,
@@ -12,26 +11,31 @@ import { useState, useReducer, useEffect } from '@wordpress/element';
 import MarkerModal from './marker-modal';
 import List from '../list-control/list';
 
+import { MediaPlaceholder } from '@wordpress/block-editor';
+
 function Markergroup( {
 	name,
 	index,
+	markerImage = {},
 	markers = [],
 	parentDispatch = () => {},
 } ) {
 	const [ state, dispatch ] = useReducer( reducer, markers );
 
+	console.log( markerImage, name );
+
 	useEffect( () => {
 		parentDispatch( {
 			type: 'editMarkers',
-			payload: { name, markers: state, index },
+			payload: { name, markers: state, index, markerImage },
 		} );
 	}, [ state ] );
 
-	const onChangePanelName = ( val ) => {
-		if ( val.length > 0 ) {
+	const onChangePanelName = ( value ) => {
+		if ( value.length > 0 ) {
 			parentDispatch( {
-				type: 'editPanelName',
-				payload: { name: val, index },
+				type: 'updateGroup',
+				payload: { name: 'name', value, index },
 			} );
 		}
 	};
@@ -62,8 +66,48 @@ function Markergroup( {
 				</Button>
 			</div>
 			<PanelRow>
-				<div style={ { fontSize: '1rem' } }>Markers</div>
+				<div style={ { fontSize: '.8rem' } }>Marker afbeelding</div>
 			</PanelRow>
+			<PanelRow>
+				{ ! markerImage.url ? (
+					<MediaPlaceholder
+						onSelect={ ( media ) => {
+							parentDispatch( {
+								type: 'updateGroup',
+								payload: {
+									index,
+									name: 'markerImage',
+									value: { id: media.id, url: media.url },
+								},
+							} );
+						} }
+						allowedTypes={ [ 'image' ] }
+						multiple={ false }
+						labels={ { title: 'Marker afbeelding' } }
+					></MediaPlaceholder>
+				) : (
+					<img src={ markerImage.url } alt="marker afbeelding" />
+				) }
+			</PanelRow>
+
+			<div style={ { fontSize: '.8rem' } }>Markers</div>
+			<div>
+				<Button
+					isLink
+					onClick={ () =>
+						parentDispatch( {
+							type: 'updateGroup',
+							payload: {
+								index,
+								name: 'markerImage',
+								value: {},
+							},
+						} )
+					}
+				>
+					Afbeelding verwijderen
+				</Button>
+			</div>
 			<PanelRow>
 				{ showAddMarkerModal && (
 					<MarkerModal

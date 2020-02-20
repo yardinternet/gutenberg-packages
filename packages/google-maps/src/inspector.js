@@ -42,6 +42,7 @@ function Inspector( props ) {
 		const defaultMarkerGroup = {
 			name: group,
 			markers: [],
+			markerImage: {},
 		};
 
 		setAttributes( {
