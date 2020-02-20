@@ -2,13 +2,15 @@ import { action } from '@storybook/addon-actions';
 import MarkerGroups from '../marker-groups';
 import { loadGoogleMaps } from '../../../helpers';
 
-import '@wordpress/components/build-style/style.css'; // d
+import '@wordpress/components/build-style/style.css';
+import { Button } from '@wordpress/components';
+import { useState } from 'react';
 
 export default {
 	title: 'GoogleMaps/Inspector',
 };
 
-const markers = [
+const defaultMarkers = [
 	{
 		name: 'japie',
 		latLng: {
@@ -25,18 +27,26 @@ const markers = [
 	},
 ];
 
-const Markers = [
-	{ name: 'Lelystad', markers },
-	{ name: 'RandStad', markers },
-	{ name: 'RandStaddd', markers },
-];
-
 loadGoogleMaps();
 
-export const MarkGroup = () => (
-	<MarkerGroups
-		markerGroups={ Markers }
-		setAttributesCb={ action( 'onSubmit' ) }
-		onSubmit={ action( 'onSubmit' ) }
-	/>
-);
+export const MarkGroup = () => {
+	const [ markers, setMarkers ] = useState( [
+		{ name: 'Lelystad', defaultMarkers },
+		{ name: 'RandStad', defaultMarkers },
+	] );
+
+	const addGroup = () => {
+		setMarkers( markers.concat( [ { name: 'test', markers } ] ) );
+	};
+
+	return (
+		<>
+			<Button onClick={ () => addGroup() }>Add group</Button>
+			<MarkerGroups
+				markerGroups={ markers }
+				setAttributesCb={ ( data ) => setMarkers( data ) }
+				onSubmit={ action( 'onSubmit' ) }
+			/>
+		</>
+	);
+};

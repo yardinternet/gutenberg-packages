@@ -1,8 +1,10 @@
 import {
 	Button,
+	Dashicon,
 	PanelBody,
 	PanelRow,
 	TextControl,
+	Modal,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState, useReducer, useEffect } from '@wordpress/element';
@@ -36,11 +38,17 @@ function Markergroup( {
 
 	const [ showAddMarkerModal, setShowAddMarkerModal ] = useState( false );
 	const [ showEditMarkerModal, setShowEditMarkerModal ] = useState( false );
+	const [ showRemoveGroupModal, setRemoveGroupModal ] = useState( false );
 
 	const [ markerData, setMarkerData ] = useState( {} );
 
 	return (
-		<PanelBody initialOpen={ false } title={ name } key={ index }>
+		<PanelBody
+			icon="location"
+			initialOpen={ true }
+			title={ name }
+			key={ index }
+		>
 			<PanelRow>
 				<TextControl
 					onChange={ ( val ) => onChangePanelName( val ) }
@@ -48,6 +56,11 @@ function Markergroup( {
 					label={ 'Groepnaam' }
 				/>
 			</PanelRow>
+			<div>
+				<Button isLink onClick={ () => setRemoveGroupModal( true ) }>
+					Groep verwijderen
+				</Button>
+			</div>
 			<PanelRow>
 				<div style={ { fontSize: '1rem' } }>Markers</div>
 			</PanelRow>
@@ -62,6 +75,29 @@ function Markergroup( {
 						} }
 						onRequestClose={ () => setShowAddMarkerModal( false ) }
 					/>
+				) }
+				{ showRemoveGroupModal && (
+					<Modal
+						title={ __( 'Group verwijderen?' ) }
+						onRequestClose={ () => setRemoveGroupModal( false ) }
+					>
+						<Button
+							onClick={ () => {
+								setRemoveGroupModal( false );
+								parentDispatch( {
+									type: 'removeGroup',
+									payload: index,
+								} );
+							} }
+							isPrimary
+							style={ {
+								background: 'red',
+								borderColor: 'red',
+							} }
+						>
+							Ja, verwijder groep
+						</Button>
+					</Modal>
 				) }
 				{ showEditMarkerModal && (
 					<MarkerModal
