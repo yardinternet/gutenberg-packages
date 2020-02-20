@@ -1,16 +1,45 @@
-import { useEffect, useReducer } from '@wordpress/element';
-import { Panel } from '@wordpress/components';
 import Markergroup from './marker-group';
 
 function MarkerGroups( { markerGroups = [], setAttributesCb = () => {} } ) {
-	const [ state, dispatch ] = useReducer( reducer, markerGroups );
-
-	useEffect( () => {
-		setAttributesCb( state );
-	}, [ state ] );
+	const dispatch = ( action ) => {
+		switch ( action.type ) {
+			case 'sync':
+				return action.payload;
+			case 'editMarkers':
+				return setAttributesCb(
+					markerGroups.map( ( item, index ) =>
+						index === action.payload.index
+							? {
+									...item,
+									markers: action.payload.markers,
+							  }
+							: item
+					)
+				);
+			case 'editPanelName':
+				return setAttributesCb(
+					markerGroups.map( ( item, index ) =>
+						index === action.payload.index
+							? {
+									...item,
+									name: action.payload.name,
+							  }
+							: item
+					)
+				);
+			case 'removeGroup':
+				return setAttributesCb(
+					markerGroups.filter(
+						( item, index ) => index !== action.payload
+					)
+				);
+			default:
+				throw new Error();
+		}
+	};
 
 	const renderGroups = () =>
-		state.map( ( { name, markers }, index ) => (
+		markerGroups.map( ( { name, markers }, index ) => (
 			<Markergroup
 				key={ index }
 				index={ index }
@@ -20,32 +49,7 @@ function MarkerGroups( { markerGroups = [], setAttributesCb = () => {} } ) {
 			/>
 		) );
 
-	return !! state.length && renderGroups();
-}
-
-function reducer( state, action ) {
-	switch ( action.type ) {
-		case 'editMarkers':
-			return state.map( ( item, index ) =>
-				index === action.payload.index
-					? {
-							...item,
-							markers: action.payload.markers,
-					  }
-					: item
-			);
-		case 'editPanelName':
-			return state.map( ( item, index ) =>
-				index === action.payload.index
-					? {
-							...item,
-							name: action.payload.name,
-					  }
-					: item
-			);
-		default:
-			throw new Error();
-	}
+	return !! markerGroups.length && renderGroups();
 }
 
 export default MarkerGroups;
