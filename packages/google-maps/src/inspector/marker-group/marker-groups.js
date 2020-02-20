@@ -3,8 +3,6 @@ import Markergroup from './marker-group';
 function MarkerGroups( { markerGroups = [], setAttributesCb = () => {} } ) {
 	const dispatch = ( action ) => {
 		switch ( action.type ) {
-			case 'sync':
-				return action.payload;
 			case 'editMarkers':
 				return setAttributesCb(
 					markerGroups.map( ( item, index ) =>
@@ -16,21 +14,23 @@ function MarkerGroups( { markerGroups = [], setAttributesCb = () => {} } ) {
 							: item
 					)
 				);
-			case 'editPanelName':
+			case 'removeGroup':
+				return setAttributesCb(
+					markerGroups.filter(
+						( item, index ) => index !== action.payload
+					)
+				);
+
+			case 'updateGroup':
 				return setAttributesCb(
 					markerGroups.map( ( item, index ) =>
 						index === action.payload.index
 							? {
 									...item,
-									name: action.payload.name,
+									[ action.payload.name ]:
+										action.payload.value,
 							  }
 							: item
-					)
-				);
-			case 'removeGroup':
-				return setAttributesCb(
-					markerGroups.filter(
-						( item, index ) => index !== action.payload
 					)
 				);
 			default:
@@ -39,12 +39,11 @@ function MarkerGroups( { markerGroups = [], setAttributesCb = () => {} } ) {
 	};
 
 	const renderGroups = () =>
-		markerGroups.map( ( { name, markers }, index ) => (
+		markerGroups.map( ( group, index ) => (
 			<Markergroup
 				key={ index }
 				index={ index }
-				name={ name }
-				markers={ markers }
+				{ ...group }
 				parentDispatch={ dispatch }
 			/>
 		) );

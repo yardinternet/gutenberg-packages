@@ -13,6 +13,7 @@ describe( 'parseMarkerGroupMarkers', () => {
 					},
 				},
 			],
+			markerImage: {},
 		},
 		{
 			name: 'Utrecht',
@@ -25,6 +26,7 @@ describe( 'parseMarkerGroupMarkers', () => {
 					},
 				},
 			],
+			markerImage: { url: 'blaat' },
 		},
 	];
 
@@ -40,6 +42,7 @@ describe( 'parseMarkerGroupMarkers', () => {
 				lat: 52.03434,
 				lng: 5.16567,
 			},
+			icon: 'blaat',
 		},
 	];
 
