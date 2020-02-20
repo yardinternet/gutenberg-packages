@@ -1,10 +1,6 @@
 import Map from '../../map';
-import { parseMarkerGroupMarkers } from '../../helpers';
 
 import '@wordpress/components/build-style/style.css';
-import { useState } from 'react';
-
-import { Button } from '@wordpress/components';
 
 export default {
 	title: 'GoogleMaps/Components',
