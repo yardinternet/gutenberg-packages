@@ -5,9 +5,12 @@ import {
 	TextControl,
 	TextareaControl,
 	ColorPicker,
+	ColorPalette,
 } from '@wordpress/components';
-import { createElement } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { isValidHex } from '../../../node_modules/@wordpress/components/src/color-picker/utils';
+import { createElement, useState } from '@wordpress/element';
+import ToggleSwitch from '../toggle-switch';
 
 function ListControlModal( {
 	hasFormData = {},
@@ -27,6 +30,10 @@ function ListControlModal( {
 				return ColorPicker;
 			case 'BaseControl':
 				return BaseControl;
+			case 'ColorPalette':
+				return ColorPalette;
+			case 'ToggleSwitch':
+				return ToggleSwitch;
 			default:
 				throw new Error( 'Fieldtype not supported' );
 		}
@@ -37,8 +44,24 @@ function ListControlModal( {
 		e.preventDefault();
 		if ( e.target.length > 0 ) {
 			for ( let i = 0; i < e.target.length; i++ ) {
-				if ( e.target[ i ].type === 'submit' ) continue;
-				formData[ e.target[ i ].name ] = e.target[ i ].value;
+				const name = e.target[ i ].name;
+				const value = e.target[ i ].value;
+
+				if (
+					e.target[ i ].type === 'submit' ||
+					e.target[ i ].type === 'button'
+				)
+					continue;
+
+				if ( !! name.length ) {
+					formData[ name ] = value;
+				}
+
+				// For colorPicker
+				if ( isValidHex( value ) ) {
+					formData.color = value;
+				}
+
 				e.target[ i ].value = '';
 			}
 		}
@@ -50,11 +73,12 @@ function ListControlModal( {
 		<Modal title={ title } onRequestClose={ onRequestClose }>
 			<form id="editModalForm" onSubmit={ onHandleSubmit }>
 				{ controls.map( ( control, index ) => {
-					// Modify value before showing the value
 					const preRender =
 						typeof control.preRender === 'function'
 							? control.preRender
 							: ( value ) => value;
+
+					console.log( hasFormData, 'hasFormData' );
 
 					return createElement( getField( control.type ), {
 						onChange: () => {},
@@ -64,6 +88,13 @@ function ListControlModal( {
 						defaultValue: ! hasFormData.length
 							? preRender( hasFormData[ control.id ] )
 							: '',
+						// We need to set color manually to make the ColorPicker work
+						color: !! hasFormData.color
+							? hasFormData.color
+							: '#000000',
+						...( control.type === 'ToggleSwitch' && {
+							checked: hasFormData[ control.id ],
+						} ),
 					} );
 				} ) }
 				{ ! hasFormData.length && (

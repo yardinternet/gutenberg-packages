@@ -18,13 +18,21 @@ const controls = [
 		id: 'age',
 		attr: { label: 'Leeftijd' },
 	},
+	{
+		type: 'ToggleSwitch',
+		id: 'filter',
+		attr: {
+			label: 'Toon als filter',
+			value: true,
+		},
+	},
 ];
 
 export const listControl = () => (
 	<ListControl
 		data={ [
-			{ name: 'Jansen', age: '42' },
-			{ name: 'Very Long Long Long Title', age: '42' },
+			{ name: 'Jansen', age: '42', filter: false },
+			{ name: 'Very Long Long Long Title', age: '42', filter: true },
 		] }
 		controls={ controls }
 		entityLabel={ 'Categorie' }
@@ -35,4 +43,6 @@ export const listModal = () => (
 	<ListControlModal controls={ controls } entityLabel="Opslaan" />
 );
 
-export const list = () => <List data={ [ { name: 'Pietje', age: 22 } ] } />;
+export const list = () => (
+	<List data={ [ { name: 'Pietje', age: 22, filter: 1 } ] } />
+);

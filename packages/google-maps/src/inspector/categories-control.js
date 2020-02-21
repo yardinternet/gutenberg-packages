@@ -9,13 +9,21 @@ function CategoriesControl( {
 		return categoriesSelected.includes( name );
 	};
 
+	const onChangeCheckbox = ( data ) => {
+		onChange(
+			data.bool
+				? categoriesSelected.concat( data.name )
+				: categoriesSelected.filter( ( item ) => item !== data.name )
+		);
+	};
+
 	return categories.map( ( { name }, index ) => {
 		return (
 			<CheckboxControl
 				key={ index }
 				label={ name }
 				checked={ isCategoryChecked( name ) }
-				onChange={ ( bool ) => onChange( { name, bool } ) }
+				onChange={ ( bool ) => onChangeCheckbox( { name, bool } ) }
 			/>
 		);
 	} );
