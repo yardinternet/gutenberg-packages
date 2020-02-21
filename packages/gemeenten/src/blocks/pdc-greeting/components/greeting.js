@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Greeting( props ) {
-	const { attributes } = props;
+	const { attributes, date = new Date() } = props;
 	const { labelMorning, labelDay, labelNight } = attributes;
 
 	const getLabel = ( hour ) => {
@@ -13,7 +13,7 @@ function Greeting( props ) {
 		return labelNight;
 	};
 
-	const label = getLabel( new Date().getHours() );
+	const label = getLabel( date.getHours() );
 
 	return (
 		<div className="gemeenten-block gemeenten-block--pdc-greeting">

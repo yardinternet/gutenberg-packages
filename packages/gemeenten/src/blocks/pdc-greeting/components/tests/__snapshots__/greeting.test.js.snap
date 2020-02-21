@@ -1,10 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`greeting greeting should render column block with attributes 1`] = `
+exports[`greeting default greeting should render column block with attributes 1`] = `
 <div
   className="gemeenten-block gemeenten-block--pdc-greeting"
 >
   Goedemiddag
+  ,
+   
+</div>
+`;
+
+exports[`greeting default greeting should return goedemorgen 1`] = `
+<div
+  className="gemeenten-block gemeenten-block--pdc-greeting"
+>
+  Goedemorgen
+  ,
+   
+</div>
+`;
+
+exports[`greeting default greeting should return goedenavond 1`] = `
+<div
+  className="gemeenten-block gemeenten-block--pdc-greeting"
+>
+  Goedenavond
   ,
    
 </div>
