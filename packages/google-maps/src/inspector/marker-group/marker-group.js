@@ -10,6 +10,7 @@ import { useState, useReducer, useEffect } from '@wordpress/element';
 
 import MarkerModal from './marker-modal';
 import List from '../list-control/list';
+import CategoryControl from '../categories-control';
 
 import { MediaPlaceholder } from '@wordpress/block-editor';
 
@@ -18,11 +19,11 @@ function Markergroup( {
 	index,
 	markerImage = {},
 	markers = [],
+	categoryOptions = [],
+	categories = [],
 	parentDispatch = () => {},
 } ) {
 	const [ state, dispatch ] = useReducer( reducer, markers );
-
-	console.log( markerImage, name );
 
 	useEffect( () => {
 		parentDispatch( {
@@ -38,6 +39,20 @@ function Markergroup( {
 				payload: { name: 'name', value, index },
 			} );
 		}
+	};
+
+	const renderSubtitle = ( title ) => {
+		return (
+			<p
+				style={ {
+					fontSize: '1.05rem',
+					marginTop: '1.1em',
+					marginBottom: '.5em',
+				} }
+			>
+				{ title }
+			</p>
+		);
 	};
 
 	const [ showAddMarkerModal, setShowAddMarkerModal ] = useState( false );
@@ -65,9 +80,7 @@ function Markergroup( {
 					Groep verwijderen
 				</Button>
 			</div>
-			<PanelRow>
-				<div style={ { fontSize: '.8rem' } }>Marker afbeelding</div>
-			</PanelRow>
+			<PanelRow>{ renderSubtitle( 'Marker afbeelding' ) }</PanelRow>
 			<PanelRow>
 				{ ! markerImage.url ? (
 					<MediaPlaceholder
@@ -89,8 +102,6 @@ function Markergroup( {
 					<img src={ markerImage.url } alt="marker afbeelding" />
 				) }
 			</PanelRow>
-
-			<div style={ { fontSize: '.8rem' } }>Markers</div>
 			<div>
 				<Button
 					isLink
@@ -108,6 +119,7 @@ function Markergroup( {
 					Afbeelding verwijderen
 				</Button>
 			</div>
+			{ renderSubtitle( 'Markers' ) }
 			<PanelRow>
 				{ showAddMarkerModal && (
 					<MarkerModal
@@ -186,6 +198,25 @@ function Markergroup( {
 				>
 					Marker toevoegen
 				</Button>
+			</PanelRow>
+			<PanelRow>
+				<div>
+					{ renderSubtitle( 'Categorieen' ) }
+					<CategoryControl
+						onChange={ ( val ) =>
+							parentDispatch( {
+								type: 'updateGroup',
+								payload: {
+									index,
+									name: 'categories',
+									value: val,
+								},
+							} )
+						}
+						categoriesSelected={ categories }
+						categories={ categoryOptions }
+					/>
+				</div>
 			</PanelRow>
 		</PanelBody>
 	);

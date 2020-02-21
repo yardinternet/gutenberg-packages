@@ -10,25 +10,26 @@ import React from 'react';
 import { useEffect, useState, useRef } from '@wordpress/element';
 import { Button } from '@wordpress/components';
 import AddPolygonModal from './components/add-polygon-modal';
+import MapFilters from './components/map/map-filters';
 
 var markers = []; // eslint-disable-line
+var polygonsObjects = []; // eslint-disable-line
 
 function Map( {
 	polygons = [],
+	filters = [],
 	drawerModusActive = false,
 	setAttributes = () => {},
-	passPolygonsObjects = () => {},
 	passPolygonsToAttributes = () => {},
-	setPolygonsObjects = () => {},
-	polygonsObjects = [],
 	markerGroups = [],
-	googleMapStyles = { minHeight: '400px' },
+	googleMapStyles = { width: '100%', height: '100%', minHeight: '400px' },
 } ) {
 	const [ map, setMap ] = useState( false );
 	const [ currentPolyLines, setCurrentPolyLines ] = useState( [] );
 	const [ triggerMarker, setTriggerMarker ] = useState( [] );
 	const [ currentPolyGon, setCurrentPolyGon ] = useState( null );
 	const [ showAddPolygonModal, setShowAddPolygonModal ] = useState( false );
+	const [ selectedFilters, setSelectedFilters ] = useState( [] );
 	const ref = useRef( null );
 	const testPath = useRef( [] );
 	const currentMarker = useRef( [] );
@@ -79,9 +80,11 @@ function Map( {
 	 */
 	useEffect( () => {
 		if ( typeof map === 'object' ) {
-			createPolygonObjects();
+			if ( polygons.length > 0 ) {
+				createPolygonObjects();
+				plotPolygons();
+			}
 			plotMarkers();
-			plotPolygons();
 		}
 	}, [ map ] );
 
@@ -90,34 +93,38 @@ function Map( {
 	 */
 	useEffect( () => {
 		if ( typeof map === 'object' ) {
-			filterPolygonObjects();
+			removePolygonObjects();
+			createPolygonObjects();
+			plotPolygons();
 		}
 	}, [ polygons ] );
 
-	/**
-	 * Watch props variable 'polygonsObjects'
-	 */
-	useEffect( () => {
-		if ( typeof map === 'object' ) {
-			plotPolygons();
-		}
-	}, [ polygonsObjects ] );
+	const removePolygonObjects = () => {
+		polygonsObjects.flat().map( function( item ) {
+			return item.polygon.setMap( null );
+		} );
+
+		polygonsObjects = [];
+	};
 
 	/**
 	 * Create polygon objects from attributes
 	 */
 	const createPolygonObjects = () => {
 		const handler = [];
-
 		polygons.map( function( item ) {
 			const polygon = {
 				polygon: new google.maps.Polygon( {
 					id: item.id,
-					paths: JSON.parse( item.coords ),
-					strokeColor: '#FF0000',
+					paths:
+						typeof item.coords === 'string' &&
+						item.coords.length > 0
+							? JSON.parse( item.coords )
+							: [],
+					strokeColor: item.color,
 					strokeOpacity: 0.8,
 					strokeWeight: 2,
-					fillColor: '#FF0000',
+					fillColor: item.color,
 					fillOpacity: 0.35,
 				} ),
 			};
@@ -125,27 +132,7 @@ function Map( {
 			return handler.push( polygon );
 		} );
 
-		setPolygonsObjects( handler );
-	};
-
-	const filterPolygonObjects = () => {
-		const handler = polygonsObjects.filter( function( item ) {
-			let found = false;
-
-			for ( let i = 0; i < polygons.length; i++ ) {
-				if ( polygons[ i ].id === item.polygon.id ) {
-					found = true;
-				}
-			}
-
-			if ( ! found ) {
-				item.polygon.setMap( null );
-			}
-
-			return found;
-		} );
-
-		setPolygonsObjects( handler );
+		polygonsObjects.push( handler );
 	};
 
 	/**
@@ -219,7 +206,7 @@ function Map( {
 	 * Plot all shapes on the map instance
 	 */
 	const plotPolygons = () => {
-		polygonsObjects.map( ( polygon ) => addPolygon( polygon ) );
+		polygonsObjects.flat().map( ( polygon ) => addPolygon( polygon ) );
 	};
 
 	/**
@@ -301,19 +288,6 @@ function Map( {
 	};
 
 	/**
-	 * Called from querypopover
-	 *
-	 * @param {Object} point contains name, id and latLng
-	 */
-	const addPoint = ( point ) => {
-		setAttributes( {
-			latLngCollection: [ ...latLngCollection, point ],
-		} );
-
-		addMarker( point );
-	};
-
-	/**
 	 *
 	 * @param {string} name
 	 * @param {Object} coordinates
@@ -332,6 +306,7 @@ function Map( {
 		};
 
 		polygonObject.polygon.setMap( map );
+		polygonsObjects.push( polygonObject );
 
 		const polygon = {
 			id: polygonObject.polygon.id,
@@ -343,8 +318,10 @@ function Map( {
 
 		resetDrawing();
 		setShowAddPolygonModal( false );
-		passPolygonsToAttributes( polygon );
-		passPolygonsObjects( polygonObject );
+
+		setAttributes( {
+			polygons: [ ...polygons, polygon ],
+		} );
 	};
 
 	/**
@@ -352,6 +329,10 @@ function Map( {
 	 */
 	const onRequestClose = () => {
 		setShowAddPolygonModal( false );
+	};
+
+	const onFilterChange = ( newFilters ) => {
+		setSelectedFilters( newFilters );
 	};
 
 	return (
@@ -383,11 +364,21 @@ function Map( {
 					</div>
 				) }
 			</div>
-			<div
-				style={ googleMapStyles }
-				className="yard-blocks-google-map"
-				ref={ ref }
-			></div>
+			<div style={ { display: 'flex' } }>
+				{ true && (
+					<MapFilters
+						style={ { width: '300px' } }
+						filters={ filters }
+						selectedFilters={ selectedFilters }
+						onChange={ onFilterChange }
+					/>
+				) }
+				<div
+					style={ googleMapStyles }
+					className="yard-blocks-google-map"
+					ref={ ref }
+				></div>
+			</div>
 			{ showAddPolygonModal && (
 				<AddPolygonModal
 					coordinates={ testPath.current }

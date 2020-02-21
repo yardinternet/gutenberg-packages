@@ -7,18 +7,18 @@ import { __ } from '@wordpress/i18n';
 import { config } from '../../config';
 import ListControlModal from './list-control-modal';
 import List from './list';
-import { use } from '@wordpress/data';
 
 export function ListControl( {
 	controls = [],
 	data = [],
+	showAddModalButton = true,
 	callback = () => {},
 	entityLabel = 'Item',
+	explanationNoItems = '',
 	// Modify formData before it's dispatched
 	hookFormData = ( formData ) => {
 		return formData;
 	},
-	polygonsObjects = [],
 } ) {
 	const [ store, setStore ] = useState( data );
 	const [ addModalVisible, setAddModalVisible ] = useState( false );
@@ -26,7 +26,7 @@ export function ListControl( {
 	const [ editModalData, setEditModalData ] = useState( {} );
 
 	/**
-	 * Watch state variable 'map'
+	 * Watch state variable 'data'
 	 */
 	useEffect( () => {
 		setStore( data );
@@ -62,7 +62,7 @@ export function ListControl( {
 	};
 
 	const onAddModalSubmit = ( formData ) => {
-		dispatch( { type: 'add', payload: hookFormData( formData ) } );
+		dispatch( { type: 'add', payload: formData } );
 		setAddModalVisible( false );
 	};
 
@@ -73,7 +73,7 @@ export function ListControl( {
 
 		dispatch( {
 			type: 'edit',
-			payload: { index: formData.index, ...hookFormData( formData ) },
+			payload: { index: formData.index, ...formData },
 		} );
 		setEditModalVisible( false );
 	};
@@ -104,6 +104,7 @@ export function ListControl( {
 			) }
 			<PanelRow>
 				<List
+					explanationNoItems={ explanationNoItems }
 					data={ store }
 					onModify={ ( index ) => {
 						const item = dispatch( {
@@ -121,18 +122,20 @@ export function ListControl( {
 					}
 				/>
 			</PanelRow>
-			<PanelRow>
-				<Button
-					isLarge
-					isPrimary
-					onClick={ () => setAddModalVisible( true ) }
-				>
-					{ `${ entityLabel } ${ __(
-						'toevoegen',
-						config.textDomain
-					) }` }
-				</Button>
-			</PanelRow>
+			{ showAddModalButton && (
+				<PanelRow>
+					<Button
+						isLarge
+						isPrimary
+						onClick={ () => setAddModalVisible( true ) }
+					>
+						{ `${ entityLabel } ${ __(
+							'toevoegen',
+							config.textDomain
+						) }` }
+					</Button>
+				</PanelRow>
+			) }
 		</>
 	);
 }

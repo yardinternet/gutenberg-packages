@@ -1,6 +1,10 @@
 import Markergroup from './marker-group';
 
-function MarkerGroups( { markerGroups = [], setAttributesCb = () => {} } ) {
+function MarkerGroups( {
+	markerGroups = [],
+	setAttributesCb = () => {},
+	attributes = {},
+} ) {
 	const dispatch = ( action ) => {
 		switch ( action.type ) {
 			case 'editMarkers':
@@ -43,6 +47,7 @@ function MarkerGroups( { markerGroups = [], setAttributesCb = () => {} } ) {
 			<Markergroup
 				key={ index }
 				index={ index }
+				categoryOptions={ attributes.categories }
 				{ ...group }
 				parentDispatch={ dispatch }
 			/>

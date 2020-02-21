@@ -35,3 +35,12 @@ export const GoogleMap = () => {
 		</>
 	);
 };
+
+export const GoogleMapFilters = () => {
+	return (
+		<Map
+			filters={ [ 'filter1', 'filter2' ] }
+			markerGroups={ markerGroups }
+		/>
+	);
+};

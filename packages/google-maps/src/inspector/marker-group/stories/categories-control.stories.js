@@ -15,11 +15,7 @@ export const CategoriesControlC = () => {
 	const [ selectedCategories, setSelectedCategories ] = useState( [] );
 
 	const onChange = ( data ) => {
-		setSelectedCategories(
-			data.bool
-				? selectedCategories.concat( data.name )
-				: selectedCategories.filter( ( item ) => item !== data.name )
-		);
+		setSelectedCategories( data );
 	};
 
 	return (
