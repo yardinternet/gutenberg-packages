@@ -23,20 +23,13 @@ function Inspector( props ) {
 	const {
 		attributes,
 		setAttributes,
-		togglePopover,
 		drawerModusActive,
 		setDrawerModusActive,
-		polygonsObjects,
 	} = props;
 	const { categories, markerGroups, polygons } = attributes;
 	const [ showAddMarkerGroupModal, setShowAddMarkerGroupModal ] = useState(
 		false
 	);
-
-	const hookPolygonShapes = ( formData ) => {
-		formData.coords = [ JSON.stringify( formData.coords ) ];
-		return formData;
-	};
 
 	const addMarkerGroup = ( group ) => {
 		const defaultMarkerGroup = {
@@ -68,7 +61,7 @@ function Inspector( props ) {
 					/>
 					<IconButton
 						icon={ <Dashicon icon="edit" /> }
-						label={ __( 'Drawer modus' ) }
+						label={ __( 'Baken een gebied af' ) }
 						onClick={ () =>
 							setDrawerModusActive( ! drawerModusActive )
 						}
@@ -90,17 +83,29 @@ function Inspector( props ) {
 					title={ __( 'Categorieen', config.textDomain ) }
 				>
 					<ListControl
-						data={ categories }
+						explanationNoItems={ __(
+							'Er zijn geen items beschikbaar of voeg een item toe.',
+							config.textDomain
+						) }
 						entityLabel={ __( 'Categorie' ) }
+						showAddModalButton={ true }
+						data={ categories }
 						setAttributes={ setAttributes }
-						callback={ ( newCategories ) =>
-							setAttributes( { categories: newCategories } )
-						}
+						callback={ ( newCategories ) => {
+							setAttributes( { categories: newCategories } );
+						} }
 						controls={ [
 							{
 								type: 'TextControl',
 								id: 'name',
 								attr: { label: 'Naam' },
+							},
+							{
+								type: 'ToggleSwitch',
+								id: 'filter',
+								attr: {
+									label: 'Toon als filter',
+								},
 							},
 						] }
 					/>
@@ -110,15 +115,23 @@ function Inspector( props ) {
 					title={ __( 'Gebieden', config.textDomain ) }
 				>
 					<ListControl
-						title={ __( 'Gebieden', config.textDomain ) }
+						explanationNoItems={ __(
+							'Voeg een gebied toe via de blockcontrols.',
+							config.textDomain
+						) }
+						entityLabel={ __( 'Gebied', config.textDomain ) }
+						showAddModalButton={ false }
 						data={ polygons }
-						polygonsObjects={ polygonsObjects }
 						setAttributes={ setAttributes }
-						callback={ ( newPolygons ) =>
-							setAttributes( { polygons: newPolygons } )
-						}
-						hookFormData={ hookPolygonShapes }
+						callback={ ( newPolygons ) => {
+							setAttributes( { polygons: newPolygons } );
+						} }
 						controls={ [
+							{
+								type: 'TextControl',
+								id: 'id',
+								attr: { type: 'hidden' },
+							},
 							{
 								type: 'TextControl',
 								id: 'name',
@@ -128,6 +141,11 @@ function Inspector( props ) {
 								type: 'TextControl',
 								id: 'category',
 								attr: { label: 'Categorie' },
+							},
+							{
+								type: 'TextControl',
+								id: 'coords',
+								attr: { type: 'hidden' },
 							},
 							{
 								type: 'BaseControl',
@@ -142,8 +160,11 @@ function Inspector( props ) {
 							},
 							{
 								type: 'ColorPicker',
-								id: 'colorPicker',
-								attr: { label: 'Naam' },
+								id: 'color',
+								attr: {
+									label: 'WEEEE',
+									name: 'color',
+								},
 							},
 						] }
 					/>

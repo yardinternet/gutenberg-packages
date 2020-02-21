@@ -7,7 +7,13 @@ import {
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-function List( { data, onRemove = () => {}, onModify = () => {}, children } ) {
+function List( {
+	explanationNoItems,
+	data,
+	onRemove = () => {},
+	onModify = () => {},
+	children,
+} ) {
 	return (
 		<>
 			{ data && data.length > 0 ? (
@@ -23,12 +29,7 @@ function List( { data, onRemove = () => {}, onModify = () => {}, children } ) {
 					) ) }
 				</div>
 			) : (
-				<span>
-					{ __(
-						'Er zijn geen items beschikbaar of voeg een item toe.',
-						'DOMAIN'
-					) }
-				</span>
+				<span>{ explanationNoItems }</span>
 			) }
 			{ children }
 		</>
