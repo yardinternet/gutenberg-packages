@@ -50,9 +50,10 @@ export function parseMarkerGroupMarkers( markergroups ) {
 			group.markers.map( ( marker ) => {
 				return {
 					latLng: marker.latLng,
-					...( group.markerImage.url && {
-						icon: group.markerImage.url,
-					} ),
+					...( group.markerImage &&
+						group.markerImage.url && {
+							icon: group.markerImage.url,
+						} ),
 				};
 			} )
 		)

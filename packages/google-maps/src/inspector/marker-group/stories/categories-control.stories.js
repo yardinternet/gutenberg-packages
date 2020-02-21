@@ -1,6 +1,4 @@
-import { action } from '@storybook/addon-actions';
 import { useState } from 'react';
-import { Button } from '@wordpress/components';
 import CategoriesControl from '../../categories-control';
 
 export default {

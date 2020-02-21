@@ -1,5 +1,4 @@
 import { CheckboxControl } from '@wordpress/components';
-import { useState } from '@wordpress/element';
 
 function CategoriesControl( {
 	categories = [],
