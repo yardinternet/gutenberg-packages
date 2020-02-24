@@ -19,14 +19,15 @@ function Map( {
 	polygons = [],
 	filters = [],
 	drawerModusActive = false,
+	setTriggerMarker = () => {},
+	finishDrawerModus = false,
+	setFinishDrawerModus = () => {},
 	setAttributes = () => {},
-	passPolygonsToAttributes = () => {},
 	markerGroups = [],
 	googleMapStyles = { width: '100%', height: '100%', minHeight: '400px' },
 } ) {
 	const [ map, setMap ] = useState( false );
 	const [ currentPolyLines, setCurrentPolyLines ] = useState( [] );
-	const [ triggerMarker, setTriggerMarker ] = useState( [] );
 	const [ currentPolyGon, setCurrentPolyGon ] = useState( null );
 	const [ showAddPolygonModal, setShowAddPolygonModal ] = useState( false );
 	const [ selectedFilters, setSelectedFilters ] = useState( [] );
@@ -74,6 +75,15 @@ function Map( {
 			}
 		}
 	}, [ drawerModusActive ] );
+
+	/**
+	 * Watch state variable 'finishDrawerModus'
+	 */
+	useEffect( () => {
+		if ( typeof map === 'object' && finishDrawerModus ) {
+			addPolygonDrawing();
+		}
+	}, [ finishDrawerModus ] );
 
 	/**
 	 * Watch state variable 'map'
@@ -172,7 +182,7 @@ function Map( {
 		} );
 
 		currentMarker.current = currentMarker.current.concat( [ marker ] );
-		setTriggerMarker( [ marker ] ); // trigger re-render after updating ref
+		setTriggerMarker( true ); // trigger re-render after updating ref
 	};
 
 	/**
@@ -284,7 +294,8 @@ function Map( {
 		currentMarker.current = [];
 		setCurrentPolyLines( currentPolyLines );
 		setCurrentPolyGon( null );
-		setTriggerMarker( [] ); // trigger re-render after updating ref
+		setTriggerMarker( false ); // trigger re-render after updating ref
+		setFinishDrawerModus( false );
 	};
 
 	/**
@@ -318,6 +329,8 @@ function Map( {
 
 		resetDrawing();
 		setShowAddPolygonModal( false );
+		setTriggerMarker( false );
+		setFinishDrawerModus( false );
 
 		setAttributes( {
 			polygons: [ ...polygons, polygon ],
@@ -328,6 +341,7 @@ function Map( {
 	 * Close the modal
 	 */
 	const onRequestClose = () => {
+		setFinishDrawerModus( false );
 		setShowAddPolygonModal( false );
 	};
 
@@ -337,33 +351,6 @@ function Map( {
 
 	return (
 		<>
-			<div className="d-flex flex-row">
-				{ drawerModusActive && currentMarker.current.length > 0 && (
-					<div className="mr-1 mb-1">
-						<Button
-							isPrimary
-							isLarge
-							onClick={ () => {
-								addPolygonDrawing();
-							} }
-						>
-							Finish
-						</Button>
-					</div>
-				) }
-				{ drawerModusActive && (
-					<div className="mb-1">
-						<Button
-							isLarge
-							onClick={ () => {
-								resetDrawing();
-							} }
-						>
-							Reset
-						</Button>
-					</div>
-				) }
-			</div>
 			<div style={ { display: 'flex' } }>
 				{ true && (
 					<MapFilters
