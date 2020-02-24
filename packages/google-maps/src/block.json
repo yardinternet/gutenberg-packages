@@ -14,6 +14,14 @@
 			"type": "array",
 			"default": []
 		},
+		"filterOptions": {
+			"type": "object",
+			"default": {
+				"showFilters": false,
+				"title": "",
+				"content": ""
+			}
+		},
 		"polygons": {
 			"type": "array",
 			"default": []

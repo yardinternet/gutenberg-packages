@@ -11,7 +11,7 @@ import { useState } from '@wordpress/element';
 
 function Edit( props ) {
 	const { setAttributes, attributes } = props;
-	const { points, polygons, markerGroups } = attributes;
+	const { categories, polygons, markerGroups, filterOptions } = attributes;
 	const [ drawerModusActive, setDrawerModusActive ] = useState( false );
 	const [ triggerMarker, setTriggerMarker ] = useState( false );
 	const [ finishDrawerModus, setFinishDrawerModus ] = useState( false );
@@ -33,10 +33,11 @@ function Edit( props ) {
 				setFinishDrawerModus={ setFinishDrawerModus }
 				refresh={ drawerModusActive }
 				markerGroups={ markerGroups }
-				points={ points }
+				categories={ categories }
+				filterOptions={ filterOptions }
 				polygons={ polygons }
 				{ ...props }
-			/>
+			></Map>
 		</>
 	);
 }

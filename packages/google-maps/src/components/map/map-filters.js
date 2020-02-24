@@ -1,9 +1,8 @@
-import CategoryControl from '../../inspector/categories-control';
-
 function MapFilters( {
 	style = {},
 	filters = [],
 	selectedFilters = [],
+	filterOptions = {},
 	onChange = () => {},
 } ) {
 	const isCategoryChecked = ( name ) => {
@@ -20,28 +19,26 @@ function MapFilters( {
 		);
 	};
 
+	const { title, content } = filterOptions;
+
 	return (
 		<div style={ style }>
-			<CategoryControl filters={ filters } />
-			<h1>Filter</h1>
-			{ filters.map( ( item, key ) => {
-				return (
-					<>
-						<div>
-							<input
-								id={ `checkbox-${ item }` }
-								key={ key }
-								type="checkbox"
-								name={ item }
-								checked={ isCategoryChecked( item ) }
-								onChange={ onChangeCheckbox }
-							/>
-							<label htmlFor={ `checkbox-${ item }` }>
-								{ item }
-							</label>
-						</div>
-					</>
-				);
+			<h2>{ title }</h2>
+			<div>{ content }</div>
+			{ filters.map( ( name, key ) => {
+				return [
+					<div key={ key }>
+						<input
+							id={ `checkbox-${ name }` }
+							key={ key }
+							type="checkbox"
+							name={ name }
+							checked={ isCategoryChecked( name ) }
+							onChange={ onChangeCheckbox }
+						/>
+						<label htmlFor={ `checkbox-${ name }` }>{ name }</label>
+					</div>,
+				];
 			} ) }
 		</div>
 	);
