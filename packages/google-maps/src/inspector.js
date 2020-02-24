@@ -158,7 +158,7 @@ function Inspector( props ) {
 							},
 							{
 								type: 'BaseControl',
-								id: 'BaseControl',
+								id: 'BaseControlColor',
 								attr: {
 									label: 'Kleur',
 									help: __(
@@ -173,6 +173,25 @@ function Inspector( props ) {
 								attr: {
 									label: 'WEEEE',
 									name: 'color',
+								},
+							},
+							{
+								type: 'BaseControl',
+								id: 'BaseControlBorderColor',
+								attr: {
+									label: 'Border kleur',
+									help: __(
+										'Kies een border kleur voor de polygon.',
+										config.textDomain
+									),
+								},
+							},
+							{
+								type: 'ColorPicker',
+								id: 'borderColor',
+								attr: {
+									label: 'WEEEE',
+									name: 'borderColor',
 								},
 							},
 						] }
