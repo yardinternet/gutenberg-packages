@@ -23,15 +23,17 @@ export const GoogleMap = () => {
 
 export const GoogleMapFilters = () => {
 	return (
-		<Map
-			categories={ [
-				{ name: 'filter1', filter: 'true' },
-				{ name: 'filter2', filter: 'true' },
-				{ name: 'filter3', filter: 'false' },
-			] }
-			mapOptions={ mapOptions }
-			filterOptions={ filterOptions }
-			markerGroups={ markerGroup1.concat( markerGroup2 ) }
-		/>
+		<div>
+			<Map
+				categories={ [
+					{ name: 'filter1', filter: 'true' },
+					{ name: 'filter2', filter: 'true' },
+					{ name: 'filter3', filter: 'false' },
+				] }
+				mapOptions={ mapOptions }
+				filterOptions={ filterOptions }
+				markerGroups={ markerGroup1.concat( markerGroup2 ) }
+			/>
+		</div>
 	);
 };

@@ -3,23 +3,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Map from './map';
 
-const attributes = {
-	points: [],
-	polygons: [],
-};
-
 const element = document.getElementById( 'gmap' );
 
-const obj = {};
+const props = {};
 
 Object.keys( element.dataset ).map( ( item ) => {
-	if ( typeof element.dataset[ item ] === 'string' ) {
-		//return;
-	}
-	console.log( typeof element.dataset[ item ] );
-	return ( obj[ item ] = JSON.parse( element.dataset[ item ] ) );
+	return ( props[ item ] = JSON.parse( element.dataset[ item ] ) );
 } );
 
-console.log( obj );
-
-ReactDOM.render( <Map attributes={ attributes } { ...obj } />, element );
+ReactDOM.render(
+	<Map
+		{ ...props }
+		markerGroups={ props.markergroups }
+		filterOptions={ props.filteroptions }
+		mapOptions={ props.mapOptions }
+	/>,
+	element
+);

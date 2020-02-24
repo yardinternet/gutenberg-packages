@@ -5,9 +5,12 @@ export function filterMarkerGroupsByCategory( {
 	if ( ! selectedFilters.length ) return markerGroups;
 
 	const newGroups = markerGroups.filter( ( { categories } ) => {
-		return categories.filter( ( category ) => {
-			return selectedFilters.includes( category );
-		} ).length;
+		return (
+			categories &&
+			categories.filter( ( category ) => {
+				return selectedFilters.includes( category );
+			} ).length
+		);
 	} );
 
 	return newGroups;
