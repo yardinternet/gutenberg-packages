@@ -35,9 +35,6 @@
 				"markerClusterer": false,
 				"mapStyle": "default"
 			}
-		},
-		"markerIcon": {
-			"type": "string"
 		}
 	}
 }
