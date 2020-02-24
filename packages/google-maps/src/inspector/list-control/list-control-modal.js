@@ -3,6 +3,7 @@ import {
 	Modal,
 	BaseControl,
 	TextControl,
+	SelectControl,
 	TextareaControl,
 	ColorPicker,
 	ColorPalette,
@@ -24,6 +25,8 @@ function ListControlModal( {
 		switch ( type ) {
 			case 'TextControl':
 				return TextControl;
+			case 'SelectControl':
+				return SelectControl;
 			case 'TextareaControl':
 				return TextareaControl;
 			case 'ColorPicker':
