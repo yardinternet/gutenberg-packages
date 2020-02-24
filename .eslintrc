@@ -6,6 +6,7 @@
 	"globals": {
 		"theme": true,
 		"jsVars": true,
-		"google": true
+		"google": true,
+		"MarkerClusterer": true
 	}
 }

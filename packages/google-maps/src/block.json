@@ -10,10 +10,6 @@
 			"type": "array",
 			"default": []
 		},
-		"points": {
-			"type": "array",
-			"default": []
-		},
 		"filterOptions": {
 			"type": "object",
 			"default": {
@@ -32,7 +28,13 @@
 		},
 		"mapOptions": {
 			"type": "object",
-			"default": {}
+			"default": {
+				"zoom": 8,
+				"center": { "lat": 52.370216, "lng": 4.895168 },
+				"disableDefaultUI": false,
+				"markerClusterer": false,
+				"mapStyle": "default"
+			}
 		},
 		"markerIcon": {
 			"type": "string"

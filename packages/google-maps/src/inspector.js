@@ -16,7 +16,6 @@ import {
 	Toolbar,
 	IconButton,
 	Dashicon,
-	Panel,
 	TextareaControl,
 	TextControl,
 	ToggleControl,
@@ -32,7 +31,13 @@ function Inspector( props ) {
 		triggerMarker,
 		setFinishDrawerModus,
 	} = props;
-	const { categories, markerGroups, polygons, filterOptions } = attributes;
+	const {
+		categories,
+		markerGroups,
+		polygons,
+		filterOptions,
+		mapOptions,
+	} = attributes;
 	const [ showAddMarkerGroupModal, setShowAddMarkerGroupModal ] = useState(
 		false
 	);
@@ -226,7 +231,7 @@ function Inspector( props ) {
 						] }
 					/>
 				</PanelBody>
-				<PanelBody title={ 'Filters' }>
+				<PanelBody initialOpen={ false } title={ 'Filters' }>
 					<ToggleControl
 						label="Toon filters"
 						checked={ filterOptions.showFilters }
@@ -246,6 +251,20 @@ function Inspector( props ) {
 						value={ filterOptions.content }
 						onChange={ ( val ) =>
 							onChangeFilterOptions( 'content', val )
+						}
+					/>
+				</PanelBody>
+				<PanelBody initialOpen={ false } title={ 'Map opties' }>
+					<ToggleControl
+						label="Marker cluster"
+						checked={ mapOptions.markerClusterer }
+						onChange={ ( val ) =>
+							setAttributes( {
+								mapOptions: {
+									...mapOptions,
+									...{ markerClusterer: val },
+								},
+							} )
 						}
 					/>
 				</PanelBody>
