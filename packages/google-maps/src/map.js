@@ -8,16 +8,17 @@ import React from 'react';
  * WordPress dependencies
  */
 import { useEffect, useState, useRef } from '@wordpress/element';
-import { Button } from '@wordpress/components';
 import AddPolygonModal from './components/add-polygon-modal';
 import MapFilters from './components/map/map-filters';
+import { filterMarkerGroupsByCategory } from './components/map/helpers';
 
 var markers = []; // eslint-disable-line
 var polygonsObjects = []; // eslint-disable-line
 
 function Map( {
 	polygons = [],
-	filters = [],
+	categories = [],
+	filterOptions = {},
 	drawerModusActive = false,
 	setTriggerMarker = () => {},
 	finishDrawerModus = false,
@@ -28,6 +29,7 @@ function Map( {
 } ) {
 	const [ map, setMap ] = useState( false );
 	const [ currentPolyLines, setCurrentPolyLines ] = useState( [] );
+	const [ filteredMarkerGroups, setFilteredMarkerGroups ] = useState( [] );
 	const [ currentPolyGon, setCurrentPolyGon ] = useState( null );
 	const [ showAddPolygonModal, setShowAddPolygonModal ] = useState( false );
 	const [ selectedFilters, setSelectedFilters ] = useState( [] );
@@ -47,15 +49,6 @@ function Map( {
 			} );
 		}
 	}, [] );
-
-	/**
-	 * Plot markers when groupMarkers is changed
-	 */
-	useEffect( () => {
-		if ( map ) {
-			plotMarkers( markers );
-		}
-	}, [ markerGroups ] );
 
 	const listenerTest = () => {
 		map.addListener( 'click', ( event ) => {
@@ -94,7 +87,6 @@ function Map( {
 				createPolygonObjects();
 				plotPolygons();
 			}
-			plotMarkers();
 		}
 	}, [ map ] );
 
@@ -207,7 +199,11 @@ function Map( {
 			return item.setMap( null );
 		} );
 
-		parseMarkerGroupMarkers( markerGroups ).map( ( point ) =>
+		const plotMarkerGroups = selectedFilters.length
+			? filteredMarkerGroups
+			: markerGroups;
+
+		parseMarkerGroupMarkers( plotMarkerGroups ).map( ( point ) =>
 			addMarker( point )
 		);
 	};
@@ -237,9 +233,6 @@ function Map( {
 		const marker = new google.maps.Marker( {
 			position: latLng,
 			icon,
-			// icon: Object.keys( this.props.markerIcon ).length
-			// 	? this.props.markerIcon
-			// 	: undefined,
 		} );
 
 		markers.push( marker ); // nalezen
@@ -349,13 +342,30 @@ function Map( {
 		setSelectedFilters( newFilters );
 	};
 
+	useEffect( () => {
+		setFilteredMarkerGroups(
+			filterMarkerGroupsByCategory( {
+				markerGroups,
+				selectedFilters,
+			} )
+		);
+	}, [ selectedFilters ] );
+
+	// Plot markers on every rerender
+	if ( map ) {
+		plotMarkers();
+	}
+
 	return (
 		<>
 			<div style={ { display: 'flex' } }>
-				{ true && (
+				{ filterOptions.showFilters && (
 					<MapFilters
 						style={ { width: '300px' } }
-						filters={ filters }
+						filters={ categories
+							.filter( ( item ) => item.filter === 'true' )
+							.map( ( item ) => item.name ) }
+						filterOptions={ filterOptions }
 						selectedFilters={ selectedFilters }
 						onChange={ onFilterChange }
 					/>

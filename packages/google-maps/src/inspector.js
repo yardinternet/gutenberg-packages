@@ -16,6 +16,10 @@ import {
 	Toolbar,
 	IconButton,
 	Dashicon,
+	Panel,
+	TextareaControl,
+	TextControl,
+	ToggleControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -28,7 +32,7 @@ function Inspector( props ) {
 		triggerMarker,
 		setFinishDrawerModus,
 	} = props;
-	const { categories, markerGroups, polygons } = attributes;
+	const { categories, markerGroups, polygons, filterOptions } = attributes;
 	const [ showAddMarkerGroupModal, setShowAddMarkerGroupModal ] = useState(
 		false
 	);
@@ -57,6 +61,15 @@ function Inspector( props ) {
 		}
 
 		return optionsSelectControl;
+	};
+
+	const onChangeFilterOptions = ( name, val ) => {
+		setAttributes( {
+			filterOptions: {
+				...filterOptions,
+				...{ [ name ]: val },
+			},
+		} );
 	};
 
 	return (
@@ -211,6 +224,29 @@ function Inspector( props ) {
 								},
 							},
 						] }
+					/>
+				</PanelBody>
+				<PanelBody title={ 'Filters' }>
+					<ToggleControl
+						label="Toon filters"
+						checked={ filterOptions.showFilters }
+						onChange={ ( val ) =>
+							onChangeFilterOptions( 'showFilters', val )
+						}
+					/>
+					<TextControl
+						label="Filter titel"
+						value={ filterOptions.title }
+						onChange={ ( val ) =>
+							onChangeFilterOptions( 'title', val )
+						}
+					/>
+					<TextareaControl
+						label="Filter tekst"
+						value={ filterOptions.content }
+						onChange={ ( val ) =>
+							onChangeFilterOptions( 'content', val )
+						}
 					/>
 				</PanelBody>
 			</InspectorControls>

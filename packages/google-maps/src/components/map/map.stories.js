@@ -1,4 +1,5 @@
 import Map from '../../map';
+import { markerGroup1, markerGroup2 } from './dummy';
 
 import '@wordpress/components/build-style/style.css';
 
@@ -6,32 +7,16 @@ export default {
 	title: 'GoogleMaps/Components',
 };
 
-const markers = [
-	{
-		name: 'Amsterdam',
-		latLng: {
-			lat: 52.3666969,
-			lng: 4.8945398,
-		},
-	},
-	{
-		name: 'Houten',
-		latLng: {
-			lat: 52.03434,
-			lng: 5.16567,
-		},
-	},
-];
-
-const markerGroups = [
-	{ name: 'Noord Holland', markers },
-	{ name: 'Utrecht', markers },
-];
+const filterOptions = {
+	showFilters: true,
+	title: 'Titel',
+	content: 'Content',
+};
 
 export const GoogleMap = () => {
 	return (
 		<>
-			<Map markerGroups={ markerGroups } />
+			<Map markerGroups={ markerGroup1 } />
 		</>
 	);
 };
@@ -39,8 +24,13 @@ export const GoogleMap = () => {
 export const GoogleMapFilters = () => {
 	return (
 		<Map
-			filters={ [ 'filter1', 'filter2' ] }
-			markerGroups={ markerGroups }
+			categories={ [
+				{ name: 'filter1', filter: 'true' },
+				{ name: 'filter2', filter: 'true' },
+				{ name: 'filter3', filter: 'false' },
+			] }
+			filterOptions={ filterOptions }
+			markerGroups={ markerGroup1.concat( markerGroup2 ) }
 		/>
 	);
 };
