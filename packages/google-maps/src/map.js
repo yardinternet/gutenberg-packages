@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { loadGoogleMaps, parseMarkerGroupMarkers } from './helpers';
+import { loadGoogleMaps, parseMarkerGroupMarkers, loadScript } from './helpers';
 import React from 'react';
 
 /**
@@ -25,9 +25,19 @@ function Map( {
 	setFinishDrawerModus = () => {},
 	setAttributes = () => {},
 	markerGroups = [],
+	mapOptions = {
+		zoom: 8,
+		center: { lat: 52.370216, lng: 4.895168 },
+		disableDefaultUI: false,
+		markerClusterer: false,
+	},
 	googleMapStyles = { width: '100%', height: '100%', minHeight: '400px' },
 } ) {
 	const [ map, setMap ] = useState( false );
+	const [
+		clusterMarkersScriptLoaded,
+		setClusterMarkersScriptLoaded,
+	] = useState( false );
 	const [ currentPolyLines, setCurrentPolyLines ] = useState( [] );
 	const [ filteredMarkerGroups, setFilteredMarkerGroups ] = useState( [] );
 	const [ currentPolyGon, setCurrentPolyGon ] = useState( null );
@@ -48,6 +58,11 @@ function Map( {
 				initMap();
 			} );
 		}
+
+		loadScript(
+			'https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js',
+			true
+		).then( () => setClusterMarkersScriptLoaded( true ) );
 	}, [] );
 
 	const listenerTest = () => {
@@ -181,12 +196,6 @@ function Map( {
 	 * Init google map
 	 */
 	const initMap = () => {
-		const mapOptions = {
-			zoom: 8,
-			center: { lat: 52.370216, lng: 4.895168 },
-			disableDefaultUI: true,
-		};
-
 		setMap( new google.maps.Map( ref.current, mapOptions ) );
 	};
 
@@ -199,13 +208,22 @@ function Map( {
 			return item.setMap( null );
 		} );
 
+		markers = [];
+
 		const plotMarkerGroups = selectedFilters.length
 			? filteredMarkerGroups
 			: markerGroups;
 
-		parseMarkerGroupMarkers( plotMarkerGroups ).map( ( point ) =>
-			addMarker( point )
-		);
+		parseMarkerGroupMarkers( plotMarkerGroups ).map( ( point ) => {
+			addMarker( point );
+		} );
+
+		if ( clusterMarkersScriptLoaded && mapOptions.markerClusterer ) {
+			new MarkerClusterer( map, markers, {
+				imagePath:
+					'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+			} );
+		}
 	};
 
 	/**

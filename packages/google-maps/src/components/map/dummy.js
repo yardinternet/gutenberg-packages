@@ -1,3 +1,10 @@
+export const mapOptions = {
+	zoom: 8,
+	center: { lat: 52.370216, lng: 4.895168 },
+	disableDefaultUI: false,
+	markerClusterer: true,
+};
+
 export const markers1 = [
 	{
 		name: 'Amsterdam',
@@ -11,6 +18,13 @@ export const markers1 = [
 		latLng: {
 			lat: 52.03434,
 			lng: 5.16567,
+		},
+	},
+	{
+		name: 'Houten 2',
+		latLng: {
+			lat: 52.01333,
+			lng: 5.18745,
 		},
 	},
 ];
