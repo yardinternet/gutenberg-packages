@@ -42,6 +42,7 @@ function ListControlModal( {
 	const onHandleSubmit = ( e ) => {
 		const formData = {};
 		e.preventDefault();
+		let fillColorFound = false;
 		if ( e.target.length > 0 ) {
 			for ( let i = 0; i < e.target.length; i++ ) {
 				const name = e.target[ i ].name;
@@ -59,7 +60,12 @@ function ListControlModal( {
 
 				// For colorPicker
 				if ( isValidHex( value ) ) {
-					formData.color = value;
+					if ( ! fillColorFound ) {
+						formData.color = value;
+						fillColorFound = true;
+					} else {
+						formData.borderColor = value;
+					}
 				}
 
 				e.target[ i ].value = '';
@@ -78,8 +84,6 @@ function ListControlModal( {
 							? control.preRender
 							: ( value ) => value;
 
-					console.log( hasFormData, 'hasFormData' );
-
 					return createElement( getField( control.type ), {
 						onChange: () => {},
 						...control.attr,
@@ -91,6 +95,10 @@ function ListControlModal( {
 						// We need to set color manually to make the ColorPicker work
 						color: !! hasFormData.color
 							? hasFormData.color
+							: '#000000',
+						// We need to set color manually to make the ColorPicker work
+						bordercolor: !! hasFormData.borderColor
+							? hasFormData.borderColor
 							: '#000000',
 						...( control.type === 'ToggleSwitch' && {
 							checked: hasFormData[ control.id ],
