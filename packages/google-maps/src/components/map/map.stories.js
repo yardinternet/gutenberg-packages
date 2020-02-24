@@ -1,5 +1,5 @@
 import Map from '../../map';
-import { markerGroup1, markerGroup2 } from './dummy';
+import { mapOptions, markerGroup1, markerGroup2 } from './dummy';
 
 import '@wordpress/components/build-style/style.css';
 
@@ -29,6 +29,7 @@ export const GoogleMapFilters = () => {
 				{ name: 'filter2', filter: 'true' },
 				{ name: 'filter3', filter: 'false' },
 			] }
+			mapOptions={ mapOptions }
 			filterOptions={ filterOptions }
 			markerGroups={ markerGroup1.concat( markerGroup2 ) }
 		/>

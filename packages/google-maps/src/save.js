@@ -11,11 +11,7 @@ function save( { attributes } ) {
 				: JSON.stringify( attributes[ item ] ) );
 	} );
 
-	return (
-		<div id="gmap" { ...x }>
-			Save
-		</div>
-	);
+	return <div id="gmap">Save</div>;
 }
 
 export default save;
