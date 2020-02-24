@@ -46,6 +46,19 @@ function Inspector( props ) {
 		setShowAddMarkerGroupModal( false );
 	};
 
+	const createOptionsSelectControl = () => {
+		const optionsSelectControl = [];
+
+		for ( let i = 0; i < categories.length; i++ ) {
+			optionsSelectControl.push( {
+				label: categories[ i ].name,
+				value: categories[ i ].name,
+			} );
+		}
+
+		return optionsSelectControl;
+	};
+
 	return (
 		<>
 			{ showAddMarkerGroupModal && (
@@ -147,9 +160,12 @@ function Inspector( props ) {
 								attr: { label: 'Naam' },
 							},
 							{
-								type: 'TextControl',
+								type: 'SelectControl',
 								id: 'category',
-								attr: { label: 'Categorie' },
+								attr: {
+									label: 'Categorie',
+									options: createOptionsSelectControl(),
+								},
 							},
 							{
 								type: 'TextControl',
