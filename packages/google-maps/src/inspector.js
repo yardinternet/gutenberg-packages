@@ -25,6 +25,8 @@ function Inspector( props ) {
 		setAttributes,
 		drawerModusActive,
 		setDrawerModusActive,
+		triggerMarker,
+		setFinishDrawerModus,
 	} = props;
 	const { categories, markerGroups, polygons } = attributes;
 	const [ showAddMarkerGroupModal, setShowAddMarkerGroupModal ] = useState(
@@ -66,6 +68,13 @@ function Inspector( props ) {
 							setDrawerModusActive( ! drawerModusActive )
 						}
 					/>
+					{ drawerModusActive && triggerMarker && (
+						<IconButton
+							icon={ <Dashicon icon="yes" /> }
+							label={ __( 'Voltooi een gebied' ) }
+							onClick={ () => setFinishDrawerModus( true ) }
+						/>
+					) }
 				</Toolbar>
 			</BlockControls>
 			<InspectorControls>

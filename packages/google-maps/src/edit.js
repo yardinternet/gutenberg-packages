@@ -13,23 +13,27 @@ function Edit( props ) {
 	const { setAttributes, attributes } = props;
 	const { points, polygons, markerGroups } = attributes;
 	const [ drawerModusActive, setDrawerModusActive ] = useState( false );
-	const [ polygonsObjects, setPolygonsObjects ] = useState( [] );
+	const [ triggerMarker, setTriggerMarker ] = useState( false );
+	const [ finishDrawerModus, setFinishDrawerModus ] = useState( false );
 
 	return (
 		<>
 			<Inspector
 				setDrawerModusActive={ setDrawerModusActive }
 				drawerModusActive={ drawerModusActive }
+				triggerMarker={ triggerMarker }
+				setFinishDrawerModus={ setFinishDrawerModus }
 				{ ...props }
 			/>
 			<Map
 				setAttributes={ setAttributes }
 				drawerModusActive={ drawerModusActive }
+				setTriggerMarker={ setTriggerMarker }
+				finishDrawerModus={ finishDrawerModus }
+				setFinishDrawerModus={ setFinishDrawerModus }
 				refresh={ drawerModusActive }
 				markerGroups={ markerGroups }
 				points={ points }
-				polygonsObjects={ polygonsObjects }
-				setPolygonsObjects={ setPolygonsObjects }
 				polygons={ polygons }
 				{ ...props }
 			/>
