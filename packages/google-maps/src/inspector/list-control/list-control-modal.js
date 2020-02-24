@@ -10,7 +10,7 @@ import {
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { isValidHex } from '../../../node_modules/@wordpress/components/src/color-picker/utils';
-import { createElement, useState } from '@wordpress/element';
+import { createElement } from '@wordpress/element';
 import ToggleSwitch from '../toggle-switch';
 
 function ListControlModal( {

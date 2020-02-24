@@ -133,6 +133,7 @@ function Map( {
 			const polygon = {
 				polygon: new google.maps.Polygon( {
 					id: item.id,
+					infowindow: item.infowindow,
 					paths:
 						typeof item.coords === 'string' &&
 						item.coords.length > 0
@@ -241,6 +242,22 @@ function Map( {
 	const addPolygon = ( polygon ) => {
 		if ( Object.keys( polygon ).length > 0 ) {
 			polygon.polygon.setMap( map );
+
+			const infowindowPolygon = new google.maps.InfoWindow( {
+				size: new google.maps.Size( 150, 50 ),
+			} );
+
+			google.maps.event.addListener(
+				polygon.polygon,
+				'click',
+				function() {
+					infowindowPolygon.setContent( polygon.polygon.infowindow );
+					infowindowPolygon.setPosition(
+						new google.maps.LatLng( 52.091495, 5.119462 )
+					);
+					infowindowPolygon.open( map );
+				}
+			);
 		}
 	};
 

@@ -186,6 +186,17 @@ function Inspector( props ) {
 								},
 							},
 							{
+								type: 'TextareaControl',
+								id: 'infowindow',
+								attr: {
+									label: 'Informatie venster',
+									help: __(
+										'Beschrijving voor in het informatievenster.',
+										config.textDomain
+									),
+								},
+							},
+							{
 								type: 'TextControl',
 								id: 'coords',
 								attr: { type: 'hidden' },
@@ -213,9 +224,9 @@ function Inspector( props ) {
 								type: 'BaseControl',
 								id: 'BaseControlBorderColor',
 								attr: {
-									label: 'Border kleur',
+									label: 'Lijn kleur',
 									help: __(
-										'Kies een border kleur voor de polygon.',
+										'Kies een lijn kleur voor de polygon.',
 										config.textDomain
 									),
 								},
