@@ -131,11 +131,11 @@ function Map( {
 						item.coords.length > 0
 							? JSON.parse( item.coords )
 							: [],
-					strokeColor: item.color,
+					strokeColor: item.borderColor,
 					strokeOpacity: 0.8,
-					strokeWeight: 2,
+					strokeWeight: 3,
 					fillColor: item.color,
-					fillOpacity: 0.35,
+					fillOpacity: 0.6,
 				} ),
 			};
 
