@@ -2,12 +2,11 @@
  * Internal dependencies
  */
 import { loadGoogleMaps, parseMarkerGroupMarkers, loadScript } from './helpers';
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 /**
  * WordPress dependencies
  */
-import { useEffect, useState, useRef } from '@wordpress/element';
 import AddPolygonModal from './components/add-polygon-modal';
 import MapFilters from './components/map/map-filters';
 import { filterMarkerGroupsByCategory } from './components/map/helpers';
