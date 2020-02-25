@@ -26,5 +26,6 @@
 		"@storybook/addon-actions": "^5.3.13",
 		"@storybook/addon-links": "^5.3.13",
 		"@storybook/react": "^5.3.13"
-	}
+	},
+	"gitHead": "bc7cae6a458f1908db656e41870079d03cd58456"
 }
