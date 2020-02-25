@@ -21,6 +21,7 @@ function Edit( props ) {
 	const [ drawerModusActive, setDrawerModusActive ] = useState( false );
 	const [ triggerMarker, setTriggerMarker ] = useState( false );
 	const [ finishDrawerModus, setFinishDrawerModus ] = useState( false );
+	const [ undo, setUndo ] = useState( false );
 
 	return (
 		<>
@@ -29,6 +30,7 @@ function Edit( props ) {
 				drawerModusActive={ drawerModusActive }
 				triggerMarker={ triggerMarker }
 				setFinishDrawerModus={ setFinishDrawerModus }
+				setUndo={ setUndo }
 				{ ...props }
 			/>
 			<Map
@@ -37,6 +39,8 @@ function Edit( props ) {
 				setTriggerMarker={ setTriggerMarker }
 				finishDrawerModus={ finishDrawerModus }
 				setFinishDrawerModus={ setFinishDrawerModus }
+				undo={ undo }
+				setUndo={ setUndo }
 				refresh={ drawerModusActive }
 				markerGroups={ markerGroups }
 				mapOptions={ mapOptions }

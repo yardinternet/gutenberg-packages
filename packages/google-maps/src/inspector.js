@@ -30,6 +30,7 @@ function Inspector( props ) {
 		setDrawerModusActive,
 		triggerMarker,
 		setFinishDrawerModus,
+		setUndo,
 	} = props;
 	const {
 		categories,
@@ -100,11 +101,18 @@ function Inspector( props ) {
 						}
 					/>
 					{ drawerModusActive && triggerMarker && (
-						<IconButton
-							icon={ <Dashicon icon="yes" /> }
-							label={ __( 'Voltooi een gebied' ) }
-							onClick={ () => setFinishDrawerModus( true ) }
-						/>
+						<>
+							<IconButton
+								icon={ <Dashicon icon="yes" /> }
+								label={ __( 'Voltooi een gebied' ) }
+								onClick={ () => setFinishDrawerModus( true ) }
+							/>
+							<IconButton
+								icon={ <Dashicon icon="undo" /> }
+								label={ __( 'Reset' ) }
+								onClick={ () => setUndo( true ) }
+							/>
+						</>
 					) }
 				</Toolbar>
 			</BlockControls>
