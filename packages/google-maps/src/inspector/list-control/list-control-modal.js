@@ -8,10 +8,10 @@ import {
 	ColorPicker,
 	ColorPalette,
 } from '@wordpress/components';
-import { isValidHex } from '@wordpress/components/src/color-picker/utils';
+// import { isValidHex } from '@wordpress/components/src/color-picker/utils';
+import { isValidHex } from '../../helpers';
 import { createElement } from '@wordpress/element';
 import ToggleSwitch from '../toggle-switch';
-
 function ListControlModal( {
 	hasFormData = {},
 	controls = [],

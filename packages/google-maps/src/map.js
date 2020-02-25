@@ -130,15 +130,24 @@ function Map( {
 	const createPolygonObjects = () => {
 		const handler = [];
 		polygons.map( function( item ) {
+			const coords =
+				typeof item.coords === 'string' && item.coords.length > 0
+					? JSON.parse( item.coords )
+					: [];
+			const bounds = new google.maps.LatLngBounds();
+			let i;
+
+			for ( i = 0; i < coords.length; i++ ) {
+				bounds.extend( coords[ i ] );
+			}
+
+			console.log( bounds.getCenter() );
+
 			const polygon = {
 				polygon: new google.maps.Polygon( {
 					id: item.id,
 					infowindow: item.infowindow,
-					paths:
-						typeof item.coords === 'string' &&
-						item.coords.length > 0
-							? JSON.parse( item.coords )
-							: [],
+					paths: coords,
 					strokeColor: item.borderColor,
 					strokeOpacity: 0.8,
 					strokeWeight: 3,
