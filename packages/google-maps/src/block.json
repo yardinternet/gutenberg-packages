@@ -33,7 +33,7 @@
 				"center": { "lat": 52.370216, "lng": 4.895168 },
 				"disableDefaultUI": false,
 				"markerClusterer": false,
-				"mapStyle": "default"
+				"mapTypeId": "roadmap"
 			}
 		}
 	}
