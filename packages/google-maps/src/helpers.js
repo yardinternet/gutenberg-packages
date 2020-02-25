@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import tinycolor from 'tinycolor2';
+
+/**
  * Appends loaded script to DOM
  *
  * @param {string} src url
@@ -58,4 +63,20 @@ export function parseMarkerGroupMarkers( markergroups ) {
 			} )
 		)
 		.flat();
+}
+
+/**
+ * Check if a string is a valid hex color code.
+ *
+ * @param {string} hex A possible hex color.
+ * @return {boolean} True if the color is a valid hex color.
+ */
+export function isValidHex( hex ) {
+	// disable hex4 and hex8
+	const lh = String( hex ).charAt( 0 ) === '#' ? 1 : 0;
+	return (
+		hex.length !== 4 + lh &&
+		hex.length < 7 + lh &&
+		tinycolor( hex ).isValid()
+	);
 }
