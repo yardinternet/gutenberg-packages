@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * Internal dependencies
  */
 import { config } from './config';
@@ -19,6 +24,8 @@ import {
 	TextareaControl,
 	TextControl,
 	ToggleControl,
+	Button,
+	Tooltip,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -93,13 +100,20 @@ function Inspector( props ) {
 						label={ __( 'Voeg markergroep toe' ) }
 						onClick={ () => setShowAddMarkerGroupModal( true ) }
 					/>
-					<IconButton
-						icon={ <Dashicon icon="edit" /> }
-						label={ __( 'Baken een gebied af' ) }
-						onClick={ () =>
-							setDrawerModusActive( ! drawerModusActive )
-						}
-					/>
+					<Tooltip text={ __( 'Baken een gebied af' ) }>
+						<Button
+							className={ classnames(
+								'components-icon-button',
+								'components-toolbar__control',
+								{ 'is-active': drawerModusActive }
+							) }
+							onClick={ () =>
+								setDrawerModusActive( ! drawerModusActive )
+							}
+						>
+							<Dashicon icon="edit" />
+						</Button>
+					</Tooltip>
 					{ drawerModusActive && triggerMarker && (
 						<>
 							<IconButton
