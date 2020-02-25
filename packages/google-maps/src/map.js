@@ -23,6 +23,8 @@ function Map( {
 	setTriggerMarker = () => {},
 	finishDrawerModus = false,
 	setFinishDrawerModus = () => {},
+	undo = false,
+	setUndo = () => {},
 	setAttributes = () => {},
 	markerGroups = [],
 	mapOptions = {
@@ -94,6 +96,15 @@ function Map( {
 	}, [ finishDrawerModus ] );
 
 	/**
+	 * Watch state variable 'finishDrawerModus'
+	 */
+	useEffect( () => {
+		if ( typeof map === 'object' && undo ) {
+			resetDrawing();
+		}
+	}, [ undo ] );
+
+	/**
 	 * Watch state variable 'map'
 	 */
 	useEffect( () => {
@@ -135,18 +146,20 @@ function Map( {
 					? JSON.parse( item.coords )
 					: [];
 			const bounds = new google.maps.LatLngBounds();
-			let i;
 
-			for ( i = 0; i < coords.length; i++ ) {
-				bounds.extend( coords[ i ] );
-			}
-
-			console.log( bounds.getCenter() );
+			// get center of polygon
+			coords.map( function( coord ) {
+				return bounds.extend(
+					new google.maps.LatLng( coord.lat, coord.lng )
+				);
+			} );
 
 			const polygon = {
 				polygon: new google.maps.Polygon( {
 					id: item.id,
 					infowindow: item.infowindow,
+					infowindowLat: bounds.getCenter().lat(),
+					infowindowLng: bounds.getCenter().lng(),
 					paths: coords,
 					strokeColor: item.borderColor,
 					strokeOpacity: 0.8,
@@ -262,7 +275,10 @@ function Map( {
 				function() {
 					infowindowPolygon.setContent( polygon.polygon.infowindow );
 					infowindowPolygon.setPosition(
-						new google.maps.LatLng( 52.091495, 5.119462 )
+						new google.maps.LatLng(
+							polygon.polygon.infowindowLat,
+							polygon.polygon.infowindowLng
+						)
 					);
 					infowindowPolygon.open( map );
 				}
@@ -333,6 +349,7 @@ function Map( {
 		setCurrentPolyGon( null );
 		setTriggerMarker( false ); // trigger re-render after updating ref
 		setFinishDrawerModus( false );
+		setUndo( false );
 	};
 
 	/**
@@ -368,6 +385,7 @@ function Map( {
 		setShowAddPolygonModal( false );
 		setTriggerMarker( false );
 		setFinishDrawerModus( false );
+		setUndo( false );
 
 		setAttributes( {
 			polygons: [ ...polygons, polygon ],
@@ -379,6 +397,7 @@ function Map( {
 	 */
 	const onRequestClose = () => {
 		setFinishDrawerModus( false );
+		setUndo( false );
 		setShowAddPolygonModal( false );
 	};
 
