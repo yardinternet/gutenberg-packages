@@ -19,6 +19,7 @@
 	},
 	"dependencies": {
 		"@yardinternet/gutenberg-editor-components": "^1.1.15",
+		"classnames": "^2.2.6",
 		"react-select": "^3.0.8",
 		"tinycolor2": "^1.4.1"
 	},
