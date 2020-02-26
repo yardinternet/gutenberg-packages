@@ -32,6 +32,7 @@ function Map( {
 		disableDefaultUI: false,
 		markerClusterer: false,
 	},
+	editableShapes = true,
 	googleMapStyles = { width: '100%', height: '100%', minHeight: '400px' },
 } ) {
 	const [ map, setMap ] = useState( false );
@@ -119,7 +120,7 @@ function Map( {
 				plotPolygons();
 			}
 		}
-	}, [ map ] );
+	}, [ map, editableShapes ] );
 
 	/**
 	 * Watch props variable 'polygons'
@@ -171,7 +172,7 @@ function Map( {
 					strokeWeight: 3,
 					fillColor: item.color,
 					fillOpacity: 0.6,
-					editable: true,
+					editable: editableShapes ? true : false,
 				} ),
 			};
 
