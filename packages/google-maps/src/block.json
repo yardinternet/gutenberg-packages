@@ -35,6 +35,10 @@
 				"markerClusterer": false,
 				"mapTypeId": "roadmap"
 			}
+		},
+		"editableShapes": {
+			"type": "boolean",
+			"default": true
 		}
 	}
 }
