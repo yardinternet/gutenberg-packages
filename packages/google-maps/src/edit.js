@@ -17,7 +17,7 @@ function Edit( props ) {
 		markerGroups,
 		filterOptions,
 		mapOptions,
-		editableShapes,
+		editableShapesModus,
 	} = attributes;
 	const [ drawerModusActive, setDrawerModusActive ] = useState( false );
 	const [ triggerMarker, setTriggerMarker ] = useState( false );
@@ -48,7 +48,7 @@ function Edit( props ) {
 				categories={ categories }
 				filterOptions={ filterOptions }
 				polygons={ polygons }
-				editableShapes={ editableShapes }
+				editableShapesModus={ editableShapesModus }
 				{ ...props }
 			></Map>
 		</>

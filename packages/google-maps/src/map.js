@@ -1,7 +1,12 @@
 /**
  * Internal dependencies
  */
-import { loadGoogleMaps, parseMarkerGroupMarkers, loadScript } from './helpers';
+import {
+	loadGoogleMaps,
+	parseMarkerGroupMarkers,
+	parsePolygonGroupMarkers,
+	loadScript,
+} from './helpers';
 import React, { useState, useEffect, useRef } from 'react';
 
 /**
@@ -9,7 +14,10 @@ import React, { useState, useEffect, useRef } from 'react';
  */
 import AddPolygonModal from './components/add-polygon-modal';
 import MapFilters from './components/map/map-filters';
-import { filterMarkerGroupsByCategory } from './components/map/helpers';
+import {
+	filterMarkerGroupsByCategory,
+	filterPolygonsByCategory,
+} from './components/map/helpers';
 
 var markers = []; // eslint-disable-line
 var polygonsObjects = []; // eslint-disable-line
@@ -32,7 +40,7 @@ function Map( {
 		disableDefaultUI: false,
 		markerClusterer: false,
 	},
-	editableShapes = true,
+	editableShapesModus = true,
 	googleMapStyles = { width: '100%', height: '100%', minHeight: '400px' },
 } ) {
 	const [ map, setMap ] = useState( false );
@@ -42,6 +50,7 @@ function Map( {
 	] = useState( false );
 	const [ currentPolyLines, setCurrentPolyLines ] = useState( [] );
 	const [ filteredMarkerGroups, setFilteredMarkerGroups ] = useState( [] );
+	const [ filteredPolygons, setFilteredPolygons ] = useState( [] );
 	const [ currentPolyGon, setCurrentPolyGon ] = useState( null );
 	const [ showAddPolygonModal, setShowAddPolygonModal ] = useState( false );
 	const [ selectedFilters, setSelectedFilters ] = useState( [] );
@@ -70,14 +79,9 @@ function Map( {
 	useEffect( () => {
 		if ( map ) {
 			plotMarkers();
+			plotPolygons();
 		}
 	} );
-
-	const listenerTest = () => {
-		map.addListener( 'click', ( event ) => {
-			populatePaths( event );
-		} );
-	};
 
 	/**
 	 * Watch state variable 'drawerModusActive'
@@ -85,7 +89,9 @@ function Map( {
 	useEffect( () => {
 		if ( typeof map === 'object' ) {
 			if ( drawerModusActive ) {
-				listenerTest();
+				map.addListener( 'click', ( event ) => {
+					addGoogleObjectsToMap( event );
+				} );
 			} else {
 				google.maps.event.clearListeners( map, 'click' );
 			}
@@ -116,19 +122,16 @@ function Map( {
 	useEffect( () => {
 		if ( typeof map === 'object' ) {
 			if ( polygons.length > 0 ) {
-				createPolygonObjects();
 				plotPolygons();
 			}
 		}
-	}, [ map, editableShapes ] );
+	}, [ map, editableShapesModus ] );
 
 	/**
 	 * Watch props variable 'polygons'
 	 */
 	useEffect( () => {
 		if ( typeof map === 'object' ) {
-			removePolygonObjects();
-			createPolygonObjects();
 			plotPolygons();
 		}
 	}, [ polygons ] );
@@ -143,10 +146,12 @@ function Map( {
 
 	/**
 	 * Create polygon objects from attributes
+	 *
+	 * @param {Array} polygonsArray
 	 */
-	const createPolygonObjects = () => {
+	const createPolygonObjects = ( polygonsArray ) => {
 		const handler = [];
-		polygons.flat().map( function( item ) {
+		polygonsArray.flat().map( function( item ) {
 			const coords =
 				typeof item.coords === 'string' && item.coords.length > 0
 					? JSON.parse( item.coords )
@@ -172,7 +177,7 @@ function Map( {
 					strokeWeight: 3,
 					fillColor: item.color,
 					fillOpacity: 0.6,
-					editable: editableShapes ? true : false,
+					editable: editableShapesModus ? true : false,
 				} ),
 			};
 
@@ -187,7 +192,7 @@ function Map( {
 	 *
 	 * @param {Object} event
 	 */
-	const populatePaths = ( event ) => {
+	const addGoogleObjectsToMap = ( event ) => {
 		const poly = new google.maps.Polyline( {
 			path: testPath.current,
 			strokeColor: '#000000',
@@ -197,7 +202,7 @@ function Map( {
 
 		poly.setMap( map );
 		currentPolyLines.push( poly );
-		setCurrentPolyLines( currentPolyLines ); // trigger re-render
+		setCurrentPolyLines( currentPolyLines );
 
 		const path = poly.getPath();
 
@@ -260,6 +265,14 @@ function Map( {
 	 * Plot all shapes on the map instance
 	 */
 	const plotPolygons = () => {
+		removePolygonObjects();
+
+		const plotMarkerGroups = selectedFilters.length
+			? filteredPolygons
+			: polygons;
+
+		createPolygonObjects( plotMarkerGroups );
+
 		polygonsObjects.flat().map( ( polygon ) => addPolygon( polygon ) );
 	};
 
@@ -466,6 +479,13 @@ function Map( {
 		setFilteredMarkerGroups(
 			filterMarkerGroupsByCategory( {
 				markerGroups,
+				selectedFilters,
+			} )
+		);
+
+		setFilteredPolygons(
+			filterPolygonsByCategory( {
+				polygons,
 				selectedFilters,
 			} )
 		);
