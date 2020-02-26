@@ -1,11 +1,4 @@
-import {
-	Button,
-	Dashicon,
-	ButtonGroup,
-	BaseControl,
-	PanelRow,
-} from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+import { Button, Dashicon, BaseControl } from '@wordpress/components';
 
 function List( {
 	explanationNoItems,

@@ -62,7 +62,7 @@ export function ListControl( {
 	};
 
 	const onAddModalSubmit = ( formData ) => {
-		dispatch( { type: 'add', payload: formData } );
+		dispatch( { type: 'add', payload: hookFormData( formData ) } );
 		setAddModalVisible( false );
 	};
 
@@ -97,7 +97,7 @@ export function ListControl( {
 					controls={ controls }
 					onSubmit={ onEditModalSubmit }
 					preOnSubmit={ ( formData ) => {
-						console.log( formData, 'weeee' );
+						return formData;
 					} }
 					entityLabel={ __( 'opslaan', config.textDomain ) }
 				/>

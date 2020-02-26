@@ -242,9 +242,9 @@ function Map( {
 			? filteredMarkerGroups
 			: markerGroups;
 
-		parseMarkerGroupMarkers( plotMarkerGroups ).map( ( point ) => {
-			addMarker( point );
-		} );
+		parseMarkerGroupMarkers( plotMarkerGroups ).map( ( point ) =>
+			addMarker( point )
+		);
 
 		if ( clusterMarkersScriptLoaded && mapOptions.markerClusterer ) {
 			new MarkerClusterer( map, markers, {
