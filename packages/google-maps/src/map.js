@@ -145,7 +145,7 @@ function Map( {
 	 */
 	const createPolygonObjects = () => {
 		const handler = [];
-		polygons.map( function( item ) {
+		polygons.flat().map( function( item ) {
 			const coords =
 				typeof item.coords === 'string' && item.coords.length > 0
 					? JSON.parse( item.coords )
@@ -171,6 +171,7 @@ function Map( {
 					strokeWeight: 3,
 					fillColor: item.color,
 					fillOpacity: 0.6,
+					editable: true,
 				} ),
 			};
 
@@ -270,25 +271,74 @@ function Map( {
 		if ( Object.keys( polygon ).length > 0 ) {
 			polygon.polygon.setMap( map );
 
-			const infowindowPolygon = new google.maps.InfoWindow( {
-				size: new google.maps.Size( 150, 50 ),
+			// add listeners to polygon
+			polygon.polygon.getPaths().forEach( function( path ) {
+				google.maps.event.addListener( path, 'set_at', function() {
+					updatePolygon( polygon.polygon, path );
+				} );
+
+				google.maps.event.addListener( path, 'remove_at', function() {
+					updatePolygon( polygon.polygon, path );
+				} );
+
+				google.maps.event.addListener( path, 'insert_at', function() {
+					updatePolygon( polygon.polygon, path );
+				} );
 			} );
 
-			google.maps.event.addListener(
-				polygon.polygon,
-				'click',
-				function() {
-					infowindowPolygon.setContent( polygon.polygon.infowindow );
-					infowindowPolygon.setPosition(
-						new google.maps.LatLng(
-							polygon.polygon.infowindowLat,
-							polygon.polygon.infowindowLng
-						)
-					);
-					infowindowPolygon.open( map );
-				}
-			);
+			if (
+				polygon.polygon.infowindow &&
+				polygon.polygon.infowindow.length > 0
+			) {
+				const infowindowPolygon = new google.maps.InfoWindow( {
+					size: new google.maps.Size( 150, 50 ),
+				} );
+
+				google.maps.event.addListener(
+					polygon.polygon,
+					'click',
+					function() {
+						infowindowPolygon.setContent(
+							polygon.polygon.infowindow
+						);
+						infowindowPolygon.setPosition(
+							new google.maps.LatLng(
+								polygon.polygon.infowindowLat,
+								polygon.polygon.infowindowLng
+							)
+						);
+						infowindowPolygon.open( map );
+					}
+				);
+			}
 		}
+	};
+
+	/**
+	 * Update edited polygon
+	 *
+	 * @param {Object} polygon
+	 * @param {Object} newPaths
+	 */
+	const updatePolygon = ( polygon, newPaths ) => {
+		const polygonID = polygon.id;
+		const newCoords = [];
+
+		newPaths.g.map( function( item ) {
+			return newCoords.push( item );
+		} );
+
+		const newPolygons = polygons.map( function( item ) {
+			if ( item.id === polygonID ) {
+				item.coords = JSON.stringify( newCoords );
+			}
+
+			return item;
+		} );
+
+		setAttributes( {
+			polygons: newPolygons,
+		} );
 	};
 
 	/**
@@ -300,7 +350,7 @@ function Map( {
 			icon,
 		} );
 
-		markers.push( marker ); // nalezen
+		markers.push( marker );
 		marker.setMap( map );
 	};
 
@@ -363,9 +413,10 @@ function Map( {
 	 * @param {Object} coordinates
 	 */
 	const addPolygonToAttributes = ( name, coordinates ) => {
+		const randomID = Math.floor( Math.random() * 100 ) + 1;
 		const polygonObject = {
 			polygon: new google.maps.Polygon( {
-				id: Math.floor( Math.random() * 100 ) + 1,
+				id: randomID.toString(),
 				paths: coordinates,
 				strokeColor: '#FF0000',
 				strokeOpacity: 0.8,
