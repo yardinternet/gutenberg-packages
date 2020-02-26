@@ -3,10 +3,7 @@ import { TextControl, Button, Modal } from '@wordpress/components';
 import { useState, createElement } from '@wordpress/element';
 
 function ListControl( { data, setAttributes, controls } ) {
-	const [ name, setName ] = useState( '' );
 	const [ show, showModal ] = useState( false );
-	const [ modalType, setModalType ] = useState( 'add' );
-	const [ listItem, setListItem ] = useState( {} );
 
 	const [ dataItem, setDataItem ] = useState( {} );
 
@@ -40,8 +37,6 @@ function ListControl( { data, setAttributes, controls } ) {
 						( item, index ) => index !== action.payload
 					),
 				} );
-			case 'edit':
-				console.log( action );
 		}
 	};
 
@@ -55,7 +50,7 @@ function ListControl( { data, setAttributes, controls } ) {
 		return renderModal();
 	};
 
-	const renderModal = ( { title = '', btnTitle = '', mode = 'add' } ) => (
+	const renderModal = ( { title = '', btnTitle = '' } ) => (
 		<Modal title={ title } onRequestClose={ () => showModal( false ) }>
 			{ controls.map( ( control, index ) => {
 				return createElement( getField( control.type ), {
@@ -68,19 +63,6 @@ function ListControl( { data, setAttributes, controls } ) {
 			<Button onClick={ () => onSubmit() }>{ btnTitle }</Button>
 		</Modal>
 	);
-
-	// const editModal = ( { title: '', btnTitle: '', mode: 'add' } ) => (
-	// 	<Modal
-	// 		title="Wijzig category"
-	// 		onRequestClose={ () => showModal( false ) }
-	// 	>
-	// 		<TextControl
-	// 			value={ name }
-	// 			onChange={ ( val ) => setName( val ) }
-	// 		/>
-	// 		<Button onClick={ () => onSubmit() }>Wijzigen</Button>
-	// 	</Modal>
-	// );
 
 	return (
 		<>
