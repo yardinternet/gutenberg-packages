@@ -21,7 +21,7 @@ const pluginName = 'yard-blocks';
  *
  * Usage
  *
- * addFilter( 'yard-blocks.styleClassBlocks', name, () => {
+ * addFilter( 'yard-blocks.styleClassBlocks', n§Ìame, () => {
  *	return [ 'core/paragraph', 'core/button' ];
  * } );
  *
@@ -60,8 +60,8 @@ addFilter(
  *	return [ { label: 'Primary', value: 'bg-primary' }, { label: 'Secondary', value: 'bg-secondary' } ];
  * } );
  *
- * @param {BlockEdit} BlockEdit
- * @return { BlockEdit } BlockEdit
+ * @param {Object} BlockEdit
+ * @return {Object} BlockEdit
  */
 const withInspectorControls = ( BlockEdit ) => {
 	return ( props ) => {
