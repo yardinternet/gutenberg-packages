@@ -21,9 +21,7 @@ function save( { attributes, className } ) {
 				'yard-google-map-advanced',
 			] ) }
 			{ ...props }
-		>
-			Save
-		</div>
+		></div>
 	);
 }
 

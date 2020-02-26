@@ -24,12 +24,15 @@ function MapFilters( {
 	const { title, content } = filterOptions;
 
 	return (
-		<div style={ style }>
-			<h2>{ title }</h2>
-			<div>{ content }</div>
+		<div className="yard-google-map-advanced__filters" style={ style }>
+			<h2 className="yard-google-map-advanced__title">{ title }</h2>
+			<div className="yard-google-map-advanced__content">{ content }</div>
 			{ filters.map( ( name, key ) => {
 				return [
-					<div key={ key }>
+					<div
+						className="yard-google-map-advanced__option"
+						key={ key }
+					>
 						<input
 							id={ `checkbox-${ name }` }
 							key={ key }
