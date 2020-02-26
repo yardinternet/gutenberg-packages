@@ -21,7 +21,7 @@ const pluginName = 'yard-blocks';
  *
  * Usage
  *
- * addFilter( 'yard-blocks.styleClassBlocks', n§Ìame, () => {
+ * addFilter( 'yard-blocks.styleClassBlocks', name, () => {
  *	return [ 'core/paragraph', 'core/button' ];
  * } );
  *
