@@ -36,7 +36,7 @@
 				"mapTypeId": "roadmap"
 			}
 		},
-		"editableShapes": {
+		"editableShapesModus": {
 			"type": "boolean",
 			"default": true
 		}

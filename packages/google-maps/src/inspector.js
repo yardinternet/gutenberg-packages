@@ -45,7 +45,7 @@ function Inspector( props ) {
 		polygons,
 		filterOptions,
 		mapOptions,
-		editableShapes,
+		editableShapesModus,
 	} = attributes;
 	const [ showAddMarkerGroupModal, setShowAddMarkerGroupModal ] = useState(
 		false
@@ -303,10 +303,10 @@ function Inspector( props ) {
 					/>
 					<ToggleControl
 						label="Vlakken bewerkbaar"
-						checked={ editableShapes }
+						checked={ editableShapesModus }
 						onChange={ ( val ) =>
 							setAttributes( {
-								editableShapes: val,
+								editableShapesModus: val,
 							} )
 						}
 					/>

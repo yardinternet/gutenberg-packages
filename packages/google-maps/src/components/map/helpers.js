@@ -15,3 +15,16 @@ export function filterMarkerGroupsByCategory( {
 
 	return newGroups;
 }
+
+export function filterPolygonsByCategory( {
+	polygons = [],
+	selectedFilters = [],
+} ) {
+	if ( ! selectedFilters.length ) return polygons;
+
+	const newPolygons = polygons.filter( ( polygon ) => {
+		return selectedFilters.includes( polygon.category );
+	} );
+
+	return newPolygons;
+}
