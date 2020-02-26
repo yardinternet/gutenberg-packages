@@ -66,6 +66,12 @@ function Map( {
 		).then( () => setClusterMarkersScriptLoaded( true ) );
 	}, [] );
 
+	useEffect( () => {
+		if ( map ) {
+			plotMarkers();
+		}
+	} );
+
 	const listenerTest = () => {
 		map.addListener( 'click', ( event ) => {
 			populatePaths( event );
@@ -412,11 +418,6 @@ function Map( {
 			} )
 		);
 	}, [ selectedFilters ] );
-
-	// Plot markers on every rerender
-	if ( map ) {
-		plotMarkers();
-	}
 
 	return (
 		<>
