@@ -177,6 +177,15 @@ function Inspector( props ) {
 					initialOpen={ false }
 					title={ __( 'Gebieden', config.textDomain ) }
 				>
+					<ToggleControl
+						label={ __( 'Gebieden bewerkbaar', config.textDomain ) }
+						checked={ editableShapesModus }
+						onChange={ ( val ) =>
+							setAttributes( {
+								editableShapesModus: val,
+							} )
+						}
+					/>
 					<ListControl
 						explanationNoItems={ __(
 							'Voeg een gebied toe via de blockcontrols.',
@@ -298,15 +307,6 @@ function Inspector( props ) {
 									...mapOptions,
 									...{ markerClusterer: val },
 								},
-							} )
-						}
-					/>
-					<ToggleControl
-						label="Vlakken bewerkbaar"
-						checked={ editableShapesModus }
-						onChange={ ( val ) =>
-							setAttributes( {
-								editableShapesModus: val,
 							} )
 						}
 					/>
