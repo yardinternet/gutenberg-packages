@@ -29,6 +29,7 @@
 		"mapOptions": {
 			"type": "object",
 			"default": {
+				"height": 400,
 				"zoom": 8,
 				"center": { "lat": 52.370216, "lng": 4.895168 },
 				"disableDefaultUI": false,

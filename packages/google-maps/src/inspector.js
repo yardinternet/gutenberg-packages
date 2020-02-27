@@ -27,6 +27,7 @@ import {
 	TextControl,
 	ToggleControl,
 	Button,
+	RangeControl,
 	Tooltip,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -334,6 +335,20 @@ function Inspector( props ) {
 								},
 							} )
 						}
+					/>
+					<RangeControl
+						label="Hoogte"
+						value={ mapOptions.height }
+						onChange={ ( val ) =>
+							setAttributes( {
+								mapOptions: {
+									...mapOptions,
+									...{ height: val },
+								},
+							} )
+						}
+						min={ 100 }
+						max={ 2000 }
 					/>
 				</PanelBody>
 			</InspectorControls>

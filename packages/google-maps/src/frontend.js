@@ -17,7 +17,7 @@ ReactDOM.render(
 		editableShapesModus={ false }
 		markerGroups={ props.markergroups }
 		filterOptions={ props.filteroptions }
-		mapOptions={ props.mapOptions }
+		mapOptions={ props.mapoptions }
 	/>,
 	element
 );
