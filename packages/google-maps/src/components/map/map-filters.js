@@ -1,7 +1,8 @@
 import React from 'react';
+import { __ } from '@wordpress/i18n';
 
 function MapFilters( {
-	style = { width: '30%' },
+	style = { width: '50%' },
 	filters = [],
 	selectedFilters = [],
 	filterOptions = {},
@@ -57,6 +58,14 @@ function MapFilters( {
 					} ) }
 				</div>
 			</fieldset>
+			<button
+				className="yard-google-map-advanced__btn-reset"
+				onClick={ () => {
+					onChange( [] );
+				} }
+			>
+				{ __( 'Wis alle filters', 'text-domain' ) }
+			</button>
 		</div>
 	);
 }
