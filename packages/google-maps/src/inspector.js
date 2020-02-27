@@ -255,6 +255,24 @@ function Inspector( props ) {
 							},
 							{
 								type: 'TextControl',
+								id: 'infowindowURL',
+								attr: {
+									label: 'URL',
+									help: __(
+										'URL voor in het informatievenster. Voorbeeld: https://www.domein.nl',
+										config.textDomain
+									),
+								},
+							},
+							{
+								type: 'ToggleSwitch',
+								id: 'infowindowTargetURL',
+								attr: {
+									label: 'Link op andere pagina openen?',
+								},
+							},
+							{
+								type: 'TextControl',
 								id: 'coords',
 								attr: { type: 'hidden' },
 							},

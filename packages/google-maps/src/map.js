@@ -1,8 +1,13 @@
 /**
+ * External dependencies
+ */
+import React, { useState, useEffect, useRef } from 'react';
+
+/**
  * Internal dependencies
  */
 import { loadGoogleMaps, parseMarkerGroupMarkers, loadScript } from './helpers';
-import React, { useState, useEffect, useRef } from 'react';
+import { createInfowindow } from './infowindow';
 
 /**
  * WordPress dependencies
@@ -194,12 +199,17 @@ function Map( {
 				);
 			} );
 
+			const infowindowTargetURL =
+				item.infowindowTargetURL === 'true' ? true : false;
+
 			const polygon = {
 				polygon: new google.maps.Polygon( {
 					id: item.id,
 					infowindow: item.infowindow,
+					infowindowURL: item.infowindowURL,
 					infowindowLat: bounds.getCenter().lat(),
 					infowindowLng: bounds.getCenter().lng(),
+					infowindowTargetURL: infowindowTargetURL ? true : false,
 					paths: coords,
 					strokeColor: item.borderColor,
 					strokeOpacity: 0.8,
@@ -334,26 +344,12 @@ function Map( {
 				polygon.polygon.infowindow &&
 				polygon.polygon.infowindow.length > 0
 			) {
-				const infowindowPolygon = new google.maps.InfoWindow( {
-					size: new google.maps.Size( 150, 50 ),
+				createInfowindow( {
+					map,
+					polygon: polygon.polygon,
+					content: polygon.polygon.infowindow,
+					url: polygon.polygon.infowindowURL,
 				} );
-
-				google.maps.event.addListener(
-					polygon.polygon,
-					'click',
-					function() {
-						infowindowPolygon.setContent(
-							polygon.polygon.infowindow
-						);
-						infowindowPolygon.setPosition(
-							new google.maps.LatLng(
-								polygon.polygon.infowindowLat,
-								polygon.polygon.infowindowLng
-							)
-						);
-						infowindowPolygon.open( map );
-					}
-				);
 			}
 		}
 	};
