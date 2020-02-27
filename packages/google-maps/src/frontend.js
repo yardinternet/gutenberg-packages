@@ -14,6 +14,7 @@ Object.keys( element.dataset ).map( ( item ) => {
 ReactDOM.render(
 	<Map
 		{ ...props }
+		editableShapesModus={ false }
 		markerGroups={ props.markergroups }
 		filterOptions={ props.filteroptions }
 		mapOptions={ props.mapOptions }

@@ -494,7 +494,6 @@ function Map( {
 			<div style={ { display: 'flex' } }>
 				{ filterOptions.showFilters && (
 					<MapFilters
-						style={ { width: '300px' } }
 						filters={ categories
 							.filter( ( item ) => item.filter === 'true' )
 							.map( ( item ) => item.name ) }
