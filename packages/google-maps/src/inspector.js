@@ -10,6 +10,7 @@ import { config } from './config';
 import ListControl from './inspector/list-control/list-control';
 import AddMarkerGroupModal from './inspector/marker-group/add-marker-group-modal';
 import MarkerGroups from './inspector/marker-group/marker-groups';
+import ImportCoordinatesControl from './inspector/import-coordinates-control';
 
 /**
  * Wordpress dependencies
@@ -18,6 +19,7 @@ import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 import { useState } from '@wordpress/element';
 import {
 	PanelBody,
+	PanelRow,
 	Toolbar,
 	IconButton,
 	Dashicon,
@@ -50,6 +52,11 @@ function Inspector( props ) {
 	const [ showAddMarkerGroupModal, setShowAddMarkerGroupModal ] = useState(
 		false
 	);
+
+	const [
+		showImportShapeCoordinates,
+		setShowImportShapeCoordinates,
+	] = useState( false );
 
 	const addMarkerGroup = ( group ) => {
 		const defaultMarkerGroup = {
@@ -175,7 +182,8 @@ function Inspector( props ) {
 				</PanelBody>
 				<PanelBody
 					initialOpen={ false }
-					title={ __( 'Gebieden', config.textDomain ) }
+					icon="location-alt"
+					title={ __( 'Polygons', config.textDomain ) }
 				>
 					<ToggleControl
 						label={ __( 'Gebieden bewerkbaar', config.textDomain ) }
@@ -188,10 +196,10 @@ function Inspector( props ) {
 					/>
 					<ListControl
 						explanationNoItems={ __(
-							'Voeg een gebied toe via de blockcontrols.',
+							'Voeg een polygon toe via de blockcontrols.',
 							config.textDomain
 						) }
-						entityLabel={ __( 'Gebied', config.textDomain ) }
+						entityLabel={ __( 'Polygon', config.textDomain ) }
 						showAddModalButton={ false }
 						data={ polygons }
 						setAttributes={ setAttributes }
@@ -273,6 +281,23 @@ function Inspector( props ) {
 							},
 						] }
 					/>
+					<PanelRow>
+						{ showImportShapeCoordinates && (
+							<ImportCoordinatesControl
+								setModal={ setShowImportShapeCoordinates }
+								setAttributes={ setAttributes }
+								polygons={ polygons }
+							/>
+						) }
+						<Button
+							isDefault
+							onClick={ () =>
+								setShowImportShapeCoordinates( true )
+							}
+						>
+							Importeer shape
+						</Button>
+					</PanelRow>
 				</PanelBody>
 				<PanelBody initialOpen={ false } title={ 'Filters' }>
 					<ToggleControl

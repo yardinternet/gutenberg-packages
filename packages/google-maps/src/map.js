@@ -1,12 +1,7 @@
 /**
  * Internal dependencies
  */
-import {
-	loadGoogleMaps,
-	parseMarkerGroupMarkers,
-	parsePolygonGroupMarkers,
-	loadScript,
-} from './helpers';
+import { loadGoogleMaps, parseMarkerGroupMarkers, loadScript } from './helpers';
 import React, { useState, useEffect, useRef } from 'react';
 
 /**
@@ -92,8 +87,10 @@ function Map( {
 				map.addListener( 'click', ( event ) => {
 					addGoogleObjectsToMap( event );
 				} );
-			} else {
-				google.maps.event.clearListeners( map, 'click' );
+
+				return () => {
+					google.maps.event.clearListeners( map, 'click' );
+				};
 			}
 		}
 	}, [ drawerModusActive ] );
