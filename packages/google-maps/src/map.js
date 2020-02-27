@@ -284,9 +284,10 @@ function Map( {
 	const addPolygon = ( polygon ) => {
 		if ( Object.keys( polygon ).length > 0 ) {
 			polygon.polygon.setMap( map );
+			const polygonPaths = polygon.polygon.getPaths().getArray();
 
 			// add listeners to polygon
-			polygon.polygon.getPaths().forEach( function( path ) {
+			polygonPaths.forEach( function( path ) {
 				google.maps.event.addListener( path, 'set_at', function() {
 					updatePolygon( polygon.polygon, path );
 				} );
@@ -338,7 +339,7 @@ function Map( {
 		const polygonID = polygon.id;
 		const newCoords = [];
 
-		newPaths.g.map( function( item ) {
+		newPaths.getArray().map( function( item ) {
 			return newCoords.push( item );
 		} );
 
