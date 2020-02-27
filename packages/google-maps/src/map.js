@@ -30,13 +30,18 @@ function Map( {
 	setAttributes = () => {},
 	markerGroups = [],
 	mapOptions = {
+		height: 400,
 		zoom: 8,
 		center: { lat: 52.370216, lng: 4.895168 },
 		disableDefaultUI: false,
 		markerClusterer: false,
 	},
 	editableShapesModus = true,
-	googleMapStyles = { width: '100%', height: '100%', minHeight: '400px' },
+	googleMapStyles = {
+		width: '100%',
+		height: '100%',
+		minHeight: `${ mapOptions.height }px`,
+	},
 } ) {
 	const [ map, setMap ] = useState( false );
 	const [
@@ -491,7 +496,14 @@ function Map( {
 
 	return (
 		<>
-			<div style={ { display: 'flex' } }>
+			<div
+				className="yard-google-map-advanced"
+				style={ {
+					display: 'flex',
+					minHeight: `${ mapOptions.height }px`,
+					color: 'red',
+				} }
+			>
 				{ filterOptions.showFilters && (
 					<MapFilters
 						filters={ categories
@@ -504,7 +516,7 @@ function Map( {
 				) }
 				<div
 					style={ googleMapStyles }
-					className="yard-blocks-google-map"
+					className="yard-google-map-advanced__map"
 					ref={ ref }
 				></div>
 			</div>
