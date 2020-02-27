@@ -1,3 +1,4 @@
+import { withA11y } from '@storybook/addon-a11y';
 import Map from '../../map';
 import { mapOptions, markerGroup1, markerGroup2 } from './dummy';
 
@@ -5,6 +6,7 @@ import '@wordpress/components/build-style/style.css';
 
 export default {
 	title: 'GoogleMaps/Components',
+	decorators: [ withA11y ],
 };
 
 const filterOptions = {
