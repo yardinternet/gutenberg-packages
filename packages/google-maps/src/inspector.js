@@ -41,6 +41,8 @@ function Inspector( props ) {
 		triggerMarker,
 		setFinishDrawerModus,
 		setUndo,
+		editMapCenter,
+		setEditMapCenter,
 	} = props;
 	const {
 		categories,
@@ -105,7 +107,7 @@ function Inspector( props ) {
 			<BlockControls>
 				<Toolbar>
 					<IconButton
-						icon={ <Dashicon icon="plus" /> }
+						icon={ <Dashicon icon="sticky" /> }
 						label={ __( 'Voeg markergroep toe' ) }
 						onClick={ () => setShowAddMarkerGroupModal( true ) }
 					/>
@@ -137,6 +139,20 @@ function Inspector( props ) {
 							/>
 						</>
 					) }
+					<Tooltip text={ __( 'Centreer map' ) }>
+						<Button
+							className={ classnames(
+								'components-icon-button',
+								'components-toolbar__control',
+								{ 'is-active': editMapCenter }
+							) }
+							onClick={ () => {
+								setEditMapCenter( ! editMapCenter );
+							} }
+						>
+							<Dashicon icon="move" />
+						</Button>
+					</Tooltip>
 				</Toolbar>
 			</BlockControls>
 			<InspectorControls>
@@ -300,7 +316,11 @@ function Inspector( props ) {
 						</Button>
 					</PanelRow>
 				</PanelBody>
-				<PanelBody initialOpen={ false } title={ 'Filters' }>
+				<PanelBody
+					initialOpen={ false }
+					icon="editor-ul"
+					title={ __( 'Filters' ) }
+				>
 					<ToggleControl
 						label="Toon filters"
 						checked={ filterOptions.showFilters }

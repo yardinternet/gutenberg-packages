@@ -37,6 +37,7 @@ function Map( {
 		markerClusterer: false,
 	},
 	editableShapesModus = true,
+	editMapCenter = false,
 	googleMapStyles = {
 		width: '100%',
 		height: '100%',
@@ -105,6 +106,26 @@ function Map( {
 			}
 		}
 	}, [ drawerModusActive ] );
+
+	/**
+	 * Set mapcenter
+	 */
+	useEffect( () => {
+		if ( typeof map === 'object' && editMapCenter ) {
+			map.addListener( 'dragend', () => {
+				setAttributes( {
+					mapOptions: {
+						...mapOptions,
+						...{ center: map.getCenter().toJSON() },
+					},
+				} );
+			} );
+
+			return () => {
+				google.maps.event.clearListeners( map, 'dragend' );
+			};
+		}
+	} );
 
 	/**
 	 * Watch state variable 'finishDrawerModus'

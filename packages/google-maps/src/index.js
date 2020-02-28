@@ -18,8 +18,10 @@ import save from './save';
 const { name, attributes } = metadata;
 
 const settings = {
-	title: __( 'Google map geavanceerd', 'yardinternet/google-maps' ),
-	description: __( 'Toont Google maps' ),
+	title: __( 'Google map geavanceerd', 'yardinternet/google-maps-advanced' ),
+	description: __(
+		'Toont een Google maps kaart met markergroepen, diverse shapes en filter mogelijkheden'
+	),
 	supports: {
 		multiple: false,
 		reusable: false,
@@ -36,7 +38,7 @@ export function registerGoogleMaps() {
 		icon: {
 			background: '#0293b0',
 			foreground: '#fff',
-			src: <BlockIcon faClasses="fas fa-images" />,
+			src: <BlockIcon faClasses="fal fa-map-marked" />,
 		},
 	} );
 }
