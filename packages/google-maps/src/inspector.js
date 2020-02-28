@@ -11,6 +11,7 @@ import ListControl from './inspector/list-control/list-control';
 import AddMarkerGroupModal from './inspector/marker-group/add-marker-group-modal';
 import MarkerGroups from './inspector/marker-group/marker-groups';
 import ImportCoordinatesControl from './inspector/import-coordinates-control';
+import MapOptions from './inspector/map-options';
 
 /**
  * Wordpress dependencies
@@ -27,7 +28,6 @@ import {
 	TextControl,
 	ToggleControl,
 	Button,
-	RangeControl,
 	Tooltip,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -323,34 +323,10 @@ function Inspector( props ) {
 						}
 					/>
 				</PanelBody>
-				<PanelBody initialOpen={ false } title={ 'Map opties' }>
-					<ToggleControl
-						label="Marker cluster"
-						checked={ mapOptions.markerClusterer }
-						onChange={ ( val ) =>
-							setAttributes( {
-								mapOptions: {
-									...mapOptions,
-									...{ markerClusterer: val },
-								},
-							} )
-						}
-					/>
-					<RangeControl
-						label="Hoogte"
-						value={ mapOptions.height }
-						onChange={ ( val ) =>
-							setAttributes( {
-								mapOptions: {
-									...mapOptions,
-									...{ height: val },
-								},
-							} )
-						}
-						min={ 100 }
-						max={ 2000 }
-					/>
-				</PanelBody>
+				<MapOptions
+					mapOptions={ mapOptions }
+					setAttributes={ setAttributes }
+				/>
 			</InspectorControls>
 		</>
 	);

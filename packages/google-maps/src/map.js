@@ -83,6 +83,12 @@ function Map( {
 		}
 	} );
 
+	useEffect( () => {
+		if ( map ) {
+			map.setZoom( mapOptions.zoom );
+		}
+	}, [ mapOptions ] );
+
 	/**
 	 * Watch state variable 'drawerModusActive'
 	 */
