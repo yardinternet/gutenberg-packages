@@ -103,21 +103,23 @@ function Markergroup( {
 				) }
 			</PanelRow>
 			<div>
-				<Button
-					isLink
-					onClick={ () =>
-						parentDispatch( {
-							type: 'updateGroup',
-							payload: {
-								index,
-								name: 'markerImage',
-								value: {},
-							},
-						} )
-					}
-				>
-					Afbeelding verwijderen
-				</Button>
+				{ markerImage.url && Object.keys( markerImage.url ).length && (
+					<Button
+						isLink
+						onClick={ () =>
+							parentDispatch( {
+								type: 'updateGroup',
+								payload: {
+									index,
+									name: 'markerImage',
+									value: {},
+								},
+							} )
+						}
+					>
+						Afbeelding verwijderen
+					</Button>
+				) }
 			</div>
 			{ renderSubtitle( 'Markers' ) }
 			<PanelRow>
