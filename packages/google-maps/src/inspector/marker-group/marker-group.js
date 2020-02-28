@@ -64,7 +64,7 @@ function Markergroup( {
 	return (
 		<PanelBody
 			icon="location"
-			initialOpen={ true }
+			initialOpen={ false }
 			title={ name }
 			key={ index }
 		>
