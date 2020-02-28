@@ -1,5 +1,9 @@
 {
-	"name": "root",
+	"name": "gutenberg-packages",
+	"version": "1.0.0",
+	"description": "Monorepo contains all gutenberg packages",
+	"author": "Yard Internet",
+	"license": "ISC",
 	"private": true,
 	"scripts": {
 		"lint": "wp-scripts lint-js ./packages",
@@ -13,7 +17,7 @@
 		"url": "git@github.com:yardinternet/gutenberg-packages.git"
 	},
 	"bugs": {
-		"url": "https://github.com/yardinternet/gutenberg-packages.git/issues"
+		"url": "https://github.com/yardinternet/gutenberg-packages/issues"
 	},
 	"husky": {
 		"hooks": {
