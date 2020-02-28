@@ -1,4 +1,5 @@
 import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 function MapOptions( { mapOptions = {}, setAttributes = () => {} } ) {
 	const onChange = ( prop, val ) => {
@@ -11,7 +12,11 @@ function MapOptions( { mapOptions = {}, setAttributes = () => {} } ) {
 	};
 
 	return (
-		<PanelBody initialOpen={ false } title={ 'Map opties' }>
+		<PanelBody
+			initialOpen={ false }
+			icon={ 'admin-settings' }
+			title={ __( 'Map opties' ) }
+		>
 			<ToggleControl
 				label="Marker cluster"
 				checked={ mapOptions.markerClusterer }
