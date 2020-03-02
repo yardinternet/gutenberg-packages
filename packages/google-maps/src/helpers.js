@@ -55,6 +55,9 @@ export function parseMarkerGroupMarkers( markergroups ) {
 			group.markers.map( ( marker ) => {
 				return {
 					latLng: marker.latLng,
+					infowindow: marker.infowindow,
+					infowindowTargetURL: marker.infowindowTargetURL,
+					infowindowURL: marker.infowindowURL,
 					...( group.markerImage &&
 						group.markerImage.url && {
 							icon: group.markerImage.url,

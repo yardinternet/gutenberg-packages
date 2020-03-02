@@ -7,7 +7,7 @@ import React, { useState, useEffect, useRef } from 'react';
  * Internal dependencies
  */
 import { loadGoogleMaps, parseMarkerGroupMarkers, loadScript } from './helpers';
-import { createInfowindow } from './infowindow';
+import { createInfowindowPolygon, createInfowindowMarker } from './infowindow';
 
 /**
  * WordPress dependencies
@@ -344,7 +344,7 @@ function Map( {
 				polygon.polygon.infowindow &&
 				polygon.polygon.infowindow.length > 0
 			) {
-				createInfowindow( {
+				createInfowindowPolygon( {
 					map,
 					polygon: polygon.polygon,
 					content: polygon.polygon.infowindow,
@@ -384,7 +384,13 @@ function Map( {
 	/**
 	 * @param {string} point gmap location id
 	 */
-	const addMarker = ( { latLng, icon } ) => {
+	const addMarker = ( {
+		latLng,
+		infowindow,
+		infowindowTargetURL,
+		infowindowURL,
+		icon,
+	} ) => {
 		const marker = new google.maps.Marker( {
 			position: latLng,
 			icon,
@@ -392,6 +398,16 @@ function Map( {
 
 		markers.push( marker );
 		marker.setMap( map );
+
+		if ( infowindow && !! infowindow.length ) {
+			createInfowindowMarker( {
+				map,
+				marker,
+				infowindow,
+				infowindowURL,
+				infowindowTargetURL,
+			} );
+		}
 	};
 
 	/**
@@ -524,7 +540,6 @@ function Map( {
 				style={ {
 					display: 'flex',
 					minHeight: `${ mapOptions.height }px`,
-					color: 'red',
 				} }
 			>
 				{ filterOptions.showFilters && (
