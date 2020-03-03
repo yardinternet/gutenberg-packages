@@ -12,6 +12,9 @@ export const markers1 = [
 			lat: 52.3666969,
 			lng: 4.8945398,
 		},
+		infowindow: 'Content',
+		infowindowURL: 'https://www.google.nl',
+		infowindowTargetURL: false,
 	},
 	{
 		name: 'Houten',
