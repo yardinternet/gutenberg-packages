@@ -69,6 +69,32 @@ export function parseMarkerGroupMarkers( markergroups ) {
 }
 
 /**
+ * Divide the markers between marker cluster groups
+ *
+ * @param {Array} plotMarkerGroups
+ */
+export function prepareMarkerClusterGroups( plotMarkerGroups ) {
+	const markerGroupsObjects = [];
+
+	plotMarkerGroups.map( function( group ) {
+		const groupHolder = [];
+
+		group.markers.map( function( item ) {
+			const marker = new google.maps.Marker( {
+				position: item.latLng,
+				icon: item.icon,
+			} );
+
+			return groupHolder.push( marker );
+		} );
+
+		return markerGroupsObjects.push( groupHolder );
+	} );
+
+	return markerGroupsObjects;
+}
+
+/**
  * Check if a string is a valid hex color code.
  *
  * @param {string} hex A possible hex color.
