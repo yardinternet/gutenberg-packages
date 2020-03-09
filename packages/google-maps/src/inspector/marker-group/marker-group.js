@@ -1,3 +1,6 @@
+/**
+ * Wordpress dependencies
+ */
 import {
 	Button,
 	PanelBody,
@@ -6,13 +9,19 @@ import {
 	Modal,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useState, useReducer, useEffect } from '@wordpress/element';
+import { useState, useReducer, useEffect, useRef } from '@wordpress/element';
+import { MediaPlaceholder } from '@wordpress/block-editor';
 
+/**
+ * Internal dependencies
+ */
+import { supportingCPT } from '../../hooks';
 import MarkerModal from './marker-modal';
+import MarkerModalCPT from './marker-modal-cpt';
+import MarkerModalOptions from './marker-modal-options';
 import List from '../list-control/list';
 import CategoryControl from '../categories-control';
-
-import { MediaPlaceholder } from '@wordpress/block-editor';
+import { fetchSupportingPosts } from '../../api/fetchPosts';
 
 function Markergroup( {
 	name,
@@ -24,6 +33,9 @@ function Markergroup( {
 	parentDispatch = () => {},
 } ) {
 	const [ state, dispatch ] = useReducer( reducer, markers );
+	const [ options, setOptions ] = useState( [] );
+	const [ posts, setPosts ] = useState( [] );
+	const isInitialMount = useRef( true );
 
 	useEffect( () => {
 		parentDispatch( {
@@ -31,6 +43,30 @@ function Markergroup( {
 			payload: { name, markers: state, index, markerImage },
 		} );
 	}, [ state ] );
+
+	/**
+	 * Only execute when component is mounted for the first time
+	 */
+	useEffect( () => {
+		if ( isInitialMount.current ) {
+			getPosts();
+			isInitialMount.current = false;
+		}
+	} );
+
+	/**
+	 * When state variable posts is updated
+	 */
+	useEffect( () => {
+		populateSelectCPT( posts, markers );
+	}, [ posts ] );
+
+	/**
+	 * When state variable posts is updated
+	 */
+	useEffect( () => {
+		populateSelectCPT( posts, markers );
+	}, [ markers ] );
 
 	const onChangePanelName = ( value ) => {
 		if ( value.length > 0 ) {
@@ -55,8 +91,64 @@ function Markergroup( {
 		);
 	};
 
+	/**
+	 * Get posts via the rest API
+	 */
+	const getPosts = async () => {
+		try {
+			const results = await fetchSupportingPosts( supportingCPT.name );
+			const filteredResults = results.filter( function( item ) {
+				return item.latitude && item.longitude ? true : false;
+			} );
+
+			setPosts( filteredResults );
+		} catch ( e ) {
+			setPosts( [] );
+		}
+	};
+
+	/**
+	 * Get supporting CPT's that are available by the wp rest api
+	 *
+	 * @param {Array} fetchedPosts
+	 * @param {Array} currentMarkers
+	 */
+	const populateSelectCPT = ( fetchedPosts, currentMarkers ) => {
+		try {
+			const selectOptions = fetchedPosts.map( function( item ) {
+				return {
+					value: item.title.rendered,
+					label: item.title.rendered,
+				};
+			} );
+
+			/**
+			 * Nalopen op performance: filter in filter of liever een for statement in een filter?
+			 * includes() werkt niet omdat alle objecten in een array key zitten.
+			 */
+			const filteredOptions = selectOptions.filter( ( option ) => {
+				const result = currentMarkers.filter(
+					( marker ) => marker.name === option.label
+				);
+
+				return result.length === 0;
+			} );
+
+			setOptions( filteredOptions );
+		} catch ( e ) {
+			throw new Error( e.message );
+		}
+	};
+
 	const [ showAddMarkerModal, setShowAddMarkerModal ] = useState( false );
+	const [ showAddMarkerModalCPT, setShowAddMarkerModalCPT ] = useState(
+		false
+	);
 	const [ showEditMarkerModal, setShowEditMarkerModal ] = useState( false );
+	const [
+		showAddMarkerModalOptions,
+		setShowAddMarkerModalOptions,
+	] = useState( false );
 	const [ showRemoveGroupModal, setRemoveGroupModal ] = useState( false );
 
 	const [ markerData, setMarkerData ] = useState( {} );
@@ -123,6 +215,15 @@ function Markergroup( {
 			</div>
 			{ renderSubtitle( 'Markers' ) }
 			<PanelRow>
+				{ showAddMarkerModalOptions && (
+					<MarkerModalOptions
+						setShowAddMarkerModal={ setShowAddMarkerModal }
+						setShowAddMarkerModalCPT={ setShowAddMarkerModalCPT }
+						onRequestClose={ () =>
+							setShowAddMarkerModalOptions( false )
+						}
+					/>
+				) }
 				{ showAddMarkerModal && (
 					<MarkerModal
 						onSubmit={ ( marker ) => {
@@ -132,6 +233,21 @@ function Markergroup( {
 							} );
 						} }
 						onRequestClose={ () => setShowAddMarkerModal( false ) }
+					/>
+				) }
+				{ showAddMarkerModalCPT && (
+					<MarkerModalCPT
+						onSubmit={ ( marker ) => {
+							dispatch( {
+								type: 'add',
+								payload: { ...marker },
+							} );
+						} }
+						options={ options }
+						posts={ posts }
+						onRequestClose={ () =>
+							setShowAddMarkerModalCPT( false )
+						}
 					/>
 				) }
 				{ showRemoveGroupModal && (
@@ -192,14 +308,27 @@ function Markergroup( {
 				/>
 			</PanelRow>
 			<PanelRow>
-				<Button
-					isPrimary
-					isLarge
-					onClick={ () => setShowAddMarkerModal( true ) }
-					type="submit"
-				>
-					Marker toevoegen
-				</Button>
+				{ supportingCPT && posts.length > 0 && (
+					<Button
+						isPrimary
+						isLarge
+						onClick={ () => setShowAddMarkerModalOptions( true ) }
+						type="submit"
+					>
+						Marker toevoegen
+					</Button>
+				) }
+				{ ! supportingCPT ||
+					( posts.length === 0 && (
+						<Button
+							isPrimary
+							isLarge
+							onClick={ () => setShowAddMarkerModal( true ) }
+							type="submit"
+						>
+							Marker toevoegen
+						</Button>
+					) ) }
 			</PanelRow>
 			<PanelRow>
 				<div>
