@@ -27,7 +27,7 @@ exports[`basic form component should not change 1`] = `
       value=""
     />
     <button
-      aria-label={false}
+      aria-label="Zoeken"
       className="gemeenten-block--pdc-search__btn css-18lgrt3"
       disabled={true}
       type="submit"

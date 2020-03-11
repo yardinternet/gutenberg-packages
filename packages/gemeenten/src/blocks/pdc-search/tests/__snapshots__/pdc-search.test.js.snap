@@ -3,11 +3,20 @@
 exports[`basic tests metadata should not change 1`] = `
 Object {
   "attributes": Object {
+    "btnText": Object {
+      "default": "Zoeken",
+      "type": "string",
+    },
+    "hasBtnText": Object {
+      "default": false,
+      "type": "boolean",
+    },
     "label": Object {
-      "default": "Waar bent u naar op zoek",
+      "default": "Waar bent u naar op zoek?",
       "type": "string",
     },
     "searchUrl": Object {
+      "default": "/zoeken/",
       "type": "string",
     },
   },
