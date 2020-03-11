@@ -1,6 +1,5 @@
 import { parseLatLngFromCoords } from '../import-coordinates-control';
-import { Markergroup } from '../marker-group/marker-group';
-const { populateSelectCPT } = Markergroup;
+import { populateSelectCPT } from '../../helpers.js';
 
 const kmlOutput = '[[ 5.0305408, 52.4014953, 0 ],[ 5.0034657, 52.4062515,0]]';
 
@@ -31,14 +30,16 @@ const posts = [
 
 const markers = [
 	{
-		name: 'post1',
+		name: 'test1',
 	},
 ];
 
-const expectedResult = {
-	value: 'test2',
-	label: 'test2',
-};
+const expectedResult = [
+	{
+		value: 'test2',
+		label: 'test2',
+	},
+];
 
 describe( 'populate the react select', () => {
 	test( 'should return []', () => {

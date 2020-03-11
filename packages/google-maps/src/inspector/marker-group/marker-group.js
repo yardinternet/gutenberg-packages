@@ -8,20 +8,20 @@ import {
 	TextControl,
 	Modal,
 } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
 import { useState, useReducer, useEffect, useRef } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
  */
-import { supportingCPT } from '../../hooks';
+import { supportCptLatLng } from '../../hooks';
 import MarkerModal from './marker-modal';
 import MarkerModalCPT from './marker-modal-cpt';
 import MarkerModalOptions from './marker-modal-options';
 import List from '../list-control/list';
 import CategoryControl from '../categories-control';
 import { fetchSupportingPosts } from '../../api/fetchPosts';
+import { populateSelectCPT } from '../../helpers';
 
 function Markergroup( {
 	name,
@@ -34,6 +34,7 @@ function Markergroup( {
 } ) {
 	const [ state, dispatch ] = useReducer( reducer, markers );
 	const [ options, setOptions ] = useState( [] );
+	const [ loadingPosts, setLoadingPosts ] = useState( false );
 	const [ posts, setPosts ] = useState( [] );
 	const isInitialMount = useRef( true );
 
@@ -58,14 +59,22 @@ function Markergroup( {
 	 * When state variable posts is updated
 	 */
 	useEffect( () => {
-		populateSelectCPT( posts, markers );
+		const fetchedOptions = populateSelectCPT( posts, markers );
+
+		if ( Array.isArray( fetchedOptions ) ) {
+			setOptions( fetchedOptions );
+		}
 	}, [ posts ] );
 
 	/**
 	 * When state variable posts is updated
 	 */
 	useEffect( () => {
-		populateSelectCPT( posts, markers );
+		const fetchedOptions = populateSelectCPT( posts, markers );
+
+		if ( Array.isArray( fetchedOptions ) ) {
+			setOptions( fetchedOptions );
+		}
 	}, [ markers ] );
 
 	const onChangePanelName = ( value ) => {
@@ -96,47 +105,16 @@ function Markergroup( {
 	 */
 	const getPosts = async () => {
 		try {
-			const results = await fetchSupportingPosts( supportingCPT.name );
+			setLoadingPosts( true );
+			const results = await fetchSupportingPosts( supportCptLatLng.name );
 			const filteredResults = results.filter( function( item ) {
 				return item.latitude && item.longitude ? true : false;
 			} );
 
 			setPosts( filteredResults );
+			setLoadingPosts( false );
 		} catch ( e ) {
 			setPosts( [] );
-		}
-	};
-
-	/**
-	 * Get supporting CPT's that are available by the wp rest api
-	 *
-	 * @param {Array} fetchedPosts
-	 * @param {Array} currentMarkers
-	 */
-	const populateSelectCPT = ( fetchedPosts, currentMarkers ) => {
-		try {
-			const selectOptions = fetchedPosts.map( function( item ) {
-				return {
-					value: item.title.rendered,
-					label: item.title.rendered,
-				};
-			} );
-
-			/**
-			 * Nalopen op performance: filter in filter of liever een for statement in een filter?
-			 * includes() werkt niet omdat alle objecten in een array key zitten.
-			 */
-			const filteredOptions = selectOptions.filter( ( option ) => {
-				const result = currentMarkers.filter(
-					( marker ) => marker.name === option.label
-				);
-
-				return result.length === 0;
-			} );
-
-			setOptions( filteredOptions );
-		} catch ( e ) {
-			throw new Error( e.message );
 		}
 	};
 
@@ -237,6 +215,7 @@ function Markergroup( {
 				) }
 				{ showAddMarkerModalCPT && (
 					<MarkerModalCPT
+						loadingPosts={ loadingPosts }
 						onSubmit={ ( marker ) => {
 							dispatch( {
 								type: 'add',
@@ -252,7 +231,6 @@ function Markergroup( {
 				) }
 				{ showRemoveGroupModal && (
 					<Modal
-						title={ __( 'Group verwijderen?' ) }
 						onRequestClose={ () => setRemoveGroupModal( false ) }
 					>
 						<Button
@@ -308,7 +286,7 @@ function Markergroup( {
 				/>
 			</PanelRow>
 			<PanelRow>
-				{ supportingCPT && posts.length > 0 && (
+				{ supportCptLatLng ? (
 					<Button
 						isPrimary
 						isLarge
@@ -317,18 +295,16 @@ function Markergroup( {
 					>
 						Marker toevoegen
 					</Button>
+				) : (
+					<Button
+						isPrimary
+						isLarge
+						onClick={ () => setShowAddMarkerModal( true ) }
+						type="submit"
+					>
+						Marker toevoegen
+					</Button>
 				) }
-				{ ! supportingCPT ||
-					( posts.length === 0 && (
-						<Button
-							isPrimary
-							isLarge
-							onClick={ () => setShowAddMarkerModal( true ) }
-							type="submit"
-						>
-							Marker toevoegen
-						</Button>
-					) ) }
 			</PanelRow>
 			<PanelRow>
 				<div>

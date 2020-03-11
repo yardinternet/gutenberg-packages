@@ -2,7 +2,13 @@
  * Wordpress dependencies
  */
 import { useState } from '@wordpress/element';
-import { Button, Modal, PanelRow, ToggleControl } from '@wordpress/components';
+import {
+	Button,
+	Modal,
+	PanelRow,
+	ToggleControl,
+	Spinner,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -19,7 +25,7 @@ import Select from 'react-select';
 import { isEmpty } from 'lodash';
 
 function MarkerModalCPT( {
-	title = 'Marker toevoegen',
+	modalTitle = __( 'CPT Marker toevoegen', config.textDomain ),
 	onSubmit = () => {},
 	onRequestClose = () => {},
 	markerData = {
@@ -32,15 +38,22 @@ function MarkerModalCPT( {
 	},
 	options = [],
 	posts = [],
+	loadingPosts = false,
 } ) {
 	const [ marker, setMarker ] = useState( markerData );
+	const [ error, setError ] = useState( false );
 	const [ targetURL, setTargetURL ] = useState(
 		markerData.infowindowTargetURL
 	);
 
 	const onClick = () => {
-		setMarker( {} );
 		onSubmit( marker, markerData.indexVal );
+		setMarker( {} );
+		onRequestClose();
+	};
+
+	const closeModal = () => {
+		setMarker( {} );
 		onRequestClose();
 	};
 
@@ -49,43 +62,59 @@ function MarkerModalCPT( {
 			return false;
 		}
 
-		let correnspondingPost = {};
+		const correnspondingPost = posts.find(
+			( { title } ) => title.rendered === valuesFromSelect.value
+		);
 
-		posts.map( function( post ) {
-			if ( post.title.rendered === valuesFromSelect.value ) {
-				correnspondingPost = post;
-			}
-
-			return true;
-		} );
-
-		if ( ! isEmpty( correnspondingPost ) ) {
-			setMarker( {
-				latLng: {
-					lat: Number( correnspondingPost.latitude ),
-					lng: Number( correnspondingPost.longitude ),
-				},
-				name: correnspondingPost.title.rendered,
-				infowindowURL: marker.infowindowURL,
-				infowindowTargetURL: targetURL,
-				infowindow: marker.infowindow,
-			} );
+		if ( isEmpty( correnspondingPost ) ) {
+			setError( true );
+			return false;
 		}
+
+		setError( false );
+
+		setMarker( {
+			latLng: {
+				lat: Number( correnspondingPost.latitude ),
+				lng: Number( correnspondingPost.longitude ),
+			},
+			name: correnspondingPost.title.rendered,
+			infowindowURL: marker.infowindowURL,
+			infowindowTargetURL: targetURL,
+			infowindow: marker.infowindow,
+		} );
 	};
 
 	return (
-		<Modal title={ title } onRequestClose={ onRequestClose }>
+		<Modal title={ modalTitle } onRequestClose={ closeModal }>
 			<PanelRow>
-				<Select
-					placeholder={ __( "Kies CPT's", config.textDomain ) }
-					isMulti={ false }
-					noOptionsMessage={ __(
-						"Geen CPT's beschikbaar",
-						config.textDomain
-					) }
-					options={ options }
-					onChange={ handleSelectChange }
-				/>
+				{ loadingPosts && <Spinner /> }
+				{ ! loadingPosts && (
+					<div style={ { width: '100%' } }>
+						<Select
+							style={ { width: '100%' } }
+							placeholder={ __(
+								"Kies CPT's",
+								config.textDomain
+							) }
+							isMulti={ false }
+							noOptionsMessage={ __(
+								"Geen CPT's beschikbaar",
+								config.textDomain
+							) }
+							options={ options }
+							onChange={ handleSelectChange }
+						/>
+						{ error && (
+							<p style={ { color: 'red' } }>
+								{ __(
+									'Er gaat iets fout, probeer het nog een keer.',
+									config.textDomain
+								) }
+							</p>
+						) }
+					</div>
+				) }
 			</PanelRow>
 			<PanelRow>
 				<TextControlFocusOutside
@@ -129,7 +158,15 @@ function MarkerModalCPT( {
 				/>
 			</PanelRow>
 			<PanelRow>
-				<Button isPrimary onClick={ () => onClick() }>
+				<Button
+					isPrimary
+					disabled={
+						error || loadingPosts || isEmpty( marker.name )
+							? true
+							: false
+					}
+					onClick={ () => onClick() }
+				>
 					Opslaan
 				</Button>
 			</PanelRow>

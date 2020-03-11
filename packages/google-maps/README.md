@@ -12,7 +12,7 @@ Take notice: the CPT must have meta fields for a city and an address
 $postCity = get_post_meta($post->ID, '_ys_location-city', true);
 $postAddress = get_post_meta($post->ID, '_ys_location-address', true);
 
-    if ($postCity !== '' && $postAddress !== '') {
+    if ( ! empty($postCity) && ! empty($postAddress)) {
         $getGeo = wp_remote_get('https://maps.googleapis.com/maps/api/geocode/json?address='.$postAddress.'+'.$postCity.'&key=' . $apiKey, []);
         $responseBody = json_decode($getGeo['body']);
         $location = $responseBody->results[0]->geometry->location;
@@ -32,13 +32,9 @@ The response of the REST API does not include the meta fields by default. Below 
     $latitude = get_post_meta($post->ID, '_ys_lat', true);
     $longitude = get_post_meta(\$post->ID, '_ys_lng', true);
 
-    if ($latitude) {
-        $data->data['latitude'] = $latitude;
-    }
+    $data->data['latitude'] = empty(  $latitude ) ? null : $longitude;
 
-    if ($longitude) {
-        $data->data['longitude'] = $longitude;
-    }
+    $data->data['longitude'] = empty(  $longitude ) ? null : $longitude;
 
     return $data;
 

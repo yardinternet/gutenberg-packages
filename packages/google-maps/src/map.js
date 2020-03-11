@@ -308,6 +308,7 @@ function Map( {
 		// create multiple marker cluster groups
 		if ( clusterMarkersScriptLoaded && mapOptions.markerClusterer ) {
 			const markerClusterMarkers = prepareMarkerClusterGroups(
+				map,
 				plotMarkerGroups
 			);
 
@@ -413,26 +414,28 @@ function Map( {
 		infowindowURL,
 		icon,
 	} ) => {
-		const marker = new google.maps.Marker( {
+		let marker = new google.maps.Marker( {
 			position: latLng,
 			icon,
 		} );
 
-		markers.push( marker );
-
-		// when marker clusters are used there is no need for setting them seperatly
-		if ( ! mapOptions.markerClusterer ) {
-			marker.setMap( map );
-		}
+		const markerClustererEnabled = mapOptions.markerClusterer;
 
 		if ( infowindow && !! infowindow.length ) {
-			createInfowindowMarker( {
+			marker = createInfowindowMarker( {
 				map,
 				marker,
 				infowindow,
 				infowindowURL,
 				infowindowTargetURL,
 			} );
+		}
+
+		markers.push( marker );
+
+		// when marker clusters are used there is no need for setting them seperatly
+		if ( ! markerClustererEnabled ) {
+			marker.setMap( map );
 		}
 	};
 

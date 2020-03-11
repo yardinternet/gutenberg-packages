@@ -10,13 +10,13 @@ import { __ } from '@wordpress/i18n';
 import { config } from '../../config';
 
 function MarkerModalOptions( {
-	title = __( 'Hoe wil je een marker toevoegen?', config.textDomain ),
+	modalTitle = __( 'Hoe wil je een marker toevoegen?', config.textDomain ),
 	setShowAddMarkerModalCPT = () => {},
 	setShowAddMarkerModal = () => {},
 	onRequestClose = () => {},
 } ) {
 	return (
-		<Modal title={ title } onRequestClose={ onRequestClose }>
+		<Modal title={ modalTitle } onRequestClose={ onRequestClose }>
 			<PanelRow>
 				<Button
 					isPrimary

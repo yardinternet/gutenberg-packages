@@ -3,7 +3,7 @@
  */
 import { applyFilters } from '@wordpress/hooks';
 
-export const supportingCPT = applyFilters(
+export const supportCptLatLng = applyFilters(
 	'yard-blocks.googleMapsSupportingCPT',
 	{}
 );

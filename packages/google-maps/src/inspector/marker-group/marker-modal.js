@@ -13,6 +13,11 @@ import GeocodeAutocomplete from '../geocode-autocomplete';
 import TextAreaControlFocusOutside from './textareacontrol-focus-outside';
 import TextControlFocusOutside from './textcontrol-focus-outside';
 
+/**
+ * External dependencies
+ */
+import { isEmpty } from 'lodash';
+
 function MarkerModal( {
 	title = 'Marker toevoegen',
 	onSubmit = () => {},
@@ -37,8 +42,13 @@ function MarkerModal( {
 		onRequestClose();
 	};
 
+	const closeModal = () => {
+		setMarker( {} );
+		onRequestClose();
+	};
+
 	return (
-		<Modal title={ title } onRequestClose={ onRequestClose }>
+		<Modal title={ title } onRequestClose={ closeModal }>
 			<PanelRow>
 				<GeocodeAutocomplete
 					styles={ { width: '100%' } }
@@ -100,7 +110,11 @@ function MarkerModal( {
 				/>
 			</PanelRow>
 			<PanelRow>
-				<Button isPrimary onClick={ () => onClick() }>
+				<Button
+					isPrimary
+					disabled={ isEmpty( marker.name ) ? true : false }
+					onClick={ () => onClick() }
+				>
 					Opslaan
 				</Button>
 			</PanelRow>
