@@ -10,7 +10,7 @@ export default { title: 'PDC search' };
 
 export const withBasicForm = () => (
 	<BasicForm
-		hasBtnIcon={ boolean( 'Has btnIcon', true ) }
+		hasBtnText={ boolean( 'Has BtnText', true ) }
 		disabled={ boolean( 'Btn disabled', true ) }
 		btnText={ text( 'Zoeken', 'zoeken' ) }
 		label={ text( 'Label', attributes.label.default ) }

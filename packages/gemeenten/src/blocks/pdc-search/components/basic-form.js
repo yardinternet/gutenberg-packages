@@ -141,12 +141,12 @@ function BasicForm( props ) {
 					onChange={ onChange }
 				/>
 				<Btn
-					aria-label={ props.hasBtnIcon ? props.btnText : '' }
+					aria-label={ props.hasBtnText ? props.btnText : 'Zoeken' }
 					disabled={ props.disabled }
 					className="gemeenten-block--pdc-search__btn"
 					type="submit"
 				>
-					{ props.hasBtnIcon ? props.btnIcon : props.btnText }
+					{ props.hasBtnText ? props.btnText : props.btnIcon }
 				</Btn>
 			</Form>
 		</Wrapper>
@@ -155,8 +155,8 @@ function BasicForm( props ) {
 
 BasicForm.defaultProps = {
 	btnIcon: <i className="far fa-search"></i>,
-	hasBtnIcon: true,
-	btnText: false,
+	hasBtnText: false,
+	btnText: 'Zoek',
 	disabled: true,
 	searchUrl: '',
 	...extractFromBlockAttributes( attributes ),

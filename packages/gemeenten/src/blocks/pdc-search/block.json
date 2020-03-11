@@ -4,10 +4,19 @@
 	"attributes": {
 		"label": {
 			"type": "string",
-			"default": "Waar bent u naar op zoek"
+			"default": "Waar bent u naar op zoek?"
 		},
 		"searchUrl": {
-			"type": "string"
+			"type": "string",
+			"default": "/zoeken/"
+		},
+		"btnText": {
+			"type": "string",
+			"default": "Zoeken"
+		},
+		"hasBtnText": {
+			"type": "boolean",
+			"default": false
 		}
 	}
 }
