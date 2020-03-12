@@ -2,8 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as PdcSearch from './blocks/pdc-search/frontend';
+import * as PdcGreeting from './blocks/pdc-greeting/frontend';
 
-const components = [ PdcSearch ];
+const components = [ PdcSearch, PdcGreeting ];
 
 components.map( ( item ) => {
 	const element = document.getElementById( item.domID );
