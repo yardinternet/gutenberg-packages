@@ -49,75 +49,83 @@ function MarkerModal( {
 
 	return (
 		<Modal title={ title } onRequestClose={ closeModal }>
-			<PanelRow>
-				<GeocodeAutocomplete
-					styles={ { width: '100%' } }
-					defaultInputValue={ markerData.name }
-					onChange={ ( option ) => {
-						setMarker( {
-							latLng: {
-								lat: option.latLng.lat(),
-								lng: option.latLng.lng(),
-							},
-							name: option.value,
-							infowindowURL: marker.infowindowURL,
-							infowindowTargetURL: targetURL,
-							infowindow: marker.infowindow,
-						} );
-						return option.value;
-					} }
-				/>
-			</PanelRow>
-			<PanelRow>
-				<TextControlFocusOutside
-					label={ __(
-						'URL voor in het informatievenster. Voorbeeld: https://www.domein.nl',
-						config.textDomain
+			<div style={ { minHeight: '300px' } }>
+				<>
+					<PanelRow>
+						<GeocodeAutocomplete
+							styles={ { width: '100%' } }
+							defaultInputValue={ markerData.name }
+							onChange={ ( option ) => {
+								setMarker( {
+									latLng: {
+										lat: option.latLng.lat(),
+										lng: option.latLng.lng(),
+									},
+									name: option.value,
+									infowindowURL: marker.infowindowURL,
+									infowindowTargetURL: targetURL,
+									infowindow: marker.infowindow,
+								} );
+								return option.value;
+							} }
+						/>
+					</PanelRow>
+					{ ! isEmpty( marker.name ) && (
+						<>
+							<PanelRow>
+								<TextControlFocusOutside
+									label={ __(
+										'URL voor in het informatievenster. Voorbeeld: https://www.domein.nl',
+										config.textDomain
+									) }
+									targetURL={ targetURL }
+									setMarker={ setMarker }
+									marker={ marker }
+								/>
+							</PanelRow>
+							<PanelRow>
+								<ToggleControl
+									label={ __(
+										'Link op andere pagina openen?',
+										config.textDomain
+									) }
+									checked={ targetURL }
+									onChange={ ( value ) => {
+										setTargetURL( value );
+										setMarker( {
+											latLng: marker.latLng,
+											name: marker.name,
+											infowindowURL: marker.infowindowURL,
+											infowindowTargetURL: value,
+											infowindow: marker.infowindow,
+										} );
+									} }
+								/>
+							</PanelRow>
+							<PanelRow>
+								<TextAreaControlFocusOutside
+									label={ __(
+										'Beschrijving voor in het informatievenster',
+										config.textDomain
+									) }
+									targetURL={ targetURL }
+									setMarker={ setMarker }
+									marker={ marker }
+								/>
+							</PanelRow>
+							<PanelRow>
+								<Button
+									isPrimary
+									disabled={ isEmpty( marker.name ) }
+									onClick={ () => onClick() }
+								>
+									Opslaan
+								</Button>
+							</PanelRow>
+						</>
 					) }
-					targetURL={ targetURL }
-					setMarker={ setMarker }
-					marker={ marker }
-				/>
-			</PanelRow>
-			<PanelRow>
-				<ToggleControl
-					label={ __(
-						'Link op andere pagina openen?',
-						config.textDomain
-					) }
-					checked={ targetURL }
-					onChange={ ( value ) => {
-						setTargetURL( value );
-						setMarker( {
-							latLng: marker.latLng,
-							name: marker.name,
-							infowindowURL: marker.infowindowURL,
-							infowindowTargetURL: value,
-							infowindow: marker.infowindow,
-						} );
-					} }
-				/>
-			</PanelRow>
-			<PanelRow>
-				<TextAreaControlFocusOutside
-					label={ __(
-						'Beschrijving voor in het informatievenster',
-						config.textDomain
-					) }
-					targetURL={ targetURL }
-					setMarker={ setMarker }
-					marker={ marker }
-				/>
-			</PanelRow>
-			<PanelRow>
-				<Button
-					isPrimary
-					disabled={ isEmpty( marker.name ) ? true : false }
-					onClick={ () => onClick() }
-				>
-					Opslaan
-				</Button>
-			</PanelRow>
+				</>
+			</div>
 		</Modal>
 	);
 }

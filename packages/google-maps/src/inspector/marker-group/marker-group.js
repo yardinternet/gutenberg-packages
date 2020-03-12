@@ -8,7 +8,7 @@ import {
 	TextControl,
 	Modal,
 } from '@wordpress/components';
-import { useState, useReducer, useEffect, useRef } from '@wordpress/element';
+import { useState, useReducer, useEffect } from '@wordpress/element';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 
 /**
@@ -36,7 +36,6 @@ function Markergroup( {
 	const [ options, setOptions ] = useState( [] );
 	const [ loadingPosts, setLoadingPosts ] = useState( false );
 	const [ posts, setPosts ] = useState( [] );
-	const isInitialMount = useRef( true );
 
 	useEffect( () => {
 		parentDispatch( {
@@ -49,11 +48,8 @@ function Markergroup( {
 	 * Only execute when component is mounted for the first time
 	 */
 	useEffect( () => {
-		if ( isInitialMount.current ) {
-			getPosts();
-			isInitialMount.current = false;
-		}
-	} );
+		getPosts();
+	}, [] );
 
 	/**
 	 * When state variable posts is updated
@@ -106,15 +102,24 @@ function Markergroup( {
 	const getPosts = async () => {
 		try {
 			setLoadingPosts( true );
-			const results = await fetchSupportingPosts( supportCptLatLng.name );
-			const filteredResults = results.filter( function( item ) {
-				return item.latitude && item.longitude ? true : false;
+
+			const results = supportCptLatLng.map( async ( item ) => {
+				return await fetchSupportingPosts( item );
 			} );
 
+			const combinedResults = await Promise.all( results );
+
+			const filteredResults = combinedResults
+				.flat()
+				.filter( function( item ) {
+					return item.latitude && item.longitude ? true : false;
+				} );
+
 			setPosts( filteredResults );
-			setLoadingPosts( false );
 		} catch ( e ) {
 			setPosts( [] );
+		} finally {
+			setLoadingPosts( false );
 		}
 	};
 

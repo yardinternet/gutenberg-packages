@@ -87,89 +87,95 @@ function MarkerModalCPT( {
 
 	return (
 		<Modal title={ modalTitle } onRequestClose={ closeModal }>
-			<PanelRow>
-				{ loadingPosts && <Spinner /> }
-				{ ! loadingPosts && (
-					<div style={ { width: '100%' } }>
-						<Select
-							style={ { width: '100%' } }
-							placeholder={ __(
-								"Kies CPT's",
-								config.textDomain
-							) }
-							isMulti={ false }
-							noOptionsMessage={ __(
-								"Geen CPT's beschikbaar",
-								config.textDomain
-							) }
-							options={ options }
-							onChange={ handleSelectChange }
-						/>
-						{ error && (
-							<p style={ { color: 'red' } }>
-								{ __(
-									'Er gaat iets fout, probeer het nog een keer.',
+			<div style={ { minHeight: '300px' } }>
+				<PanelRow>
+					{ loadingPosts && <Spinner /> }
+					{ ! loadingPosts && (
+						<div style={ { width: '100%' } }>
+							<Select
+								style={ { width: '100%' } }
+								placeholder={ __(
+									"Kies CPT's",
 									config.textDomain
 								) }
-							</p>
-						) }
-					</div>
+								isMulti={ false }
+								noOptionsMessage={ __(
+									"Geen CPT's beschikbaar",
+									config.textDomain
+								) }
+								options={ options }
+								onChange={ handleSelectChange }
+							/>
+							{ error && (
+								<p style={ { color: 'red' } }>
+									{ __(
+										'Er gaat iets fout, probeer het nog een keer.',
+										config.textDomain
+									) }
+								</p>
+							) }
+						</div>
+					) }
+				</PanelRow>
+				{ ! isEmpty( marker.name ) && (
+					<>
+						<PanelRow>
+							<TextControlFocusOutside
+								label={ __(
+									'URL voor in het informatievenster. Voorbeeld: https://www.domein.nl',
+									config.textDomain
+								) }
+								targetURL={ targetURL }
+								setMarker={ setMarker }
+								marker={ marker }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<ToggleControl
+								label={ __(
+									'Link op andere pagina openen?',
+									config.textDomain
+								) }
+								checked={ targetURL }
+								onChange={ ( value ) => {
+									setTargetURL( value );
+									setMarker( {
+										latLng: marker.latLng,
+										name: marker.name,
+										infowindowURL: marker.infowindowURL,
+										infowindowTargetURL: value,
+										infowindow: marker.infowindow,
+									} );
+								} }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<TextAreaControlFocusOutside
+								label={ __(
+									'Beschrijving voor in het informatievenster',
+									config.textDomain
+								) }
+								targetURL={ targetURL }
+								setMarker={ setMarker }
+								marker={ marker }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<Button
+								isPrimary
+								disabled={
+									error ||
+									loadingPosts ||
+									isEmpty( marker.name )
+								}
+								onClick={ () => onClick() }
+							>
+								Opslaan
+							</Button>
+						</PanelRow>
+					</>
 				) }
-			</PanelRow>
-			<PanelRow>
-				<TextControlFocusOutside
-					label={ __(
-						'URL voor in het informatievenster. Voorbeeld: https://www.domein.nl',
-						config.textDomain
-					) }
-					targetURL={ targetURL }
-					setMarker={ setMarker }
-					marker={ marker }
-				/>
-			</PanelRow>
-			<PanelRow>
-				<ToggleControl
-					label={ __(
-						'Link op andere pagina openen?',
-						config.textDomain
-					) }
-					checked={ targetURL }
-					onChange={ ( value ) => {
-						setTargetURL( value );
-						setMarker( {
-							latLng: marker.latLng,
-							name: marker.name,
-							infowindowURL: marker.infowindowURL,
-							infowindowTargetURL: value,
-							infowindow: marker.infowindow,
-						} );
-					} }
-				/>
-			</PanelRow>
-			<PanelRow>
-				<TextAreaControlFocusOutside
-					label={ __(
-						'Beschrijving voor in het informatievenster',
-						config.textDomain
-					) }
-					targetURL={ targetURL }
-					setMarker={ setMarker }
-					marker={ marker }
-				/>
-			</PanelRow>
-			<PanelRow>
-				<Button
-					isPrimary
-					disabled={
-						error || loadingPosts || isEmpty( marker.name )
-							? true
-							: false
-					}
-					onClick={ () => onClick() }
-				>
-					Opslaan
-				</Button>
-			</PanelRow>
+			</div>
 		</Modal>
 	);
 }

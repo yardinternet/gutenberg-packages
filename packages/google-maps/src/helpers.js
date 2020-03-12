@@ -151,7 +151,7 @@ export function populateSelectCPT( fetchedPosts, currentMarkers ) {
 				( marker ) => marker.name === option.label
 			);
 
-			return result.length === 0 ? true : false;
+			return result.length > 0 ? false : true;
 		} );
 
 		return filteredOptions;
