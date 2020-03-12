@@ -12,4 +12,5 @@ export {
 } from './spacing-control';
 export { default as ViewportTabControl } from './viewport-tab-control';
 export { default as BlockIcon } from './block-icon';
+export { default as IconPickerControl } from './icon-picker-control';
 export * from './helpers';
