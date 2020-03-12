@@ -16,14 +16,23 @@
 	"scripts": {
 		"start": "wp-scripts start",
 		"test": "jest",
-		"test:watch": "jest --watch"
+		"test:watch": "jest --watch",
+		"storybook": "start-storybook"
 	},
 	"dependencies": {
+		"@fonticonpicker/react-fonticonpicker": "^1.2.0",
 		"@wordpress/block-editor": "^3.3.0",
 		"@wordpress/components": "^8.4.0",
 		"@wordpress/hooks": "^2.6.0",
 		"@wordpress/i18n": "^3.7.0",
 		"@wordpress/scripts": "^6.0.0",
-		"emotion": "^10.0.23"
+		"emotion": "^10.0.23",
+		"react-transition-group": "^4.3.0"
+	},
+	"devDependencies": {
+		"@storybook/react": "^5.3.14",
+		"css-loader": "^3.4.2",
+		"file-loader": "^5.1.0",
+		"style-loader": "^1.1.3"
 	}
 }
