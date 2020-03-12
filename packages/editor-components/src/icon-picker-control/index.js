@@ -8,6 +8,7 @@ import { applyFilters } from '@wordpress/hooks';
  */
 import React from 'react';
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
+import './assets/css/fontawesome-all.min.css';
 import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.base-theme.react.css';
 import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.material-theme.react.css';
 
