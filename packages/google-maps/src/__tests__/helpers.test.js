@@ -26,7 +26,7 @@ describe( 'parseMarkerGroupMarkers', () => {
 					},
 				},
 			],
-			markerImage: { url: 'blaat' },
+			markerImage: { url: 'https://www.marker.com/marker.png' },
 		},
 	];
 
@@ -42,7 +42,7 @@ describe( 'parseMarkerGroupMarkers', () => {
 				lat: 52.03434,
 				lng: 5.16567,
 			},
-			icon: 'blaat',
+			icon: 'https://www.marker.com/marker.png',
 		},
 	];
 
