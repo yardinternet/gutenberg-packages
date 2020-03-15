@@ -26,21 +26,26 @@ const attributeRendering = applyFilters(
 	{}
 );
 const attributeIcons =
-	Object.keys(attributeRendering).length > 0
-		? attributeRendering.icons.map((obj) => obj.icon)
+	Object.keys( attributeRendering ).length > 0
+		? attributeRendering.icons.map( ( obj ) => obj.icon )
 		: undefined;
 const attributeSearch =
-	Object.keys(attributeRendering).length > 0
-		? attributeRendering.icons.map((obj) => obj.search)
+	Object.keys( attributeRendering ).length > 0
+		? attributeRendering.icons.map( ( obj ) => obj.search )
 		: undefined;
 
-function IconPickerControl({ icon = 'fas fa-envelope', onChange = () => {} }) {
+function IconPickerControl( {
+	icon = 'fas fa-envelope',
+	onChange = () => {},
+} ) {
 	return (
 		<>
 			<FontIconPicker
 				icons={ attributeIcons ? attributeIcons : iconList }
 				search={ attributeSearch }
-				renderUsing={ attributeRendering.data ? attributeRendering.data : 'class' }
+				renderUsing={
+					attributeRendering.data ? attributeRendering.data : 'class'
+				}
 				value={ icon }
 				onChange={ onChange }
 			/>
