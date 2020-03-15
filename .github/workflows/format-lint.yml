@@ -1,9 +1,11 @@
 name: format & lint
 
 on:
+    pull_request:
     push:
         branches:
-            - feature/auto-changelog
+            - master
+            - develop
 jobs:
     lint:
         name: 'lint'
