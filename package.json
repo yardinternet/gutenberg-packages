@@ -8,7 +8,6 @@
 	"scripts": {
 		"lint": "wp-scripts lint-js ./packages",
 		"format": "wp-scripts format-js ./packages",
-		"lerna:test": "lerna run test",
 		"test": "jest",
 		"test:watch": "jest --watch"
 	},

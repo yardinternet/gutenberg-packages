@@ -20,6 +20,6 @@ jobs:
               with:
                   node-version: 12.x.x
             - run: npm install
-            - run: npm run lerna:test
+            - run: npm test
               env:
                   CI: true
