@@ -3,6 +3,8 @@ const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 const includePackages = require( '@yardinternet/webpack-include-packages' );
 
 /**
+ * Webpack loader that extends defaultConfig of @wordpress/scripts
+ * Supports css, fonts, images
  *
  * @param {Array} packages
  * @return {Object} config
