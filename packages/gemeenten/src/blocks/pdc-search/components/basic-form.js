@@ -117,7 +117,7 @@ function BasicForm( props ) {
 			<Form
 				className="gemeenten-block--pdc-search__form"
 				role="search"
-				action={ props.searchurl }
+				action={ props.searchUrl }
 				onSubmit={ onSubmit }
 				method="get"
 			>
