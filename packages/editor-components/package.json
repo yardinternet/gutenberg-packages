@@ -26,6 +26,7 @@
 		"@wordpress/hooks": "^2.6.0",
 		"@wordpress/i18n": "^3.7.0",
 		"@wordpress/scripts": "^6.0.0",
+		"@yardinternet/gutenberg-webpack-loaders": "0.0.2",
 		"emotion": "^10.0.23",
 		"react-transition-group": "^4.3.0"
 	},
