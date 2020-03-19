@@ -4,7 +4,7 @@ import { loadGoogleMaps } from '../../../helpers';
 
 import '@wordpress/components/build-style/style.css';
 import { Button } from '@wordpress/components';
-import { useState } from 'react';
+import { useState } from '@wordpress/element';
 
 export default {
 	title: 'GoogleMaps/Inspector',

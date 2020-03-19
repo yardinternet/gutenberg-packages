@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import AddMarkerGroupModal from '../add-marker-group-modal';
-import { useState } from 'react';
+import { useState } from '@wordpress/element';
 import { Button } from '@wordpress/components';
 
 export default {

@@ -1,23 +1,22 @@
-// This file loads up all the frontend components
-import React from 'react';
-import ReactDOM from 'react-dom';
 import Map from './map';
+import { config } from './config';
 
-const element = document.getElementById( 'gmap' );
+const element = document.getElementById( config.mapDomId );
+const { mapDomId } = config;
 
-const props = {};
+const domProps = {};
 
 Object.keys( element.dataset ).map( ( item ) => {
-	return ( props[ item ] = JSON.parse( element.dataset[ item ] ) );
+	return ( domProps[ item ] = JSON.parse( element.dataset[ item ] ) );
 } );
 
-ReactDOM.render(
-	<Map
-		{ ...props }
-		editableShapesModus={ false }
-		markerGroups={ props.markergroups }
-		filterOptions={ props.filteroptions }
-		mapOptions={ props.mapoptions }
-	/>,
-	element
-);
+const props = {
+	categories: domProps.categories,
+	editableShapesModus: false,
+	filterOptions: domProps.filteroptions,
+	markerGroups: domProps.markergroups,
+	mapOptions: domProps.mapoptions,
+	polygons: domProps.polygons,
+};
+
+export { Map, props, mapDomId };
