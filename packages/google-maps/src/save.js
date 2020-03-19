@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import { config } from './config';
 
 function save( { attributes, className } ) {
 	const props = {};
@@ -15,7 +16,7 @@ function save( { attributes, className } ) {
 
 	return (
 		<div
-			id="gmap"
+			id={ config.mapDomId }
 			className={ classnames( [
 				className,
 				'yard-google-map-advanced',

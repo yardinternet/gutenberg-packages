@@ -6,7 +6,7 @@ import { isEmpty } from 'lodash';
 /**
  * Create infowindow object for Polygon
  *
- * @param {*} object
+ * @param {{map: Object, polygon: Object, content: string, url: string}} Object
  */
 export function createInfowindowPolygon( { map, polygon, content, url } ) {
 	if ( isEmpty( map ) ) {
