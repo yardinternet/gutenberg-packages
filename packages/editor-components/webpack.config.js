@@ -1,29 +1,20 @@
-const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
+const path = require( 'path' );
+const {
+	gutenbergPackagesConfig,
+} = require( '@yardinternet/gutenberg-webpack-loaders' );
+
+const exclude = [
+	'@yardinternet/gutenberg-cards',
+	'@yardinternet/gutenberg-editor-components',
+	'@yardinternet/gutenberg-google-maps',
+];
+
+const config = gutenbergPackagesConfig( { packages: exclude } );
 
 module.exports = {
-	...defaultConfig,
-	module: {
-		...defaultConfig.module,
-		rules: [
-			...defaultConfig.module.rules,
-			{
-				test: /\.css$/,
-				use: [ 'style-loader', 'css-loader' ],
-			},
-			{
-				test: /\.(woff|woff2|eot|ttf|otf|png|jpg|svg|gif)(\?v=\d+\.\d+\.\d+)?$/,
-				use: [
-					{
-						// With file loader which copies file
-						// and brings in URL to the file
-						loader: 'file-loader',
-						options: {
-							name: '[name]-[hash:6].[ext]',
-							outputPath: 'assets/',
-						},
-					},
-				],
-			},
-		],
+	...config,
+	output: {
+		filename: 'blocks.js',
+		path: path.resolve( process.cwd(), '../assets/dist/js' ),
 	},
 };
