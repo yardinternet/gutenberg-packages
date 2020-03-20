@@ -6,7 +6,12 @@ import React, { useState, useEffect, useRef } from 'react';
 /**
  * Internal dependencies
  */
-import { loadGoogleMaps, parseMarkerGroupMarkers, loadScript } from './helpers';
+import {
+	loadGoogleMaps,
+	parseMarkerGroupMarkers,
+	prepareMarkerClusterGroups,
+	loadScript,
+} from './helpers';
 import { createInfowindowPolygon, createInfowindowMarker } from './infowindow';
 
 /**
@@ -21,6 +26,7 @@ import {
 
 var markers = []; // eslint-disable-line
 var polygonsObjects = []; // eslint-disable-line
+var markerClusters = []; // eslint-disable-line
 
 function Map( {
 	polygons = [],
@@ -284,6 +290,13 @@ function Map( {
 
 		markers = [];
 
+		// Unset all current marker clusters
+		markerClusters.map( ( cluster ) => {
+			return cluster.clearMarkers();
+		} );
+
+		markerClusters = [];
+
 		const plotMarkerGroups = selectedFilters.length
 			? filteredMarkerGroups
 			: markerGroups;
@@ -292,10 +305,20 @@ function Map( {
 			addMarker( point )
 		);
 
+		// create multiple marker cluster groups
 		if ( clusterMarkersScriptLoaded && mapOptions.markerClusterer ) {
-			new MarkerClusterer( map, markers, {
-				imagePath:
-					'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+			const markerClusterMarkers = prepareMarkerClusterGroups(
+				map,
+				plotMarkerGroups
+			);
+
+			markerClusterMarkers.map( function( item ) {
+				const MarkerCluster = new MarkerClusterer( map, item, {
+					imagePath:
+						'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+				} );
+
+				return markerClusters.push( MarkerCluster );
 			} );
 		}
 	};
@@ -391,22 +414,28 @@ function Map( {
 		infowindowURL,
 		icon,
 	} ) => {
-		const marker = new google.maps.Marker( {
+		let marker = new google.maps.Marker( {
 			position: latLng,
 			icon,
 		} );
 
-		markers.push( marker );
-		marker.setMap( map );
+		const markerClustererEnabled = mapOptions.markerClusterer;
 
 		if ( infowindow && !! infowindow.length ) {
-			createInfowindowMarker( {
+			marker = createInfowindowMarker( {
 				map,
 				marker,
 				infowindow,
 				infowindowURL,
 				infowindowTargetURL,
 			} );
+		}
+
+		markers.push( marker );
+
+		// when marker clusters are used there is no need for setting them seperatly
+		if ( ! markerClustererEnabled ) {
+			marker.setMap( map );
 		}
 	};
 

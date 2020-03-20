@@ -200,7 +200,7 @@ function Inspector( props ) {
 				<PanelBody
 					initialOpen={ false }
 					icon="location-alt"
-					title={ __( 'Polygons', config.textDomain ) }
+					title={ __( 'Gebieden', config.textDomain ) }
 				>
 					<ToggleControl
 						label={ __( 'Gebieden bewerkbaar', config.textDomain ) }
@@ -213,10 +213,10 @@ function Inspector( props ) {
 					/>
 					<ListControl
 						explanationNoItems={ __(
-							'Voeg een polygon toe via de blockcontrols.',
+							'Voeg een gebied toe via de blockcontrols.',
 							config.textDomain
 						) }
-						entityLabel={ __( 'Polygon', config.textDomain ) }
+						entityLabel={ __( 'Gebied', config.textDomain ) }
 						showAddModalButton={ false }
 						data={ polygons }
 						setAttributes={ setAttributes }
@@ -330,7 +330,7 @@ function Inspector( props ) {
 								setShowImportShapeCoordinates( true )
 							}
 						>
-							Importeer shape
+							Importeer gebied
 						</Button>
 					</PanelRow>
 				</PanelBody>

@@ -6,10 +6,7 @@ import { isEmpty } from 'lodash';
 /**
  * Create infowindow object for Polygon
  *
- * @param {Object} map
- * @param {Object} polygon
- * @param {string} content
- * @param {string} url
+ * @param {*} object
  */
 export function createInfowindowPolygon( { map, polygon, content, url } ) {
 	if ( isEmpty( map ) ) {
@@ -83,4 +80,6 @@ export function createInfowindowMarker( {
 	marker.addListener( 'click', function() {
 		infowindowObject.open( map, marker );
 	} );
+
+	return marker;
 }

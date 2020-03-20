@@ -1,4 +1,9 @@
 /**
+ * Internal dependencies
+ */
+import { createInfowindowMarker } from './infowindow';
+
+/**
  * External dependencies
  */
 import tinycolor from 'tinycolor2';
@@ -69,6 +74,48 @@ export function parseMarkerGroupMarkers( markergroups ) {
 }
 
 /**
+ * Divide the markers between marker cluster groups
+ *
+ * @param {bool} map
+ * @param {Array} plotMarkerGroups
+ * @return {Array} markerGroupsObjects
+ */
+export function prepareMarkerClusterGroups( map, plotMarkerGroups ) {
+	const markerGroupsObjects = [];
+
+	plotMarkerGroups.map( function( group ) {
+		const groupHolder = [];
+
+		group.markers.map( function( item ) {
+			let marker = new google.maps.Marker( {
+				position: item.latLng,
+				icon: item.icon,
+			} );
+
+			const infowindow = item.infowindow;
+			const infowindowURL = item.infowindowURL;
+			const infowindowTargetURL = item.infowindowTargetURL;
+
+			if ( infowindow && !! infowindow.length ) {
+				marker = createInfowindowMarker( {
+					map,
+					marker,
+					infowindow,
+					infowindowURL,
+					infowindowTargetURL,
+				} );
+			}
+
+			return groupHolder.push( marker );
+		} );
+
+		return markerGroupsObjects.push( groupHolder );
+	} );
+
+	return markerGroupsObjects;
+}
+
+/**
  * Check if a string is a valid hex color code.
  *
  * @param {string} hex A possible hex color.
@@ -82,4 +129,33 @@ export function isValidHex( hex ) {
 		hex.length < 7 + lh &&
 		tinycolor( hex ).isValid()
 	);
+}
+
+/**
+ * Get supporting CPT's that are available by the wp rest api
+ *
+ * @param {Array} fetchedPosts
+ * @param {Array} currentMarkers
+ */
+export function populateSelectCPT( fetchedPosts, currentMarkers ) {
+	try {
+		const selectOptions = fetchedPosts.map( function( item ) {
+			return {
+				value: item.title.rendered,
+				label: item.title.rendered,
+			};
+		} );
+
+		const filteredOptions = selectOptions.filter( ( option ) => {
+			const result = currentMarkers.filter(
+				( marker ) => marker.name === option.label
+			);
+
+			return result.length > 0 ? false : true;
+		} );
+
+		return filteredOptions;
+	} catch ( e ) {
+		throw new Error( e.message );
+	}
 }

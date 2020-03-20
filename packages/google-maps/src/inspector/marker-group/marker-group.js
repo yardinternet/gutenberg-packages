@@ -1,3 +1,6 @@
+/**
+ * Wordpress dependencies
+ */
 import {
 	Button,
 	PanelBody,
@@ -5,14 +8,20 @@ import {
 	TextControl,
 	Modal,
 } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
 import { useState, useReducer, useEffect } from '@wordpress/element';
+import { MediaPlaceholder } from '@wordpress/block-editor';
 
+/**
+ * Internal dependencies
+ */
+import { supportCptLatLng } from '../../hooks';
 import MarkerModal from './marker-modal';
+import MarkerModalCPT from './marker-modal-cpt';
+import MarkerModalOptions from './marker-modal-options';
 import List from '../list-control/list';
 import CategoryControl from '../categories-control';
-
-import { MediaPlaceholder } from '@wordpress/block-editor';
+import { fetchSupportingPosts } from '../../api/fetchPosts';
+import { populateSelectCPT } from '../../helpers';
 
 function Markergroup( {
 	name,
@@ -24,6 +33,9 @@ function Markergroup( {
 	parentDispatch = () => {},
 } ) {
 	const [ state, dispatch ] = useReducer( reducer, markers );
+	const [ options, setOptions ] = useState( [] );
+	const [ loadingPosts, setLoadingPosts ] = useState( false );
+	const [ posts, setPosts ] = useState( [] );
 
 	useEffect( () => {
 		parentDispatch( {
@@ -31,6 +43,35 @@ function Markergroup( {
 			payload: { name, markers: state, index, markerImage },
 		} );
 	}, [ state ] );
+
+	/**
+	 * Only execute when component is mounted for the first time
+	 */
+	useEffect( () => {
+		getPosts();
+	}, [] );
+
+	/**
+	 * When state variable posts is updated
+	 */
+	useEffect( () => {
+		const fetchedOptions = populateSelectCPT( posts, markers );
+
+		if ( Array.isArray( fetchedOptions ) ) {
+			setOptions( fetchedOptions );
+		}
+	}, [ posts ] );
+
+	/**
+	 * When state variable posts is updated
+	 */
+	useEffect( () => {
+		const fetchedOptions = populateSelectCPT( posts, markers );
+
+		if ( Array.isArray( fetchedOptions ) ) {
+			setOptions( fetchedOptions );
+		}
+	}, [ markers ] );
 
 	const onChangePanelName = ( value ) => {
 		if ( value.length > 0 ) {
@@ -55,8 +96,42 @@ function Markergroup( {
 		);
 	};
 
+	/**
+	 * Get posts via the rest API
+	 */
+	const getPosts = async () => {
+		try {
+			setLoadingPosts( true );
+
+			const results = supportCptLatLng.map( async ( item ) => {
+				return await fetchSupportingPosts( item );
+			} );
+
+			const combinedResults = await Promise.all( results );
+
+			const filteredResults = combinedResults
+				.flat()
+				.filter( function( item ) {
+					return item.latitude && item.longitude ? true : false;
+				} );
+
+			setPosts( filteredResults );
+		} catch ( e ) {
+			setPosts( [] );
+		} finally {
+			setLoadingPosts( false );
+		}
+	};
+
 	const [ showAddMarkerModal, setShowAddMarkerModal ] = useState( false );
+	const [ showAddMarkerModalCPT, setShowAddMarkerModalCPT ] = useState(
+		false
+	);
 	const [ showEditMarkerModal, setShowEditMarkerModal ] = useState( false );
+	const [
+		showAddMarkerModalOptions,
+		setShowAddMarkerModalOptions,
+	] = useState( false );
 	const [ showRemoveGroupModal, setRemoveGroupModal ] = useState( false );
 
 	const [ markerData, setMarkerData ] = useState( {} );
@@ -123,6 +198,15 @@ function Markergroup( {
 			</div>
 			{ renderSubtitle( 'Markers' ) }
 			<PanelRow>
+				{ showAddMarkerModalOptions && (
+					<MarkerModalOptions
+						setShowAddMarkerModal={ setShowAddMarkerModal }
+						setShowAddMarkerModalCPT={ setShowAddMarkerModalCPT }
+						onRequestClose={ () =>
+							setShowAddMarkerModalOptions( false )
+						}
+					/>
+				) }
 				{ showAddMarkerModal && (
 					<MarkerModal
 						onSubmit={ ( marker ) => {
@@ -134,9 +218,24 @@ function Markergroup( {
 						onRequestClose={ () => setShowAddMarkerModal( false ) }
 					/>
 				) }
+				{ showAddMarkerModalCPT && (
+					<MarkerModalCPT
+						loadingPosts={ loadingPosts }
+						onSubmit={ ( marker ) => {
+							dispatch( {
+								type: 'add',
+								payload: { ...marker },
+							} );
+						} }
+						options={ options }
+						posts={ posts }
+						onRequestClose={ () =>
+							setShowAddMarkerModalCPT( false )
+						}
+					/>
+				) }
 				{ showRemoveGroupModal && (
 					<Modal
-						title={ __( 'Group verwijderen?' ) }
 						onRequestClose={ () => setRemoveGroupModal( false ) }
 					>
 						<Button
@@ -192,14 +291,25 @@ function Markergroup( {
 				/>
 			</PanelRow>
 			<PanelRow>
-				<Button
-					isPrimary
-					isLarge
-					onClick={ () => setShowAddMarkerModal( true ) }
-					type="submit"
-				>
-					Marker toevoegen
-				</Button>
+				{ supportCptLatLng ? (
+					<Button
+						isPrimary
+						isLarge
+						onClick={ () => setShowAddMarkerModalOptions( true ) }
+						type="submit"
+					>
+						Marker toevoegen
+					</Button>
+				) : (
+					<Button
+						isPrimary
+						isLarge
+						onClick={ () => setShowAddMarkerModal( true ) }
+						type="submit"
+					>
+						Marker toevoegen
+					</Button>
+				) }
 			</PanelRow>
 			<PanelRow>
 				<div>
