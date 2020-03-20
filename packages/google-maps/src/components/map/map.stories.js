@@ -1,6 +1,6 @@
 import { withA11y } from '@storybook/addon-a11y';
 import Map from '../../map';
-import { mapOptions, markerGroup1, markerGroup2 } from './dummy';
+import { mapOptions, markerGroup1, markerGroup2, polygons } from './dummy';
 
 import '@wordpress/components/build-style/style.css';
 
@@ -34,6 +34,7 @@ export const GoogleMapFilters = () => {
 				] }
 				mapOptions={ mapOptions }
 				filterOptions={ filterOptions }
+				polygons={ polygons }
 				markerGroups={ markerGroup1.concat( markerGroup2 ) }
 			/>
 		</div>

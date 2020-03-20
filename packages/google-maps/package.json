@@ -27,7 +27,8 @@
 		"@storybook/addon-a11y": "^5.3.14",
 		"@storybook/addon-actions": "^5.3.13",
 		"@storybook/addon-links": "^5.3.13",
-		"@storybook/react": "^5.3.13"
+		"@storybook/react": "^5.3.13",
+		"@wordpress/api-fetch": "^3.11.0"
 	},
 	"gitHead": "bc7cae6a458f1908db656e41870079d03cd58456"
 }
