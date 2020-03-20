@@ -23,7 +23,6 @@ import {
 	filterMarkerGroupsByCategory,
 	filterPolygonsByCategory,
 } from './components/map/helpers';
-
 var markers = []; // eslint-disable-line
 var polygonsObjects = []; // eslint-disable-line
 var markerClusters = []; // eslint-disable-line
@@ -46,6 +45,7 @@ function Map( {
 		center: { lat: 52.370216, lng: 4.895168 },
 		disableDefaultUI: false,
 		markerClusterer: false,
+		initialObjectRender: false,
 	},
 	editableShapesModus = true,
 	editMapCenter = false,
@@ -66,6 +66,10 @@ function Map( {
 	const [ currentPolyGon, setCurrentPolyGon ] = useState( null );
 	const [ showAddPolygonModal, setShowAddPolygonModal ] = useState( false );
 	const [ selectedFilters, setSelectedFilters ] = useState( [] );
+	const [ initialObjectRender, setIntialObjectRender ] = useState(
+		initialObjectRender
+	);
+	const [ objectRenderLock, setObjectRenderLock ] = useState( false );
 	const ref = useRef( null );
 	const testPath = useRef( [] );
 	const currentMarker = useRef( [] );
@@ -90,8 +94,10 @@ function Map( {
 
 	useEffect( () => {
 		if ( map ) {
-			plotMarkers();
-			plotPolygons();
+			if ( initialObjectRender ) {
+				plotMarkers();
+				plotPolygons();
+			}
 		}
 	} );
 
@@ -159,13 +165,13 @@ function Map( {
 	/**
 	 * Watch state variable 'map'
 	 */
-	useEffect( () => {
-		if ( typeof map === 'object' ) {
-			if ( polygons.length > 0 ) {
-				plotPolygons();
-			}
-		}
-	}, [ map, editableShapesModus ] );
+	// useEffect( () => {
+	// 	if ( typeof map === 'object' ) {
+	// 		if ( polygons.length > 0 ) {
+	// 			plotPolygons();
+	// 		}
+	// 	}
+	// }, [ map, editableShapesModus ] );
 
 	/**
 	 * Watch props variable 'polygons'
@@ -283,19 +289,8 @@ function Map( {
 	 * Plot all markers on the map instance
 	 */
 	const plotMarkers = () => {
-		// Unset all current markers
-		markers.map( ( item ) => {
-			return item.setMap( null );
-		} );
-
-		markers = [];
-
-		// Unset all current marker clusters
-		markerClusters.map( ( cluster ) => {
-			return cluster.clearMarkers();
-		} );
-
-		markerClusters = [];
+		resetMarkers();
+		if ( objectRenderLock ) return;
 
 		const plotMarkerGroups = selectedFilters.length
 			? filteredMarkerGroups
@@ -309,7 +304,7 @@ function Map( {
 		if ( clusterMarkersScriptLoaded && mapOptions.markerClusterer ) {
 			const markerClusterMarkers = prepareMarkerClusterGroups(
 				map,
-				plotMarkerGroups
+				filteredMarkerGroups
 			);
 
 			markerClusterMarkers.map( function( item ) {
@@ -323,11 +318,28 @@ function Map( {
 		}
 	};
 
+	const resetMarkers = () => {
+		// Unset all current markers
+		markers.map( ( item ) => {
+			return item.setMap( null );
+		} );
+
+		markers = [];
+
+		// Unset all current marker clusters
+		markerClusters.map( ( cluster ) => {
+			return cluster.clearMarkers();
+		} );
+
+		markerClusters = [];
+	};
+
 	/**
 	 * Plot all shapes on the map instance
 	 */
 	const plotPolygons = () => {
 		removePolygonObjects();
+		if ( objectRenderLock ) return;
 
 		const plotMarkerGroups = selectedFilters.length
 			? filteredPolygons
@@ -543,7 +555,14 @@ function Map( {
 	};
 
 	const onFilterChange = ( newFilters ) => {
+		setIntialObjectRender( true );
 		setSelectedFilters( newFilters );
+
+		if ( newFilters.length === 0 ) {
+			setObjectRenderLock( true );
+		} else {
+			setObjectRenderLock( false );
+		}
 	};
 
 	useEffect( () => {
