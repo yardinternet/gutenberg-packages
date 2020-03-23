@@ -10,6 +10,15 @@ export const config = {
 			urlWindow: {
 				label: 'Link op andere pagina openen?',
 			},
+			title: {
+				label: 'Titel',
+			},
+			phone: {
+				label: 'Telefoon',
+			},
+			email: {
+				label: 'Email',
+			},
 			content: {
 				label: 'Beschrijving voor in het informatievenster',
 			},
