@@ -130,7 +130,10 @@ function Inspector( props ) {
 							<IconButton
 								icon={ <Dashicon icon="yes" /> }
 								label={ __( 'Voltooi een gebied' ) }
-								onClick={ () => setFinishDrawerModus( true ) }
+								onClick={ () => {
+									setFinishDrawerModus( true );
+									setDrawerModusActive( false );
+								} }
 							/>
 							<IconButton
 								icon={ <Dashicon icon="undo" /> }
