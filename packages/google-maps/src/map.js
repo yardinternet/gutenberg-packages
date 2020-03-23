@@ -101,6 +101,20 @@ function Map( {
 		}
 	} );
 
+	/**
+	 * Filter on categories which have the property of showFiltersOnPageLoad
+	 * Any object with the assigned category will be shown on page load
+	 */
+	useEffect( () => {
+		const newFilters = categories
+			.filter( ( category ) => category.showFiltersOnPageLoad === 'true' )
+			.map( ( category ) => category.name );
+
+		if ( !! newFilters.length ) {
+			setSelectedFilters( newFilters );
+		}
+	}, [] );
+
 	useEffect( () => {
 		if ( map ) {
 			map.setZoom( mapOptions.zoom );
@@ -165,13 +179,13 @@ function Map( {
 	/**
 	 * Watch state variable 'map'
 	 */
-	// useEffect( () => {
-	// 	if ( typeof map === 'object' ) {
-	// 		if ( polygons.length > 0 ) {
-	// 			plotPolygons();
-	// 		}
-	// 	}
-	// }, [ map, editableShapesModus ] );
+	useEffect( () => {
+		if ( typeof map === 'object' ) {
+			if ( polygons.length > 0 ) {
+				plotPolygons();
+			}
+		}
+	}, [ editableShapesModus ] );
 
 	/**
 	 * Watch props variable 'polygons'
@@ -555,7 +569,6 @@ function Map( {
 	};
 
 	const onFilterChange = ( newFilters ) => {
-		setIntialObjectRender( true );
 		setSelectedFilters( newFilters );
 
 		if ( newFilters.length === 0 ) {
@@ -566,6 +579,10 @@ function Map( {
 	};
 
 	useEffect( () => {
+		if ( !! selectedFilters.length ) {
+			setIntialObjectRender( true );
+		}
+
 		setFilteredMarkerGroups(
 			filterMarkerGroupsByCategory( {
 				markerGroups,
