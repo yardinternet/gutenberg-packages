@@ -38,10 +38,6 @@
 				"mapTypeId": "roadmap",
 				"mapStyle": "default"
 			}
-		},
-		"editableShapesModus": {
-			"type": "boolean",
-			"default": true
 		}
 	}
 }

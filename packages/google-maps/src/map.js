@@ -48,7 +48,6 @@ function Map( {
 		markerClusterer: false,
 		initialObjectRender: true,
 	},
-	editableShapesModus = true,
 	editMapCenter = false,
 	googleMapStyles = {
 		width: '100%',
@@ -72,6 +71,7 @@ function Map( {
 	const [ initialObjectRender, setIntialObjectRender ] = useState(
 		mapOptions.initialObjectRender
 	);
+	const [ editShapeId, setEditshapeId ] = useState( false );
 	const [ objectRenderLock, setObjectRenderLock ] = useState( false );
 	const ref = useRef( null );
 	const testPath = useRef( [] );
@@ -180,17 +180,6 @@ function Map( {
 	}, [ undo ] );
 
 	/**
-	 * Watch state variable 'map'
-	 */
-	useEffect( () => {
-		if ( typeof map === 'object' ) {
-			if ( polygons.length > 0 ) {
-				plotPolygons();
-			}
-		}
-	}, [ editableShapesModus ] );
-
-	/**
 	 * Watch props variable 'polygons'
 	 */
 	useEffect( () => {
@@ -248,9 +237,23 @@ function Map( {
 					strokeWeight: 1.2,
 					fillColor: item.color,
 					fillOpacity: 0.5,
-					editable: editableShapesModus ? true : false,
+					editable: editShapeId === item.id,
 				} ),
 			};
+
+			/**
+			 * Editable when a polygon is clicked
+			 * Polygon loses focus when other polygon is clicked
+			 * editShapeId tracks the last editable polygon id
+			 */
+			google.maps.event.addListener(
+				polygon.polygon,
+				'click',
+				( p, poly = polygon.polygon ) => {
+					poly.setEditable( true );
+					setEditshapeId( poly.id );
+				}
+			);
 
 			return handler.push( polygon );
 		} );
