@@ -22,6 +22,11 @@ function MapOptions( { mapOptions = {}, setAttributes = () => {} } ) {
 				checked={ mapOptions.markerClusterer }
 				onChange={ ( val ) => onChange( 'markerClusterer', val ) }
 			/>
+			<ToggleControl
+				label="Toon initieel alle objecten"
+				checked={ mapOptions.initialObjectRender }
+				onChange={ ( val ) => onChange( 'initialObjectRender', val ) }
+			/>
 			<RangeControl
 				label="Hoogte"
 				value={ mapOptions.height }
