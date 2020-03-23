@@ -245,9 +245,9 @@ function Map( {
 					paths: coords,
 					strokeColor: item.borderColor,
 					strokeOpacity: 0.8,
-					strokeWeight: 3,
+					strokeWeight: 1.2,
 					fillColor: item.color,
-					fillOpacity: 0.6,
+					fillOpacity: 0.5,
 					editable: editableShapesModus ? true : false,
 				} ),
 			};
@@ -268,7 +268,7 @@ function Map( {
 			path: testPath.current,
 			strokeColor: '#000000',
 			strokeOpacity: 1.0,
-			strokeWeight: 3,
+			strokeWeight: 2,
 		} );
 
 		poly.setMap( map );
