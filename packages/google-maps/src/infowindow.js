@@ -2,6 +2,8 @@
  * External dependencies
  */
 import { isEmpty } from 'lodash';
+import { render } from '@wordpress/element';
+import InfoWindow from './components/infowindow';
 
 /**
  * Create infowindow object for Polygon
@@ -54,27 +56,30 @@ export function createInfowindowMarker( {
 	infowindow,
 	infowindowURL,
 	infowindowTargetURL,
+	infowindowTitle,
+	infowindowPhone,
+	infowindowEmail,
 } ) {
 	if ( isEmpty( map ) ) {
 		return false;
 	}
 
-	const targetURL = infowindowTargetURL
-		? 'target="_blank" rel="noopener noreferrer"'
-		: '';
+	const div = document.createElement( 'div' );
 
-	const infowindowAnchor = infowindowURL
-		? `<div><a href="${ infowindowURL }" ${ targetURL }>Website</a></div>`
-		: false;
-
-	const infowindowContent = `<div>${ infowindow }</div>`;
-
-	const infowindowHTML = infowindowAnchor
-		? infowindowAnchor + infowindowContent
-		: infowindowContent;
+	render(
+		<InfoWindow
+			title={ infowindowTitle }
+			url={ infowindowURL }
+			urlTarget={ infowindowTargetURL }
+			email={ infowindowEmail }
+			phone={ infowindowPhone }
+			content={ infowindow }
+		/>,
+		div
+	);
 
 	const infowindowObject = new google.maps.InfoWindow( {
-		content: infowindowHTML,
+		content: div,
 	} );
 
 	marker.addListener( 'click', function() {

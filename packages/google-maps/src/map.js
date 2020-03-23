@@ -441,6 +441,9 @@ function Map( {
 		infowindow,
 		infowindowTargetURL,
 		infowindowURL,
+		infowindowTitle,
+		infowindowPhone,
+		infowindowEmail,
 		icon,
 	} ) => {
 		let marker = new google.maps.Marker( {
@@ -457,6 +460,9 @@ function Map( {
 				infowindow,
 				infowindowURL,
 				infowindowTargetURL,
+				infowindowTitle,
+				infowindowPhone,
+				infowindowEmail,
 			} );
 		}
 

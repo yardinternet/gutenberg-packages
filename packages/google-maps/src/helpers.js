@@ -63,6 +63,9 @@ export function parseMarkerGroupMarkers( markergroups ) {
 					infowindow: marker.infowindow,
 					infowindowTargetURL: marker.infowindowTargetURL,
 					infowindowURL: marker.infowindowURL,
+					infowindowTitle: marker.infowindowTitle,
+					infowindowPhone: marker.infowindowPhone,
+					infowindowEmail: marker.infowindowEmail,
 					...( group.markerImage &&
 						group.markerImage.url && {
 							icon: group.markerImage.url,

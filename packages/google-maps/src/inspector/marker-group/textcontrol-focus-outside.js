@@ -23,18 +23,16 @@ class TextControlFocusOutside extends Component {
 
 	render() {
 		return (
-			<div>
-				<TextControl
-					label={ this.props.label }
-					defaultValue={ this.props.defaultValue }
-					value={ this.state.name }
-					onChange={ ( value ) => {
-						this.setState( {
-							name: value,
-						} );
-					} }
-				/>
-			</div>
+			<TextControl
+				label={ this.props.label }
+				defaultValue={ this.props.defaultValue }
+				value={ this.state.name }
+				onChange={ ( value ) => {
+					this.setState( {
+						name: value,
+					} );
+				} }
+			/>
 		);
 	}
 }

@@ -26,6 +26,7 @@ function MarkerModal( {
 		name: '',
 		indexVal: null,
 		infowindow: '',
+		infowindowTitle: '',
 		infowindowURL: '',
 		infowindowTargetURL: false,
 		infowindowPhone: '',
@@ -69,6 +70,36 @@ function MarkerModal( {
 					</PanelRow>
 					{ ! isEmpty( marker.name ) && (
 						<>
+							<PanelRow>
+								<TextControlFocusOutside
+									label={
+										config.infowindow.fields.title.label
+									}
+									name={ 'infowindowTitle' }
+									setMarker={ setMarker }
+									marker={ marker }
+								/>
+							</PanelRow>
+							<PanelRow>
+								<TextControlFocusOutside
+									label={
+										config.infowindow.fields.phone.label
+									}
+									name={ 'infowindowPhone' }
+									setMarker={ setMarker }
+									marker={ marker }
+								/>
+							</PanelRow>
+							<PanelRow>
+								<TextControlFocusOutside
+									label={
+										config.infowindow.fields.email.label
+									}
+									name={ 'infowindowEmail' }
+									setMarker={ setMarker }
+									marker={ marker }
+								/>
+							</PanelRow>
 							<PanelRow>
 								<TextControlFocusOutside
 									label={ config.infowindow.fields.url.label }
