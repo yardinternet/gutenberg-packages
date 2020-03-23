@@ -45,7 +45,7 @@ function Map( {
 		center: { lat: 52.370216, lng: 4.895168 },
 		disableDefaultUI: false,
 		markerClusterer: false,
-		initialObjectRender: false,
+		initialObjectRender: true,
 	},
 	editableShapesModus = true,
 	editMapCenter = false,
@@ -67,7 +67,7 @@ function Map( {
 	const [ showAddPolygonModal, setShowAddPolygonModal ] = useState( false );
 	const [ selectedFilters, setSelectedFilters ] = useState( [] );
 	const [ initialObjectRender, setIntialObjectRender ] = useState(
-		initialObjectRender
+		mapOptions.initialObjectRender
 	);
 	const [ objectRenderLock, setObjectRenderLock ] = useState( false );
 	const ref = useRef( null );
@@ -318,7 +318,7 @@ function Map( {
 		if ( clusterMarkersScriptLoaded && mapOptions.markerClusterer ) {
 			const markerClusterMarkers = prepareMarkerClusterGroups(
 				map,
-				filteredMarkerGroups
+				plotMarkerGroups
 			);
 
 			markerClusterMarkers.map( function( item ) {
@@ -474,7 +474,7 @@ function Map( {
 				paths: testPath.current,
 				strokeColor: '#FF0000',
 				strokeOpacity: 0.8,
-				strokeWeight: 2,
+				strokeWeight: 1,
 				fillColor: '#FF0000',
 				fillOpacity: 0.35,
 			} ),
