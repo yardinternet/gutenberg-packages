@@ -76,7 +76,7 @@ export function parseMarkerGroupMarkers( markergroups ) {
 /**
  * Divide the markers between marker cluster groups
  *
- * @param {bool} map
+ * @param {Object} map
  * @param {Array} plotMarkerGroups
  * @return {Array} markerGroupsObjects
  */

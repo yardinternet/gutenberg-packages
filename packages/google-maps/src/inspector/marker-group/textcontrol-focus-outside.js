@@ -11,16 +11,13 @@ import { withFocusOutside, TextControl } from '@wordpress/components';
 class TextControlFocusOutside extends Component {
 	constructor( props ) {
 		super( props );
-		this.state = { infowindowURL: props.infowindowURL };
+		this.state = { name: props.marker[ this.props.name ] };
 	}
 
 	handleFocusOutside() {
 		this.props.setMarker( {
-			latLng: this.props.marker.latLng,
-			name: this.props.marker.name,
-			infowindow: this.props.marker.infowindow,
-			infowindowTargetURL: this.props.targetURL,
-			infowindowURL: this.state.infowindowURL,
+			...this.props.marker,
+			...{ [ this.props.name ]: this.state.name },
 		} );
 	}
 
@@ -29,10 +26,11 @@ class TextControlFocusOutside extends Component {
 			<div>
 				<TextControl
 					label={ this.props.label }
-					defaultValue={ this.props.marker.infowindowURL }
+					defaultValue={ this.props.defaultValue }
+					value={ this.state.name }
 					onChange={ ( value ) => {
 						this.setState( {
-							infowindowURL: value,
+							name: value,
 						} );
 					} }
 				/>

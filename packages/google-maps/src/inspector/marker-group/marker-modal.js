@@ -3,7 +3,6 @@
  */
 import { useState } from '@wordpress/element';
 import { Button, Modal, PanelRow, ToggleControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
@@ -29,12 +28,11 @@ function MarkerModal( {
 		infowindow: '',
 		infowindowURL: '',
 		infowindowTargetURL: false,
+		infowindowPhone: '',
+		infowindowEmail: '',
 	},
 } ) {
 	const [ marker, setMarker ] = useState( markerData );
-	const [ targetURL, setTargetURL ] = useState(
-		markerData.infowindowTargetURL
-	);
 
 	const onClick = () => {
 		setMarker( {} );
@@ -57,16 +55,15 @@ function MarkerModal( {
 							defaultInputValue={ markerData.name }
 							onChange={ ( option ) => {
 								setMarker( {
-									latLng: {
-										lat: option.latLng.lat(),
-										lng: option.latLng.lng(),
+									...marker,
+									...{
+										latLng: {
+											lat: option.latLng.lat(),
+											lng: option.latLng.lng(),
+										},
+										name: option.value,
 									},
-									name: option.value,
-									infowindowURL: marker.infowindowURL,
-									infowindowTargetURL: targetURL,
-									infowindow: marker.infowindow,
 								} );
-								return option.value;
 							} }
 						/>
 					</PanelRow>
@@ -74,41 +71,34 @@ function MarkerModal( {
 						<>
 							<PanelRow>
 								<TextControlFocusOutside
-									label={ __(
-										'URL voor in het informatievenster. Voorbeeld: https://www.domein.nl',
-										config.textDomain
-									) }
-									targetURL={ targetURL }
+									label={ config.infowindow.fields.url.label }
 									setMarker={ setMarker }
+									name={ 'infowindowURL' }
 									marker={ marker }
 								/>
 							</PanelRow>
 							<PanelRow>
 								<ToggleControl
-									label={ __(
-										'Link op andere pagina openen?',
-										config.textDomain
-									) }
-									checked={ targetURL }
+									label={
+										config.infowindow.fields.urlWindow.label
+									}
+									checked={ marker.infowindowTargetURL }
 									onChange={ ( value ) => {
-										setTargetURL( value );
 										setMarker( {
-											latLng: marker.latLng,
-											name: marker.name,
-											infowindowURL: marker.infowindowURL,
-											infowindowTargetURL: value,
-											infowindow: marker.infowindow,
+											...marker,
+											...{
+												infowindowTargetURL: value,
+											},
 										} );
 									} }
 								/>
 							</PanelRow>
 							<PanelRow>
 								<TextAreaControlFocusOutside
-									label={ __(
-										'Beschrijving voor in het informatievenster',
-										config.textDomain
-									) }
-									targetURL={ targetURL }
+									label={
+										config.infowindow.fields.content.label
+									}
+									name={ 'infowindow' }
 									setMarker={ setMarker }
 									marker={ marker }
 								/>
