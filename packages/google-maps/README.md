@@ -60,3 +60,22 @@ import { addFilter } from '@wordpress/hooks';
     } )
 );
 ```
+
+## Include map into the frontend
+
+```JS
+import {
+    Map as GoogleMap,
+    props,
+    mapDomId
+} from "@yardinternet/gutenberg-google-maps/src/frontend";
+import { render } from "@wordpress/element";
+
+function Map() {
+    return <GoogleMap {...props} />;
+}
+
+if (document.getElementById(mapDomId)) {
+    render(<Map />, document.getElementById(mapDomId));
+}
+```

@@ -8,7 +8,7 @@ function ToggleSwitch( { label = '', name = '', checked = false } ) {
 	const [ toggle, setToggle ] = useState( checked === 'true' );
 
 	return (
-		<>
+		<div className="components-base-control" style={ { display: 'flex' } }>
 			<FormToggle
 				label={ label }
 				onChange={ () => setToggle( ! toggle ) }
@@ -18,7 +18,7 @@ function ToggleSwitch( { label = '', name = '', checked = false } ) {
 			<label style={ { marginLeft: '10px' } } htmlFor={ name }>
 				{ label }
 			</label>
-		</>
+		</div>
 	);
 }
 

@@ -194,6 +194,13 @@ function Inspector( props ) {
 									label: 'Toon als filter',
 								},
 							},
+							{
+								type: 'ToggleSwitch',
+								id: 'showFiltersOnPageLoad',
+								attr: {
+									label: 'Filter initieel tonen',
+								},
+							},
 						] }
 					/>
 				</PanelBody>
