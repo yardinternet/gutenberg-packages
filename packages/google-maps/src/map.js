@@ -39,6 +39,7 @@ function Map( {
 	setUndo = () => {},
 	setAttributes = () => {},
 	markerGroups = [],
+	hardCodedInitialFilters = [],
 	mapOptions = {
 		height: 400,
 		zoom: 8,
@@ -65,7 +66,9 @@ function Map( {
 	const [ filteredPolygons, setFilteredPolygons ] = useState( [] );
 	const [ currentPolyGon, setCurrentPolyGon ] = useState( null );
 	const [ showAddPolygonModal, setShowAddPolygonModal ] = useState( false );
-	const [ selectedFilters, setSelectedFilters ] = useState( [] );
+	const [ selectedFilters, setSelectedFilters ] = useState(
+		hardCodedInitialFilters
+	);
 	const [ initialObjectRender, setIntialObjectRender ] = useState(
 		mapOptions.initialObjectRender
 	);

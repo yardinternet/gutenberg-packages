@@ -5,18 +5,21 @@ const element = document.getElementById( config.mapDomId );
 const { mapDomId } = config;
 
 const domProps = {};
+let props = {};
 
-Object.keys( element.dataset ).map( ( item ) => {
-	return ( domProps[ item ] = JSON.parse( element.dataset[ item ] ) );
-} );
+if ( element ) {
+	Object.keys( element.dataset ).map( ( item ) => {
+		return ( domProps[ item ] = JSON.parse( element.dataset[ item ] ) );
+	} );
 
-const props = {
-	categories: domProps.categories,
-	editableShapesModus: false,
-	filterOptions: domProps.filteroptions,
-	markerGroups: domProps.markergroups,
-	mapOptions: domProps.mapoptions,
-	polygons: domProps.polygons,
-};
+	props = {
+		categories: domProps.categories,
+		editableShapesModus: false,
+		filterOptions: domProps.filteroptions,
+		markerGroups: domProps.markergroups,
+		mapOptions: domProps.mapoptions,
+		polygons: domProps.polygons,
+	};
+}
 
 export { Map, props, mapDomId };

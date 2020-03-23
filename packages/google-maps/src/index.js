@@ -24,7 +24,7 @@ const settings = {
 	),
 	supports: {
 		multiple: false,
-		reusable: false,
+		reusable: true,
 	},
 	edit,
 	attributes,

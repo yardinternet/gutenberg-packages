@@ -79,3 +79,27 @@ if (document.getElementById(mapDomId)) {
     render(<Map />, document.getElementById(mapDomId));
 }
 ```
+
+### With hardcoded initial filters
+
+```JS
+function Map() {
+    const getPageFilters = pageSlug => {
+        switch (pageSlug) {
+            case "rso-netwerk":
+                return ["RSO"];
+            case "ros-netwerk":
+                return ["ROS"];
+            default:
+                return [];
+        }
+    };
+
+    const newProps = {
+        ...props,
+        ...{ hardCodedInitialFilters: getPageFilters(jsVars.pageSlug) }
+    };
+
+    return <GoogleMap {...newProps} />;
+}
+```
