@@ -105,6 +105,7 @@ export function ListControl( {
 			<PanelRow>
 				<List
 					explanationNoItems={ explanationNoItems }
+					showCategoryLabel={ true }
 					data={ store }
 					onModify={ ( index ) => {
 						const item = dispatch( {

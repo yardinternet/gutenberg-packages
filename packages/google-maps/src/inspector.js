@@ -2,7 +2,7 @@
  * External dependencies
  */
 import classnames from 'classnames';
-
+import { orderBy } from 'lodash';
 /**
  * Internal dependencies
  */
@@ -218,7 +218,7 @@ function Inspector( props ) {
 						) }
 						entityLabel={ __( 'Gebied', config.textDomain ) }
 						showAddModalButton={ false }
-						data={ polygons }
+						data={ orderBy( polygons, [ 'category' ], [ 'asc' ] ) }
 						setAttributes={ setAttributes }
 						callback={ ( newPolygons ) => {
 							setAttributes( { polygons: newPolygons } );
