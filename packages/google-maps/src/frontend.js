@@ -14,7 +14,6 @@ if ( element ) {
 
 	props = {
 		categories: domProps.categories,
-		editableShapesModus: false,
 		filterOptions: domProps.filteroptions,
 		markerGroups: domProps.markergroups,
 		mapOptions: domProps.mapoptions,

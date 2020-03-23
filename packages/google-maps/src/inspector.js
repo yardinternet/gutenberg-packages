@@ -50,7 +50,6 @@ function Inspector( props ) {
 		polygons,
 		filterOptions,
 		mapOptions,
-		editableShapesModus,
 	} = attributes;
 	const [ showAddMarkerGroupModal, setShowAddMarkerGroupModal ] = useState(
 		false
@@ -212,15 +211,6 @@ function Inspector( props ) {
 					icon="location-alt"
 					title={ __( 'Gebieden', config.textDomain ) }
 				>
-					<ToggleControl
-						label={ __( 'Gebieden bewerkbaar', config.textDomain ) }
-						checked={ editableShapesModus }
-						onChange={ ( val ) =>
-							setAttributes( {
-								editableShapesModus: val,
-							} )
-						}
-					/>
 					<ListControl
 						explanationNoItems={ __(
 							'Voeg een gebied toe via de blockcontrols.',
