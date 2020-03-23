@@ -239,6 +239,9 @@ function Map( {
 					infowindowLat: bounds.getCenter().lat(),
 					infowindowLng: bounds.getCenter().lng(),
 					infowindowTargetURL: infowindowTargetURL ? true : false,
+					name: item.name,
+					infowindowEmail: item.infowindowEmail,
+					infowindowPhone: item.infowindowPhone,
 					paths: coords,
 					strokeColor: item.borderColor,
 					strokeOpacity: 0.8,
@@ -401,6 +404,10 @@ function Map( {
 					polygon: polygon.polygon,
 					content: polygon.polygon.infowindow,
 					url: polygon.polygon.infowindowURL,
+					urlTarget: polygon.polygon.infowindowTargetURL,
+					name: polygon.polygon.name,
+					email: polygon.polygon.infowindowEmail,
+					phone: polygon.polygon.infowindowPhone,
 				} );
 			}
 		}

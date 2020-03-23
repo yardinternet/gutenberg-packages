@@ -96,16 +96,17 @@ export function prepareMarkerClusterGroups( map, plotMarkerGroups ) {
 			} );
 
 			const infowindow = item.infowindow;
-			const infowindowURL = item.infowindowURL;
-			const infowindowTargetURL = item.infowindowTargetURL;
 
 			if ( infowindow && !! infowindow.length ) {
 				marker = createInfowindowMarker( {
 					map,
 					marker,
 					infowindow,
-					infowindowURL,
-					infowindowTargetURL,
+					infowindowURL: item.infowindowURL,
+					infowindowTargetURL: item.infowindowTargetURL,
+					infowindowTitle: item.infowindowTitle,
+					infowindowEmail: item.infowindowEmail,
+					infowindowPhone: item.infowindowPhone,
 				} );
 			}
 

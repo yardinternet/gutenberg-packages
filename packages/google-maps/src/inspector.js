@@ -237,17 +237,27 @@ function Inspector( props ) {
 								attr: { type: 'hidden' },
 							},
 							{
-								type: 'TextControl',
-								id: 'name',
-								attr: { label: 'Naam' },
-							},
-							{
 								type: 'SelectControl',
 								id: 'category',
 								attr: {
 									label: 'Categorie',
 									options: createOptionsSelectControl(),
 								},
+							},
+							{
+								type: 'TextControl',
+								id: 'name',
+								attr: { label: 'Naam' },
+							},
+							{
+								type: 'TextControl',
+								id: 'infowindowEmail',
+								attr: { label: 'Email' },
+							},
+							{
+								type: 'TextControl',
+								id: 'infowindowPhone',
+								attr: { label: 'Telefoon' },
 							},
 							{
 								type: 'TextareaControl',

@@ -10,7 +10,16 @@ import InfoWindow from './components/infowindow';
  *
  * @param {{map: Object, polygon: Object, content: string, url: string}} Object
  */
-export function createInfowindowPolygon( { map, polygon, content, url } ) {
+export function createInfowindowPolygon( {
+	map,
+	polygon,
+	content,
+	url,
+	urlTarget,
+	name,
+	email,
+	phone,
+} ) {
 	if ( isEmpty( map ) ) {
 		return false;
 	}
@@ -19,22 +28,22 @@ export function createInfowindowPolygon( { map, polygon, content, url } ) {
 		size: new google.maps.Size( 150, 50 ),
 	} );
 
-	const target = polygon.infowindowTargetURL
-		? 'target="_blank" rel="noopener noreferrer"'
-		: '';
+	const div = document.createElement( 'div' );
 
-	const infowindowAnchor = url
-		? `<div><a href="${ url }" ${ target }>Website</a></div>`
-		: false;
-
-	const infowindowContent = `<div>${ content }</div>`;
-
-	const infowindowHTML = infowindowAnchor
-		? infowindowAnchor + infowindowContent
-		: infowindowContent;
+	render(
+		<InfoWindow
+			title={ name }
+			url={ url }
+			urlTarget={ urlTarget }
+			email={ email }
+			phone={ phone }
+			content={ content }
+		/>,
+		div
+	);
 
 	google.maps.event.addListener( polygon, 'click', function() {
-		infowindowPolygon.setContent( infowindowHTML );
+		infowindowPolygon.setContent( div );
 		infowindowPolygon.setPosition(
 			new google.maps.LatLng(
 				polygon.infowindowLat,
