@@ -3,24 +3,39 @@ export default function InfoWindow( props ) {
 
 	return (
 		<div className="infowindow">
-			{ title && <div className="infowindow__title">titel{ title }</div> }
+			{ title && <div className="infowindow__title">{ title }</div> }
 			{ content && (
-				<div className="infowindow__content"> conent{ content }</div>
+				<div className="infowindow__content">{ content }</div>
 			) }
 			{ url && (
 				<div className="infowindow__url">
+					<span className="infowindow__label">Website: </span>
 					<a
+						className="infowindow__value"
 						href={ url }
 						target={ urlTarget ? '_blank' : '' }
 						rel="noopener noreferrer"
 					>
-						Website
+						{ url }
 					</a>
 				</div>
 			) }
-			{ phone && <div className="infowindow__phone">phone{ phone }</div> }
+			{ phone && (
+				<div className="infowindow__phone">
+					<span className="infowindow__label">Telefoon: </span>
+					<span className="infowindow__value">{ phone }</span>
+				</div>
+			) }
 			{ email && (
-				<div className="infowindow__email">email { email }</div>
+				<div className="infowindow__email">
+					<span className="infowindow__label">Email: </span>
+					<a
+						className="infowindow__value"
+						href={ `mailto:${ email }` }
+					>
+						{ email }
+					</a>
+				</div>
 			) }
 		</div>
 	);
