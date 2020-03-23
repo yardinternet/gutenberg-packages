@@ -16,11 +16,8 @@ class TextAreaControlFocusOutside extends Component {
 
 	handleFocusOutside() {
 		this.props.setMarker( {
-			latLng: this.props.marker.latLng,
-			name: this.props.marker.name,
-			infowindowURL: this.props.marker.infowindowURL,
-			infowindowTargetURL: this.props.targetURL,
-			infowindow: this.state.infowindow,
+			...this.props.marker,
+			...{ infowindow: this.state.infowindow },
 		} );
 	}
 
