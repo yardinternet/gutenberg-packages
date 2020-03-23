@@ -20,7 +20,7 @@ export default function InfoWindow( props ) {
 			) }
 			{ phone && <div className="infowindow__phone">phone{ phone }</div> }
 			{ email && (
-				<div classNAme="infowindow__email">email { email }</div>
+				<div className="infowindow__email">email { email }</div>
 			) }
 		</div>
 	);
