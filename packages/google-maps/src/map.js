@@ -54,6 +54,7 @@ function Map( {
 		center: { lat: 52.370216, lng: 4.895168 },
 		disableDefaultUI: false,
 		markerClusterer: false,
+		markerClustererImagePath: false,
 		initialObjectRender: true,
 	},
 	editMapCenter = false,
@@ -330,7 +331,6 @@ function Map( {
 			addMarker( point )
 		);
 
-		// create multiple marker cluster groups
 		if ( clusterMarkersScriptLoaded && mapOptions.markerClusterer ) {
 			const markerClusterMarkers = prepareMarkerClusterGroups(
 				map,
@@ -339,8 +339,9 @@ function Map( {
 
 			markerClusterMarkers.map( function( item ) {
 				const MarkerCluster = new MarkerClusterer( map, item, {
-					imagePath:
-						'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+					imagePath: mapOptions.markerClustererImagePath
+						? `${ window.location.protocol }//${ window.location.host }/${ mapOptions.markerClustererImagePath }/m`
+						: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
 				} );
 
 				return markerClusters.push( MarkerCluster );

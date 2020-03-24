@@ -34,6 +34,7 @@
 				"center": { "lat": 52.370216, "lng": 4.895168 },
 				"disableDefaultUI": false,
 				"markerClusterer": false,
+				"markerClustererImagePath": "",
 				"initialObjectRender": true,
 				"mapTypeId": "roadmap",
 				"mapStyle": "default"

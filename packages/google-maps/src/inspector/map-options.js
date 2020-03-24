@@ -1,4 +1,9 @@
-import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
+import {
+	PanelBody,
+	ToggleControl,
+	RangeControl,
+	TextControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 function MapOptions( { mapOptions = {}, setAttributes = () => {} } ) {
@@ -21,6 +26,16 @@ function MapOptions( { mapOptions = {}, setAttributes = () => {} } ) {
 				label="Marker cluster"
 				checked={ mapOptions.markerClusterer }
 				onChange={ ( val ) => onChange( 'markerClusterer', val ) }
+			/>
+			<TextControl
+				label="Marker cluster afbeelding"
+				value={ mapOptions.markerClustererImagePath }
+				help={ __(
+					'Gebruik een relatief pad naar de afbeelding bijv. wp-content/themes/<theme>/assets/img/'
+				) }
+				onChange={ ( val ) =>
+					onChange( 'markerClustererImagePath', val )
+				}
 			/>
 			<ToggleControl
 				label="Toon initieel alle objecten"
