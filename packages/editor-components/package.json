@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-editor-components",
-	"version": "1.2.1-alpha.0",
+	"version": "1.2.1",
 	"description": "UI components for yard blocks",
 	"main": "build/index.js",
 	"module": "src/index.js",
@@ -26,7 +26,7 @@
 		"@wordpress/hooks": "^2.6.0",
 		"@wordpress/i18n": "^3.7.0",
 		"@wordpress/scripts": "^6.0.0",
-		"@yardinternet/gutenberg-webpack-loaders": "^0.0.3-alpha.0",
+		"@yardinternet/gutenberg-webpack-loaders": "^0.0.3",
 		"emotion": "^10.0.23",
 		"react-transition-group": "^4.3.0"
 	},
