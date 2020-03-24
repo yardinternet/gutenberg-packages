@@ -29,6 +29,13 @@ var markerClusters = []; // eslint-disable-line
 
 function Map( {
 	polygons = [],
+	polygonStyles = {
+		strokeColor: '#000000',
+		strokeOpacity: 0.8,
+		strokeWeight: 1.5,
+		fillOpacity: 0.5,
+		fillColor: '#000000',
+	},
 	categories = [],
 	filterOptions = {},
 	drawerModusActive = false,
@@ -232,11 +239,9 @@ function Map( {
 					infowindowEmail: item.infowindowEmail,
 					infowindowPhone: item.infowindowPhone,
 					paths: coords,
+					...polygonStyles,
 					strokeColor: item.borderColor,
-					strokeOpacity: 0.8,
-					strokeWeight: 1.2,
 					fillColor: item.color,
-					fillOpacity: 0.5,
 					editable: editShapeId === item.id,
 				} ),
 			};
@@ -269,9 +274,7 @@ function Map( {
 	const addGoogleObjectsToMap = ( event ) => {
 		const poly = new google.maps.Polyline( {
 			path: testPath.current,
-			strokeColor: '#000000',
-			strokeOpacity: 1.0,
-			strokeWeight: 2,
+			...polygonStyles,
 		} );
 
 		poly.setMap( map );
@@ -491,11 +494,7 @@ function Map( {
 		const shape = {
 			polygon: new google.maps.Polygon( {
 				paths: testPath.current,
-				strokeColor: '#FF0000',
-				strokeOpacity: 0.8,
-				strokeWeight: 1,
-				fillColor: '#FF0000',
-				fillOpacity: 0.35,
+				...{ polygonStyles },
 			} ),
 		};
 
@@ -548,11 +547,7 @@ function Map( {
 			polygon: new google.maps.Polygon( {
 				id: randomID.toString(),
 				paths: coordinates,
-				strokeColor: '#FF0000',
-				strokeOpacity: 0.8,
-				strokeWeight: 2,
-				fillColor: '#FF0000',
-				fillOpacity: 0.35,
+				...polygonStyles,
 			} ),
 		};
 
