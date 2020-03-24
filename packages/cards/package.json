@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-cards",
-	"version": "1.0.5",
+	"version": "1.0.6-alpha.0",
 	"description": "Cards component for gutenberg",
 	"author": "Ferdie Sletering <ferdie@yard.nl>",
 	"license": "ISC",
@@ -24,7 +24,7 @@
 	"dependencies": {
 		"@emotion/core": "^10.0.22",
 		"@wordpress/scripts": "^6.0.0",
-		"@yardinternet/gutenberg-editor-components": "^1.2.0",
+		"@yardinternet/gutenberg-editor-components": "^1.2.1-alpha.0",
 		"classnames": "^2.2.6"
 	}
 }
