@@ -43,6 +43,7 @@ function Edit( props ) {
 				finishDrawerModus={ finishDrawerModus }
 				setFinishDrawerModus={ setFinishDrawerModus }
 				undo={ undo }
+				editMode={ true }
 				setUndo={ setUndo }
 				editMapCenter={ editMapCenter }
 				refresh={ drawerModusActive }

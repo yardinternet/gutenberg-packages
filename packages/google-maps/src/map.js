@@ -36,6 +36,7 @@ function Map( {
 		fillOpacity: 0.5,
 		fillColor: '#000000',
 	},
+	editMode = false,
 	categories = [],
 	filterOptions = {},
 	drawerModusActive = false,
@@ -251,14 +252,17 @@ function Map( {
 			 * Polygon loses focus when other polygon is clicked
 			 * editShapeId tracks the last editable polygon id
 			 */
-			google.maps.event.addListener(
-				polygon.polygon,
-				'click',
-				( p, poly = polygon.polygon ) => {
-					poly.setEditable( true );
-					setEditshapeId( poly.id );
-				}
-			);
+
+			if ( editMode ) {
+				google.maps.event.addListener(
+					polygon.polygon,
+					'click',
+					( p, poly = polygon.polygon ) => {
+						poly.setEditable( true );
+						setEditshapeId( poly.id );
+					}
+				);
+			}
 
 			return handler.push( polygon );
 		} );
