@@ -66,10 +66,10 @@ export function parseMarkerGroupMarkers( markergroups ) {
 					infowindowTitle: marker.infowindowTitle,
 					infowindowPhone: marker.infowindowPhone,
 					infowindowEmail: marker.infowindowEmail,
-					...( group.markerImage &&
-						group.markerImage.url && {
-							icon: group.markerImage.url,
-						} ),
+					icon:
+						group.markerImage && group.markerImage.url
+							? group.markerImage.url
+							: '',
 				};
 			} )
 		)
@@ -92,7 +92,10 @@ export function prepareMarkerClusterGroups( map, plotMarkerGroups ) {
 		group.markers.map( function( item ) {
 			let marker = new google.maps.Marker( {
 				position: item.latLng,
-				icon: item.icon,
+				icon:
+					group.markerImage && group.markerImage.url
+						? group.markerImage.url
+						: '',
 			} );
 
 			const infowindow = item.infowindow;
