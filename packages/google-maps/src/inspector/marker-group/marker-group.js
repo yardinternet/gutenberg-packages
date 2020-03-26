@@ -32,7 +32,19 @@ function Markergroup( {
 	categories = [],
 	parentDispatch = () => {},
 } ) {
-	const [ state, dispatch ] = useReducer( reducer, markers );
+	const withMarkersIndexVal = ( markersWithoutIndex = [] ) => {
+		if ( markersWithoutIndex && ! markersWithoutIndex.length ) return [];
+
+		return markersWithoutIndex.map( ( marker, markerIndex ) => ( {
+			...marker,
+			...{ indexVal: markerIndex },
+		} ) );
+	};
+
+	const [ state, dispatch ] = useReducer(
+		reducer,
+		withMarkersIndexVal( markers )
+	);
 	const [ options, setOptions ] = useState( [] );
 	const [ loadingPosts, setLoadingPosts ] = useState( false );
 	const [ posts, setPosts ] = useState( [] );
