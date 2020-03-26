@@ -40,6 +40,7 @@ function List( {
 								<List.Item
 									key={ index }
 									item={
+										item[ displayValue ] &&
 										item[ displayValue ].length
 											? item[ displayValue ]
 											: item.name
