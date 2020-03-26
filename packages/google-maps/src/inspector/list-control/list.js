@@ -3,6 +3,7 @@ import { Button, Dashicon, BaseControl } from '@wordpress/components';
 function List( {
 	explanationNoItems,
 	data,
+	displayValue = 'name',
 	showCategoryLabel = false,
 	onRemove = () => {},
 	onModify = () => {},
@@ -38,7 +39,11 @@ function List( {
 								) }
 								<List.Item
 									key={ index }
-									item={ item.name }
+									item={
+										item[ displayValue ].length
+											? item[ displayValue ]
+											: item.name
+									}
 									index={ index }
 									onRemove={ onRemove }
 									onModify={ onModify }

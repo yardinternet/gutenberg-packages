@@ -300,6 +300,7 @@ function Markergroup( {
 							payload: indexVal,
 						} );
 					} }
+					displayValue={ 'infowindowTitle' }
 				/>
 			</PanelRow>
 			<PanelRow>
