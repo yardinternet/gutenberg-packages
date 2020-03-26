@@ -27,7 +27,6 @@ export default ( props ) => {
 			.then( ( data ) => {
 				setPosts( data.data );
 			} );
-		//.catch( ( error ) => console.error( error ) );
 	};
 
 	return (

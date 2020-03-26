@@ -1,6 +1,6 @@
 import * as PdcSearch from './blocks/pdc-search';
 import * as PdcGreeting from './blocks/pdc-greeting';
-import * as PubListPosts from './blocks/pdc-listposts';
+import * as PubListPosts from './blocks/pub-listposts';
 import * as PdcServicePoints from './blocks/pdc-servicepoints';
 
 import { BLOCK_CATEGORY, ICON_SETTINGS } from './config/settings';

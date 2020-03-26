@@ -1,7 +1,11 @@
 {
 	"name": "gemeenten/list-posts-openpub",
 	"attributes": {
-		"selectedTerms": {
+		"selectedTypeTerms": {
+			"type": "array",
+			"default": null
+		},
+		"selectedAudienceTerms": {
 			"type": "array",
 			"default": null
 		},

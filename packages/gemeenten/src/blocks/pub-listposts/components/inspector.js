@@ -17,7 +17,8 @@ export default ( props ) => {
 	const {
 		stickyPostSelection,
 		selectedStickyPostID,
-		selectedTerms,
+		selectedTypeTerms,
+		selectedAudienceTerms,
 		postsToShow,
 		displayDate,
 		displayExcerpt,
@@ -27,16 +28,21 @@ export default ( props ) => {
 	const [ terms, setTerms ] = useState( [] );
 
 	useEffect( () => {
-		getTaxonomyTerms();
+		getTaxonomyTerms( 'openpub-type' );
+		getTaxonomyTerms( 'openpub-audience' );
 	}, [] );
 
-	const getTaxonomyTerms = () => {
-		fetchOpenpub( 'openpub-type', '/wp-json/wp/v2/' )
-			.then( ( respone ) => respone.json() )
+	const getTaxonomyTerms = ( taxonomy ) => {
+		fetchOpenpub( taxonomy, '/wp-json/wp/v2/' )
+			.then( ( response ) => response.json() )
 			.then( ( data ) => {
-				setTerms( data );
+				setTerms( ( prevSate ) => {
+					return {
+						...prevSate,
+						[ taxonomy.replace( 'openpub-', '' ) ]: data,
+					};
+				} );
 			} );
-		//.catch( ( error ) => console.error( error ) );
 	};
 
 	return (
@@ -124,17 +130,35 @@ export default ( props ) => {
 			) }
 
 			<PanelBody title="Type" initialOpen={ false }>
-				{ terms && !! terms.length && (
+				{ terms.type && !! terms.type.length && (
 					<Select
-						value={ selectedTerms }
+						value={ selectedTypeTerms }
 						label={ __( 'Selecteer type' ) }
 						isMulti={ true }
 						onChange={ ( value ) => {
-							setAttributes( { selectedTerms: value } );
+							setAttributes( { selectedTypeTerms: value } );
 						} }
-						options={ terms.map( function( term ) {
-							return { value: term.slug, label: term.name };
-						} ) }
+						options={ terms.type.map( ( term ) => ( {
+							value: term.slug,
+							label: term.name,
+						} ) ) }
+					/>
+				) }
+			</PanelBody>
+
+			<PanelBody title="Doelgroep" initialOpen={ false }>
+				{ terms.audience && !! terms.audience.length && (
+					<Select
+						value={ selectedAudienceTerms }
+						label={ __( 'Selecteer Doelgroep' ) }
+						isMulti={ true }
+						onChange={ ( value ) => {
+							setAttributes( { selectedAudienceTerms: value } );
+						} }
+						options={ terms.audience.map( ( term ) => ( {
+							value: term.slug,
+							label: term.name,
+						} ) ) }
 					/>
 				) }
 			</PanelBody>
