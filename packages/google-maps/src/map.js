@@ -188,15 +188,6 @@ function Map( {
 		}
 	}, [ undo ] );
 
-	/**
-	 * Watch props variable 'polygons'
-	 */
-	useEffect( () => {
-		if ( typeof map === 'object' ) {
-			plotPolygons();
-		}
-	}, [ polygons ] );
-
 	const removePolygonObjects = () => {
 		polygonsObjects.flat().map( function( item ) {
 			return item.polygon.setMap( null );
@@ -615,7 +606,7 @@ function Map( {
 				selectedFilters,
 			} )
 		);
-	}, [ selectedFilters ] );
+	}, [ selectedFilters, polygons, markerGroups ] );
 
 	return (
 		<>
