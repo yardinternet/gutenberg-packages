@@ -27,7 +27,6 @@ function MarkerModalOptions( {
 					Vanuit CPT
 				</Button>
 				<Button
-					isSecondary
 					isLarge
 					onClick={ () => setShowAddMarkerModal( true ) }
 					type="submit"
