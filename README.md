@@ -16,10 +16,21 @@
 `npm link` creates a symbolic link between the packages.
 Run `npm start` inside theme or project and make changes in the gutenberg-packages project and the code compiles.
 
+## Unlink
+
+1. Run `npm unlink --no-save <package>` in your theme first.
+
+If you don't include `--no-save` you'll end up removing that package from your package.json file. Of course, if you don't want to include the unlinked package in your package.json file, you can exclude the `--no-save`.
+
+2. Run `npm unlink` inside the gutenberg-package/packages/<package>
+
+Alternatively, running `npm install` in your theme will also remove the linked version.
+
 ### Releasing packages
 
 Run `lerna publish` to publish packages to the Github package registry.
 Lerna will check per package if it contains changes and let you decide what version to upgrade.
+Do not push you changes to github, lerna will do this for you.
 
 ## When to publish
 
