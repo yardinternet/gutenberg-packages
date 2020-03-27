@@ -397,21 +397,16 @@ function Map( {
 				} );
 			} );
 
-			if (
-				polygon.polygon.infowindow &&
-				polygon.polygon.infowindow.length > 0
-			) {
-				createInfowindowPolygon( {
-					map,
-					polygon: polygon.polygon,
-					content: polygon.polygon.infowindow,
-					url: polygon.polygon.infowindowURL,
-					urlTarget: polygon.polygon.infowindowTargetURL,
-					name: polygon.polygon.name,
-					email: polygon.polygon.infowindowEmail,
-					phone: polygon.polygon.infowindowPhone,
-				} );
-			}
+			createInfowindowPolygon( {
+				map,
+				polygon: polygon.polygon,
+				content: polygon.polygon.infowindow,
+				url: polygon.polygon.infowindowURL,
+				urlTarget: polygon.polygon.infowindowTargetURL,
+				name: polygon.polygon.name,
+				email: polygon.polygon.infowindowEmail,
+				phone: polygon.polygon.infowindowPhone,
+			} );
 		}
 	};
 
@@ -462,18 +457,16 @@ function Map( {
 
 		const markerClustererEnabled = mapOptions.markerClusterer;
 
-		if ( infowindow && !! infowindow.length ) {
-			marker = createInfowindowMarker( {
-				map,
-				marker,
-				infowindow,
-				infowindowURL,
-				infowindowTargetURL,
-				infowindowTitle,
-				infowindowPhone,
-				infowindowEmail,
-			} );
-		}
+		marker = createInfowindowMarker( {
+			map,
+			marker,
+			infowindow,
+			infowindowURL,
+			infowindowTargetURL,
+			infowindowTitle,
+			infowindowPhone,
+			infowindowEmail,
+		} );
 
 		markers.push( marker );
 

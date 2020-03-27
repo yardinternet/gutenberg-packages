@@ -100,18 +100,16 @@ export function prepareMarkerClusterGroups( map, plotMarkerGroups ) {
 
 			const infowindow = item.infowindow;
 
-			if ( infowindow && !! infowindow.length ) {
-				marker = createInfowindowMarker( {
-					map,
-					marker,
-					infowindow,
-					infowindowURL: item.infowindowURL,
-					infowindowTargetURL: item.infowindowTargetURL,
-					infowindowTitle: item.infowindowTitle,
-					infowindowEmail: item.infowindowEmail,
-					infowindowPhone: item.infowindowPhone,
-				} );
-			}
+			marker = createInfowindowMarker( {
+				map,
+				marker,
+				infowindow,
+				infowindowURL: item.infowindowURL,
+				infowindowTargetURL: item.infowindowTargetURL,
+				infowindowTitle: item.infowindowTitle,
+				infowindowEmail: item.infowindowEmail,
+				infowindowPhone: item.infowindowPhone,
+			} );
 
 			return groupHolder.push( marker );
 		} );
