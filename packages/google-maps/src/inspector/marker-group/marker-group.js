@@ -350,7 +350,12 @@ function Markergroup( {
 function reducer( state, action ) {
 	switch ( action.type ) {
 		case 'add':
-			return state.concat( action.payload );
+			return state.concat( [
+				{
+					...action.payload,
+					indexVal: state.length,
+				},
+			] );
 		case 'edit':
 			return state.map( ( item, index ) =>
 				index === action.payload.index ? action.payload.marker : item
