@@ -28,18 +28,18 @@ export default ( props ) => {
 	const [ terms, setTerms ] = useState( [] );
 
 	useEffect( () => {
-		getTaxonomyTerms( 'openpub-type' );
-		getTaxonomyTerms( 'openpub-audience' );
+		getTaxonomyTerms( 'type', 'openpub-type?per_page=100' );
+		getTaxonomyTerms( 'audience', 'openpub-audience?per_page=100' );
 	}, [] );
 
-	const getTaxonomyTerms = ( taxonomy ) => {
-		fetchOpenpub( taxonomy, '/wp-json/wp/v2/' )
+	const getTaxonomyTerms = ( taxonomy, query ) => {
+		fetchOpenpub( query, '/wp-json/wp/v2/' )
 			.then( ( response ) => response.json() )
 			.then( ( data ) => {
 				setTerms( ( prevSate ) => {
 					return {
 						...prevSate,
-						[ taxonomy.replace( 'openpub-', '' ) ]: data,
+						[ taxonomy ]: data,
 					};
 				} );
 			} );
