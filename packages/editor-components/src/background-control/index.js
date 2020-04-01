@@ -99,6 +99,13 @@ const BackgroundControl = ( props ) => {
 											</div>
 										) }
 									/>
+									{ bgImgUrl && (
+										<img
+											style={ { marginBottom: '1rem' } }
+											src={ bgImgUrl }
+											alt=""
+										/>
+									) }
 									{ bgImgUrl && bgColor && (
 										<RangeControl
 											label="Achtergrond dekking"
