@@ -2,25 +2,19 @@
  * WordPress dependencies
  */
 import {
-	Button,
-	Dashicon,
 	SelectControl,
 	FocalPointPicker,
-	RangeControl,
 	TabPanel,
 	ToggleControl,
 } from '@wordpress/components';
 
-import { MediaUpload, ColorPalette } from '@wordpress/block-editor';
-
 import { __ } from '@wordpress/i18n';
+import TabGeneral from './tabs/tab-general';
 
 const BackgroundControl = ( props ) => {
 	const { setAttributes, attributes } = props;
 	const {
 		bgImgUrl,
-		bgColor,
-		dimRatio,
 		bgRepeat,
 		bgSize,
 		focalPoint,
@@ -62,81 +56,10 @@ const BackgroundControl = ( props ) => {
 					switch ( tab.name ) {
 						case `background`:
 							return (
-								<>
-									<MediaUpload
-										onSelect={ ( img ) =>
-											setAttributes( {
-												bgImgUrl: img.url,
-											} )
-										}
-										type="image"
-										value={ bgImgUrl }
-										render={ ( { open } ) => (
-											<div className="yard-sub-control">
-												<Button
-													isDefault
-													isLarge
-													className={ 'yard-btn' }
-													onClick={ open }
-												>
-													<Dashicon icon="format-image" />
-													{ __( 'Afbeelding' ) }
-												</Button>
-												{ bgImgUrl && (
-													<Button
-														isDefault
-														isLarge
-														className={ 'yard-btn' }
-														onClick={ () =>
-															setAttributes( {
-																bgImgUrl: '',
-															} )
-														}
-													>
-														<Dashicon icon="no-alt" />
-													</Button>
-												) }
-											</div>
-										) }
-									/>
-									{ bgImgUrl && (
-										<img
-											style={ { marginBottom: '1rem' } }
-											src={ bgImgUrl }
-											alt=""
-										/>
-									) }
-									{ bgImgUrl && bgColor && (
-										<RangeControl
-											label="Achtergrond dekking"
-											value={
-												dimRatio !== undefined
-													? dimRatio
-													: 0
-											}
-											onChange={ ( number ) =>
-												setAttributes( {
-													dimRatio: parseInt(
-														number,
-														10
-													),
-												} )
-											}
-											min={ 0 }
-											max={ 100 }
-											step={ 10 }
-										/>
-									) }
-									<p className={ 'yard-label' }>
-										{ __( 'Achtergrond kleur' ) }
-									</p>
-									<ColorPalette
-										value={ bgColor }
-										onChange={ ( color ) =>
-											setAttributes( { bgColor: color } )
-										}
-									/>
-								</>
+								<TabGeneral
+									attributes={ attributes }
+									setAttributes={ setAttributes }
+								/>
 							);
 
 						case `background-advanced`:
