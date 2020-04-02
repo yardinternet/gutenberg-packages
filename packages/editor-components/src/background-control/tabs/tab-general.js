@@ -10,7 +10,10 @@ import { __ } from '@wordpress/i18n';
 
 import { populateSelectFromMediaSizes, getImageSizeByUrl } from '../helpers';
 
-export default function TabGeneral( { attributes, setAttributes } ) {
+export default function TabGeneral( {
+	attributes = {},
+	setAttributes = () => {},
+} ) {
 	const { dimRatio, bgColor, bgImgId, bgImgUrl } = attributes;
 
 	const mediaImagesSizes = useSelect( ( select ) => {
@@ -25,10 +28,12 @@ export default function TabGeneral( { attributes, setAttributes } ) {
 		return null;
 	}, [] );
 
-	const imageSizes = useSelect( ( select ) => {
-		const settings = select( 'core/block-editor' ).getSettings();
-		return settings.imageSizes;
-	}, [] );
+	/**
+	 * Get available imageSizes defined by WP
+	 */
+	const imageSizes = useSelect(
+		( select ) => select( 'core/block-editor' ).getSettings().imageSizes
+	);
 
 	return (
 		<>

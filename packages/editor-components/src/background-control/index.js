@@ -1,30 +1,14 @@
 /**
  * WordPress dependencies
  */
-import {
-	SelectControl,
-	FocalPointPicker,
-	TabPanel,
-	ToggleControl,
-} from '@wordpress/components';
+import { TabPanel } from '@wordpress/components';
 
-import { __ } from '@wordpress/i18n';
 import TabGeneral from './tabs/tab-general';
+import TabAdvanced from './tabs/tab-advanced';
 
 const BackgroundControl = ( props ) => {
 	const { setAttributes, attributes } = props;
-	const {
-		bgImgUrl,
-		bgRepeat,
-		bgSize,
-		focalPoint,
-		backgroundFixed,
-	} = attributes;
-
-	const focalPointDimensions = {
-		width: 400,
-		height: 100,
-	};
+	const { bgImgUrl } = attributes;
 
 	const tabImageUpload = [
 		{
@@ -64,80 +48,10 @@ const BackgroundControl = ( props ) => {
 
 						case `background-advanced`:
 							return bgImgUrl ? (
-								<>
-									<ToggleControl
-										label={ __( 'Vaste achtergrond' ) }
-										checked={ backgroundFixed }
-										onChange={ () =>
-											setAttributes( {
-												backgroundFixed: ! backgroundFixed,
-												bgSize: 'cover',
-											} )
-										}
-									/>
-
-									<FocalPointPicker
-										label={ __( 'Focal Point Picker' ) }
-										url={ bgImgUrl }
-										dimensions={ focalPointDimensions }
-										value={ focalPoint }
-										onChange={ ( point ) =>
-											setAttributes( {
-												focalPoint: point,
-											} )
-										}
-									/>
-									<SelectControl
-										label={ __( 'Background repeat' ) }
-										value={ bgRepeat }
-										onChange={ ( repeat ) => {
-											setAttributes( {
-												bgRepeat: repeat,
-											} );
-										} }
-										options={ [
-											{
-												value: 'no-repeat',
-												label: 'No repeat',
-											},
-											{
-												value: 'repeat',
-												label: 'Repeat',
-											},
-											{
-												value: 'repeat-x',
-												label: 'Repeat-x',
-											},
-											{
-												value: 'repeat-y',
-												label: 'Repeat-y',
-											},
-										] }
-									/>
-									<SelectControl
-										label={ __( 'Background size' ) }
-										value={ bgSize }
-										onChange={ ( size ) => {
-											setAttributes( {
-												bgSize: size,
-											} );
-										} }
-										options={ [
-											{
-												value: 'auto',
-												label: 'Auto',
-											},
-											{
-												value: 'cover',
-												label: 'Cover',
-											},
-											{
-												value: 'contain',
-												label: 'Contain',
-											},
-										] }
-									/>
-								</>
+								<TabAdvanced
+									attributes={ attributes }
+									setAttributes={ setAttributes }
+								/>
 							) : null;
 
 						default:
