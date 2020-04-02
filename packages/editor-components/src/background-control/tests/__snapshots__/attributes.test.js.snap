@@ -9,7 +9,13 @@ Object {
   "bgColor": Object {
     "type": "string",
   },
+  "bgImgId": Object {
+    "type": "number",
+  },
   "bgImgUrl": Object {
+    "type": "string",
+  },
+  "bgImgUrlSize": Object {
     "type": "string",
   },
   "bgRepeat": Object {

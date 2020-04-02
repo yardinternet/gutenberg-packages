@@ -5,6 +5,12 @@ export const backgroundAttributes = {
 	bgImgUrl: {
 		type: 'string',
 	},
+	bgImgId: {
+		type: 'number',
+	},
+	bgImgUrlSize: {
+		type: 'string',
+	},
 	bgSize: {
 		type: 'string',
 	},
