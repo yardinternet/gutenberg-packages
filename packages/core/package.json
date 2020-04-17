@@ -1,0 +1,23 @@
+{
+	"name": "@yardinternet/gutenberg-core",
+	"version": "0.0.1",
+	"description": "This packages contains all core blocks",
+	"author": "Yard Internet",
+	"license": "ISC",
+	"main": "src/index.js",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"storybook": "start-storybook -p 6006"
+	},
+	"devDependencies": {
+		"@storybook/addon-actions": "^5.3.18",
+		"@storybook/react": "^5.3.18"
+	}
+}
