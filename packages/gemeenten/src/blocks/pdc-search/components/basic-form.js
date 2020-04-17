@@ -139,7 +139,9 @@ function BasicForm( props ) {
 					onBlur={ onBlur }
 					onFocus={ onFocus }
 					onChange={ onChange }
+					autoComplete="off"
 				/>
+				<i className="fad fa-spinner fa-spin autosuggest-spinner invisible"></i>
 				<Btn
 					aria-label={ props.hasBtnText ? props.btnText : 'Zoeken' }
 					disabled={ props.disabled }

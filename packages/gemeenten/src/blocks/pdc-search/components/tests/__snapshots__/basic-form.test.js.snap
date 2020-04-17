@@ -18,6 +18,7 @@ exports[`basic form component should not change 1`] = `
       Label
     </label>
     <input
+      autoComplete="off"
       className="gemeenten-block--pdc-search__input css-10ttl3o"
       id="pdc-search"
       name="q"
@@ -26,6 +27,9 @@ exports[`basic form component should not change 1`] = `
       onFocus={[Function]}
       type="text"
       value=""
+    />
+    <i
+      className="fad fa-spinner fa-spin autosuggest-spinner invisible"
     />
     <button
       aria-label="Zoeken"
