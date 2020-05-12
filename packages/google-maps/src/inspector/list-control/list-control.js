@@ -14,6 +14,7 @@ export function ListControl( {
 	showAddModalButton = true,
 	callback = () => {},
 	entityLabel = 'Item',
+	showListCategoryLabel = true,
 	explanationNoItems = '',
 	// Modify formData before it's dispatched
 	hookFormData = ( formData ) => {
@@ -105,7 +106,7 @@ export function ListControl( {
 			<PanelRow>
 				<List
 					explanationNoItems={ explanationNoItems }
-					showCategoryLabel={ true }
+					showCategoryLabel={ showListCategoryLabel }
 					data={ store }
 					onModify={ ( index ) => {
 						const item = dispatch( {

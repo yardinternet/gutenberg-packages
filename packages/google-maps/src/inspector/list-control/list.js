@@ -1,4 +1,5 @@
 import { Button, Dashicon, BaseControl } from '@wordpress/components';
+import { useEffect, useState } from '@wordpress/element';
 
 function List( {
 	explanationNoItems,
@@ -9,16 +10,41 @@ function List( {
 	onModify = () => {},
 	children,
 } ) {
+	const [ categoryCounters, setCategoryCounts ] = useState( [] );
 	const renderCategory = ( index, item ) => {
-		if ( index === 0 ) {
-			return item.category;
-		}
-
-		if ( index > 0 && data[ index - 1 ].category !== item.category ) {
-			return item.category;
+		if (
+			( index > 0 && data[ index - 1 ].category !== item.category ) ||
+			index === 0
+		) {
+			return `${ item.category }(${ categoryCounters[ item.category ] })`;
 		}
 		return null;
 	};
+
+	/**
+	 * Render a number or count for each category
+	 *
+	 * @param {Array} items
+	 */
+	const createCategoryCounters = ( items ) => {
+		const countPerCategory = {};
+
+		items.map( ( item ) => {
+			if ( ! countPerCategory[ item.category ] ) {
+				return ( countPerCategory[ item.category ] = 1 );
+			}
+			return ( countPerCategory[ item.category ] =
+				countPerCategory[ item.category ] + 1 );
+		} );
+
+		setCategoryCounts( countPerCategory );
+	};
+
+	useEffect( () => {
+		if ( showCategoryLabel ) {
+			createCategoryCounters( data );
+		}
+	}, [] );
 
 	return (
 		<>
