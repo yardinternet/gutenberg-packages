@@ -177,6 +177,7 @@ function Inspector( props ) {
 							config.textDomain
 						) }
 						entityLabel={ __( 'Categorie' ) }
+						showListCategoryLabel={ false }
 						showAddModalButton={ true }
 						data={ categories }
 						setAttributes={ setAttributes }
@@ -218,7 +219,7 @@ function Inspector( props ) {
 						) }
 						entityLabel={ __( 'Gebied', config.textDomain ) }
 						showAddModalButton={ false }
-						data={ orderBy( polygons, [ 'category' ], [ 'asc' ] ) }
+						data={ orderBy( polygons, [ 'category', 'name' ] ) }
 						setAttributes={ setAttributes }
 						callback={ ( newPolygons ) => {
 							setAttributes( { polygons: newPolygons } );
