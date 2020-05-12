@@ -1,3 +1,5 @@
+import { orderBy } from 'lodash';
+
 /**
  * Wordpress dependencies
  */
@@ -32,15 +34,6 @@ function Markergroup( {
 	categories = [],
 	parentDispatch = () => {},
 } ) {
-	const withMarkersIndexVal = ( markersWithoutIndex = [] ) => {
-		if ( markersWithoutIndex && ! markersWithoutIndex.length ) return [];
-
-		return markersWithoutIndex.map( ( marker, markerIndex ) => ( {
-			...marker,
-			...{ indexVal: markerIndex },
-		} ) );
-	};
-
 	const [ state, dispatch ] = useReducer(
 		reducer,
 		withMarkersIndexVal( markers )
@@ -208,7 +201,7 @@ function Markergroup( {
 					</Button>
 				) }
 			</div>
-			{ renderSubtitle( 'Markers' ) }
+			{ renderSubtitle( `Markers(${ state.length })` ) }
 			<PanelRow>
 				{ showAddMarkerModalOptions && (
 					<MarkerModalOptions
@@ -350,21 +343,52 @@ function Markergroup( {
 function reducer( state, action ) {
 	switch ( action.type ) {
 		case 'add':
-			return state.concat( [
-				{
-					...action.payload,
-					indexVal: state.length,
-				},
-			] );
+			return withMarkersIndexVal(
+				state.concat( [
+					{
+						...action.payload,
+						indexVal: state.length,
+					},
+				] )
+			);
 		case 'edit':
-			return state.map( ( item, index ) =>
-				index === action.payload.index ? action.payload.marker : item
+			return withMarkersIndexVal(
+				state.map( ( item, index ) =>
+					index === action.payload.index
+						? action.payload.marker
+						: item
+				)
 			);
 		case 'remove':
-			return state.filter( ( item, index ) => index !== action.payload );
+			return withMarkersIndexVal(
+				state.filter( ( item, index ) => index !== action.payload )
+			);
 		default:
 			throw new Error();
 	}
+}
+
+/**
+ * Add indexVal for each marker which act as uniqueId
+ *
+ * Each marker has no unique identifier, this is required for the list component to work
+ * The indexVal from onEdit inside List refers to the index of the item inside `state`
+ *
+ * @param {Array} markersWithoutIndex
+ */
+function withMarkersIndexVal( markersWithoutIndex = [] ) {
+	if ( markersWithoutIndex && ! markersWithoutIndex.length ) return [];
+
+	return orderByInfoTitle( markersWithoutIndex ).map(
+		( marker, markerIndex ) => ( {
+			...marker,
+			...{ indexVal: markerIndex },
+		} )
+	);
+}
+
+function orderByInfoTitle( data ) {
+	return orderBy( data, [ 'infowindowTitle' ], [ 'asc' ] );
 }
 
 export default Markergroup;
