@@ -9,7 +9,7 @@ export function registerBlockFilters( { blockFilters = [], config = {} } ) {
 			config[ blockFilter.name ] &&
 			typeof blockFilter.register === 'function'
 		) {
-			blockFilter.register();
+			blockFilter.register( config );
 			return true;
 		}
 

@@ -9,7 +9,10 @@ export default function Save( element, blockType, attributes ) {
 	const { yardFilesize } = attributes;
 
 	return (
-		<div className="yard-block-filter--core-file">
+		<div
+			className="yard-block-filter--core-file"
+			style={ { display: 'flex' } }
+		>
 			<>
 				{ element }
 				<FileSize filesize={ yardFilesize } />
