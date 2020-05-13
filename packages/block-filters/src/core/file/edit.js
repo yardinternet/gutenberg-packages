@@ -26,22 +26,27 @@ export default createHigherOrderComponent( ( BlockEdit ) => {
 					} );
 				} );
 			}
-		}, [ href ] );
+		}, [ href, yardShowFilesize ] );
 
 		return (
-			<div className="wp-block-file">
+			<div
+				style={ { justifyContent: 'flex-start' } }
+				className="wp-block-file"
+			>
 				<BlockEdit { ...props } />
-				<InspectorControls>
-					<PanelBody title={ __( 'Bestandsgrootte' ) }>
-						<ToggleControl
-							label={ __( 'Toon bestandsgrootte' ) }
-							checked={ yardShowFilesize }
-							onChange={ ( bool ) =>
-								setAttributes( { yardShowFilesize: bool } )
-							}
-						/>
-					</PanelBody>
-				</InspectorControls>
+				{ href && (
+					<InspectorControls>
+						<PanelBody title={ __( 'Bestandsgrootte' ) }>
+							<ToggleControl
+								label={ __( 'Toon bestandsgrootte' ) }
+								checked={ yardShowFilesize }
+								onChange={ ( bool ) =>
+									setAttributes( { yardShowFilesize: bool } )
+								}
+							/>
+						</PanelBody>
+					</InspectorControls>
+				) }
 				{ yardShowFilesize && <FileSize filesize={ yardFilesize } /> }
 			</div>
 		);

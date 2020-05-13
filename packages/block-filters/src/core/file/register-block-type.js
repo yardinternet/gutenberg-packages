@@ -15,6 +15,8 @@ export default function RegisterBlockType( settings, name ) {
 			},
 			yardFilesize: {
 				type: 'string',
+				source: 'text',
+				selector: '.yard-block-filter--core-file__filesize',
 			},
 		},
 	};

@@ -6,19 +6,19 @@ import Edit from './edit';
 
 import RegisterBlockType from './register-block-type';
 
-const register = () => {
+const register = ( config ) => {
 	addFilter(
 		'blocks.getSaveElement',
 		`${ namespace }/${ blocks.coreFile }`,
-		Save
+		( element, blockType, attributes ) =>
+			// It's possible to pass a config from your project
+			Save( element, blockType, attributes, config[ blocks.coreFile ] )
 	);
-
 	addFilter(
 		'editor.BlockEdit',
 		`${ namespace }/${ blocks.coreFile }`,
 		Edit
 	);
-
 	addFilter(
 		'blocks.registerBlockType',
 		`${ namespace }/${ blocks.coreFile }`,
