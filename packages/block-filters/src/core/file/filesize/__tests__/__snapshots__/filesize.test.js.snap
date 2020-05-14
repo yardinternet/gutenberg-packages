@@ -4,7 +4,9 @@ exports[`filesize component should not change 1`] = `
 <div
   className="yard-block-filter--core-file__filesize"
 >
+  (
   100 kb
+  )
 </div>
 `;
 
@@ -20,7 +22,9 @@ exports[`filesize component should not change save component of core/file 1`] = 
   <div
     className="yard-block-filter--core-file__filesize"
   >
+    (
     
+    )
   </div>
 </div>
 `;
