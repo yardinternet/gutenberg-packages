@@ -7,9 +7,7 @@ const availableFilters = [ FileBlockFilters ];
  * Initial config
  */
 const initialConfig = {
-	'core/file/filesize': {
-		prepend: 'ddd',
-	},
+	'core/file/filesize': {},
 };
 
 /**

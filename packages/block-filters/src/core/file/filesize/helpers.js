@@ -7,6 +7,6 @@ export async function getFileDetails( href = '' ) {
 		const response = await fetch( href ).then( ( res ) => res.blob() );
 		return filesize( response.size );
 	} catch ( error ) {
-		throw new Error( 'error' );
+		throw new Error( 'File not found' );
 	}
 }
