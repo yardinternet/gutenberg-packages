@@ -1,16 +1,14 @@
-import * as FileBlockFilters from './core/file';
+import * as FileBlockFilters from './core/file/filesize';
 import { registerBlockFilters } from './helpers';
-import { blocks } from './config';
 
 const availableFilters = [ FileBlockFilters ];
-const { coreFile } = blocks;
 
 /**
  * Initial config
  */
 const initialConfig = {
-	[ coreFile ]: {
-		showFileSize: true,
+	'core/file/filesize': {
+		prepend: 'ddd',
 	},
 };
 

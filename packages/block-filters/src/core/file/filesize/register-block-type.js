@@ -1,7 +1,7 @@
-import { blocks } from '../../config';
+import { coreFileFilesize } from '../../../config';
 
 export default function RegisterBlockType( settings, name ) {
-	if ( name !== blocks.coreFile ) {
+	if ( name !== coreFileFilesize.block ) {
 		return settings;
 	}
 

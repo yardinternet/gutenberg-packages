@@ -4,13 +4,13 @@ import { PanelBody, ToggleControl } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
+import { coreFileFilesize } from '../../../config';
 import FileSize from './components/filesize';
 import { getFileDetails } from './helpers';
-import { blocks } from '../../config';
 
 export default createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
-		if ( props.name !== blocks.coreFile ) {
+		if ( props.name !== coreFileFilesize.block ) {
 			return <BlockEdit { ...props } />;
 		}
 
