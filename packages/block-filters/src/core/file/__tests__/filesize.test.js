@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import FileSize from './filesize';
+import FileSize from '../components/filesize';
 import Save from '../save';
 
 describe( 'filesize', () => {
