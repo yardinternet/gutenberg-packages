@@ -1,31 +1,27 @@
 import { addFilter } from '@wordpress/hooks';
 
-import { blocks, namespace } from '../../config';
+import { namespace, coreFileFilesize } from '../../../config';
 import Save from './save';
 import Edit from './edit';
 
 import RegisterBlockType from './register-block-type';
 
+const { name } = coreFileFilesize;
+
 const register = ( config ) => {
 	addFilter(
 		'blocks.getSaveElement',
-		`${ namespace }/${ blocks.coreFile }`,
+		`${ namespace }/${ name }`,
 		( element, blockType, attributes ) =>
 			// It's possible to pass a config from your project
-			Save( element, blockType, attributes, config[ blocks.coreFile ] )
+			Save( element, blockType, attributes, config )
 	);
-	addFilter(
-		'editor.BlockEdit',
-		`${ namespace }/${ blocks.coreFile }`,
-		Edit
-	);
+	addFilter( 'editor.BlockEdit', `${ namespace }/${ name }`, Edit );
 	addFilter(
 		'blocks.registerBlockType',
-		`${ namespace }/${ blocks.coreFile }`,
+		`${ namespace }/${ name }`,
 		RegisterBlockType
 	);
 };
-
-const name = blocks.coreFile;
 
 export { register, name };

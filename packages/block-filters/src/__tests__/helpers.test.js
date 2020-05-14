@@ -3,7 +3,7 @@ import { registerBlockFilters } from '../helpers';
 const blockFilters = [
 	{
 		register: () => {},
-		name: 'core/file',
+		name: 'core/file/filesize',
 	},
 	{
 		register: () => {},
@@ -12,12 +12,10 @@ const blockFilters = [
 ];
 
 const config = {
-	'core/file': {
-		blaat: true,
+	'core/file/filesize': {
+		prepend: '',
 	},
-	'core/button': {
-		blaat: true,
-	},
+	'core/button': {},
 };
 
 test( 'should return the core/file entry', () => {

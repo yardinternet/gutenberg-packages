@@ -1,8 +1,11 @@
+import { coreFileFilesize } from '../../../config';
 import FileSize from './components/filesize';
-import { blocks } from '../../config';
 
 export default function Save( element, blockType, attributes ) {
-	if ( blockType.name !== blocks.coreFile || ! attributes.yardShowFilesize ) {
+	if (
+		blockType.name !== coreFileFilesize.block ||
+		! attributes.yardShowFilesize
+	) {
 		return element;
 	}
 
