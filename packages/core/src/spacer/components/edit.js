@@ -1,23 +1,49 @@
-import { Placeholder, SelectControl } from '@wordpress/components';
-import { file } from '@wordpress/icons';
+/**
+ * External dependencies
+ */
+import { RangeControl } from '@wordpress/components';
+import { applyFilters } from '@wordpress/hooks';
+import { Global } from '@emotion/core';
 
-const value = 'large';
+/**
+ * Internal dependencies
+ */
+import editorStyles from './../editor-styles';
 
-export default function Edit( { onChange } ) {
+const MIN = 0;
+const MAX = applyFilters( 'yard-blocks.gutenberg-core.spacer', 5 );
+
+function Edit( {
+	size = 2,
+	setSize = () => {},
+	isSelected = true,
+	backgroundColor = '',
+} ) {
 	return (
-		<Placeholder icon={ file } label="Placeholder">
-			<SelectControl
-				label="Size"
-				value={ value }
-				options={ [
-					{ label: 'Big', value: '100%' },
-					{ label: 'Medium', value: '50%' },
-					{ label: 'Small', value: '25%' },
-				] }
-				onChange={ ( size ) => {
-					onChange( { size } );
-				} }
-			/>
-		</Placeholder>
+		<>
+			<Global styles={ editorStyles } />
+			<div
+				className={ `yard-blocks-spacer-wrapper` }
+				style={ { backgroundColor } }
+			>
+				<div className={ 'yard-blocks-spacer-icon fal fa-arrows-v' } />
+				<div className={ 'yard-blocks-spacer-number' }>{ size }</div>
+				<div className={ 'yard-blocks-spacer-label' }>Spacer</div>
+				{ isSelected && (
+					<RangeControl
+						value={ size }
+						onChange={ setSize }
+						min={ MIN }
+						max={ MAX }
+					/>
+				) }
+			</div>
+			<div
+				className={ `yard-blocks-spacer-size yard-blocks-spacer-size-${ size }` }
+				style={ { backgroundColor } }
+			></div>
+		</>
 	);
 }
+
+export default Edit;

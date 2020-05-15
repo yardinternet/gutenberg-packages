@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basicTest Metadata should not change 1`] = `
+Object {
+  "attributes": Object {
+    "backgroundColor": Object {
+      "default": "",
+      "type": "string",
+    },
+    "size": Object {
+      "default": 2,
+      "type": "number",
+    },
+  },
+  "name": "yard-blocks/spacer",
+}
+`;
+
+exports[`checkOutput Save output should not change 1`] = `
+<div
+  className="yard-blocks-spacer yard-blocks-spacer-size-5"
+  style={
+    Object {
+      "backgroundColor": "#FFF",
+    }
+  }
+/>
+`;

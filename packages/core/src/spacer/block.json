@@ -1,4 +1,13 @@
 {
 	"name": "yard-blocks/spacer",
-	"attributes": {}
+	"attributes": {
+		"size": {
+			"type": "number",
+			"default": 2
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		}
+	}
 }
