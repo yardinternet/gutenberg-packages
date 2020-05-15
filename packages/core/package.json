@@ -13,10 +13,15 @@
 		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"storybook": "start-storybook -p 6006"
+		"storybook": "start-storybook -p 6006",
+		"test": "jest",
+		"test:watch": "jest --watch"
+	},
+	"dependencies": {
+		"@yardinternet/gutenberg-editor-components": "^1.2.2"
 	},
 	"devDependencies": {
+		"@emotion/styled": "^10.0.27",
 		"@storybook/addon-actions": "^5.3.18",
 		"@storybook/react": "^5.3.18"
 	}

@@ -1,5 +1,11 @@
-import { action } from '@storybook/addon-actions';
+/**
+ * External dependencies
+ */
+import { useState } from '@wordpress/element';
 
+/**
+ * Internal dependencies
+ */
 import Edit from '../components/edit';
 import Save from '../components/save';
 
@@ -8,6 +14,10 @@ export default {
 	title: 'Spacer',
 };
 
-export const edit = () => <Edit onChange={ action( 'onChange' ) } />;
+export const EditView = () => {
+	const [ size, setSize ] = useState( 0 );
 
-export const frontend = () => <Save />;
+	return <Edit size={ size } setSize={ setSize } />;
+};
+
+export const FrontendView = () => <Save />;
