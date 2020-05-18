@@ -18,6 +18,16 @@
 		"test:watch": "jest --watch",
 		"storybook": "start-storybook"
 	},
+	"jest": {
+		"transform": {
+			"^.+\\.(js)$": [
+				"babel-jest",
+				{
+					"rootMode": "upward"
+				}
+			]
+		}
+	},
 	"bugs": {
 		"url": "https://github.com/yardinternet/gutenberg-packages/issues"
 	},

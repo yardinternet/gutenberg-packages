@@ -19,6 +19,16 @@
 		"test:watch": "jest --watch",
 		"storybook": "start-storybook"
 	},
+	"jest": {
+		"transform": {
+			"^.+\\.(js)$": [
+				"babel-jest",
+				{
+					"rootMode": "upward"
+				}
+			]
+		}
+	},
 	"dependencies": {
 		"@fonticonpicker/react-fonticonpicker": "^1.2.0",
 		"@wordpress/block-editor": "^3.3.0",

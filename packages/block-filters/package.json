@@ -13,6 +13,16 @@
 	"scripts": {
 		"test": "jest"
 	},
+	"jest": {
+		"transform": {
+			"^.+\\.(js)$": [
+				"babel-jest",
+				{
+					"rootMode": "upward"
+				}
+			]
+		}
+	},
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {

@@ -8,6 +8,16 @@
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook"
 	},
+	"jest": {
+		"transform": {
+			"^.+\\.(js)$": [
+				"babel-jest",
+				{
+					"rootMode": "upward"
+				}
+			]
+		}
+	},
 	"author": "",
 	"license": "ISC",
 	"publishConfig": {
