@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-gemeenten",
-	"version": "0.2.14",
+	"version": "0.2.15",
 	"description": "Contains all gemeenten blocks",
 	"author": "Ferdie Sletering <ferdie@yard.nl>",
 	"license": "ISC",
@@ -27,7 +27,7 @@
 		"@wordpress/dom-ready": "^2.5.1",
 		"@wordpress/scripts": "^6.0.0",
 		"@wordpress/server-side-render": "^1.6.0",
-		"@yardinternet/gutenberg-editor-components": "^1.2.3",
+		"@yardinternet/gutenberg-editor-components": "^1.2.4",
 		"react-select": "^3.0.4"
 	},
 	"devDependencies": {
