@@ -68,6 +68,11 @@ addFilter(
 const withInspectorControls = ( BlockEdit ) => {
 	return ( props ) => {
 		const { attributes, setAttributes, name } = props;
+
+		if ( ! attributes.styleClass ) {
+			return <BlockEdit { ...props } />;
+		}
+
 		if ( ! attributes.styleClass.length || !! attributes.styleClassSet ) {
 			return <BlockEdit { ...props } />;
 		}
