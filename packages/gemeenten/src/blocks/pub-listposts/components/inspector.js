@@ -2,6 +2,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { Fragment, useEffect, useState } from '@wordpress/element';
 import Select from 'react-select';
+import { applyFilters } from '@wordpress/hooks';
 import { getSelectedPost, postOptions } from '../utils';
 import {
 	Spinner,
@@ -9,6 +10,7 @@ import {
 	CheckboxControl,
 	PanelBody,
 	ToggleControl,
+	SelectControl,
 } from '@wordpress/components';
 import { fetchOpenpub } from './api';
 
@@ -23,6 +25,7 @@ export default ( props ) => {
 		displayDate,
 		displayExcerpt,
 		displayFeaturedImage,
+		selectedView,
 	} = attributes;
 
 	const [ terms, setTerms ] = useState( [] );
@@ -161,6 +164,20 @@ export default ( props ) => {
 						} ) ) }
 					/>
 				) }
+			</PanelBody>
+
+			<PanelBody title="Template" initialOpen={ false }>
+				<SelectControl
+					value={ selectedView }
+					label={ __( 'Selecteer template' ) }
+					onChange={ ( value ) => {
+						setAttributes( { selectedView: value } );
+					} }
+					options={ applyFilters(
+						'gutenberg-gemeenten.OpenPubListPostTemplates',
+						[ { value: 'index', label: 'Standaard' } ]
+					) }
+				/>
 			</PanelBody>
 		</InspectorControls>
 	);
