@@ -31,6 +31,10 @@
 		"displayFeaturedImage": {
 			"type": "boolean",
 			"default": true
+		},
+		"selectedView": {
+			"type": "string",
+			"default": "normal"
 		}
 	}
 }
