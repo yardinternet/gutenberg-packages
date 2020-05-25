@@ -34,7 +34,7 @@
 		},
 		"selectedView": {
 			"type": "string",
-			"default": "normal"
+			"default": "index"
 		}
 	}
 }
