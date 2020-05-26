@@ -95,8 +95,18 @@ function Map() {
         }
     };
 
+    // Override the default polygonstyles
+    const polygonStyles = {
+        strokeColor: "#000000",
+        strokeOpacity: 0.75,
+        strokeWeight: 0.5,
+        fillOpacity: 0.75,
+        fillColor: "#000000"
+    };
+
     const newProps = {
         ...props,
+        ...{ polygonStyles },
         ...{ hardCodedInitialFilters: getPageFilters(jsVars.pageSlug) }
     };
 
