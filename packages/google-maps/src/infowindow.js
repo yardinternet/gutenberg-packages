@@ -5,6 +5,9 @@ import { isEmpty } from 'lodash';
 import { render } from '@wordpress/element';
 import InfoWindow from './components/infowindow';
 
+// Holds all infowindows on the map
+const infowindowCollection = [];
+
 /**
  * Create infowindow object for Polygon
  *
@@ -27,12 +30,14 @@ export function createInfowindowPolygon( props ) {
 	} );
 
 	google.maps.event.addListener( polygon, 'click', function() {
+		closeAllInfowindows();
 		infowindowPolygon.setPosition(
 			new google.maps.LatLng(
 				polygon.infowindowLat,
 				polygon.infowindowLng
 			)
 		);
+
 		infowindowPolygon.open( map );
 	} );
 }
@@ -68,6 +73,7 @@ export function createInfowindowMarker( props ) {
 	} );
 
 	marker.addListener( 'click', function() {
+		closeAllInfowindows();
 		infowindowObject.open( map, marker );
 	} );
 
@@ -93,9 +99,13 @@ function createInfowindow( { title, content, url, urlTarget, email, phone } ) {
 		div
 	);
 
-	return new google.maps.InfoWindow( {
+	const infowindow = new google.maps.InfoWindow( {
 		content: div,
 	} );
+
+	infowindowCollection.push( infowindow );
+
+	return infowindow;
 }
 
 /**
@@ -107,4 +117,11 @@ function hasInfowindowContent( props = {} ) {
 	return !! Object.values( props ).filter(
 		( item ) => typeof item === 'string' && item.length > 0
 	).length;
+}
+
+/**
+ * Close all infowindows
+ */
+function closeAllInfowindows() {
+	infowindowCollection.map( ( infowindow ) => infowindow.close() );
 }
