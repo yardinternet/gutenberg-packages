@@ -11,6 +11,7 @@ import ListControl from './inspector/list-control/list-control';
 import AddMarkerGroupModal from './inspector/marker-group/add-marker-group-modal';
 import MarkerGroups from './inspector/marker-group/marker-groups';
 import ImportCoordinatesControl from './inspector/import-coordinates-control';
+import ExportCoordinatesControl from './inspector/export-coordinates-control';
 import MapOptions from './inspector/map-options';
 
 /**
@@ -58,6 +59,11 @@ function Inspector( props ) {
 	const [
 		showImportShapeCoordinates,
 		setShowImportShapeCoordinates,
+	] = useState( false );
+
+	const [
+		showExportShapeCoordinates,
+		setShowExportShapeCoordinates,
 	] = useState( false );
 
 	const addMarkerGroup = ( group ) => {
@@ -333,15 +339,32 @@ function Inspector( props ) {
 								setModal={ setShowImportShapeCoordinates }
 								setAttributes={ setAttributes }
 								polygons={ polygons }
+								categories={ categories }
+							/>
+						) }
+						{ showExportShapeCoordinates && (
+							<ExportCoordinatesControl
+								setModal={ setShowExportShapeCoordinates }
+								polygons={ polygons }
 							/>
 						) }
 						<Button
-							isDefault
+							isSmall
+							isPrimary
 							onClick={ () =>
 								setShowImportShapeCoordinates( true )
 							}
 						>
 							Importeer gebied
+						</Button>
+						<Button
+							isSmall
+							isDefault
+							onClick={ () =>
+								setShowExportShapeCoordinates( true )
+							}
+						>
+							Exporteer gebied
 						</Button>
 					</PanelRow>
 				</PanelBody>
