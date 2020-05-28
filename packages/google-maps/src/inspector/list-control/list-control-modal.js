@@ -93,14 +93,9 @@ function ListControlModal( {
 						defaultValue: ! hasFormData.length
 							? preRender( hasFormData[ control.id ] )
 							: '',
-						// We need to set color manually to make the ColorPicker work
-						color: !! hasFormData.color
-							? hasFormData.color
-							: '#000000',
-						// We need to set color manually to make the ColorPicker work
-						bordercolor: !! hasFormData.borderColor
-							? hasFormData.borderColor
-							: '#000000',
+						...( control.type === 'ColorPicker' && {
+							color: hasFormData[ control.id ],
+						} ),
 						...( control.type === 'ToggleSwitch' && {
 							checked: hasFormData[ control.id ],
 						} ),

@@ -38,6 +38,7 @@ export function ListControl( {
 		const storeOmitIndex = newStore.map( ( item ) =>
 			omit( item, [ 'index' ] )
 		);
+
 		setStore( storeOmitIndex );
 		callback( storeOmitIndex );
 	};

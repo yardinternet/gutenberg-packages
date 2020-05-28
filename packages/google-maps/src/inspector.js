@@ -313,7 +313,7 @@ function Inspector( props ) {
 								type: 'ColorPicker',
 								id: 'color',
 								attr: {
-									label: 'WEEEE',
+									label: 'color',
 									name: 'color',
 								},
 							},
@@ -332,7 +332,7 @@ function Inspector( props ) {
 								type: 'ColorPicker',
 								id: 'borderColor',
 								attr: {
-									label: 'WEEEE',
+									label: 'borderColor',
 									name: 'borderColor',
 								},
 							},
