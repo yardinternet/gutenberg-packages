@@ -225,7 +225,6 @@ function Inspector( props ) {
 						) }
 						entityLabel={ __( 'Gebied', config.textDomain ) }
 						showAddModalButton={ false }
-						displayValue={ 'infowindowTitle' }
 						data={ orderBy( polygons, [ 'category', 'name' ] ) }
 						setAttributes={ setAttributes }
 						callback={ ( newPolygons ) => {
