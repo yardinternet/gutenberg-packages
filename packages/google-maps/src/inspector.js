@@ -225,6 +225,7 @@ function Inspector( props ) {
 						) }
 						entityLabel={ __( 'Gebied', config.textDomain ) }
 						showAddModalButton={ false }
+						displayValue={ 'infowindowTitle' }
 						data={ orderBy( polygons, [ 'category', 'name' ] ) }
 						setAttributes={ setAttributes }
 						callback={ ( newPolygons ) => {
@@ -248,6 +249,11 @@ function Inspector( props ) {
 								type: 'TextControl',
 								id: 'name',
 								attr: { label: 'Naam' },
+							},
+							{
+								type: 'TextControl',
+								id: 'infowindowTitle',
+								attr: { label: 'Titel' },
 							},
 							{
 								type: 'TextControl',
