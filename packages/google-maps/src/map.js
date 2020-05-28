@@ -224,6 +224,7 @@ function Map( {
 				polygon: new google.maps.Polygon( {
 					id: item.id,
 					infowindow: item.infowindow,
+					infowindowTitle: item.infowindowTitle,
 					infowindowURL: item.infowindowURL,
 					infowindowLat: bounds.getCenter().lat(),
 					infowindowLng: bounds.getCenter().lng(),
@@ -397,13 +398,20 @@ function Map( {
 				} );
 			} );
 
+			/**
+			 * Use a specified windowTitle otherwise fallback to name
+			 */
+			const infowindowTitle = polygon.polygon.infowindowTitle
+				? polygon.polygon.infowindowTitle
+				: polygon.polygon.name;
+
 			createInfowindowPolygon( {
 				map,
 				polygon: polygon.polygon,
 				content: polygon.polygon.infowindow,
 				url: polygon.polygon.infowindowURL,
 				urlTarget: polygon.polygon.infowindowTargetURL,
-				name: polygon.polygon.name,
+				title: infowindowTitle,
 				email: polygon.polygon.infowindowEmail,
 				phone: polygon.polygon.infowindowPhone,
 			} );

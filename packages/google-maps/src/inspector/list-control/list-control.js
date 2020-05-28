@@ -16,6 +16,7 @@ export function ListControl( {
 	entityLabel = 'Item',
 	showListCategoryLabel = true,
 	explanationNoItems = '',
+	displayValue = '',
 	// Modify formData before it's dispatched
 	hookFormData = ( formData ) => {
 		return formData;
@@ -105,6 +106,7 @@ export function ListControl( {
 			) }
 			<PanelRow>
 				<List
+					displayValue={ displayValue }
 					explanationNoItems={ explanationNoItems }
 					showCategoryLabel={ showListCategoryLabel }
 					data={ store }

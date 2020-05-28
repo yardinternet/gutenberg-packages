@@ -18,10 +18,19 @@ export function createInfowindowPolygon( props ) {
 		return false;
 	}
 
-	const { map, polygon, content, url, urlTarget, name, email, phone } = props;
+	const {
+		map,
+		polygon,
+		content,
+		url,
+		urlTarget,
+		title,
+		email,
+		phone,
+	} = props;
 
 	const infowindowPolygon = createInfowindow( {
-		title: name,
+		title,
 		content,
 		url,
 		urlTarget,
