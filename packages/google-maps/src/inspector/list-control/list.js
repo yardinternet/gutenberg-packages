@@ -12,6 +12,7 @@ function List( {
 } ) {
 	const [ categoryCounters, setCategoryCounts ] = useState( [] );
 	const renderCategory = ( index, item ) => {
+		if ( ! item.category ) return;
 		if (
 			( index > 0 && data[ index - 1 ].category !== item.category ) ||
 			index === 0
