@@ -23,4 +23,10 @@ describe( 'getSpacingUtilClass to return bootstrap utility classes', () => {
 			'mt-n3'
 		);
 	} );
+
+	test( 'should return negative margin mt-n5', () => {
+		expect( getSpacingUtilClass( [ 'mt', false, '-5' ] ) ).toEqual(
+			'mt-n5'
+		);
+	} );
 } );
