@@ -10,7 +10,8 @@
 		"format": "wp-scripts format-js ./packages --write",
 		"auto-changelog": "auto-changelog --tag-pattern .+ --commit-limit false",
 		"test": "jest",
-		"test:watch": "jest --watch"
+		"test:watch": "jest --watch",
+		"storybook": "start-storybook -p 6006"
 	},
 	"repository": {
 		"type": "git",
@@ -33,6 +34,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.8.4",
 		"@babel/plugin-transform-runtime": "^7.10.1",
+		"@testing-library/react": "^10.2.1",
 		"@wordpress/scripts": "^7.1.0",
 		"auto-changelog": "^1.16.2",
 		"babel-loader": "^8.0.6",
@@ -44,6 +46,10 @@
 	"dependencies": {
 		"@emotion/core": "^10.0.27",
 		"@emotion/styled": "^10.0.27",
+		"@storybook/addon-a11y": "^5.3.14",
+		"@storybook/addon-actions": "^5.3.13",
+		"@storybook/addon-links": "^5.3.13",
+		"@storybook/react": "^5.3.13",
 		"@wordpress/babel-plugin-import-jsx-pragma": "^2.5.0",
 		"@wordpress/blocks": "^6.12.0",
 		"@wordpress/components": "^9.2.0",
