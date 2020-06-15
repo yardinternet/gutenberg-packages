@@ -1,4 +1,4 @@
 module.exports = {
-	stories: [ '../packages/google-maps/src/**/stories/*.js' ],
+	stories: [ '../packages/front-render/src/**/stories/*.js' ],
 	addons: [ '@storybook/addon-actions', '@storybook/addon-links' ],
 };

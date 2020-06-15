@@ -1,0 +1,28 @@
+{
+	"name": "@yardinternet/front-render",
+	"version": "0.0.1",
+	"description": "Contains helpers to render a Gutenberg component on the frontend based on data attributes",
+	"main": "src/index.js",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
+	},
+	"scripts": {
+		"test": "jest"
+	},
+	"jest": {
+		"transform": {
+			"^.+\\.(js)$": [
+				"babel-jest",
+				{
+					"rootMode": "upward"
+				}
+			]
+		}
+	},
+	"author": "Yard Internet",
+	"license": "ISC"
+}

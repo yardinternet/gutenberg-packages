@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withFrontRender should render fakeComponent with additional props 1`] = `
+<div
+  data-testid="1"
+>
+  <h2 />
+  <p>
+    Honda
+    Fiat
+  </p>
+</div>
+`;
+
+exports[`withSaveAttributes add data-attributes to wrapped component 1`] = `
+<div
+  data-cars="[\\"Honda\\",\\"Fiat\\"]"
+  data-obj="{\\"age\\":12,\\"name\\":\\"John\\"}"
+  data-testid="1"
+/>
+`;
