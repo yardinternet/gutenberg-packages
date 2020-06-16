@@ -40,7 +40,7 @@ const registerBlockTypeStyleClass = ( props ) => {
 	const attr = {
 		...props.attributes,
 		...{
-			styleClass: { type: 'string', default: '', styleClassSet: false },
+			styleClass: { type: 'string', default: '' },
 		},
 	};
 
@@ -69,16 +69,8 @@ const withInspectorControls = ( BlockEdit ) => {
 	return ( props ) => {
 		const { attributes, setAttributes, name } = props;
 
-		if ( ! attributes.styleClass ) {
+		if ( attributes.styleClass === undefined ) {
 			return <BlockEdit { ...props } />;
-		}
-
-		if ( ! attributes.styleClass.length || !! attributes.styleClassSet ) {
-			return <BlockEdit { ...props } />;
-		}
-
-		if ( attributes.styleClassSet === undefined ) {
-			props.setAttributes( { styleClassSet: true } );
 		}
 
 		const { styleClass } = attributes;
