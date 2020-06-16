@@ -4,10 +4,6 @@
 import { css } from '@emotion/core';
 
 export default css`
-	[data-type='yard-blocks/spacer'] {
-		min-width: 100%;
-	}
-
 	.yard-blocks-spacer-wrapper {
 		display: flex;
 		flex-wrap: wrap;
