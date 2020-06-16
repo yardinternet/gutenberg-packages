@@ -12,9 +12,9 @@ exports[`Cards blockappender 1`] = `
     Blok toevoegen
   </span>
   <svg
-    aria-hidden="true"
+    aria-hidden={true}
     className="dashicon dashicons-insert"
-    focusable="false"
+    focusable={false}
     height={20}
     role="img"
     viewBox="0 0 20 20"

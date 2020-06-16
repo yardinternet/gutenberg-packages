@@ -2,7 +2,10 @@ module.exports = function( api ) {
 	api.cache( true );
 
 	return {
-		plugins: [ '@wordpress/babel-plugin-import-jsx-pragma' ],
-		presets: [ '@wordpress/babel-preset-default' ],
+		presets: [ '@babel/preset-env', '@wordpress/babel-preset-default' ],
+		plugins: [
+			'@wordpress/babel-plugin-import-jsx-pragma',
+			'@babel/plugin-transform-runtime',
+		],
 	};
 };
