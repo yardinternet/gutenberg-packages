@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import './style-class-control';
+export { StyleClassControl } from './style-class-control';
 export { default as BackgroundControl } from './background-control';
 export { backgroundAttributes } from './background-control/attributes';
 export { default as FlexboxControl } from './flexbox-control';
