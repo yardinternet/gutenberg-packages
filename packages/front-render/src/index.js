@@ -10,7 +10,7 @@ function parseData( data = {} ) {
 	const props = {};
 
 	Object.keys( data ).map( ( item ) => {
-		if ( ! data[ item ] || data[ item ].length === 0 ) {
+		if ( ! data[ item ] ) {
 			return [];
 		}
 
@@ -34,8 +34,14 @@ function withSaveDataAttributes( WrappedComponent, data = {} ) {
 	return cloneElement( WrappedComponent, { ...parseData( data ) } );
 }
 
+/**
+ * Transform data-attr to props
+ *
+ * @param {*} { Component, element }
+ * @return {Element} - Element
+ */
 function withFrontRender( { Component, element } ) {
-	const props = { kamelenTeen: 'haha' };
+	const props = {};
 
 	Object.keys( element.dataset ).map( ( item ) => {
 		const value = element.dataset[ item ];
