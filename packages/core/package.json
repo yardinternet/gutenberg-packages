@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-core",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "This packages contains all core blocks",
 	"author": "Yard Internet",
 	"license": "ISC",
@@ -18,7 +18,7 @@
 		"test:watch": "jest --watch"
 	},
 	"dependencies": {
-		"@yardinternet/gutenberg-editor-components": "^1.2.8"
+		"@yardinternet/gutenberg-editor-components": "^1.2.9"
 	},
 	"devDependencies": {
 		"@emotion/styled": "^10.0.27",
