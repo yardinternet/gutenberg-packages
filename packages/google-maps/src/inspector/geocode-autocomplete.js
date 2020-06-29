@@ -1,6 +1,7 @@
 /**
  * WordPress dependencies
  */
+import { __ } from '@wordpress/i18n';
 import AsyncSelect from 'react-select/async';
 
 function GeocodeAutocomplete( {
@@ -42,6 +43,7 @@ function GeocodeAutocomplete( {
 			<AsyncSelect
 				cacheOptions={ true }
 				onChange={ onChange }
+				placeholder={ __( 'Voer een adres in' ) }
 				defaultInputValue={ defaultInputValue }
 				loadOptions={ geocodeAdress }
 			/>
