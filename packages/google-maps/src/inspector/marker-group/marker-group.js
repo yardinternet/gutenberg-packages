@@ -297,7 +297,7 @@ function Markergroup( {
 				/>
 			</PanelRow>
 			<PanelRow>
-				{ supportCptLatLng ? (
+				{ supportCptLatLng.length ? (
 					<Button
 						isPrimary
 						isLarge
