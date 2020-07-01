@@ -589,7 +589,12 @@ function Map( {
 		}
 	};
 
+	/**
+	 * Watch the selectedFilter and markerGroups
+	 */
 	useEffect( () => {
+		if ( ! markerGroups.length ) return;
+
 		if ( !! selectedFilters.length ) {
 			setIntialObjectRender( true );
 		}
@@ -600,6 +605,17 @@ function Map( {
 				selectedFilters,
 			} )
 		);
+	}, [ selectedFilters, markerGroups ] );
+
+	/**
+	 * Watch the selectedFilter and polygons
+	 */
+	useEffect( () => {
+		if ( ! polygons.length ) return;
+
+		if ( !! selectedFilters.length ) {
+			setIntialObjectRender( true );
+		}
 
 		setFilteredPolygons(
 			filterPolygonsByCategory( {
@@ -607,7 +623,7 @@ function Map( {
 				selectedFilters,
 			} )
 		);
-	}, [ selectedFilters, polygons, markerGroups ] );
+	}, [ selectedFilters, polygons ] );
 
 	return (
 		<>
