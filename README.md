@@ -8,6 +8,8 @@
 
 ## Package development
 
+Copy .npmrc.example to .npmrc
+
 ### Developing package in project or theme
 
 1. Run `npm link` inside the gutenberg-package/packages/<package>
@@ -30,7 +32,13 @@ Alternatively, running `npm install` in your theme will also remove the linked v
 
 Run `lerna publish` to publish packages to the Github package registry.
 Lerna will check per package if it contains changes and let you decide what version to upgrade.
-Do not push you changes to github, lerna will do this for you.
+Lerna will push the changes to Github.
+
+#### Troubleshooting
+
+Make sure you have a personal access token and sufficient package rights to publish packages.
+
+[Configuring npm for use with GitHub Packages](https://docs.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages)
 
 ## When to publish
 
