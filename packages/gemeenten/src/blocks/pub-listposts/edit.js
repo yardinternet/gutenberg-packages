@@ -5,7 +5,7 @@ import { Placeholder, Spinner } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
-import { fetchOpenpub } from './components/api';
+import { getOpenPubItems } from './components/api';
 
 /**
  * Internal dependencies
@@ -21,12 +21,10 @@ export default ( props ) => {
 		getPosts();
 	}, [] );
 
-	const getPosts = () => {
-		fetchOpenpub( 'items' )
-			.then( ( response ) => response.json() )
-			.then( ( data ) => {
-				setPosts( data.data );
-			} );
+	const getPosts = async () => {
+		const data = await getOpenPubItems( 'items' );
+
+		setPosts( data.data );
 	};
 
 	return (
@@ -40,7 +38,7 @@ export default ( props ) => {
 					{ ! Array.isArray( posts ) ? (
 						<Spinner />
 					) : (
-						__( 'No posts found.', '' )
+						__( 'No posts found or endpoint could not be fetched.' )
 					) }
 				</Placeholder>
 			) : (
