@@ -2,8 +2,9 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { Fragment, useEffect, useState } from '@wordpress/element';
 import Select from 'react-select';
+import StickyPost from './stickypost';
 import { applyFilters } from '@wordpress/hooks';
-import { getSelectedPost, postOptions } from '../utils';
+
 import {
 	Spinner,
 	QueryControls,
@@ -12,7 +13,7 @@ import {
 	ToggleControl,
 	SelectControl,
 } from '@wordpress/components';
-import { fetchOpenpub } from './api';
+import { getOpenPubItems } from './api';
 
 export default ( props ) => {
 	const { attributes, setAttributes, posts } = props;
@@ -35,17 +36,20 @@ export default ( props ) => {
 		getTaxonomyTerms( 'audience', 'openpub-audience?per_page=100' );
 	}, [] );
 
-	const getTaxonomyTerms = ( taxonomy, query ) => {
-		fetchOpenpub( query, '/wp-json/wp/v2/' )
-			.then( ( response ) => response.json() )
-			.then( ( data ) => {
-				setTerms( ( prevSate ) => {
-					return {
-						...prevSate,
-						[ taxonomy ]: data,
-					};
-				} );
+	const getTaxonomyTerms = async ( taxonomy, query ) => {
+		const data = await getOpenPubItems(
+			query,
+			`${ theme.openpubEndpoint }/wp-json/wp/v2/`
+		);
+
+		if ( data ) {
+			setTerms( ( prevSate ) => {
+				return {
+					...prevSate,
+					[ taxonomy ]: data,
+				};
 			} );
+		}
 	};
 
 	return (
@@ -107,20 +111,10 @@ export default ( props ) => {
 					/>
 
 					{ stickyPostSelection && !! posts.length && (
-						<div style={ { marginBottom: 20 } }>
-							<Select
-								value={ getSelectedPost(
-									posts,
-									selectedStickyPostID
-								) }
-								onChange={ ( { value } ) => {
-									setAttributes( {
-										selectedStickyPostID: value,
-									} );
-								} }
-								options={ postOptions( posts ) }
-							/>
-						</div>
+						<StickyPost
+							setAttributes={ setAttributes }
+							selectedStickyPostID={ selectedStickyPostID }
+						/>
 					) }
 
 					{ stickyPostSelection && posts.length === 0 && (

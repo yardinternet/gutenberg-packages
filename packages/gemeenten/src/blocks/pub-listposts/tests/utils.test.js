@@ -1,23 +1,18 @@
-import { getSelectedPost, postOptions } from '../utils';
+import { findPost, createOptions } from '../components/stickypost';
 
-describe( 'getSelectedPost', () => {
-	const posts = [ { value: 243, label: 'Hello' } ];
-
-	test( 'should return value and label object', () => {
-		const expected = { label: 'Hello', value: 243 };
-		expect( getSelectedPost( posts, 243 ) ).toEqual( expected );
-	} );
-} );
-
-describe( 'postOptions', () => {
+describe( 'createOptions', () => {
 	const posts = [
 		{
 			id: 15937,
-			title: 'Team Jeugd helpt!',
+			title: {
+				rendered: 'Team Jeugd helpt!',
+			},
 		},
 		{
 			id: 15898,
-			title: 'Ondertekening verkoopovereenkomst',
+			title: {
+				rendered: 'Ondertekening verkoopovereenkomst',
+			},
 		},
 	];
 
@@ -26,6 +21,26 @@ describe( 'postOptions', () => {
 			{ value: 15937, label: 'Team Jeugd helpt!' },
 			{ value: 15898, label: 'Ondertekening verkoopovereenkomst' },
 		];
-		expect( postOptions( posts ) ).toEqual( expected );
+		expect( createOptions( posts ) ).toEqual( expected );
+	} );
+} );
+
+describe( 'findPost', () => {
+	const posts = [ { id: 243, title: 'Hello' } ];
+
+	test( 'Should return value and label object', () => {
+		const expected = { value: 243, label: 'Hello' };
+		expect( findPost( 243, posts ) ).toEqual( expected );
+	} );
+
+	test( 'Should not find posts and return false', () => {
+		const expected = false;
+		expect( findPost( 245, posts ) ).toEqual( expected );
+	} );
+
+	test( 'Should return false', () => {
+		const expected = false;
+		const emptyPosts = [];
+		expect( findPost( 245, emptyPosts ) ).toEqual( expected );
 	} );
 } );
