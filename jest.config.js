@@ -8,5 +8,4 @@ module.exports = {
 		'!**/node_modules/**',
 		'!**/vendor/**',
 	],
-	transform: { '^.+\\.jsx?$': 'babel-jest' },
 };

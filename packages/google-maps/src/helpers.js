@@ -16,7 +16,7 @@ import tinycolor from 'tinycolor2';
  * @return {Promise} promise
  */
 export function loadScript( src = '', async = false ) {
-	return new Promise( function( resolve, reject ) {
+	return new Promise( function ( resolve, reject ) {
 		const script = document.createElement( 'script' );
 		script.src = src;
 		script.async = async;
@@ -86,10 +86,10 @@ export function parseMarkerGroupMarkers( markergroups ) {
 export function prepareMarkerClusterGroups( map, plotMarkerGroups ) {
 	const markerGroupsObjects = [];
 
-	plotMarkerGroups.map( function( group ) {
+	plotMarkerGroups.map( function ( group ) {
 		const groupHolder = [];
 
-		group.markers.map( function( item ) {
+		group.markers.map( function ( item ) {
 			let marker = new google.maps.Marker( {
 				position: item.latLng,
 				icon:
@@ -144,7 +144,7 @@ export function isValidHex( hex ) {
  */
 export function populateSelectCPT( fetchedPosts, currentMarkers ) {
 	try {
-		const selectOptions = fetchedPosts.map( function( item ) {
+		const selectOptions = fetchedPosts.map( function ( item ) {
 			return {
 				value: item.title.rendered,
 				label: item.title.rendered,

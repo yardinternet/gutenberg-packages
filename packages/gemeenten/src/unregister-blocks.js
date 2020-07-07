@@ -3,6 +3,6 @@ import domReady from '@wordpress/dom-ready';
 
 const unregisterBlocks = [ 'core/search' ];
 
-domReady( function() {
+domReady( function () {
 	unregisterBlocks.map( ( block ) => unregisterBlockType( block ) );
 } );

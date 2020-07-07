@@ -5,7 +5,7 @@ import { debounce } from 'lodash';
 import { getOpenPubItems, searchOpenpub } from './api';
 
 export function createOptions( posts = [] ) {
-	return posts.map( function( post ) {
+	return posts.map( function ( post ) {
 		return { value: post.id, label: post.title.rendered };
 	} );
 }

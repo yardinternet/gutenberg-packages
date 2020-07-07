@@ -44,7 +44,7 @@ function FlexboxControl( {
 						<Tooltip key={ option.value } text={ option.label }>
 							<Button
 								className={ css`
-									height: ${styleOptions.height} !important;
+									height: ${ styleOptions.height } !important;
 									flex-basis: 33.3%;
 									border-color: #545252 !important;
 									margin-left: 0 !important;

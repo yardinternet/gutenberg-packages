@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 	--pdc-search-border-radius: 45px;
 	padding: var( --pdc-search, 1rem );
 
-	@media ( max-width: ${minWidthBreakpoint} ) {
+	@media ( max-width: ${ minWidthBreakpoint } ) {
 		--pdc-search-padding: 1rem;
 		--pdc-search-font-size: 1rem;
 		padding: var( --pdc-search, 0.5rem );
@@ -75,7 +75,7 @@ const Btn = styled.button`
 		font-size: 1.7rem;
 	}
 
-	@media ( max-width: ${minWidthBreakpoint} ) {
+	@media ( max-width: ${ minWidthBreakpoint } ) {
 		padding: calc( var( --pdc-search-padding ) / 2 )
 			calc( var( --pdc-search-padding ) / 1.2 );
 		i {

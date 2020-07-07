@@ -1,4 +1,15 @@
 {
-  "packages": ["packages/*"],
-  "version": "independent"
+	"packages": [ "packages/*" ],
+	"version": "independent",
+	"command": {
+		"publish": {
+			"ignoreChanges": [ 
+        "ignored-file", "*.md", 
+        "**/{__mocks__,__tests__,test}/**",
+        "**/{storybook,stories}/**" 
+      ],
+			"message": "chore(release): publish",
+			"registry": "https://npm.pkg.github.com"
+		}
+	}
 }

@@ -25,9 +25,6 @@
 	},
 	"author": "",
 	"license": "ISC",
-	"devDependencies": {
-		"@wordpress/icons": "^1.1.0"
-	},
 	"dependencies": {
 		"filesize": "^6.1.0"
 	}
