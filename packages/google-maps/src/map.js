@@ -189,7 +189,7 @@ function Map( {
 	}, [ undo ] );
 
 	const removePolygonObjects = () => {
-		polygonsObjects.flat().map( function( item ) {
+		polygonsObjects.flat().map( function ( item ) {
 			return item.polygon.setMap( null );
 		} );
 
@@ -203,7 +203,7 @@ function Map( {
 	 */
 	const createPolygonObjects = ( polygonsArray ) => {
 		const handler = [];
-		polygonsArray.flat().map( function( item ) {
+		polygonsArray.flat().map( function ( item ) {
 			const coords =
 				typeof item.coords === 'string' && item.coords.length > 0
 					? JSON.parse( item.coords )
@@ -211,7 +211,7 @@ function Map( {
 			const bounds = new google.maps.LatLngBounds();
 
 			// get center of polygon
-			coords.map( function( coord ) {
+			coords.map( function ( coord ) {
 				return bounds.extend(
 					new google.maps.LatLng( coord.lat, coord.lng )
 				);
@@ -329,7 +329,7 @@ function Map( {
 				plotMarkerGroups
 			);
 
-			markerClusterMarkers.map( function( item ) {
+			markerClusterMarkers.map( function ( item ) {
 				const MarkerCluster = new MarkerClusterer( map, item, {
 					imagePath: mapOptions.markerClustererImagePath
 						? `${ window.location.protocol }//${ window.location.host }/${ mapOptions.markerClustererImagePath }/m`
@@ -384,16 +384,16 @@ function Map( {
 			const polygonPaths = polygon.polygon.getPaths().getArray();
 
 			// add listeners to polygon
-			polygonPaths.forEach( function( path ) {
-				google.maps.event.addListener( path, 'set_at', function() {
+			polygonPaths.forEach( function ( path ) {
+				google.maps.event.addListener( path, 'set_at', function () {
 					updatePolygon( polygon.polygon, path );
 				} );
 
-				google.maps.event.addListener( path, 'remove_at', function() {
+				google.maps.event.addListener( path, 'remove_at', function () {
 					updatePolygon( polygon.polygon, path );
 				} );
 
-				google.maps.event.addListener( path, 'insert_at', function() {
+				google.maps.event.addListener( path, 'insert_at', function () {
 					updatePolygon( polygon.polygon, path );
 				} );
 			} );
@@ -428,11 +428,11 @@ function Map( {
 		const polygonID = polygon.id;
 		const newCoords = [];
 
-		newPaths.getArray().map( function( item ) {
+		newPaths.getArray().map( function ( item ) {
 			return newCoords.push( item );
 		} );
 
-		const newPolygons = polygons.map( function( item ) {
+		const newPolygons = polygons.map( function ( item ) {
 			if ( item.id === polygonID ) {
 				item.coords = JSON.stringify( newCoords );
 			}
@@ -507,7 +507,7 @@ function Map( {
 	const resetDrawing = () => {
 		testPath.current = [];
 		if ( currentPolyLines.length > 0 ) {
-			currentPolyLines.map( function( item ) {
+			currentPolyLines.map( function ( item ) {
 				return item.setMap( null );
 			} );
 
@@ -515,7 +515,7 @@ function Map( {
 		}
 
 		if ( currentMarker.current.length > 0 ) {
-			currentMarker.current.map( function( item ) {
+			currentMarker.current.map( function ( item ) {
 				return item.setMap( null );
 			} );
 		}

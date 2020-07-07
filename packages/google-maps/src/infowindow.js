@@ -38,7 +38,7 @@ export function createInfowindowPolygon( props ) {
 		phone,
 	} );
 
-	google.maps.event.addListener( polygon, 'click', function() {
+	google.maps.event.addListener( polygon, 'click', function () {
 		closeAllInfowindows();
 		infowindowPolygon.setPosition(
 			new google.maps.LatLng(
@@ -81,7 +81,7 @@ export function createInfowindowMarker( props ) {
 		phone: infowindowPhone,
 	} );
 
-	marker.addListener( 'click', function() {
+	marker.addListener( 'click', function () {
 		closeAllInfowindows();
 		infowindowObject.open( map, marker );
 	} );

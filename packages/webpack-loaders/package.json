@@ -11,11 +11,5 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
-	},
-	"devDependencies": {
-		"@wordpress/scripts": "^7.1.2",
-		"@yardinternet/webpack-include-packages": "^1.0.2",
-		"file-loader": "^5.1.0",
-		"url-loader": "^3.0.0"
 	}
 }

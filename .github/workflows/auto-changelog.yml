@@ -1,5 +1,9 @@
 name: auto-changelog
 
+env:
+    FONTAWESOME_TOKEN: ${{ secrets.FONTAWESOME_TOKEN }}
+    NPM_READ_PACKAGES: ${{ secrets.NPM_READ_PACKAGES }}
+
 on:
     push:
         branches:

@@ -101,8 +101,9 @@ function ImportCoordinatesControl( {
 								polygons: polygons.concat( [
 									{
 										name,
-										id: `${ name }-${ polygons.length +
-											1 }`,
+										id: `${ name }-${
+											polygons.length + 1
+										}`,
 										coords:
 											importType === 'array'
 												? parseLatLngFromCoords( val )

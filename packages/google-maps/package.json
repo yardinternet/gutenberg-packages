@@ -28,17 +28,10 @@
 		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
 	},
 	"dependencies": {
-		"@yardinternet/gutenberg-editor-components": "^1.2.9",
+		"@yardinternet/gutenberg-editor-components": "file:../editor-components",
 		"classnames": "^2.2.6",
 		"react-select": "^3.0.8",
 		"tinycolor2": "^1.4.1"
-	},
-	"devDependencies": {
-		"@storybook/addon-a11y": "^5.3.14",
-		"@storybook/addon-actions": "^5.3.13",
-		"@storybook/addon-links": "^5.3.13",
-		"@storybook/react": "^5.3.13",
-		"@wordpress/api-fetch": "^3.11.0"
 	},
 	"gitHead": "bc7cae6a458f1908db656e41870079d03cd58456"
 }

@@ -1,5 +1,9 @@
 name: format & lint
 
+env:
+    FONTAWESOME_TOKEN: ${{ secrets.FONTAWESOME_TOKEN }}
+    NPM_READ_PACKAGES: ${{ secrets.NPM_READ_PACKAGES }}
+
 on:
     pull_request:
     push:

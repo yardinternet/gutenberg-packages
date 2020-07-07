@@ -116,7 +116,7 @@ function Markergroup( {
 
 			const filteredResults = combinedResults
 				.flat()
-				.filter( function( item ) {
+				.filter( function ( item ) {
 					return item.latitude && item.longitude ? true : false;
 				} );
 
