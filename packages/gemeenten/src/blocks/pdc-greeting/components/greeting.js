@@ -17,7 +17,7 @@ function Greeting( props ) {
 
 	return (
 		<div className="gemeenten-block gemeenten-block--pdc-greeting">
-			{ label },{ ' ' }
+			{ label }
 		</div>
 	);
 }
