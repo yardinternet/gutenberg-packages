@@ -16,6 +16,12 @@ import { registerBlocks } from '@yardinternet/gutenberg-core';
 registerBlocks();
 ```
 
+Import CSS into editor styles.
+
+```CSS
+@import '~@yardinternet/gutenberg-core/src/collapse/editor';
+```
+
 ## Hooks
 
 Available hooks

@@ -1,0 +1,21 @@
+{
+	"name": "yard-blocks/collapse-item",
+	"attributes": {
+		"headerText": {
+			"type": "string",
+			"default": " "
+		},
+		"showOpen": {
+			"type": "boolean",
+			"default": false
+		},
+		"isAccordion": {
+			"type": "boolean",
+			"default": true
+		},
+		"id": {
+			"type": "number",
+			"default": 0
+		}
+	}
+}

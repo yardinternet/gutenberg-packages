@@ -1,0 +1,39 @@
+.yard-blocks-collapse {
+	padding: 0 1rem;
+}
+
+.yard-blocks-collapse-item__header {
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+	background-color: rgba( 139, 139, 150, 0.1 );
+
+	.block-editor-plain-text {
+		padding: 0 0.5rem;
+		font-size: 1.2rem !important;
+		background-color: transparent;
+
+		&:focus {
+			background-color: #fff;
+		}
+	}
+}
+
+.yard-blocks-collapse-item__arrow {
+	transition: all 0.15s ease;
+}
+
+.yard-blocks-collapse-item__button {
+	margin-left: 1rem !important;
+
+	&[aria-expanded='true'] {
+		.yard-blocks-collapse-item__arrow {
+			transform: rotate( 180deg );
+		}
+	}
+}
+
+.yard-blocks-collapse-item__body {
+	padding: 0 1rem;
+	border: 1px solid rgba( 139, 139, 150, 0.1 );
+}
