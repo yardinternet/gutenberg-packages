@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
+		"noEmit": true,
+		"typeRoots": [ "./node_modules/@types" ]
+	},
+	"include": [ "./packages/register-blocks/**/*" ]
+}

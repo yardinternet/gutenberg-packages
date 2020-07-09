@@ -24,3 +24,4 @@ jobs:
                   node-version: 12.x.x
             - run: npm ci
             - run: npm test
+            - run: tsc
