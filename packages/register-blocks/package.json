@@ -1,0 +1,31 @@
+{
+	"name": "@yardinternet/gutenberg-register-blocks",
+	"version": "0.0.1",
+	"description": "Contains registerBlocks method to bootstrap theme and core blocks",
+	"main": "src/index.js",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
+	},
+	"scripts": {
+		"test": "jest"
+	},
+	"jest": {
+		"transform": {
+			"^.+\\.(js)$": [
+				"babel-jest",
+				{
+					"rootMode": "upward"
+				}
+			]
+		}
+	},
+	"author": "Yard Internet",
+	"license": "ISC",
+	"dependencies": {
+		"@yardinternet/gutenberg-editor-components": "file:../editor-components"
+	}
+}
