@@ -20,7 +20,9 @@ export default createHigherOrderComponent( ( BlockEdit ) => {
 		useEffect( () => {
 			if ( href ) {
 				getFileDetails( href ).then( ( result ) => {
-					if ( yardFilesize === result ) return;
+					if ( yardFilesize === result ) {
+						return;
+					}
 					setAttributes( {
 						yardFilesize: result,
 					} );

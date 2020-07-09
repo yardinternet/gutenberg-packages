@@ -377,7 +377,9 @@ function reducer( state, action ) {
  * @param {Array} markersWithoutIndex
  */
 function withMarkersIndexVal( markersWithoutIndex = [] ) {
-	if ( markersWithoutIndex && ! markersWithoutIndex.length ) return [];
+	if ( markersWithoutIndex && ! markersWithoutIndex.length ) {
+		return [];
+	}
 
 	return orderByInfoTitle( markersWithoutIndex ).map(
 		( marker, markerIndex ) => ( {

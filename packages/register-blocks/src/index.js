@@ -16,7 +16,9 @@ const defaultOptions = {
  *
  */
 export function registerBlocks( blocks = [], options = defaultOptions ) {
-	if ( ! Array.isArray( blocks ) ) throw 'Provided argument is not an array';
+	if ( ! Array.isArray( blocks ) ) {
+		throw 'Provided argument is not an array';
+	}
 
 	blocks.map( ( block ) => {
 		const { name, icon, settings } = block;

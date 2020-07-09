@@ -52,8 +52,9 @@ function ListControlModal( {
 				if (
 					e.target[ i ].type === 'submit' ||
 					e.target[ i ].type === 'button'
-				)
+				) {
 					continue;
+				}
 
 				if ( !! name.length ) {
 					formData[ name ] = value;
