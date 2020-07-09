@@ -24,5 +24,8 @@
 		}
 	},
 	"author": "Yard Internet",
-	"license": "ISC"
+	"license": "ISC",
+	"dependencies": {
+		"@yardinternet/gutenberg-editor-components": "file:../editor-components"
+	}
 }

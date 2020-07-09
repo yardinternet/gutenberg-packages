@@ -2,7 +2,9 @@ export function filterMarkerGroupsByCategory( {
 	markerGroups = [],
 	selectedFilters = [],
 } ) {
-	if ( ! selectedFilters.length ) return markerGroups;
+	if ( ! selectedFilters.length ) {
+		return markerGroups;
+	}
 
 	const newGroups = markerGroups.filter( ( { categories } ) => {
 		return (
@@ -20,7 +22,9 @@ export function filterPolygonsByCategory( {
 	polygons = [],
 	selectedFilters = [],
 } ) {
-	if ( ! selectedFilters.length ) return polygons;
+	if ( ! selectedFilters.length ) {
+		return polygons;
+	}
 
 	const newPolygons = polygons.filter( ( polygon ) => {
 		return selectedFilters.includes( polygon.category );

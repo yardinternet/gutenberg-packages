@@ -17,7 +17,9 @@ export default function TabGeneral( {
 	const { dimRatio, bgColor, bgImgId, bgImgUrl } = attributes;
 
 	const mediaImagesSizes = useSelect( ( select ) => {
-		if ( ! bgImgId ) return null;
+		if ( ! bgImgId ) {
+			return null;
+		}
 
 		const media = select( 'core' ).getMedia( bgImgId );
 

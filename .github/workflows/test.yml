@@ -9,6 +9,7 @@ on:
         branches:
             - master
             - develop
+            - feature/register-blocks
     pull_request:
         branches:
             - master

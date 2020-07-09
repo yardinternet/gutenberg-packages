@@ -313,7 +313,9 @@ function Map( {
 	 */
 	const plotMarkers = () => {
 		resetMarkers();
-		if ( objectRenderLock ) return;
+		if ( objectRenderLock ) {
+			return;
+		}
 
 		const plotMarkerGroups = selectedFilters.length
 			? filteredMarkerGroups
@@ -362,7 +364,9 @@ function Map( {
 	 */
 	const plotPolygons = () => {
 		removePolygonObjects();
-		if ( objectRenderLock ) return;
+		if ( objectRenderLock ) {
+			return;
+		}
 
 		const plotMarkerGroups = selectedFilters.length
 			? filteredPolygons
@@ -593,7 +597,9 @@ function Map( {
 	 * Watch the selectedFilter and markerGroups
 	 */
 	useEffect( () => {
-		if ( ! markerGroups.length ) return;
+		if ( ! markerGroups.length ) {
+			return;
+		}
 
 		if ( !! selectedFilters.length ) {
 			setIntialObjectRender( true );
@@ -611,7 +617,9 @@ function Map( {
 	 * Watch the selectedFilter and polygons
 	 */
 	useEffect( () => {
-		if ( ! polygons.length ) return;
+		if ( ! polygons.length ) {
+			return;
+		}
 
 		if ( !! selectedFilters.length ) {
 			setIntialObjectRender( true );

@@ -6,7 +6,7 @@
 	"license": "ISC",
 	"private": true,
 	"scripts": {
-		"lint": "wp-scripts lint-js ./packages",
+		"lint": "wp-scripts lint-js ./packages --fix",
 		"format": "wp-scripts format-js ./packages --write",
 		"auto-changelog": "auto-changelog --tag-pattern .+ --commit-limit false",
 		"test": "jest",
@@ -28,8 +28,8 @@
 	},
 	"lint-staged": {
 		"*.js": [
-			"npm run lint",
-			"npm run format"
+			"npm run format",
+			"npm run lint"
 		]
 	},
 	"devDependencies": {
@@ -47,6 +47,7 @@
 		"@wordpress/api-fetch": "^3.11.0",
 		"@wordpress/blocks": "^6.20.0",
 		"@wordpress/components": "^10.0.0",
+		"@wordpress/eslint-plugin": "^7.1.0",
 		"@wordpress/icons": "^2.0.0",
 		"@wordpress/jest-preset-default": "^6.2.0",
 		"@wordpress/scripts": "^12.0.0",
@@ -54,7 +55,6 @@
 		"auto-changelog": "^2.0.0",
 		"babel-loader": "^8.0.6",
 		"css-loader": "^3.4.2",
-		"eslint": "^7.4.0",
 		"file-loader": "^6.0.0",
 		"husky": "^4.2.1",
 		"jest": "^26.1.0",
@@ -74,10 +74,9 @@
 		"@yardinternet/gutenberg-block-filters": "file:packages/block-filters",
 		"@yardinternet/gutenberg-cards": "file:packages/cards",
 		"@yardinternet/gutenberg-core": "file:packages/core",
-		"@yardinternet/gutenberg-editor-components": "file:packages/editor-components",
+		"@yardinternet/gutenberg-editor-components": "*",
 		"@yardinternet/gutenberg-gemeenten": "file:packages/gemeenten",
 		"@yardinternet/gutenberg-google-maps": "file:packages/google-maps",
-		"@yardinternet/gutenberg-register-blocks": "file:packages/register-blocks",
 		"@yardinternet/gutenberg-webpack-loaders": "file:packages/webpack-loaders"
 	}
 }
