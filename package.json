@@ -49,7 +49,7 @@
 		"@wordpress/components": "^10.0.0",
 		"@wordpress/icons": "^2.0.0",
 		"@wordpress/jest-preset-default": "^6.2.0",
-		"@wordpress/scripts": "^7.1.0",
+		"@wordpress/scripts": "^12.0.0",
 		"@yardinternet/webpack-include-packages": "^1.0.2",
 		"auto-changelog": "^2.0.0",
 		"babel-loader": "^8.0.6",
@@ -76,6 +76,8 @@
 		"@yardinternet/gutenberg-core": "file:packages/core",
 		"@yardinternet/gutenberg-editor-components": "file:packages/editor-components",
 		"@yardinternet/gutenberg-gemeenten": "file:packages/gemeenten",
-		"@yardinternet/gutenberg-google-maps": "file:packages/google-maps"
+		"@yardinternet/gutenberg-google-maps": "file:packages/google-maps",
+		"@yardinternet/gutenberg-register-blocks": "file:packages/register-blocks",
+		"@yardinternet/gutenberg-webpack-loaders": "file:packages/webpack-loaders"
 	}
 }

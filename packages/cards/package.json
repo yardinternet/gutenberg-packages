@@ -33,7 +33,6 @@
 	},
 	"dependencies": {
 		"@emotion/core": "^10.0.22",
-		"@wordpress/scripts": "^6.0.0",
 		"@yardinternet/gutenberg-editor-components": "file:../editor-components",
 		"classnames": "^2.2.6"
 	}
