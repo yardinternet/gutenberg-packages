@@ -1,7 +1,5 @@
-const { defaults } = require( 'jest-config' );
-
 module.exports = {
-	...defaults,
+	preset: '@wordpress/jest-preset-default',
 	collectCoverageFrom: [
 		'packages/**/src/**/*.js',
 		'!**/stories/**',
