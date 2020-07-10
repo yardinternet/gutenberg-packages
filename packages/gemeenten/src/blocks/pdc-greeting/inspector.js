@@ -1,3 +1,6 @@
+/**
+ * WordPress dependencies
+ */
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';

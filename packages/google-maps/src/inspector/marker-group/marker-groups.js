@@ -1,3 +1,6 @@
+/**
+ * Internal dependencies
+ */
 import Markergroup from './marker-group';
 
 function MarkerGroups( {

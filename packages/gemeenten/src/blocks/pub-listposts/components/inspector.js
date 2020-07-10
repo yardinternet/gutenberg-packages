@@ -1,7 +1,16 @@
+/**
+ * WordPress dependencies
+ */
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { Fragment, useEffect, useState } from '@wordpress/element';
+/**
+ * External dependencies
+ */
 import Select from 'react-select';
+/**
+ * Internal dependencies
+ */
 import StickyPost from './stickypost';
 import { applyFilters } from '@wordpress/hooks';
 

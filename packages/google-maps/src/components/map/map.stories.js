@@ -1,7 +1,16 @@
+/**
+ * External dependencies
+ */
 import { withA11y } from '@storybook/addon-a11y';
+/**
+ * Internal dependencies
+ */
 import Map from '../../map';
 import { mapOptions, markerGroup1, markerGroup2, polygons } from './dummy';
 
+/**
+ * WordPress dependencies
+ */
 import '@wordpress/components/build-style/style.css';
 
 export default {

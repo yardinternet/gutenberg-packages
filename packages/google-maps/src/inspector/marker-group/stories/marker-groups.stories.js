@@ -1,7 +1,16 @@
+/**
+ * External dependencies
+ */
 import { action } from '@storybook/addon-actions';
+/**
+ * Internal dependencies
+ */
 import MarkerGroups from '../marker-groups';
 import { loadGoogleMaps } from '../../../helpers';
 
+/**
+ * WordPress dependencies
+ */
 import '@wordpress/components/build-style/style.css';
 import { Button } from '@wordpress/components';
 import { useState } from '@wordpress/element';

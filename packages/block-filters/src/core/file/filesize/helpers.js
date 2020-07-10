@@ -1,3 +1,6 @@
+/**
+ * External dependencies
+ */
 import filesize from 'filesize';
 
 export async function getFileDetails( href = '' ) {

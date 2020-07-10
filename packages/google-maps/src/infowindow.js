@@ -2,7 +2,13 @@
  * External dependencies
  */
 import { isEmpty } from 'lodash';
+/**
+ * WordPress dependencies
+ */
 import { render } from '@wordpress/element';
+/**
+ * Internal dependencies
+ */
 import InfoWindow from './components/infowindow';
 
 // Holds all infowindows on the map

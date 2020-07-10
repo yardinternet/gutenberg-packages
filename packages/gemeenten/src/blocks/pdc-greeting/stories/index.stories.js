@@ -1,4 +1,10 @@
+/**
+ * External dependencies
+ */
 import React from 'react';
+/**
+ * Internal dependencies
+ */
 import Greeting from '../components/greeting';
 
 export default { title: 'PDC greeting' };

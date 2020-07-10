@@ -1,5 +1,14 @@
+/**
+ * External dependencies
+ */
 import { action } from '@storybook/addon-actions';
+/**
+ * Internal dependencies
+ */
 import AddMarkerGroupModal from '../add-marker-group-modal';
+/**
+ * WordPress dependencies
+ */
 import { useState } from '@wordpress/element';
 import { Button } from '@wordpress/components';
 

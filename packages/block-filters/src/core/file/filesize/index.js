@@ -1,5 +1,11 @@
+/**
+ * WordPress dependencies
+ */
 import { addFilter } from '@wordpress/hooks';
 
+/**
+ * Internal dependencies
+ */
 import { namespace, coreFileFilesize } from '../../../config';
 import Save from './save';
 import Edit from './edit';

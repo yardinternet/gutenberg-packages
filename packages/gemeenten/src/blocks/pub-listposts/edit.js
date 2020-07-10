@@ -1,10 +1,13 @@
 /**
- * Wordpress dependencies
+ * WordPress dependencies
  */
 import { Placeholder, Spinner } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
+/**
+ * Internal dependencies
+ */
 import { getOpenPubItems } from './components/api';
 
 /**

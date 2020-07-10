@@ -1,5 +1,5 @@
 /**
- * Wordpress dependencies
+ * WordPress dependencies
  */
 import ServerSideRender from '@wordpress/server-side-render';
 

@@ -1,5 +1,5 @@
 /**
- * Wordpress dependencies
+ * WordPress dependencies
  */
 import { useState } from '@wordpress/element';
 import { Button, Modal, PanelRow, ToggleControl } from '@wordpress/components';

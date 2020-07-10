@@ -1,4 +1,10 @@
+/**
+ * WordPress dependencies
+ */
 import { useState } from '@wordpress/element';
+/**
+ * Internal dependencies
+ */
 import CategoriesControl from '../../categories-control';
 
 export default {

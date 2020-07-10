@@ -1,3 +1,6 @@
+/**
+ * WordPress dependencies
+ */
 import { Button, Dashicon } from '@wordpress/components';
 
 function List( { state, dispatch, onModify, children } ) {

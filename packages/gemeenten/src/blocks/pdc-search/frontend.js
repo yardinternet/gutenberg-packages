@@ -1,4 +1,10 @@
+/**
+ * External dependencies
+ */
 import React from 'react';
+/**
+ * Internal dependencies
+ */
 import BasicForm from './components/basic-form';
 
 import { useDataAttributes } from '../../hooks';

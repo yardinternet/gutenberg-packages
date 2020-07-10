@@ -1,6 +1,9 @@
 /**
  * External dependencies
  */
+/**
+ * WordPress dependencies
+ */
 import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';

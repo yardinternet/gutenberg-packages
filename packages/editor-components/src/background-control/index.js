@@ -3,6 +3,9 @@
  */
 import { TabPanel } from '@wordpress/components';
 
+/**
+ * Internal dependencies
+ */
 import TabGeneral from './tabs/tab-general';
 import TabAdvanced from './tabs/tab-advanced';
 

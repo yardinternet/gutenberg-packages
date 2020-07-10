@@ -1,3 +1,6 @@
+/**
+ * Internal dependencies
+ */
 import { coreFileFilesize } from '../../../config';
 import FileSize from './components/filesize';
 

@@ -1,4 +1,10 @@
+/**
+ * External dependencies
+ */
 import classnames from 'classnames';
+/**
+ * Internal dependencies
+ */
 import { config } from './config';
 
 function save( { attributes, className } ) {

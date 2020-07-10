@@ -1,3 +1,6 @@
+/**
+ * WordPress dependencies
+ */
 import { TabPanel, Slot } from '@wordpress/components';
 
 function ViewportTabControl( props ) {

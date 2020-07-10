@@ -1,3 +1,6 @@
+/**
+ * WordPress dependencies
+ */
 import {
 	Button,
 	Modal,
@@ -8,6 +11,9 @@ import {
 	ColorPicker,
 	ColorPalette,
 } from '@wordpress/components';
+/**
+ * Internal dependencies
+ */
 import { isValidHex } from '../../helpers';
 import { createElement } from '@wordpress/element';
 import ToggleSwitch from '../toggle-switch';

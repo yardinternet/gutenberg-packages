@@ -1,3 +1,6 @@
+/**
+ * WordPress dependencies
+ */
 import { useState } from '@wordpress/element';
 import { SelectControl, Modal, ClipboardButton } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';

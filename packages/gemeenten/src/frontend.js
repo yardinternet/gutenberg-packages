@@ -1,6 +1,12 @@
 // This file loads up all the frontend components
+/**
+ * External dependencies
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
+/**
+ * Internal dependencies
+ */
 import * as PdcSearch from './blocks/pdc-search/frontend';
 import * as PdcGreeting from './blocks/pdc-greeting/frontend';
 
