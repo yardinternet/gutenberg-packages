@@ -1,5 +1,11 @@
+/**
+ * WordPress dependencies
+ */
 import { registerBlockType } from '@wordpress/blocks';
 
+/**
+ * Internal dependencies
+ */
 import * as spacer from './spacer';
 
 export function registerBlocks() {

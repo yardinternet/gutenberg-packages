@@ -1,3 +1,4 @@
 webpack.config.js
 **/__tests__/**/*.js
 **/tests/**/*.js
+**/build/*.js

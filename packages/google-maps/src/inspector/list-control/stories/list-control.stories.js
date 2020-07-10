@@ -1,3 +1,6 @@
+/**
+ * Internal dependencies
+ */
 import ListControl from '../list-control';
 import ListControlModal from '../list-control-modal';
 import List from '../list';

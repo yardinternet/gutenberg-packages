@@ -1,9 +1,15 @@
+/**
+ * WordPress dependencies
+ */
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { useEffect } from '@wordpress/element';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
+/**
+ * Internal dependencies
+ */
 import { coreFileFilesize } from '../../../config';
 import FileSize from './components/filesize';
 import { getFileDetails } from './helpers';

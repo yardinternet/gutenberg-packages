@@ -1,3 +1,6 @@
+/**
+ * Internal dependencies
+ */
 import { coreFileFilesize } from '../../../config';
 
 export default function RegisterBlockType( settings, name ) {

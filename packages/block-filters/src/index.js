@@ -1,3 +1,6 @@
+/**
+ * Internal dependencies
+ */
 import * as FileBlockFilters from './core/file/filesize';
 import { registerBlockFilters } from './helpers';
 

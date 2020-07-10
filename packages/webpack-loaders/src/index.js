@@ -1,5 +1,11 @@
 const isProduction = process.env.NODE_ENV === 'production';
+/**
+ * WordPress dependencies
+ */
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
+/**
+ * External dependencies
+ */
 const includePackages = require( '@yardinternet/webpack-include-packages' );
 
 /**

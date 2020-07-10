@@ -1,7 +1,16 @@
+/**
+ * WordPress dependencies
+ */
 import { useState, useEffect } from '@wordpress/element';
+/**
+ * External dependencies
+ */
 import AsyncSelect from 'react-select/async';
 import { __ } from '@wordpress/i18n';
 import { debounce } from 'lodash';
+/**
+ * Internal dependencies
+ */
 import { getOpenPubItems, searchOpenpub } from './api';
 
 export function createOptions( posts = [] ) {

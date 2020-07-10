@@ -1,5 +1,11 @@
+/**
+ * External dependencies
+ */
 import React from 'react';
 
+/**
+ * Internal dependencies
+ */
 import IconPickerControl from '../index';
 
 import '../assets/css/fontawesome-all.min.css';

@@ -1,3 +1,6 @@
+/**
+ * WordPress dependencies
+ */
 import { Button, Dashicon, BaseControl } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 

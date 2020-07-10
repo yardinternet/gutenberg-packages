@@ -1,3 +1,6 @@
+/**
+ * WordPress dependencies
+ */
 import { useSelect } from '@wordpress/data';
 import { MediaUpload, ColorPalette } from '@wordpress/block-editor';
 import {
@@ -8,6 +11,9 @@ import {
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+/**
+ * Internal dependencies
+ */
 import { populateSelectFromMediaSizes, getImageSizeByUrl } from '../helpers';
 
 export default function TabGeneral( {

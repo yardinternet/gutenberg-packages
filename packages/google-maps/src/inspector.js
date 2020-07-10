@@ -15,7 +15,7 @@ import ExportCoordinatesControl from './inspector/export-coordinates-control';
 import MapOptions from './inspector/map-options';
 
 /**
- * Wordpress dependencies
+ * WordPress dependencies
  */
 import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 import { useState } from '@wordpress/element';

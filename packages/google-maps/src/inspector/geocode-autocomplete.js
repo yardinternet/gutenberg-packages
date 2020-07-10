@@ -2,6 +2,9 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+/**
+ * External dependencies
+ */
 import AsyncSelect from 'react-select/async';
 
 function GeocodeAutocomplete( {

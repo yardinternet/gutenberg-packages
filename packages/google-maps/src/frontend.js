@@ -1,3 +1,6 @@
+/**
+ * Internal dependencies
+ */
 import Map from './map';
 import { config } from './config';
 

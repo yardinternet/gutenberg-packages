@@ -1,9 +1,18 @@
+/**
+ * External dependencies
+ */
 import { omit } from 'lodash';
 
+/**
+ * WordPress dependencies
+ */
 import { Button, PanelRow } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
+/**
+ * Internal dependencies
+ */
 import { config } from '../../config';
 import ListControlModal from './list-control-modal';
 import List from './list';

@@ -1,4 +1,10 @@
+/**
+ * Internal dependencies
+ */
 import List from './list';
+/**
+ * WordPress dependencies
+ */
 import { TextControl, Button, Modal } from '@wordpress/components';
 import { useState, createElement } from '@wordpress/element';
 

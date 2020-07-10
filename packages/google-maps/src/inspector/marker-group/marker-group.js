@@ -1,7 +1,10 @@
+/**
+ * External dependencies
+ */
 import { orderBy } from 'lodash';
 
 /**
- * Wordpress dependencies
+ * WordPress dependencies
  */
 import {
 	Button,

@@ -1,5 +1,11 @@
+/**
+ * WordPress dependencies
+ */
 import { registerBlockType } from '@wordpress/blocks';
 import { applyFilters } from '@wordpress/hooks';
+/**
+ * External dependencies
+ */
 import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
 
 const defaultOptions = {
