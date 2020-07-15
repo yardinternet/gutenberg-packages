@@ -2,6 +2,7 @@
  * External dependencies
  */
 import { withA11y } from '@storybook/addon-a11y';
+
 /**
  * Internal dependencies
  */

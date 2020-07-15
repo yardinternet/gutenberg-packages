@@ -1,11 +1,11 @@
 /**
- * External dependencies
- */
-/**
  * WordPress dependencies
  */
 import { RangeControl } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
+/**
+ * External dependencies
+ */
 import { Global } from '@emotion/core';
 
 /**
