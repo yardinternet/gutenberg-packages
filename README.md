@@ -8,7 +8,13 @@
 
 ## Package development
 
-Copy .npmrc.example to .npmrc
+Copy .npmrc.example to .npmrc.
+Remove the last two lines, these are required by Github Actions
+
+```js
+//npm.fontawesome.com/:_authToken=${FONTAWESOME_TOKEN}
+//npm.pkg.github.com/:_authToken=${NPM_READ_PACKAGES}
+```
 
 ### Developing package in project or theme
 
