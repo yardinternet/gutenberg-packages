@@ -8,6 +8,7 @@ import { applyFilters } from '@wordpress/hooks';
  */
 import React from 'react';
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
+
 /**
  * Internal dependencies
  */
