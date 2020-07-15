@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-block-filters",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Contains filters to override block output or settings",
 	"main": "src/index.js",
 	"publishConfig": {
