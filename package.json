@@ -75,13 +75,13 @@
 		"webpack": "^4.43.0"
 	},
 	"dependencies": {
-		"@yardinternet/front-render": "file:packages/front-render",
-		"@yardinternet/gutenberg-block-filters": "file:packages/block-filters",
-		"@yardinternet/gutenberg-cards": "file:packages/cards",
-		"@yardinternet/gutenberg-core": "file:packages/core",
+		"@yardinternet/front-render": "*",
+		"@yardinternet/gutenberg-block-filters": "*",
+		"@yardinternet/gutenberg-cards": "*",
+		"@yardinternet/gutenberg-core": "*",
 		"@yardinternet/gutenberg-editor-components": "*",
-		"@yardinternet/gutenberg-gemeenten": "file:packages/gemeenten",
-		"@yardinternet/gutenberg-google-maps": "file:packages/google-maps",
-		"@yardinternet/gutenberg-webpack-loaders": "file:packages/webpack-loaders"
+		"@yardinternet/gutenberg-gemeenten": "*",
+		"@yardinternet/gutenberg-google-maps": "*",
+		"@yardinternet/gutenberg-webpack-loaders": "*"
 	}
 }
