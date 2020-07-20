@@ -1,0 +1,14 @@
+.yard-blocks-button--with-icon {
+	position: relative;
+
+	.yard-blocks-button-icon {
+		position: absolute;
+		left: 1.3rem;
+		top: calc( 50% - 0.5rem );
+		pointer-events: none;
+	}
+
+	.wp-block-button__link {
+		padding-left: 3rem;
+	}
+}
