@@ -10,6 +10,7 @@ import * as spacer from './spacer';
 import * as collapseList from './collapse';
 import * as collapseItem from './collapse/collapse-item';
 import * as grid from './grid';
+import * as gridColumn from './grid/column';
 
 export function registerBlocks() {
 	[ spacer, collapseList, collapseItem ].forEach( ( { name, settings } ) => {
@@ -26,5 +27,5 @@ export function registerBlocks() {
 
 //export { * as grid } from './grid';
 // Export for yard-blocks
-export { grid };
+export { grid, gridColumn };
 //export { default as GridColumn } from './grid/column';
