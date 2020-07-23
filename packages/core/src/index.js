@@ -13,19 +13,19 @@ import * as grid from './grid';
 import * as gridColumn from './grid/column';
 
 export function registerBlocks() {
-	[ spacer, collapseList, collapseItem ].forEach( ( { name, settings } ) => {
-		registerBlockType( name, {
-			...settings,
-			icon: {
-				...settings.icon,
-				background: '#0293b0',
-				foreground: '#fff',
-			},
-		} );
-	} );
+	[ collapseList, collapseItem, grid, gridColumn, spacer ].forEach(
+		( { name, settings } ) => {
+			registerBlockType( name, {
+				...settings,
+				icon: {
+					...settings.icon,
+					background: '#0293b0',
+					foreground: '#fff',
+				},
+			} );
+		}
+	);
 }
 
-//export { * as grid } from './grid';
-// Export for yard-blocks
-export { grid, gridColumn };
-//export { default as GridColumn } from './grid/column';
+// Manual export, to import your blocks manually
+export { collapseItem, collapseList, grid, gridColumn, spacer };

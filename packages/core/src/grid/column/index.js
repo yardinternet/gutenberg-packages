@@ -3,6 +3,7 @@
  */
 import classnames from 'classnames';
 import {
+	BlockIcon,
 	getMarginAttributes,
 	getPaddingAttributes,
 	backgroundAttributes,
@@ -22,17 +23,21 @@ import save from './save';
 import deprecated from './deprecated';
 
 const { name, attributes } = metadata;
-const icon = 'fas fa-columns';
+const Icon = <BlockIcon faClasses="fas fa-columns" />;
 
 const settings = {
 	title: __( 'Grid column' ),
 	description: __( 'Grid column' ),
+	category: 'yard-blocks',
 	parent: [ 'yard-blocks/grid' ],
 	attributes: {
 		...attributes,
 		...backgroundAttributes,
 		...getMarginAttributes(),
 		...getPaddingAttributes(),
+	},
+	icon: {
+		src: Icon,
 	},
 	supports: {
 		inserter: false,
@@ -63,4 +68,4 @@ const settings = {
 	save,
 };
 
-export { icon, name, settings };
+export { name, settings };
