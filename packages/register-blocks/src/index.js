@@ -3,6 +3,7 @@
  */
 import { registerBlockType } from '@wordpress/blocks';
 import { applyFilters } from '@wordpress/hooks';
+
 /**
  * External dependencies
  */
@@ -37,11 +38,16 @@ export function registerBlocks( blocks = [], options = defaultOptions ) {
 
 		return registerBlockType( name, {
 			...options,
-			icon: {
-				...options.icon,
-				src: <BlockIcon faClasses={ icon } />,
-			},
 			...blockSettings,
+			icon: {
+				src:
+					icon !== undefined ? (
+						<BlockIcon faClasses={ icon } />
+					) : (
+						blockSettings.icon.src
+					),
+				...options.icon,
+			},
 		} );
 	} );
 }

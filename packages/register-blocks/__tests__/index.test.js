@@ -6,7 +6,11 @@ import { registerBlockType } from '@wordpress/blocks';
 jest.mock( '@wordpress/hooks' );
 jest.mock( '@wordpress/blocks' );
 jest.mock( '@yardinternet/gutenberg-editor-components', () => {
-	return 'icon';
+	return {
+		BlockIcon: () => {
+			return <div>Icon</div>;
+		},
+	};
 } );
 
 const settings = {
