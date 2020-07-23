@@ -2,6 +2,10 @@
  * External dependencies
  */
 import classnames from 'classnames';
+import {
+	withBackground,
+	withSpacing,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -12,8 +16,6 @@ import { InnerBlocks } from '@wordpress/block-editor';
 /**
  * Internal dependencies
  */
-import { withBackground } from '../../../Containers/withBackground';
-import { withSpacing } from '../../../Containers/withSpacing';
 import Column from './components/column';
 
 function save( {

@@ -1,4 +1,12 @@
 /**
+ * External dependencies
+ */
+import {
+	withBackground,
+	withSpacing,
+} from '@yardinternet/gutenberg-editor-components';
+
+/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -14,9 +22,6 @@ import { cloneBlock } from '@wordpress/blocks';
  */
 import Inspector from './inspector';
 import Column from './components/column';
-
-import { withBackground } from '../../../Containers/withBackground';
-import { withSpacing } from '../../../Containers/withSpacing';
 
 function Edit( {
 	attributes,

@@ -2,18 +2,16 @@
  * External dependencies
  */
 import classnames from 'classnames';
+import {
+	withBackgroundClass,
+	withBackgroundImage,
+	withSpacing,
+} from '@yardinternet/gutenberg-editor-components';
 /**
  * WordPress dependencies
  */
 import { compose } from '@wordpress/compose';
 import { InnerBlocks } from '@wordpress/block-editor';
-
-/**
- * Internal dependencies
- */
-import { withBackgroundClass } from '../../../Containers/withBackgroundClass';
-import { withBackgroundImage } from '../../../Containers/withBackgroundImage';
-import { withSpacing } from '../../../Containers/withSpacing';
 
 const blockAttributes = {
 	editIsSelected: {
