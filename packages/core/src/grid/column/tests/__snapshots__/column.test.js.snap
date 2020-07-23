@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic column, classes should not change 1`] = `
+Object {
+  "colClass": Object {
+    "default": 6,
+    "type": "number",
+  },
+  "colClassLg": Object {
+    "default": 0,
+    "type": "number",
+  },
+  "colClassSm": Object {
+    "default": 0,
+    "type": "number",
+  },
+  "colClassXs": Object {
+    "default": 0,
+    "type": "number",
+  },
+  "editIsSelected": Object {
+    "default": false,
+    "type": "boolean",
+  },
+}
+`;
+
+exports[`basic column, should render column block with attributes 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "backgroundColor": "red",
+    }
+  }
+>
+  <div
+    className="inner_example_one inner_example_two"
+    style={
+      Object {
+        "color": "blue",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`basic column, should render column block with child 1`] = `
+<div
+  className=""
+>
+  <div
+    className=""
+  >
+     Child 
+  </div>
+</div>
+`;

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withBackgroundClass withBackgroundClass, render with bg-primary class 1`] = `
+<div
+  className="bg-primary"
+>
+  Awesome
+</div>
+`;
+
+exports[`withBackgroundClass withBackgroundClass, render without backgroundColorClass 1`] = `
+<div>
+  Awesome
+</div>
+`;

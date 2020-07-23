@@ -1,0 +1,14 @@
+.yard-blocks-grid-column {
+	@include backgroundOverlay;
+}
+
+[data-type='yard-blocks/grid-column'] {
+	&::before {
+		right: 0 !important;
+		left: 0 !important;
+	}
+
+	.block-editor-block-toolbar {
+		left: 14px !important;
+	}
+}

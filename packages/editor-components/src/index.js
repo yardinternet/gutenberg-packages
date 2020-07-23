@@ -13,4 +13,9 @@ export {
 export { default as ViewportTabControl } from './viewport-tab-control';
 export { default as BlockIcon } from './block-icon';
 export { default as IconPickerControl } from './icon-picker-control';
+export { default as SizeControl } from './size-control';
+export { withBackground } from './containers/withBackground';
+export { withBackgroundClass } from './containers/withBackgroundClass';
+export { withBackgroundImage } from './containers/withBackgroundImage';
+export { withSpacing } from './containers/withSpacing';
 export * from './helpers';

@@ -1,0 +1,151 @@
+$grid-flex-options: (
+	'flex-align-top-left': (
+		'flex-start',
+		false,
+	),
+	'flex-align-top-center': (
+		'center',
+		false,
+	),
+	'flex-align-top-right': (
+		'flex-end',
+		false,
+	),
+	'flex-align-center-left': (
+		'flex-start',
+		false,
+	),
+	'flex-align-center-center': (
+		'center',
+		false,
+	),
+	'flex-align-center-right': (
+		'flex-end',
+		false,
+	),
+	'flex-align-bottom-left': (
+		'flex-start',
+		false,
+	),
+	'flex-align-bottom-center': (
+		'center',
+		false,
+	),
+	'flex-align-bottom-right': (
+		'flex-end',
+		false,
+	),
+);
+
+.edit-post-visual-editor,
+.editor-styles-wrapper {
+	[data-type='yard-blocks/grid'] {
+		min-width: 100%;
+		margin-top: 70px;
+		margin-bottom: 70px;
+	}
+
+	[data-type='yard-blocks/grid-column'] {
+		height: 100%;
+	}
+
+	.yard-blocks-grid-column-container {
+		// TODO these will be dynamic in the future
+		margin-right: 0;
+		margin-left: 0;
+
+		.block-editor-block-list__layout {
+			padding-top: 1px;
+			padding-bottom: 1px;
+			margin-right: 5px;
+			margin-left: 5px;
+		}
+	}
+
+	.no-gutters {
+		[data-type='yard-blocks/grid-column'] {
+			padding-right: 0 !important;
+			padding-left: 0 !important;
+		}
+	}
+
+	.show-gridlines {
+		.yard-blocks-grid-column-container {
+			> .yard-blocks-grid-column {
+				border: 1px dashed #555d66;
+			}
+		}
+	}
+
+	// Show transparent border in the patterns preview
+	&.block-editor-block-preview__container {
+		.yard-blocks-grid-column-container {
+			> .yard-blocks-grid-column {
+				border-color: transparent;
+			}
+		}
+	}
+
+	.yard-blocks-grid {
+		height: 100%;
+
+		&--spacing {
+			border: 1px dashed #555d66;
+		}
+
+		.columns-equal-height {
+			.block-editor-inner-blocks {
+				min-height: inherit;
+
+				.block-editor-block-list__layout {
+					min-height: inherit;
+				}
+			}
+
+			[data-type='yard-blocks/grid-column'] {
+				margin-left: 0 !important;
+
+				.yard-blocks-grid-column {
+					height: calc( 100% - 60px );
+				}
+			}
+		}
+
+		.block-editor-inner-blocks {
+			min-width: 97%;
+			max-width: 97%;
+			margin: 0 auto;
+		}
+
+		&.fullwidth {
+			.block-editor-inner-blocks {
+				max-width: 98%;
+			}
+		}
+
+		@include wrap-flex-alignment(
+			'> .block-editor-inner-blocks > .block-editor-block-list__layout',
+			$grid-flex-options
+		);
+	}
+
+	.yard-blocks-grid-column {
+		margin-right: 0;
+		margin-left: 0;
+
+		&:not( :first-child ) {
+			margin-left: 28px;
+		}
+
+		> .block-editor-block-list__layout {
+			display: block;
+		}
+	}
+
+	.yard-blocks-grid > div > .block-editor-inner-blocks > .block-editor-block-list__layout {
+		display: flex;
+		flex-wrap: wrap;
+		margin-right: 0;
+		margin-left: 0;
+	}
+}

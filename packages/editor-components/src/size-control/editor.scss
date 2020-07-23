@@ -1,0 +1,24 @@
+.size-control__type {
+	display:flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom:1rem;
+
+	h2 {
+		margin:0;
+	}
+
+	.components-button {
+		padding:0 5px;
+
+		&.is-toggled {
+			box-shadow: none;
+			color:rgb(0, 133, 186);
+			text-decoration: underline;
+
+			&:focus {
+				box-shadow: none;
+			}
+		}
+	}
+}
