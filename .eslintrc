@@ -29,6 +29,7 @@
 		"theme": true,
 		"jsVars": true,
 		"google": true,
-		"MarkerClusterer": true
+		"MarkerClusterer": true,
+		"yardBlocks": true
 	}
 }

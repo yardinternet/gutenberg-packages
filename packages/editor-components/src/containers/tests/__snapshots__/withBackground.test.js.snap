@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withBackground should return all available properties 1`] = `
+<div
+  className="dim-ratio-50 has-parallax"
+  style={
+    Object {
+      "backgroundColor": Object {
+        "type": "string",
+      },
+      "backgroundImage": "url(image.jpg)",
+      "backgroundPosition": "1000% 1000%",
+      "backgroundRepeat": "no-repeat",
+      "backgroundSize": Object {
+        "type": "string",
+      },
+    }
+  }
+>
+  WithBackground
+</div>
+`;

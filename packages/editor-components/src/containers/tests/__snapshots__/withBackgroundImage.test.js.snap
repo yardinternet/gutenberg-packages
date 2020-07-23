@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withBackgroundImage withBackgroundImage, bgPosition should be omitted 1`] = `
+<div
+  style={
+    Object {
+      "backgroundSize": "contain",
+    }
+  }
+>
+  Should contain backgroundStyles
+</div>
+`;
+
+exports[`withBackgroundImage withBackgroundImage, render bgSize and don't override other styles  1`] = `
+<div
+  style={
+    Object {
+      "backgroundSize": "contain",
+      "color": "red",
+    }
+  }
+>
+  Should contain backgroundStyles
+</div>
+`;
+
+exports[`withBackgroundImage withBackgroundImage, render with background-image and no-repeat 1`] = `
+<div
+  style={
+    Object {
+      "backgroundImage": "url(http://www.awesome.com/image.jpg)",
+      "backgroundPosition": "center center",
+      "backgroundRepeat": "no-repeat",
+      "backgroundSize": "contain",
+    }
+  }
+>
+  Should contain backgroundStyles
+</div>
+`;

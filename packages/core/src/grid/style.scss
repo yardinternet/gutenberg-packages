@@ -1,0 +1,20 @@
+.yard-blocks-row {
+	&.alignfull .yard-blocks-grid [class^="col"] {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+}
+
+.yard-blocks-grid {
+	&.container-fluid {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+
+.yard-blocks-grid-column {
+	.column {
+		height: 100%;
+		padding: 1rem;
+	}
+}

@@ -1,0 +1,35 @@
+{
+  "name": "yard-blocks/grid",
+  "attributes": {
+    "fullWidth": {
+      "type": "boolean",
+      "default": false
+    },
+    "minHeight": {
+      "type": "string"
+    },
+    "rowGutter": {
+      "type": "boolean",
+      "default": false
+    },
+    "isInnerContainerFluid": {
+      "type": "boolean",
+      "default": false
+    },
+    "columnsEqualHeight": {
+      "type": "boolean",
+      "default": false
+    },
+    "flexAlignment": {
+      "type": "string",
+      "default": ""
+    },
+    "hasContainerPadding": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}
