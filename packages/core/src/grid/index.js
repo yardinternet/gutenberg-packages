@@ -2,6 +2,7 @@
  * External dependencies
  */
 import {
+	BlockIcon,
 	getMarginAttributes,
 	getPaddingAttributes,
 	backgroundAttributes,
@@ -22,11 +23,12 @@ import edit from './edit';
 import save from './save';
 
 const { name, attributes, supports } = metadata;
-const icon = 'fas fa-th';
+const Icon = <BlockIcon faClasses="fas fa-th" />;
 
 const settings = {
 	title: __( 'Grid' ),
 	description: __( 'Layout builder' ),
+	category: 'yard-blocks',
 	edit,
 	attributes: {
 		...attributes,
@@ -34,9 +36,12 @@ const settings = {
 		...getMarginAttributes(),
 		...getPaddingAttributes(),
 	},
+	icon: {
+		src: Icon,
+	},
 	deprecated,
 	supports,
 	save,
 };
 
-export { settings, name, icon };
+export { settings, name };
