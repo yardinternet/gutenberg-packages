@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-cards",
-	"version": "1.0.19",
+	"version": "1.0.20",
 	"description": "Cards component for gutenberg",
 	"author": "Ferdie Sletering <ferdie@yard.nl>",
 	"license": "ISC",
