@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import { find, get, pick } from 'lodash';
+
+/**
  * WordPress dependencies
  */
 import { createBlock } from '@wordpress/blocks';
@@ -41,3 +46,82 @@ export function insertBlockAtEnd( {
 
 	insertBlocks( block, getBlockOrder( clientId ).length, clientId );
 }
+
+/**
+ * Appends loaded script to DOM
+ *
+ * @param {*} src url
+ * @return {Promise} promise
+ */
+export function loadScript( src ) {
+	return new Promise( function ( resolve, reject ) {
+		const script = document.createElement( 'script' );
+		script.src = src;
+		script.async = true;
+		script.onload = () => resolve( script );
+		script.onerror = () =>
+			reject( new Error( 'Script load error: ' + src ) );
+
+		document.body.appendChild( script );
+	} );
+}
+
+/**
+ * Returns the color slug
+ *
+ * @param {Object} colors - colorpallete global variable
+ * @param {string} color - hexcolor
+ * @return {string} - primary
+ */
+export function getColorClassByColor( colors, color ) {
+	return get( find( colors, { color } ), 'slug' );
+}
+
+/**
+ * Returns the color slug background class
+ *
+ * @param {Object} colors - colorpallete global variable
+ * @param {string} color - hexcolor
+ * @return {string} - bg-primary
+ */
+export function getBackgroundClassByColor( colors, color ) {
+	const slug = getColorClassByColor( colors, color );
+	return slug !== undefined ? `bg-${ slug }` : slug;
+}
+
+/**
+ * Return the image props based on a chosen image size
+ *
+ * @param {Object} image
+ * @param {string} imageSize
+ */
+export const pickRelevantMediaFiles = ( image = {}, imageSize = 'full' ) => {
+	const imageProps = pick( image, [ 'alt', 'id', 'link', 'caption' ] );
+	imageProps.url =
+		get( image, [ 'sizes', imageSize, 'url' ] ) ||
+		get( image, [ 'media_details', 'sizes', imageSize, 'source_url' ] ) ||
+		image.url;
+
+	return imageProps;
+};
+
+/**
+ * Convert the image object so that lodash function 'pick' can use the image object.
+ *
+ * @param {Object} image
+ */
+export const convertPickedMediaFiles = ( image = {} ) => {
+	if ( Object.getOwnPropertyNames( image ).length > 0 ) {
+		if ( image.caption.raw || image.caption.raw === '' ) {
+			const caption = image.caption.raw;
+			delete image.caption;
+			image.caption = caption;
+		}
+
+		image.sizes = image.media_details.sizes;
+		image.alt = image.alt_text;
+		image.url = image.source_url;
+	}
+
+	return image;
+};

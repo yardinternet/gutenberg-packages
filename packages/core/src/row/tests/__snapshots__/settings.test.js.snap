@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`row settings attributes of yard-blocks/row should not change 1`] = `
+Object {
+  "align": Object {
+    "default": "wide",
+    "type": "string",
+  },
+  "alignVertical": Object {
+    "default": "center",
+    "type": "string",
+  },
+  "bgColor": Object {
+    "type": "string",
+  },
+  "columns": Object {
+    "default": 1,
+    "type": "number",
+  },
+  "columnsEqualHeight": Object {
+    "default": false,
+    "type": "boolean",
+  },
+  "hasColumnContainer": Object {
+    "default": false,
+    "type": "boolean",
+  },
+  "layoutDesktop": Object {
+    "default": "",
+    "type": "string",
+  },
+  "layoutMobile": Object {
+    "default": "",
+    "type": "string",
+  },
+  "layoutTablet": Object {
+    "default": "",
+    "type": "string",
+  },
+  "marginBottomClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "marginTopClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "paddingBottomClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "paddingLeftClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "paddingRightClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "paddingTopClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "rowClass": Object {
+    "default": "row",
+    "type": "string",
+  },
+  "rowGutter": Object {
+    "default": true,
+    "type": "boolean",
+  },
+  "rowHeight": Object {
+    "default": 150,
+    "type": "number",
+  },
+  "rowHeightAuto": Object {
+    "default": true,
+    "type": "boolean",
+  },
+  "rowStyles": Object {
+    "default": Object {
+      "minHeight": "auto",
+    },
+    "type": "object",
+  },
+}
+`;
+
+exports[`row settings block name of yard-blocks/row should not change 1`] = `"yard-blocks/row"`;

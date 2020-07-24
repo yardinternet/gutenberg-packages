@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`background properties should render backgroundClass bg-primary and inline style backgroundColor should not be set 1`] = `
+<div
+  className="container align-items-center bg-primary"
+  style={
+    Object {
+      "minHeight": "auto",
+    }
+  }
+>
+  <div
+    className="row col-md-3 col-md-3 col-md-3"
+  />
+</div>
+`;
+
+exports[`background properties should render inline backgroundColor:red and bgClass should be empty 1`] = `
+<div
+  className="container align-items-center"
+  style={
+    Object {
+      "backgroundColor": "red",
+      "minHeight": "auto",
+    }
+  }
+>
+  <div
+    className="row col-md-3 col-md-3 col-md-3"
+  />
+</div>
+`;
+
+exports[`basic tests should render component test with additional background props 1`] = `
+<div
+  className="container align-items-center"
+  style={
+    Object {
+      "minHeight": "auto",
+    }
+  }
+>
+  <div
+    className="row col-md-3 col-md-3 col-md-3"
+  />
+</div>
+`;
+
+exports[`basic tests should render component test with default props 1`] = `
+<div
+  className="container align-items-center"
+  style={
+    Object {
+      "minHeight": "auto",
+    }
+  }
+>
+  <div
+    className="row col-md-3 col-md-3 col-md-3"
+  />
+</div>
+`;

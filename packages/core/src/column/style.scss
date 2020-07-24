@@ -1,0 +1,17 @@
+.wp-block-yard-blocks-column {
+	display: flex;
+}
+
+.column-inner-container {
+	display: block;
+
+	.wp-block-cover {
+		margin-bottom: 0;
+	}
+}
+
+.yard-blocks-frontend {
+	.column-inner-container.d-none--frontend {
+		display:none !important;
+	}
+}
