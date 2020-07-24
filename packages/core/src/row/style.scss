@@ -1,0 +1,115 @@
+.yard-blocks-row {
+	display: flex;
+
+	&.alignfull {
+		padding: 0;
+
+		[class^="col"] {
+			padding-right: 0;
+			padding-left: 0;
+		}
+	}
+
+	.mobile-collapse {
+		@include media-breakpoint-down(sm) {
+			display: block;
+
+			.column-1 {
+				margin-bottom: 1rem;
+			}
+
+			.yard-blocks-column {
+				padding-right: 0;
+				padding-left: 0;
+			}
+		}
+	}
+
+	.row {
+		width: 100%;
+		margin: 0;
+
+		&.no-gutters {
+			@extend .no-gutters;
+		}
+	}
+
+	.col-1-desktop-full-width {
+		.column-1 {
+			@extend .col;
+		}
+	}
+
+	.col-2-desktop-equal-width {
+		> [class*="column"] {
+			@extend .col-md-6;
+		}
+	}
+
+	.col-2-tablet-equal-width {
+		> [class*="column"] {
+			@extend .col-md-6;
+		}
+	}
+
+	.col-2-mobile-equal-width {
+		> [class*="column"] {
+			@extend .col-6;
+		}
+	}
+
+	.col-2-desktop-heavy-right {
+		.column-1 {
+			@extend .col-xl-3;
+		}
+
+		.column-2 {
+			@extend .col-xl-9;
+		}
+	}
+
+	.col-2-tablet-heavy-right {
+		.column-1 {
+			@extend .col-md-4;
+		}
+
+		.column-2 {
+			@extend .col-md-8;
+		}
+	}
+}
+
+.align-items-flex-start {
+	@extend .align-items-start;
+}
+
+.align-items-flex-end {
+	@extend .align-items-end;
+}
+
+.columns-equal-height {
+	min-height: inherit;
+	.yard-blocks-column {
+		min-height: inherit;
+	}
+	.column-inner-container {
+		height: 100%;
+		min-height: inherit;
+	}
+}
+
+// This class is used in relation with the hasColumnContainer setting
+.column-max-width {
+	@include media-breakpoint-up(sm) {
+		width: map-get($container-max-widths, sm);
+	}
+	@include media-breakpoint-up(md) {
+		width: map-get($container-max-widths, md);
+	}
+	@include media-breakpoint-up(lg) {
+		width: map-get($container-max-widths, lg);
+	}
+	@include media-breakpoint-up(xl) {
+		width: map-get($container-max-widths, xl);
+	}
+}

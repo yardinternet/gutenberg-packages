@@ -30,6 +30,7 @@
 		"jsVars": true,
 		"google": true,
 		"MarkerClusterer": true,
-		"yardBlocks": true
+		"yardBlocks": true,
+		"jQuery": true
 	}
 }

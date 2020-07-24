@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`column settings attributes of yard-blocks/column should not change 1`] = `
+Object {
+  "alignItems": Object {
+    "default": "align-items-center",
+    "type": "string",
+  },
+  "bgColor": Object {
+    "default": "",
+    "type": "string",
+  },
+  "flexDirection": Object {
+    "default": "flex-direction-column",
+    "type": "string",
+  },
+  "id": Object {
+    "default": 1,
+    "type": "number",
+  },
+  "isFlex": Object {
+    "default": false,
+    "type": "boolean",
+  },
+  "isHidden": Object {
+    "default": false,
+    "type": "boolean",
+  },
+  "justifyContent": Object {
+    "default": "justify-content-center",
+    "type": "string",
+  },
+  "marginBottomClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "marginTopClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "paddingBottomClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "paddingClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "paddingLeftClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "paddingRightClass": Object {
+    "default": "",
+    "type": "string",
+  },
+  "paddingTopClass": Object {
+    "default": "",
+    "type": "string",
+  },
+}
+`;
+
+exports[`column settings block name of yard-blocks/column should not change 1`] = `"yard-blocks/column"`;
