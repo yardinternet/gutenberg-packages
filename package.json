@@ -50,6 +50,7 @@
 		"@wordpress/block-editor": "^4.3.1",
 		"@wordpress/blocks": "^6.20.0",
 		"@wordpress/components": "^10.0.0",
+		"@wordpress/compose": "^3.19.2",
 		"@wordpress/eslint-plugin": "^7.1.0",
 		"@wordpress/icons": "^2.0.0",
 		"@wordpress/jest-preset-default": "^6.2.0",
