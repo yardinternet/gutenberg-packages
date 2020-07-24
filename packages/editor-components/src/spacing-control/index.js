@@ -7,7 +7,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
-import { getSpacingUtilClass } from '../helpers';
+import { getSpacingUtilClass } from '../utils-yard-blocks/helpers';
 import ViewportTabControl from '../viewport-tab-control';
 import {
 	filterNumber,

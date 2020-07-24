@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { getSpacingUtilClass } from '../src/helpers.js';
+import { getSpacingUtilClass } from '../src/utils-yard-blocks/helpers.js';
 
 describe( 'getSpacingUtilClass to return bootstrap utility classes', () => {
 	test( 'should return m-md-5', () => {

@@ -13,6 +13,8 @@ import * as gridColumn from './grid/column';
 import * as spacer from './spacer';
 import * as row from './row';
 import * as rowColumn from './column';
+import * as timeline from './timeline';
+import * as timelineColumn from './timeline/timeline-column';
 
 export function registerBlocks() {
 	[ collapseList, collapseItem, spacer ].forEach( ( { name, settings } ) => {
@@ -28,4 +30,14 @@ export function registerBlocks() {
 }
 
 // Manual export, to import your blocks manually
-export { collapseItem, collapseList, grid, gridColumn, spacer, row, rowColumn };
+export {
+	collapseItem,
+	collapseList,
+	grid,
+	gridColumn,
+	spacer,
+	row,
+	rowColumn,
+	timeline,
+	timelineColumn,
+};
