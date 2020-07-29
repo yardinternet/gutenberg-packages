@@ -1,0 +1,40 @@
+{
+  "name": "yard-blocks/social-share",
+  "category": "layout",
+  "attributes": {
+    "type": {
+      "type": "string",
+      "default": "circle"
+    },
+    "bgColor": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string",
+      "default": "fa-lg"
+    },
+    "twitter": {
+      "type": "boolean",
+      "default": true
+    },
+    "facebook": {
+      "type": "boolean",
+      "default": true
+    },
+    "linkedin": {
+      "type": "boolean",
+      "default": true
+    },
+    "whatsapp": {
+      "type": "boolean",
+      "default": true
+    },
+    "print": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

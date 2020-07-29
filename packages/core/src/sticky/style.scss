@@ -1,0 +1,11 @@
+$block: "yard-blocks-sticky";
+
+.#{$block} {
+	position: fixed;
+	z-index: 1070;
+	width: 100vw;
+}
+
+.#{$block}__container {
+	display: flex;
+}

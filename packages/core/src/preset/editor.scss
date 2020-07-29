@@ -1,0 +1,18 @@
+.yard-blocks-select {
+	width: 100%;
+}
+
+.yard-blocks-select__group {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+}
+
+[data-type="yard-blocks/preset"] {
+	// Allow select to overflow the next or previous block
+	.components-placeholder {
+		position: relative;
+		z-index: 999;
+	}
+}

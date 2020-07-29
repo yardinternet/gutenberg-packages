@@ -1,0 +1,8 @@
+$block: "yard-blocks-navmenu";
+
+.#{$block} {
+	.sub-menu {
+		padding-left: 15px;
+		list-style: none;
+	}
+}

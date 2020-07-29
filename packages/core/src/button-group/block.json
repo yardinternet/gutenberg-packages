@@ -1,0 +1,14 @@
+{
+  "name": "yard-blocks/button-group",
+  "category": "layout",
+  "attributes": {
+    "btnWidth": {
+      "type": "string",
+      "default": "auto"
+    },
+    "btnAlignment": {
+      "type": "string",
+      "default:": "flex-align-center-left"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@import "shared";
+
+$block: "yard-blocks-card";
+
+.#{$block } {
+	> .editor-inner-blocks > .editor-block-list__layout {
+		flex-direction: column;
+	}
+}
+
+.columns-equal-height {
+	.card {
+		height: 100%;
+	}
+}
+
+.wp-block[data-type="yard-blocks/card"] {
+	width: 90%;
+	padding: 5px !important;
+}

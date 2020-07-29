@@ -1,0 +1,21 @@
+@import './sidebar.scss';
+
+@include yard-blocks-editor {
+	@import './shared.scss';
+
+	.carousel-item,
+	.carousel-inner,
+	.carousel {
+		height:inherit;
+	}
+}
+
+@include yard-blocks-editor {
+	.carousel-control-prev,
+	.carousel-control-next {
+		&:hover {
+			border:1px solid rgb(25, 30, 35);
+			cursor:pointer;
+		}
+	}
+}

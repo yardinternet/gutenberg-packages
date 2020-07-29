@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic tests metadata should not change 1`] = `
+Object {
+  "attributes": Object {
+    "icon": Object {
+      "default": "fas fa-envelope",
+      "type": "string",
+    },
+    "iconColor": Object {
+      "default": "",
+      "type": "string",
+    },
+    "iconSize": Object {
+      "default": 18,
+      "type": "number",
+    },
+    "labelText": Object {
+      "default": "",
+      "type": "string",
+    },
+    "placeholder": Object {
+      "default": "Begin met schrijven",
+      "type": "string",
+    },
+  },
+  "category": "layout",
+  "name": "yard-blocks/iconlist-item",
+}
+`;

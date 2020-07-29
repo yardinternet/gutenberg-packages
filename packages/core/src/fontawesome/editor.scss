@@ -1,0 +1,49 @@
+@import "./shared";
+
+$block: "yard-blocks-fontawesome";
+
+.edit-post-visual-editor {
+	.#{$block} {
+		display: flex;
+	}
+
+	[data-type="yard-blocks/font-awesome"] {
+		.editor-rich-text {
+			display: block;
+			width: 100%;
+		}
+	}
+
+	.#{$block}__autocomplete-container {
+		width: 100%;
+	}
+
+	.#{$block}__autocomplete {
+		display: block;
+		width: 100%;
+		padding: 0.5rem;
+		background: #fff;
+		word-break: break-all;
+	}
+
+	.#{$block}__label {
+		display: block;
+		width: 100%;
+	}
+
+	.#{$block}__icon-preview {
+		display: inline-flex;
+		border: 2px dashed #fff;
+		margin: 20px 0;
+
+		.#{$block}__icon-label {
+			margin-right: 15px;
+		}
+
+		i {
+			min-width: 60px;
+			padding: 1rem;
+			border: 1px solid#F2F2F2;
+		}
+	}
+}

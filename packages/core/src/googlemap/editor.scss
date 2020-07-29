@@ -1,0 +1,21 @@
+$block: "yard-blocks-google-map";
+
+.#{$block} {
+	width:100%;
+	min-height:500px;
+}
+
+.#{$block}__popover {
+	top: 50% !important;
+	height: 250px;
+
+	.components-popover__content {
+		min-width: 300px;
+		padding: 15px;
+	}
+}
+
+.#{$block}__popover-input {
+	padding: 0.5rem;
+	border: 1px solid #8d96a0;
+}

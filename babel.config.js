@@ -1,4 +1,4 @@
-module.exports = function( api ) {
+module.exports = function ( api ) {
 	api.cache( true );
 
 	return {
@@ -6,6 +6,7 @@ module.exports = function( api ) {
 		plugins: [
 			'@wordpress/babel-plugin-import-jsx-pragma',
 			'@babel/plugin-transform-runtime',
+			'@babel/plugin-proposal-class-properties',
 		],
 	};
 };

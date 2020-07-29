@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic tests metadata should not change 1`] = `
+Object {
+  "attributes": Object {
+    "alertType": Object {
+      "default": "alert alert-warning",
+      "type": "string",
+    },
+  },
+  "category": "layout",
+  "name": "yard-blocks/alert",
+}
+`;
+
+exports[`basic tests should render alert component 1`] = `
+<div
+  className="alert alert-warning"
+  role="alert"
+/>
+`;
+
+exports[`basic tests should render alert component with children 1`] = `
+<div
+  className="alert alert-warning"
+  role="alert"
+>
+  <p>
+    Alert
+  </p>
+</div>
+`;

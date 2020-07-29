@@ -34,6 +34,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.8.4",
+		"@babel/plugin-proposal-class-properties": "^7.10.4",
 		"@babel/plugin-transform-runtime": "^7.10.1",
 		"@babel/preset-env": "^7.10.4",
 		"@emotion/styled": "^10.0.27",
@@ -76,6 +77,7 @@
 		"webpack": "^4.43.0"
 	},
 	"dependencies": {
+		"@sentry/browser": "^5.20.1",
 		"@yardinternet/front-render": "*",
 		"@yardinternet/gutenberg-block-filters": "*",
 		"@yardinternet/gutenberg-cards": "*",
@@ -83,6 +85,7 @@
 		"@yardinternet/gutenberg-editor-components": "*",
 		"@yardinternet/gutenberg-gemeenten": "*",
 		"@yardinternet/gutenberg-google-maps": "*",
-		"@yardinternet/gutenberg-webpack-loaders": "*"
+		"@yardinternet/gutenberg-webpack-loaders": "*",
+		"reactstrap": "^8.5.1"
 	}
 }
