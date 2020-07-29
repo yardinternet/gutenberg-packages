@@ -1,0 +1,13 @@
+{
+	"name": "yard-blocks/tabs",
+	"category": "layout",
+	"attributes": {
+    "id": {
+      "type": "string"
+    },
+    "innerblocks": {
+      "type": "array",
+      "default": []
+    }
+  }
+}

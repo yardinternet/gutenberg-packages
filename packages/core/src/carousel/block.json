@@ -1,0 +1,42 @@
+{
+	"name": "yard-blocks/carousel",
+	"category": "layout",
+	"attributes": {
+		"carouselId": {
+			"type": "string",
+			"default": "carousel-1"
+		},
+		"viewportDesktopHeight": {
+			"type": "number",
+			"default": 300
+		},
+		"carouselImages": {
+			"type": "array",
+			"default": []
+		},
+		"imageSize": {
+			"type": "string",
+			"default": "full"
+		},
+		"showControls": {
+			"type": "boolean",
+			"default": true
+		},
+		"showIndicators": {
+			"type": "boolean",
+			"default": true
+		},
+		"autoPlay": {
+			"type": "boolean",
+			"default": true
+		},
+		"shuffle": {
+			"type": "boolean",
+			"default": false
+		},
+		"interval": {
+			"type": "number",
+			"default": 5000
+		}
+	}
+}

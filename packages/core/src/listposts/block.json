@@ -1,0 +1,92 @@
+{
+	"name": "yard-blocks/list-posts",
+	"attributes": {
+		"customID": {
+			"type": "string"
+		},
+		"postType": {
+			"type": "string"
+		},
+		"customSelection": {
+			"type": "boolean",
+			"default": false
+		},
+		"customView": {
+			"type": "string"
+		},
+		"taxonomyTerms": {
+			"type": "object",
+			"default": {}
+		},
+		"selectedPosts": {
+			"type": "array",
+			"default": []
+		},
+		"stickyPostSelection": {
+			"type": "boolean",
+			"default": false
+		},
+		"selectedStickyPostID": {
+			"type": "number"
+		},
+		"excludedPosts": {
+			"type": "array",
+			"default": []
+		},
+		"order": {
+			"type": "string",
+			"default": "date"
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "desc"
+		},
+		"postsToShow": {
+			"type": "number",
+			"default": 5
+		},
+		"postsOffset": {
+			"type": "number",
+			"default": 0
+		},
+		"displayDate": {
+			"type": "boolean",
+			"default": true
+		},
+		"displayExcerpt": {
+			"type": "boolean",
+			"default": true
+		},
+		"displayFeaturedImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"numberPerRow": {
+			"type": "number",
+			"default": 0
+		},
+		"numberPerRowLg": {
+			"type": "number",
+			"default": 0
+		},
+		"numberPerRowSm": {
+			"type": "number",
+			"default": 0
+		},
+		"numberPerRowXs": {
+			"type": "number",
+			"default": 0
+		},
+		"isMultipleSourcesEnabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"selectedSources": {
+			"type": "array",
+			"default": []
+		},
+		"className": {
+			"type": "string"
+		}
+	}
+}

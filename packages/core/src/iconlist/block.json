@@ -1,0 +1,26 @@
+{
+	"name": "yard-blocks/iconlist",
+	"category": "layout",
+	"attributes": {
+		"icon": {
+			"type": "string",
+			"default": "fas fa-truck"
+		},
+		"iconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 18
+		},
+		"labelText": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholder": {
+			"type": "string",
+			"default": "Begin met schrijven"
+		}
+	}
+}

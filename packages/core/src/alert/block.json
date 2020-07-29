@@ -1,0 +1,10 @@
+{
+	"name": "yard-blocks/alert",
+	"category": "layout",
+	"attributes": {
+    "alertType": {
+      "type": "string",
+      "default": "alert alert-warning"
+    }
+  }
+}

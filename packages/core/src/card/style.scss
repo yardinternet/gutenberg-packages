@@ -1,0 +1,28 @@
+@import './shared';
+$block: "yard-blocks-card";
+
+.#{$block} {
+	position: relative;
+	width: 100%;
+	height: auto;
+	//height: 100%; // Check if EVB still works, height will set 100% of it's parent. This should be removed when stacking cards vertically
+
+	&.#{$block}--elevate {
+		box-shadow: 0 4px 15px 0 rgba(40,44,53,.06), 0 2px 2px 0 rgba(40,44,53,.08);
+		transition: all 0.3s ease;
+		&:hover {
+			box-shadow: 0 6px 15px 0 rgba(40,44,53,.1), 0 2px 2px 0 rgba(40,44,53,.12);
+		}
+	}
+}
+
+.#{$block}__container-url {
+	&::after {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		content: "";
+	}
+}

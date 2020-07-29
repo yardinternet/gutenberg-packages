@@ -1,0 +1,24 @@
+$block: 'yard-blocks-carousel';
+
+%basic-indicator {
+	$indicator-dots-size: 30px;
+	width: $indicator-dots-size;
+	height: $indicator-dots-size;
+}
+
+.#{$block}.is-style-dots {
+	.carousel-indicators {
+		li {
+			@extend %basic-indicator;
+			border-radius: 50%;
+		}
+	}
+}
+
+.#{$block}.is-style-squared {
+	.carousel-indicators {
+		li {
+			@extend %basic-indicator;
+		}
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"name": "yard-blocks/iconlist-item",
+	"category": "layout",
+	"attributes": {
+		"icon": {
+			"type": "string",
+			"default": "fas fa-envelope"
+		},
+		"iconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 18
+		},
+		"labelText": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholder": {
+			"type": "string",
+			"default": "Begin met schrijven"
+		}
+	}
+}

@@ -1,0 +1,19 @@
+.fipicon-angle-down,
+.fipicon-angle-left,
+.fipicon-angle-right {
+	&::before {
+		/* stylelint-disable-next-line */
+		font-family: 'fontawesome';
+	}
+}
+
+.rfipcategory {
+	.fipicon-angle-down::before {
+		content: none;
+	}
+}
+
+.rfipdropdown--default {
+	position: relative !important;
+	box-shadow: none !important;
+}

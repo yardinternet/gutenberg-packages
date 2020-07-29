@@ -1,0 +1,8 @@
+@include yard-blocks-frontend {
+	@import './shared.scss';
+	.carousel-item img,
+	.carousel-item,
+	.carousel-inner {
+		height:inherit;
+	}
+}

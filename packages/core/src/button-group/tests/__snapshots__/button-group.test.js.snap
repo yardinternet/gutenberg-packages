@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic tests metadata should not change 1`] = `
+Object {
+  "attributes": Object {
+    "btnAlignment": Object {
+      "default:": "flex-align-center-left",
+      "type": "string",
+    },
+    "btnWidth": Object {
+      "default": "auto",
+      "type": "string",
+    },
+  },
+  "category": "layout",
+  "name": "yard-blocks/button-group",
+}
+`;

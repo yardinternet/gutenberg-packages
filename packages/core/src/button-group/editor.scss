@@ -1,0 +1,28 @@
+.yard-blocks-button-group {
+	display: flex;
+
+	.block-editor-block-list__layout {
+		display: flex;
+	}
+
+	.yard-blocks-button {
+		margin-right: var(--yard-blocks-button-group-margin, 10px);
+	}
+
+	&.btn-width-fullwidth {
+		.yard-blocks-button {
+			flex-grow: 1;
+
+			.wp-block-button__link {
+				width: 100%;
+			}
+		}
+	}
+}
+
+[data-type="yard-blocks/button-group"] {
+	@include wrap-flex-alignment(
+		".yard-blocks-button .block-editor-rich-text",
+		$flex-alignment-options
+	);
+}

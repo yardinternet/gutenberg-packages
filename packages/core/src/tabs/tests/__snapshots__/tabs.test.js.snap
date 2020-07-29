@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic tests metadata should not change 1`] = `
+Object {
+  "attributes": Object {
+    "id": Object {
+      "type": "string",
+    },
+    "innerblocks": Object {
+      "default": Array [],
+      "type": "array",
+    },
+  },
+  "category": "layout",
+  "name": "yard-blocks/tabs",
+}
+`;

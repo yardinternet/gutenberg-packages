@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic tests metadata should not change 1`] = `
+Object {
+  "attributes": Object {
+    "autoPlay": Object {
+      "default": true,
+      "type": "boolean",
+    },
+    "carouselId": Object {
+      "default": "carousel-1",
+      "type": "string",
+    },
+    "carouselImages": Object {
+      "default": Array [],
+      "type": "array",
+    },
+    "imageSize": Object {
+      "default": "full",
+      "type": "string",
+    },
+    "interval": Object {
+      "default": 5000,
+      "type": "number",
+    },
+    "showControls": Object {
+      "default": true,
+      "type": "boolean",
+    },
+    "showIndicators": Object {
+      "default": true,
+      "type": "boolean",
+    },
+    "shuffle": Object {
+      "default": false,
+      "type": "boolean",
+    },
+    "viewportDesktopHeight": Object {
+      "default": 300,
+      "type": "number",
+    },
+  },
+  "category": "layout",
+  "name": "yard-blocks/carousel",
+}
+`;

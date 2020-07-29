@@ -1,0 +1,17 @@
+$block: "yard-blocks-fontawesome";
+
+.#{$block} {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+
+	&__icon {
+		&.fa-lg {
+			min-width: 30px;
+		}
+	}
+}
+
+.#{$block}__description {
+	margin-left: 10px;
+}

@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic tests attributes should not change 1`] = `
+Object {
+  "className": Object {
+    "type": "string",
+  },
+  "customID": Object {
+    "type": "string",
+  },
+  "customSelection": Object {
+    "default": false,
+    "type": "boolean",
+  },
+  "customView": Object {
+    "type": "string",
+  },
+  "displayDate": Object {
+    "default": true,
+    "type": "boolean",
+  },
+  "displayExcerpt": Object {
+    "default": true,
+    "type": "boolean",
+  },
+  "displayFeaturedImage": Object {
+    "default": true,
+    "type": "boolean",
+  },
+  "excludedPosts": Object {
+    "default": Array [],
+    "type": "array",
+  },
+  "isMultipleSourcesEnabled": Object {
+    "default": false,
+    "type": "boolean",
+  },
+  "numberPerRow": Object {
+    "default": 0,
+    "type": "number",
+  },
+  "numberPerRowLg": Object {
+    "default": 0,
+    "type": "number",
+  },
+  "numberPerRowSm": Object {
+    "default": 0,
+    "type": "number",
+  },
+  "numberPerRowXs": Object {
+    "default": 0,
+    "type": "number",
+  },
+  "order": Object {
+    "default": "date",
+    "type": "string",
+  },
+  "orderBy": Object {
+    "default": "desc",
+    "type": "string",
+  },
+  "postType": Object {
+    "type": "string",
+  },
+  "postsOffset": Object {
+    "default": 0,
+    "type": "number",
+  },
+  "postsToShow": Object {
+    "default": 5,
+    "type": "number",
+  },
+  "selectedPosts": Object {
+    "default": Array [],
+    "type": "array",
+  },
+  "selectedSources": Object {
+    "default": Array [],
+    "type": "array",
+  },
+  "selectedStickyPostID": Object {
+    "type": "number",
+  },
+  "stickyPostSelection": Object {
+    "default": false,
+    "type": "boolean",
+  },
+  "taxonomyTerms": Object {
+    "default": Object {},
+    "type": "object",
+  },
+}
+`;
+
+exports[`basic tests block name should not change 1`] = `"yard-blocks/list-posts"`;
