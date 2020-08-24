@@ -30,7 +30,7 @@ const Edit = ( props ) => {
 	const spanStyle = { marginLeft: '10px' };
 	const placeholder = 'Typ om een icon te zoeken';
 
-	// Description
+	// Description.
 	const descriptionColorSlug = getColorClassByColor(
 		yardBlocks.editorColorPalette,
 		descriptionColor
