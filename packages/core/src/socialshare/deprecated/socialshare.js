@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import FontAwesomeIcon from './fontAwesomeIcon';
+import FontAwesomeIcon from './fontawesomeIcon';
 
 const SocialShareWithincorrectWhatsappURL = ( props ) => {
 	const { attributes } = props;
