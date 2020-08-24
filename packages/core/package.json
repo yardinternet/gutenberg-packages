@@ -18,6 +18,8 @@
 		"test:watch": "jest --watch"
 	},
 	"dependencies": {
-		"@yardinternet/gutenberg-editor-components": "file:../editor-components"
+		"@sentry/browser": "^5.21.4",
+		"@yardinternet/gutenberg-editor-components": "file:../editor-components",
+		"reactstrap": "^8.5.1"
 	}
 }
