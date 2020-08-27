@@ -1,4 +1,21 @@
 {
 	"name": "gemeenten/servicepoints",
-	"attributes": {}
+	"attributes": {
+		"customLocations": {
+			"type": "boolean",
+			"default": false
+		},
+		"locationSelection": {
+			"type": "array",
+			"default": []
+		},
+		"locationsToShow": {
+			"type": "number",
+			"default": 20
+		},
+		"selectedView": {
+			"type": "string",
+			"default": "index"
+		}
+	}
 }

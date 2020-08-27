@@ -22,7 +22,7 @@ import {
 	ToggleControl,
 	SelectControl,
 } from '@wordpress/components';
-import { getOpenPubItems } from './api';
+import { getOpenPubItems } from './../../../api';
 
 export default ( props ) => {
 	const { attributes, setAttributes, posts } = props;

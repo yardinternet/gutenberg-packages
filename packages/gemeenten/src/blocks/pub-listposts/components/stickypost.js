@@ -11,7 +11,7 @@ import { debounce } from 'lodash';
 /**
  * Internal dependencies
  */
-import { getOpenPubItems, searchOpenpub } from './api';
+import { getOpenPubItems, searchOpenpub } from './../../../api';
 
 export function createOptions( posts = [] ) {
 	return posts.map( function ( post ) {

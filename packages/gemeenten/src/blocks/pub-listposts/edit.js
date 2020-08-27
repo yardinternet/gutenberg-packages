@@ -8,7 +8,7 @@ import ServerSideRender from '@wordpress/server-side-render';
 /**
  * Internal dependencies
  */
-import { getOpenPubItems } from './components/api';
+import { getOpenPubItems } from './../../api';
 
 /**
  * Internal dependencies
