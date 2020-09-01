@@ -2,7 +2,7 @@
 
 The React FontIconPicker component included in the IconPickerControl, is a React Component for displaying an interface to pick fonts or SVG out of a collection. More information found here: https://github.com/fontIconPicker/react-fonticonpicker
 
-By default, FontIconPicker tries to render using class. Whatever you pass through icons, will be used like <i class={icon}>. This works with FontAwesome and glyphicons. If for some reason you want to use a custom data-attribute, see the filters below.
+By default, FontIconPicker tries to render using class. Whatever you pass through icons, will be used like `<i class={icon}>`. This works with FontAwesome and glyphicons. If for some reason you want to use a custom data-attribute, see the filters below.
 
 ## Usage
 
