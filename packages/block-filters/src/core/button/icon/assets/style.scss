@@ -3,6 +3,7 @@
 
 	.yard-blocks-button-icon {
 		position: absolute;
+		z-index: 1;
 		left: 1.3rem;
 		top: calc( 50% - 0.5rem );
 		pointer-events: none;
