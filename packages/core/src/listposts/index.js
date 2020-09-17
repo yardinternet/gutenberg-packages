@@ -12,6 +12,8 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import { attributes, name } from './block.json';
+// hier checken of er een block.json in het project aanwezig is en dan die pakken
+
 import edit from './edit';
 
 export const Icon = <BlockIcon faClasses="fal fa-list-alt" />;

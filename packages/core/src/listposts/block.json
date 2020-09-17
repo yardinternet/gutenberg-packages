@@ -85,6 +85,54 @@
 			"type": "array",
 			"default": []
 		},
+		"isNonWpSourcesEnabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"selectedSubsites": {
+			"type": "array",
+			"default": []
+		},
+		"nonWpostsToShow": {
+			"type": "number",
+			"default": 5
+		},
+		"nonWpostsOffset": {
+			"type": "number",
+			"default": 0
+		},
+		"selectedNonWpSource": {
+			"type": "object",
+			"default": {}
+		},
+		"topicsNonWpSources": {
+			"type": "array",
+			"default": []
+		},
+		"themesNonWpSources": {
+			"type": "array",
+			"default": []
+		},
+		"tagsNonWpSources": {
+			"type": "array",
+			"default": []
+		},
+		"customNonWpSelection": {
+			"type": "boolean",
+			"default": false
+		},
+		"selectedNonWpPosts": {
+			"type": "array",
+			"default": []
+		},
+		"searchNonWpSelection": {
+			"type": "boolean",
+			"default": false
+		},
+		"searchedNonWpPosts": {
+			"type": "array",
+			"default": []
+		},
 		"className": {
 			"type": "string"
 		},

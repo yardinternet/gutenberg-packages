@@ -248,7 +248,7 @@ class ListPostsEdit extends Component {
 
 	render() {
 		const { attributes } = this.props;
-		const { postType } = attributes;
+		const { postType, isNonWpSourcesEnabled } = attributes;
 		const {
 			posts,
 			postTypes,
@@ -275,7 +275,7 @@ class ListPostsEdit extends Component {
 					} }
 				/>
 
-				{ ! postType ? (
+				{ ! postType && ! isNonWpSourcesEnabled ? (
 					<Placeholder
 						icon={
 							<BlockIcon

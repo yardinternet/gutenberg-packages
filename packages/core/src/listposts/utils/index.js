@@ -367,3 +367,54 @@ export const filterExcludedPostsSelectOptions = (
 		return post.value !== selectedStickyPostID;
 	} );
 };
+
+/**
+ * Create key value pairs used in selects.
+ *
+ * @param {string} filterValue
+ * @param {Object} filters
+ */
+export const formatFiltersNonWpSourcesKeyValues = ( filterValue, filters ) => {
+	if (
+		typeof filters[ filterValue ] !== 'object' &&
+		! Array.isArray( filters[ filterValue ] )
+	) {
+		return [];
+	}
+
+	let filtersArray = [];
+
+	if (
+		typeof filters[ filterValue ] === 'object' &&
+		! Array.isArray( filters[ filterValue ] )
+	) {
+		filtersArray = Object.values( filters[ filterValue ] );
+	}
+
+	if (
+		typeof filters[ filterValue ] === 'object' &&
+		Array.isArray( filters[ filterValue ] )
+	) {
+		filtersArray = filters[ filterValue ];
+	}
+
+	return filtersArray.flat().map( ( item ) => {
+		if ( typeof item === 'object' ) {
+			item = item.name;
+		}
+
+		return {
+			label: item,
+			value: item.replace( /\s/g, '-' ).toLowerCase(),
+		};
+	} );
+};
+
+export const formatNonWpItemsKeyValues = ( items ) => {
+	return items.map( ( item ) => {
+		return {
+			label: item.title,
+			value: item.slug,
+		};
+	} );
+};

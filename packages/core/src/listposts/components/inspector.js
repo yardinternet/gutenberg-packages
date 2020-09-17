@@ -4,6 +4,7 @@
 import { map, countBy } from 'lodash';
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
+
 /**
  * WordPress dependencies
  */
@@ -38,12 +39,18 @@ import {
 	filterExcludedPostsSelectOptions,
 } from '../utils';
 import { fetchSources } from '../api';
+import AOS from './aos';
 import SelectPostTypeControl from './select-posttype-control';
 import SelectCustomViewsControl from './select-custom-views-control';
 import ColumnSize from './column-size';
 import SourceTypeControl from './source-type-control';
 
 const sources = applyFilters( 'yard-blocks.listPostsRemoteSources', [] );
+
+const remoteNonWpSources = applyFilters(
+	'yard-blocks.listPostsRemoteNonWpSources',
+	[]
+);
 
 const errorFetchRemoteSources = __( 'data kan niet worden opgehaald' );
 
@@ -79,6 +86,8 @@ function Inspector( props ) {
 		numberPerRowSm,
 		numberPerRowXs,
 		selectedSources,
+		isNonWpSourcesEnabled,
+		selectedNonWpSource,
 		isMultipleSourcesEnabled,
 		randomOrder,
 	} = attributes;
@@ -94,6 +103,11 @@ function Inspector( props ) {
 	);
 	const [ remotePostsOptions, setRemotePostOptions ] = useState( [] );
 	const [ failedRemoteEndpoints, setFailedRemoteEndpoints ] = useState( [] );
+
+	const [
+		remoteNonWpSourcesKeyValue,
+		setRemoteNonWpSourcesKeyValue,
+	] = useState( [] );
 
 	const excludedCount =
 		excludedPosts && excludedPosts.length
@@ -218,6 +232,26 @@ function Inspector( props ) {
 		formatRemotePostsKeyValues();
 	}, [ selectedSources ] );
 
+	// fetch filters for filtering non wp posts used in inspector
+	useEffect( () => {
+		if ( ! remoteNonWpSources.length ) return;
+		formatRemoteNonWpSourcesSelect();
+	}, [ remoteNonWpSources ] );
+
+	const formatRemoteNonWpSourcesSelect = () => {
+		// set default value for select when empty
+		if ( Object.keys( selectedNonWpSource ).length === 0 ) {
+			setAttributes( {
+				selectedNonWpSource: {
+					value: '0',
+					label: __( 'Selecteer een bron' ),
+				},
+			} );
+		}
+
+		setRemoteNonWpSourcesKeyValue( [ remoteNonWpSources[ 0 ] ] );
+	};
+
 	const setTermsByTaxonomySlug = ( val, taxonomy ) => {
 		setAttributes( {
 			taxonomyTerms: {
@@ -253,40 +287,52 @@ function Inspector( props ) {
 
 	return (
 		<InspectorControls>
-			<PanelBody title={ __( 'Instellingen' ) }>
-				<SelectPostTypeControl
-					{ ...{ setPostType, postTypes, postType, ...props } }
+			{ !! remoteNonWpSourcesKeyValue && ! postType && (
+				<AOS
+					{ ...{
+						remoteNonWpSourcesKeyValue,
+						remoteNonWpSources,
+						...props,
+					} }
 				/>
-				{ postType && (
-					<Fragment>
-						<QueryControls
-							{ ...{ orderBy, order, postsToShow } }
-							numberOfItems={ postsToShow }
-							onOrderChange={ ( value ) =>
-								setAttributes( { order: value } )
-							}
-							onOrderByChange={ ( value ) =>
-								setAttributes( { orderBy: value } )
-							}
-							onNumberOfItemsChange={ ( value ) =>
-								setAttributes( {
-									postsToShow: value,
-									numberPerRow:
-										numberPerRow <= value
-											? numberPerRow
-											: value,
-									numberPerRowSm:
-										numberPerRowSm <= value
-											? numberPerRowSm
-											: value,
-									numberPerRowXs:
-										numberPerRowXs <= value
-											? numberPerRowXs
-											: value,
-								} )
-							}
-						/>
-						{ ! randomOrder && (
+			) }
+			{ ! isNonWpSourcesEnabled && (
+				<PanelBody
+					title={ __( 'Instellingen' ) }
+					initialOpen={ ! remoteNonWpSourcesKeyValue }
+				>
+					<SelectPostTypeControl
+						{ ...{ setPostType, postTypes, postType, ...props } }
+					/>
+					{ postType && (
+						<Fragment>
+							<QueryControls
+								{ ...{ orderBy, order, postsToShow } }
+								numberOfItems={ postsToShow }
+								onOrderChange={ ( value ) =>
+									setAttributes( { order: value } )
+								}
+								onOrderByChange={ ( value ) =>
+									setAttributes( { orderBy: value } )
+								}
+								onNumberOfItemsChange={ ( value ) =>
+									setAttributes( {
+										postsToShow: value,
+										numberPerRow:
+											numberPerRow <= value
+												? numberPerRow
+												: value,
+										numberPerRowSm:
+											numberPerRowSm <= value
+												? numberPerRowSm
+												: value,
+										numberPerRowXs:
+											numberPerRowXs <= value
+												? numberPerRowXs
+												: value,
+									} )
+								}
+							/>
 							<RangeControl
 								key="query-controls-range-control"
 								label={ __( 'Offset' ) }
@@ -297,19 +343,19 @@ function Inspector( props ) {
 								min={ 0 }
 								max={ 30 }
 							/>
-						) }
-						<ToggleControl
-							label={ __( 'Willekeurige volgorde' ) }
-							checked={ randomOrder }
-							onChange={ () =>
-								setAttributes( { randomOrder: ! randomOrder } )
-							}
-						/>
-					</Fragment>
-				) }
-			</PanelBody>
+							<ToggleControl
+								label={ __( 'Willekeurige volgorde' ) }
+								checked={ randomOrder }
+								onChange={ () =>
+									setAttributes( { randomOrder: ! randomOrder } )
+								}
+							/>
+						</Fragment>
+					) }
+				</PanelBody>
+			) }
 
-			{ ! customSelection && !! posts.length && (
+			{ ! customSelection && !! posts.length && ! isNonWpSourcesEnabled && (
 				<PanelBody
 					title={ __( ' Klevend bericht' ) }
 					initialOpen={ false }
@@ -354,7 +400,7 @@ function Inspector( props ) {
 				</PanelBody>
 			) }
 
-			{ !! sources.length && (
+			{ !! sources.length && ! isNonWpSourcesEnabled && (
 				<PanelBody title={ __( 'Externe bronnen' ) }>
 					<div style={ { display: 'block', width: '100%' } }>
 						<ToggleControl
@@ -605,7 +651,7 @@ function Inspector( props ) {
 				/>
 			</PanelBody>
 
-			{ !! customViews && postType && (
+			{ !! customViews && ( postType || isNonWpSourcesEnabled ) && (
 				<PanelBody title={ __( 'Template' ) } initialOpen={ false }>
 					<SelectCustomViewsControl
 						{ ...{
