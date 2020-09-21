@@ -70,6 +70,10 @@ Object {
     "default": 5,
     "type": "number",
   },
+  "randomOrder": Object {
+    "default": false,
+    "type": "boolean",
+  },
   "selectedPosts": Object {
     "default": Array [],
     "type": "array",
