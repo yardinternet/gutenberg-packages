@@ -87,6 +87,10 @@
 		},
 		"className": {
 			"type": "string"
+		},
+		"randomOrder": {
+			"type": "boolean",
+			"default": false
 		}
 	}
 }

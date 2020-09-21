@@ -80,6 +80,7 @@ function Inspector( props ) {
 		numberPerRowXs,
 		selectedSources,
 		isMultipleSourcesEnabled,
+		randomOrder,
 	} = attributes;
 
 	const [ taxoResolved, setTaxoResolved ] = useState( false );
@@ -285,15 +286,24 @@ function Inspector( props ) {
 								} )
 							}
 						/>
-						<RangeControl
-							key="query-controls-range-control"
-							label={ __( 'Offset' ) }
-							value={ postsOffset }
-							onChange={ ( value ) =>
-								setAttributes( { postsOffset: value } )
+						{ ! randomOrder && (
+							<RangeControl
+								key="query-controls-range-control"
+								label={ __( 'Offset' ) }
+								value={ postsOffset }
+								onChange={ ( value ) =>
+									setAttributes( { postsOffset: value } )
+								}
+								min={ 0 }
+								max={ 30 }
+							/>
+						) }
+						<ToggleControl
+							label={ __( 'Willekeurige volgorde' ) }
+							checked={ randomOrder }
+							onChange={ () =>
+								setAttributes( { randomOrder: ! randomOrder } )
 							}
-							min={ 0 }
-							max={ 30 }
 						/>
 					</Fragment>
 				) }
@@ -539,33 +549,35 @@ function Inspector( props ) {
 				</PanelBody>
 			) }
 
-			{ postType && ! customSelection && !! posts.length && (
-				<PanelBody
-					title={ __( 'Uitsluiten' ) + `${ excludedCount }` }
-					initialOpen={ false }
-				>
-					<div style={ { marginBottom: 20 } }>
-						<p>
-							{ ' ' }
-							{ __(
-								'Post(s) die niet getoond mogen worden'
-							) }{ ' ' }
-						</p>
-						<Select
-							isMulti
-							value={ excludedPosts }
-							onChange={ ( val ) =>
-								setAttributes( { excludedPosts: val } )
-							}
-							options={ filterExcludedPostsSelectOptions(
-								stickyPostSelection,
-								selectedStickyPostID,
-								posts
-							) }
-						/>
-					</div>
-				</PanelBody>
-			) }
+			{ postType &&
+				! customSelection &&
+				!! ( posts.length || !! remotePostsOptions.length ) && (
+					<PanelBody
+						title={ __( 'Uitsluiten' ) + `${ excludedCount }` }
+						initialOpen={ false }
+					>
+						<div style={ { marginBottom: 20 } }>
+							<p>
+								{ ' ' }
+								{ __(
+									'Post(s) die niet getoond mogen worden'
+								) }{ ' ' }
+							</p>
+							<Select
+								isMulti
+								value={ excludedPosts }
+								onChange={ ( val ) =>
+									setAttributes( { excludedPosts: val } )
+								}
+								options={ filterExcludedPostsSelectOptions(
+									stickyPostSelection,
+									selectedStickyPostID,
+									posts.concat( remotePostsOptions )
+								) }
+							/>
+						</div>
+					</PanelBody>
+				) }
 
 			<PanelBody title={ __( 'Weergave' ) } initialOpen={ false }>
 				<ToggleControl
