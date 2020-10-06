@@ -1,0 +1,9 @@
+{
+	"name": "gemeenten/poll",
+	"attributes": {
+		"selectedPoll": {
+			"type": "number",
+			"default": null
+		}
+	}
+}
