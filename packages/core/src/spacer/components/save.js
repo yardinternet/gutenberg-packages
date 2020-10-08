@@ -5,7 +5,7 @@ function Save( props ) {
 	return (
 		<div
 			className={ `yard-blocks-spacer yard-blocks-spacer-size-${ size }` }
-			style={ { backgroundColor } }
+			style={ backgroundColor ? { backgroundColor } : null }
 		></div>
 	);
 }
