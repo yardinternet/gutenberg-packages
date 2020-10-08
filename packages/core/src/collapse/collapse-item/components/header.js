@@ -13,7 +13,7 @@ function Header( { headerText = '', setHeaderText = () => {}, id = 0 } ) {
 				isPrimary={ true }
 				data-toggle={ `collapse` }
 				data-target={ `#collapse-${ id }` }
-				aria-expanded={ false }
+				aria-expanded="false"
 				aria-controls={ `collapse-${ id }` }
 			>
 				<i

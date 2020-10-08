@@ -13,7 +13,7 @@ function CollapseItem( {
 	children = [],
 } ) {
 	return (
-		<div className={ `yard-blocks-collapse-item` }>
+		<div className={ `yard-blocks-collapse-item` } key={ id }>
 			<Header
 				id={ id }
 				headerText={ headerText }
