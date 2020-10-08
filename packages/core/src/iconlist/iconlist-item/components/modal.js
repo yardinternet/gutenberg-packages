@@ -14,7 +14,7 @@ function IconModal( { setAttributes, icon } ) {
 
 	return (
 		<div>
-			<Button isDefault onClick={ () => setOpen( true ) }>
+			<Button isSecondary onClick={ () => setOpen( true ) }>
 				{ __( 'Kies een icoon' ) }
 			</Button>
 			{ isOpen && (
@@ -28,7 +28,7 @@ function IconModal( { setAttributes, icon } ) {
 							setAttributes( { icon: newIcon } )
 						}
 					/>
-					<Button isDefault onClick={ () => setOpen( false ) }>
+					<Button isSecondary onClick={ () => setOpen( false ) }>
 						{ __( 'Sluit' ) }
 					</Button>
 				</Modal>

@@ -33,7 +33,7 @@ function Inspector( props ) {
 				/>
 				{ yardShowButtonIcon && (
 					<>
-						<Button isDefault onClick={ () => setOpen( true ) }>
+						<Button isSecondary onClick={ () => setOpen( true ) }>
 							{ __( 'Kies een icoon' ) }
 						</Button>
 						<ColorPalette
@@ -57,7 +57,7 @@ function Inspector( props ) {
 								} )
 							}
 						/>
-						<Button isDefault onClick={ () => setOpen( false ) }>
+						<Button isSecondary onClick={ () => setOpen( false ) }>
 							{ __( 'Sluit' ) }
 						</Button>
 					</Modal>

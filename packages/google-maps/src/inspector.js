@@ -364,7 +364,7 @@ function Inspector( props ) {
 						</Button>
 						<Button
 							isSmall
-							isDefault
+							isSecondary
 							onClick={ () =>
 								setShowExportShapeCoordinates( true )
 							}

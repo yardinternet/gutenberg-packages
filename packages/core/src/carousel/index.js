@@ -24,7 +24,7 @@ const settings = {
 	description: __( 'Carousel, toont afbeeldingen in een slideshow' ),
 	category: 'yard-blocks',
 	styles: [
-		{ name: 'default', label: __( 'Default' ), isDefault: true },
+		{ name: 'default', label: __( 'Default' ), isSecondary: true },
 		{ name: 'dots', label: __( 'Rond' ) },
 		{ name: 'squared', label: __( 'Vierkant' ) },
 	],

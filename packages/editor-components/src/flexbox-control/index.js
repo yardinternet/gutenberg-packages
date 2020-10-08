@@ -61,7 +61,7 @@ function FlexboxControl( {
 								onClick={ () =>
 									onClickFlexControl( option.value )
 								}
-								isDefault
+								isSecondary
 								isPrimary={ option.value === value }
 							/>
 						</Tooltip>

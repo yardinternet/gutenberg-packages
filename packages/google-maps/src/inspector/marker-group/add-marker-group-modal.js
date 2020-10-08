@@ -20,7 +20,11 @@ function AddMarkerGroupModal( {
 				onChange={ ( val ) => setGroupName( val ) }
 				label="Naam"
 			/>
-			<Button isPrimary onClick={ () => onSubmit( groupName ) } isDefault>
+			<Button
+				isPrimary
+				onClick={ () => onSubmit( groupName ) }
+				isSecondary
+			>
 				{ __( 'Opslaan', 'DOMAIN' ) }
 			</Button>
 		</Modal>

@@ -58,7 +58,7 @@ export default function TabGeneral( {
 					<div className="yard-sub-control">
 						{ ! bgImgUrl && (
 							<Button
-								isDefault
+								isSecondary
 								isLarge
 								className={ 'yard-btn' }
 								onClick={ open }
@@ -77,7 +77,7 @@ export default function TabGeneral( {
 										top: '10px',
 										right: '58px',
 									} }
-									isDefault
+									isSecondary
 									isLarge
 									className={ 'yard-btn' }
 									onClick={ open }
@@ -90,7 +90,7 @@ export default function TabGeneral( {
 										top: '10px',
 										right: '10px',
 									} }
-									isDefault
+									isSecondary
 									isLarge
 									className={ 'yard-btn' }
 									onClick={ () =>
