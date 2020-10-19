@@ -12,7 +12,7 @@ import { select, dispatch } from '@wordpress/data';
 /**
  * Returns the bootstrap spacing util class for margin and padding
  *
- * @param {Array} | contains input [ 'p', 'md', '5' ]
+ * @param {Array} contains input [ 'p', 'md', '5' ]
  * @return {string} p-md-5
  */
 export function getSpacingUtilClass( [
