@@ -139,7 +139,6 @@ export function ListControl( {
 			{ showAddModalButton && (
 				<PanelRow>
 					<Button
-						isLarge
 						isPrimary
 						onClick={ () => setAddModalVisible( true ) }
 					>

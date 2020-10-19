@@ -59,7 +59,6 @@ export default function TabGeneral( {
 						{ ! bgImgUrl && (
 							<Button
 								isSecondary
-								isLarge
 								className={ 'yard-btn' }
 								onClick={ open }
 							>
@@ -78,7 +77,6 @@ export default function TabGeneral( {
 										right: '58px',
 									} }
 									isSecondary
-									isLarge
 									className={ 'yard-btn' }
 									onClick={ open }
 								>
@@ -91,7 +89,6 @@ export default function TabGeneral( {
 										right: '10px',
 									} }
 									isSecondary
-									isLarge
 									className={ 'yard-btn' }
 									onClick={ () =>
 										setAttributes( {
