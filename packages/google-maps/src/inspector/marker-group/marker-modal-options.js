@@ -20,14 +20,12 @@ function MarkerModalOptions( {
 			<PanelRow>
 				<Button
 					isPrimary
-					isLarge
 					onClick={ () => setShowAddMarkerModalCPT( true ) }
 					type="submit"
 				>
 					Vanuit CPT
 				</Button>
 				<Button
-					isLarge
 					onClick={ () => setShowAddMarkerModal( true ) }
 					type="submit"
 				>

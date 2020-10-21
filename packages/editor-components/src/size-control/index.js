@@ -36,7 +36,7 @@ function SizeControl( { label, value, onChange } ) {
 				<ButtonGroup>
 					{ units.map( ( val ) => (
 						<Button
-							isToggled={ val === unit }
+							isPressed={ val === unit }
 							onClick={ () => onChangeValue( value, val ) }
 							key={ val }
 						>

@@ -40,7 +40,9 @@ function withSaveDataAttributes( WrappedComponent, data = {} ) {
 /**
  * Transform data-attr to props
  *
- * @param {*} { Component, element }
+ * @param {Object} object
+ * @param {*} object.Component
+ * @param {*} object.Element
  * @return {Element} - Element
  */
 function withFrontRender( { Component, element } ) {

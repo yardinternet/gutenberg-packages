@@ -303,7 +303,6 @@ function Markergroup( {
 				{ supportCptLatLng.length ? (
 					<Button
 						isPrimary
-						isLarge
 						onClick={ () => setShowAddMarkerModalOptions( true ) }
 						type="submit"
 					>
@@ -312,7 +311,6 @@ function Markergroup( {
 				) : (
 					<Button
 						isPrimary
-						isLarge
 						onClick={ () => setShowAddMarkerModal( true ) }
 						type="submit"
 					>

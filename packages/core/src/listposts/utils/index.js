@@ -135,7 +135,7 @@ export function mapCustomViewsToKeyPair( customViews = {} ) {
  *  @param {Array} customViews - received from the rest api endpoint i.e. [ 'example', 'news' ]
  *	@param {string} customView
  *	@param {string} propName
- *  @return {boolean/Array} boolean/array
+ *  @return {boolean|Array} boolean|array
  */
 export function templateValidateYardPropsSupport(
 	customViews = {},

@@ -28,7 +28,7 @@ Run `npm start` inside theme or project and make changes in the gutenberg-packag
 
 1. Run `npm unlink --no-save <package>` in your theme first.
 
-If you don't include `--no-save` you'll end up removing that package from your package.json file. Of course, if you don't want to include the unlinked package in your package.json file, you can exclude the `--no-save`.
+   If you don't include `--no-save` you'll end up removing that package from your package.json file. Of course, if you don't want to include the unlinked package in your package.json file, you can exclude the `--no-save`.
 
 2. Run `npm unlink` inside the gutenberg-package/packages/<package>
 
@@ -52,7 +52,7 @@ As a rule of thumb, **only update packages from the master branch**
 
 In feature branch or development you can publish alpha releases
 
-### Why lerna finds invidual package changes without changing it?
+### Why lerna finds individual package changes without changing it
 
 When changes made to a package that another package depends on, lerna will update the package.json file.
 As example: package-foo has a dependency on package-bar. When you make changes to package-bar, it will update the package.json file of package-foo.
