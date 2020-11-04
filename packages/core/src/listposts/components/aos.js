@@ -46,6 +46,8 @@ function AOS( props ) {
 		postsToShow,
 		isNonWpSourcesEnabled,
 		selectedSubsites,
+		selectedContentTypes,
+		selectedAuthorsMeta,
 		nonWpostsToShow,
 		nonWpostsOffset,
 		selectedNonWpSource,
@@ -59,6 +61,16 @@ function AOS( props ) {
 	} = attributes;
 
 	const [ remoteNonWpItems, setRemoteNonWpItems ] = useState( [] );
+
+	const [
+		contentTypeNonWpSourcesKeyValues,
+		setContentTypesNonWpSourcesKeyValues,
+	] = useState( [] );
+
+	const [
+		authorsMetaNonWpSourcesKeyValues,
+		setAuthorsMetaNonWpSourcesKeyValues,
+	] = useState( [] );
 
 	const [
 		subsitesNonWpSourcesKeyValues,
@@ -141,6 +153,20 @@ function AOS( props ) {
 			subsites
 		);
 		setSubsitesNonWpSourcesKeyValues( subsitesKeyValues );
+
+		const contentTypes = await fetchFilters( 'content-types' );
+		const contentTypesKeyValues = formatFiltersNonWpSourcesKeyValues(
+			'content_types',
+			contentTypes
+		);
+		setContentTypesNonWpSourcesKeyValues( contentTypesKeyValues );
+
+		const authorsMeta = await fetchFilters( 'authors' );
+		const authorsMetaKeyValues = formatFiltersNonWpSourcesKeyValues(
+			'authors',
+			authorsMeta
+		);
+		setAuthorsMetaNonWpSourcesKeyValues( authorsMetaKeyValues );
 	};
 
 	/**
@@ -193,6 +219,20 @@ function AOS( props ) {
 			// eslint-disable-next-line
 			selectedSubsites.map( ( item ) => {
 				query = query + `&subsite[]=${ item.label }`;
+			} );
+		}
+
+		if ( !! selectedContentTypes ) {
+			// eslint-disable-next-line
+			selectedContentTypes.map( ( item ) => {
+				query = query + `&content-type[]=${ item.label }`;
+			} );
+		}
+
+		if ( !! selectedAuthorsMeta ) {
+			// eslint-disable-next-line
+			selectedAuthorsMeta.map( ( item ) => {
+				query = query + `&author-term[]=${ item.label }`;
 			} );
 		}
 
@@ -295,7 +335,7 @@ function AOS( props ) {
 
 	return (
 		<>
-			<PanelBody title={ __( 'Bron' ) }>
+			<PanelBody title={ __( 'Bron' ) } initialOpen={ true }>
 				<Select
 					isClearable={ true }
 					isMulti={ false }
@@ -304,8 +344,72 @@ function AOS( props ) {
 					options={ remoteNonWpSourcesKeyValue }
 					className="yard-sub-control"
 				/>
-				{ isNonWpSourcesEnabled && ! searchNonWpSelection && (
+			</PanelBody>
+			{ isNonWpSourcesEnabled && ! searchNonWpSelection && (
+				<PanelBody title={ __( 'Filters' ) } initialOpen={ true }>
 					<>
+						{ ! customNonWpSelection && (
+							<>
+								<RangeControl
+									key="query-controls-range-control"
+									label={ __( 'Aantal posts' ) }
+									value={ nonWpostsToShow }
+									onChange={ ( value ) =>
+										setAttributes( {
+											nonWpostsToShow: value,
+										} )
+									}
+									min={ 0 }
+									max={ 999 }
+									className="yard-sub-control"
+								/>
+								<RangeControl
+									key="query-controls-range-control"
+									label={ __( 'Offset' ) }
+									value={ nonWpostsOffset }
+									onChange={ ( value ) =>
+										setAttributes( {
+											nonWpostsOffset: value,
+										} )
+									}
+									min={ 0 }
+									max={ 999 }
+									className="yard-sub-control"
+								/>
+							</>
+						) }
+						<p className={ 'yard-label' }>
+							{ __( 'Kies de content typen' ) }
+						</p>
+						<Select
+							isClearable={ true }
+							isMulti={ true }
+							placeholder={ __( 'Kies content type' ) }
+							value={ selectedContentTypes }
+							onChange={ ( types ) =>
+								setAttributes( {
+									selectedContentTypes: types,
+								} )
+							}
+							options={ contentTypeNonWpSourcesKeyValues }
+							className="yard-sub-control"
+						/>
+						<p className={ 'yard-label' }>
+							{ __( 'Kies de auteurs meta' ) }
+						</p>
+						<Select
+							isClearable={ true }
+							isMulti={ true }
+							placeholder={ __( 'Kies auteurs meta' ) }
+							value={ selectedAuthorsMeta }
+							onChange={ ( meta ) =>
+								setAttributes( {
+									selectedAuthorsMeta: meta,
+								} )
+							}
+							options={ authorsMetaNonWpSourcesKeyValues }
+							className="yard-sub-control"
+						/>
 						<p className={ 'yard-label' }>
 							{ __( 'Kies de subsites' ) }
 						</p>
@@ -370,39 +474,9 @@ function AOS( props ) {
 							options={ tagsNonWpSourcesKeyValues }
 							className="yard-sub-control"
 						/>
-						{ ! customNonWpSelection && (
-							<>
-								<RangeControl
-									key="query-controls-range-control"
-									label={ __( 'Aantal posts' ) }
-									value={ nonWpostsToShow }
-									onChange={ ( value ) =>
-										setAttributes( {
-											nonWpostsToShow: value,
-										} )
-									}
-									min={ 0 }
-									max={ 999 }
-									className="yard-sub-control"
-								/>
-								<RangeControl
-									key="query-controls-range-control"
-									label={ __( 'Offset' ) }
-									value={ nonWpostsOffset }
-									onChange={ ( value ) =>
-										setAttributes( {
-											nonWpostsOffset: value,
-										} )
-									}
-									min={ 0 }
-									max={ 999 }
-									className="yard-sub-control"
-								/>
-							</>
-						) }
 					</>
-				) }
-			</PanelBody>
+				</PanelBody>
+			) }
 			{ ! searchNonWpSelection && nonWpostsOffset === 0 && (
 				<PanelBody
 					title={ __( 'Handmatige selectie' ) }

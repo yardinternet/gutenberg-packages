@@ -93,6 +93,14 @@
 			"type": "array",
 			"default": []
 		},
+		"selectedContentTypes": {
+			"type": "array",
+			"default": []
+		},
+		"selectedAuthorsMeta": {
+			"type": "array",
+			"default": []
+		},
 		"nonWpostsToShow": {
 			"type": "number",
 			"default": 5
