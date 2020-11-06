@@ -1,8 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { Fragment } from '@wordpress/element';
 import { RangeControl, Button, ButtonGroup } from '@wordpress/components';
+
 /**
  * Internal dependencies
  */
@@ -30,7 +30,7 @@ function SizeControl( { label, value, onChange } ) {
 	};
 
 	return (
-		<Fragment>
+		<>
 			<div className="size-control__type">
 				<h2>{ label }</h2>
 				<ButtonGroup>
@@ -51,7 +51,12 @@ function SizeControl( { label, value, onChange } ) {
 				min={ 0 }
 				max={ setMax( unit ) }
 			/>
-		</Fragment>
+			{ value > 0 && (
+				<Button isTertiary onClick={ () => onChangeValue( 0, unit ) }>
+					Reset
+				</Button>
+			) }
+		</>
 	);
 }
 
