@@ -46,16 +46,12 @@ function FlexboxControl( {
 								className={ css`
 									height: ${ styleOptions.height } !important;
 									flex-basis: 33.3%;
-									border-color: #545252 !important;
-									margin-left: 0 !important;
-									border-radius: unset !important;
-									box-shadow: none !important;
+									margin: 0 -1px -1px 0 !important;
 
-									&:nth-child( 4 ),
-									&:nth-child( 5 ),
-									&:nth-child( 6 ) {
-										border-top: 0 !important;
-										border-bottom: 0 !important;
+									&.is-primary {
+										background-color: var(
+											--wp-admin-theme-color-darker-10
+										) !important;
 									}
 								` }
 								onClick={ () =>
