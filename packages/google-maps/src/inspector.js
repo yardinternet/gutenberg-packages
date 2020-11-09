@@ -11,6 +11,7 @@ import ListControl from './inspector/list-control/list-control';
 import AddMarkerGroupModal from './inspector/marker-group/add-marker-group-modal';
 import MarkerGroups from './inspector/marker-group/marker-groups';
 import ImportCoordinatesControl from './inspector/import-coordinates-control';
+import ImportAreas from './inspector/import-areas';
 import ExportCoordinatesControl from './inspector/export-coordinates-control';
 import MapOptions from './inspector/map-options';
 
@@ -47,6 +48,7 @@ function Inspector( props ) {
 	} = props;
 	const {
 		categories,
+		legend,
 		markerGroups,
 		polygons,
 		filterOptions,
@@ -60,6 +62,8 @@ function Inspector( props ) {
 		showImportShapeCoordinates,
 		setShowImportShapeCoordinates,
 	] = useState( false );
+
+	const [ showImportAreas, setShowImportAreas ] = useState( false );
 
 	const [
 		showExportShapeCoordinates,
@@ -197,6 +201,11 @@ function Inspector( props ) {
 								attr: { label: 'Naam' },
 							},
 							{
+								type: 'TextControl',
+								id: 'url',
+								attr: { label: 'url' },
+							},
+							{
 								type: 'ToggleSwitch',
 								id: 'filter',
 								attr: {
@@ -208,6 +217,71 @@ function Inspector( props ) {
 								id: 'showFiltersOnPageLoad',
 								attr: {
 									label: 'Filter initieel tonen',
+								},
+							},
+						] }
+					/>
+				</PanelBody>
+				<PanelBody
+					initialOpen={ false }
+					title={ __( 'Legenda', config.textDomain ) }
+				>
+					<ListControl
+						explanationNoItems={ __(
+							'Er zijn geen items beschikbaar of voeg een item toe.',
+							config.textDomain
+						) }
+						entityLabel={ __( 'Legenda' ) }
+						showListCategoryLabel={ false }
+						showAddModalButton={ true }
+						data={ legend }
+						setAttributes={ setAttributes }
+						callback={ ( newLegends ) => {
+							setAttributes( { legend: newLegends } );
+						} }
+						controls={ [
+							{
+								type: 'SelectControl',
+								id: 'category',
+								attr: {
+									label: 'Categorie',
+									options: createOptionsSelectControl(),
+								},
+							},
+							{
+								type: 'TextControl',
+								id: 'name',
+								attr: {
+									label: 'Naam',
+									help: __(
+										'Naam van het legende item',
+										config.textDomain
+									),
+								},
+							},
+							{
+								type: 'ToggleSwitch',
+								id: 'showLegendItem',
+								attr: {
+									label: 'Legenda item tonen',
+								},
+							},
+							{
+								type: 'BaseControl',
+								id: 'BaseControlColor',
+								attr: {
+									help: __(
+										'Kies een kleur voor het legenda item.',
+										config.textDomain
+									),
+								},
+							},
+							{
+								type: 'ColorPicker',
+								id: 'color',
+								attr: {
+									label: 'color',
+									name: 'color',
 								},
 							},
 						] }
@@ -399,6 +473,29 @@ function Inspector( props ) {
 							onChangeFilterOptions( 'content', val )
 						}
 					/>
+				</PanelBody>
+				<PanelBody
+					initialOpen={ false }
+					icon="location-alt"
+					title={ __( 'Bulk gebieden', config.textDomain ) }
+				>
+					<>
+						<Button
+							isSmall
+							isPrimary
+							onClick={ () => setShowImportAreas( true ) }
+						>
+							Importeer gebieden
+						</Button>
+						{ showImportAreas && (
+							<ImportAreas
+								setModal={ setShowImportAreas }
+								polygons={ polygons }
+								categories={ categories }
+								setAttributes={ setAttributes }
+							/>
+						) }
+					</>
 				</PanelBody>
 				<MapOptions
 					mapOptions={ mapOptions }

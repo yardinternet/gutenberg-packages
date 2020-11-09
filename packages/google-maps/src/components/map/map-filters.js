@@ -38,23 +38,28 @@ function MapFilters( {
 					{ content }
 				</div>
 				<div className="yard-google-map-advanced__checkboxes">
-					{ filters.map( ( name, key ) => {
+					{ filters.map( ( item, key ) => {
 						return [
 							<div
 								className="yard-google-map-advanced__option"
 								key={ key }
 							>
 								<input
-									id={ `checkbox-${ name }` }
+									id={ `checkbox-${ item.name }` }
 									key={ key }
 									type="checkbox"
-									name={ name }
-									checked={ isCategoryChecked( name ) }
+									name={ item.name }
+									checked={ isCategoryChecked( item.name ) }
 									onChange={ onChangeCheckbox }
 								/>
-								<label htmlFor={ `checkbox-${ name }` }>
-									{ name }
+								<label htmlFor={ `checkbox-${ item.name }` }>
+									{ item.name }
 								</label>
+								{ item.url && (
+									<a href={ item.url }>
+										<i className="fas fa-link"></i>
+									</a>
+								) }
 							</div>,
 						];
 					} ) }
