@@ -39,7 +39,6 @@ import {
 	filterExcludedPostsSelectOptions,
 } from '../utils';
 import { fetchSources } from '../api';
-import AOS from './aos';
 import SelectPostTypeControl from './select-posttype-control';
 import SelectCustomViewsControl from './select-custom-views-control';
 import ColumnSize from './column-size';
@@ -47,10 +46,22 @@ import SourceTypeControl from './source-type-control';
 
 const sources = applyFilters( 'yard-blocks.listPostsRemoteSources', [] );
 
+/**
+ * Start project component WP filters
+ */
+const ProjectComponent = applyFilters(
+	'yard-blocks.listPostsProjectComponent',
+	false
+);
+
+// Get the non wp sources used in 'source select'
 const remoteNonWpSources = applyFilters(
 	'yard-blocks.listPostsRemoteNonWpSources',
 	[]
 );
+/**
+ * End project components WP filters
+ */
 
 const errorFetchRemoteSources = __( 'data kan niet worden opgehaald' );
 
@@ -87,7 +98,6 @@ function Inspector( props ) {
 		numberPerRowXs,
 		selectedSources,
 		isNonWpSourcesEnabled,
-		selectedNonWpSource,
 		isMultipleSourcesEnabled,
 		randomOrder,
 	} = attributes;
@@ -103,11 +113,6 @@ function Inspector( props ) {
 	);
 	const [ remotePostsOptions, setRemotePostOptions ] = useState( [] );
 	const [ failedRemoteEndpoints, setFailedRemoteEndpoints ] = useState( [] );
-
-	const [
-		remoteNonWpSourcesKeyValue,
-		setRemoteNonWpSourcesKeyValue,
-	] = useState( [] );
 
 	const excludedCount =
 		excludedPosts && excludedPosts.length
@@ -232,26 +237,6 @@ function Inspector( props ) {
 		formatRemotePostsKeyValues();
 	}, [ selectedSources ] );
 
-	// fetch filters for filtering non wp posts used in inspector
-	useEffect( () => {
-		if ( ! remoteNonWpSources.length ) return;
-		formatRemoteNonWpSourcesSelect();
-	}, [ remoteNonWpSources ] );
-
-	const formatRemoteNonWpSourcesSelect = () => {
-		// set default value for select when empty
-		if ( Object.keys( selectedNonWpSource ).length === 0 ) {
-			setAttributes( {
-				selectedNonWpSource: {
-					value: '0',
-					label: __( 'Selecteer een bron' ),
-				},
-			} );
-		}
-
-		setRemoteNonWpSourcesKeyValue( [ remoteNonWpSources[ 0 ] ] );
-	};
-
 	const setTermsByTaxonomySlug = ( val, taxonomy ) => {
 		setAttributes( {
 			taxonomyTerms: {
@@ -287,10 +272,9 @@ function Inspector( props ) {
 
 	return (
 		<InspectorControls>
-			{ !! remoteNonWpSourcesKeyValue && ! postType && (
-				<AOS
+			{ !! remoteNonWpSources.length && ! postType && ProjectComponent && (
+				<ProjectComponent
 					{ ...{
-						remoteNonWpSourcesKeyValue,
 						remoteNonWpSources,
 						...props,
 					} }
@@ -299,7 +283,7 @@ function Inspector( props ) {
 			{ ! isNonWpSourcesEnabled && (
 				<PanelBody
 					title={ __( 'Instellingen' ) }
-					initialOpen={ ! remoteNonWpSourcesKeyValue }
+					initialOpen={ ! remoteNonWpSources.length }
 				>
 					<SelectPostTypeControl
 						{ ...{ setPostType, postTypes, postType, ...props } }

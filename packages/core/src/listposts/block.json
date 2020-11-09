@@ -85,66 +85,18 @@
 			"type": "array",
 			"default": []
 		},
-		"isNonWpSourcesEnabled": {
+		"className": {
+			"type": "string"
+		},
+		"randomOrder": {
 			"type": "boolean",
 			"default": false
-		},
-		"selectedSubsites": {
-			"type": "array",
-			"default": []
-		},
-		"selectedContentTypes": {
-			"type": "array",
-			"default": []
-		},
-		"selectedAuthorsMeta": {
-			"type": "array",
-			"default": []
-		},
-		"nonWpostsToShow": {
-			"type": "number",
-			"default": 5
-		},
-		"nonWpostsOffset": {
-			"type": "number",
-			"default": 0
 		},
 		"selectedNonWpSource": {
 			"type": "object",
 			"default": {}
 		},
-		"topicsNonWpSources": {
-			"type": "array",
-			"default": []
-		},
-		"themesNonWpSources": {
-			"type": "array",
-			"default": []
-		},
-		"tagsNonWpSources": {
-			"type": "array",
-			"default": []
-		},
-		"customNonWpSelection": {
-			"type": "boolean",
-			"default": false
-		},
-		"selectedNonWpPosts": {
-			"type": "array",
-			"default": []
-		},
-		"searchNonWpSelection": {
-			"type": "boolean",
-			"default": false
-		},
-		"searchedNonWpPosts": {
-			"type": "array",
-			"default": []
-		},
-		"className": {
-			"type": "string"
-		},
-		"randomOrder": {
+		"isNonWpSourcesEnabled": {
 			"type": "boolean",
 			"default": false
 		}
