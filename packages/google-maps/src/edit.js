@@ -13,6 +13,7 @@ function Edit( props ) {
 	const { setAttributes, attributes } = props;
 	const {
 		categories,
+		legend,
 		polygons,
 		markerGroups,
 		filterOptions,
@@ -34,6 +35,7 @@ function Edit( props ) {
 				setUndo={ setUndo }
 				editMapCenter={ editMapCenter }
 				setEditMapCenter={ setEditMapCenter }
+				legend={ legend }
 				{ ...props }
 			/>
 			<Map
@@ -52,6 +54,7 @@ function Edit( props ) {
 				categories={ categories }
 				filterOptions={ filterOptions }
 				polygons={ polygons }
+				legend={ legend }
 				{ ...props }
 			></Map>
 		</>

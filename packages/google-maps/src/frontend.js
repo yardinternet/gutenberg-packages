@@ -21,6 +21,7 @@ if ( element ) {
 		markerGroups: domProps.markergroups,
 		mapOptions: domProps.mapoptions,
 		polygons: domProps.polygons,
+		legend: domProps.legend,
 	};
 }
 

@@ -1,7 +1,4 @@
 /**
- * External dependencies
- */
-/**
  * WordPress dependencies
  */
 import { useState, useEffect, useRef } from '@wordpress/element';
@@ -16,11 +13,8 @@ import {
 	loadScript,
 } from './helpers';
 import { createInfowindowPolygon, createInfowindowMarker } from './infowindow';
-
-/**
- * WordPress dependencies
- */
 import AddPolygonModal from './components/add-polygon-modal';
+import Legend from './components/legend';
 import MapFilters from './components/map/map-filters';
 import {
 	filterMarkerGroupsByCategory,
@@ -32,6 +26,7 @@ var markerClusters = []; // eslint-disable-line
 
 function Map( {
 	polygons = [],
+	legend = [],
 	polygonStyles = {
 		strokeColor: '#000000',
 		strokeOpacity: 0.8,
@@ -207,60 +202,66 @@ function Map( {
 	const createPolygonObjects = ( polygonsArray ) => {
 		const handler = [];
 		polygonsArray.flat().map( function ( item ) {
-			const coords =
-				typeof item.coords === 'string' && item.coords.length > 0
-					? JSON.parse( item.coords )
-					: [];
-			const bounds = new google.maps.LatLngBounds();
+			try {
+				const coords =
+					typeof item.coords === 'string' && item.coords.length > 0
+						? JSON.parse( item.coords )
+						: [];
 
-			// get center of polygon
-			coords.map( function ( coord ) {
-				return bounds.extend(
-					new google.maps.LatLng( coord.lat, coord.lng )
-				);
-			} );
+				const bounds = new google.maps.LatLngBounds();
 
-			const infowindowTargetURL =
-				item.infowindowTargetURL === 'true' ? true : false;
+				// get center of polygon
+				coords.map( function ( coord ) {
+					return bounds.extend(
+						new google.maps.LatLng( coord.lat, coord.lng )
+					);
+				} );
 
-			const polygon = {
-				polygon: new google.maps.Polygon( {
-					id: item.id,
-					infowindow: item.infowindow,
-					infowindowTitle: item.infowindowTitle,
-					infowindowURL: item.infowindowURL,
-					infowindowLat: bounds.getCenter().lat(),
-					infowindowLng: bounds.getCenter().lng(),
-					infowindowTargetURL: infowindowTargetURL ? true : false,
-					name: item.name,
-					infowindowEmail: item.infowindowEmail,
-					infowindowPhone: item.infowindowPhone,
-					paths: coords,
-					...polygonStyles,
-					strokeColor: item.borderColor,
-					fillColor: item.color,
-					editable: editShapeId === item.id,
-				} ),
-			};
+				const infowindowTargetURL =
+					item.infowindowTargetURL === 'true' ? true : false;
 
-			/**
-			 * Editable when a polygon is clicked
-			 * Polygon loses focus when other polygon is clicked
-			 * editShapeId tracks the last editable polygon id
-			 */
+				const polygon = {
+					polygon: new google.maps.Polygon( {
+						id: item.id,
+						infowindow: item.infowindow,
+						infowindowTitle: item.infowindowTitle,
+						infowindowURL: item.infowindowURL,
+						infowindowLat: bounds.getCenter().lat(),
+						infowindowLng: bounds.getCenter().lng(),
+						infowindowTargetURL: infowindowTargetURL ? true : false,
+						name: item.name,
+						infowindowEmail: item.infowindowEmail,
+						infowindowPhone: item.infowindowPhone,
+						paths: coords,
+						...polygonStyles,
+						strokeColor: item.borderColor,
+						fillColor: item.color,
+						editable: editShapeId === item.id,
+						strokeWeight: 1,
+					} ),
+				};
 
-			if ( editMode ) {
-				google.maps.event.addListener(
-					polygon.polygon,
-					'click',
-					( p, poly = polygon.polygon ) => {
-						poly.setEditable( true );
-						setEditshapeId( poly.id );
-					}
-				);
+				/**
+				 * Editable when a polygon is clicked
+				 * Polygon loses focus when other polygon is clicked
+				 * editShapeId tracks the last editable polygon id
+				 */
+
+				if ( editMode ) {
+					google.maps.event.addListener(
+						polygon.polygon,
+						'click',
+						( p, poly = polygon.polygon ) => {
+							poly.setEditable( true );
+							setEditshapeId( poly.id );
+						}
+					);
+				}
+
+				return handler.push( polygon );
+			} catch ( e ) {
+				return {};
 			}
-
-			return handler.push( polygon );
 		} );
 
 		polygonsObjects.push( handler );
@@ -649,7 +650,7 @@ function Map( {
 					<MapFilters
 						filters={ categories
 							.filter( ( item ) => item.filter === 'true' )
-							.map( ( item ) => item.name ) }
+							.map( ( item ) => item ) }
 						filterOptions={ filterOptions }
 						selectedFilters={ selectedFilters }
 						onChange={ onFilterChange }
@@ -660,6 +661,11 @@ function Map( {
 					className="yard-google-map-advanced__map"
 					ref={ ref }
 				></div>
+				<Legend
+					map={ map }
+					legend={ legend }
+					selectedFilters={ selectedFilters }
+				/>
 			</div>
 			{ showAddPolygonModal && (
 				<AddPolygonModal

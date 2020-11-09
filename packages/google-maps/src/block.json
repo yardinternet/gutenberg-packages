@@ -6,6 +6,10 @@
 			"type": "array",
 			"default": []
 		},
+		"legend": {
+			"type": "array",
+			"default": []
+		},
 		"markerGroups": {
 			"type": "array",
 			"default": []
