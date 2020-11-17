@@ -47,21 +47,20 @@ import SourceTypeControl from './source-type-control';
 const sources = applyFilters( 'yard-blocks.listPostsRemoteSources', [] );
 
 /**
- * Start project component WP filters
+ * Retrieve component from project theme
  */
 const ProjectComponent = applyFilters(
 	'yard-blocks.listPostsProjectComponent',
 	false
 );
 
-// Get the non wp sources used in 'source select'
+/**
+ * Retrieve select options for non wp sources
+ */
 const remoteNonWpSources = applyFilters(
 	'yard-blocks.listPostsRemoteNonWpSources',
 	[]
 );
-/**
- * End project components WP filters
- */
 
 const errorFetchRemoteSources = __( 'data kan niet worden opgehaald' );
 
@@ -331,7 +330,9 @@ function Inspector( props ) {
 								label={ __( 'Willekeurige volgorde' ) }
 								checked={ randomOrder }
 								onChange={ () =>
-									setAttributes( { randomOrder: ! randomOrder } )
+									setAttributes( {
+										randomOrder: ! randomOrder,
+									} )
 								}
 							/>
 						</Fragment>

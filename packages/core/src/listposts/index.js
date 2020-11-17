@@ -23,7 +23,10 @@ const additionalAttributes = applyFilters(
 	false
 );
 
-const finalAttributes = additionalAttributes !== false ? additionalAttributes.attributes : attributes;
+const finalAttributes =
+	additionalAttributes !== false
+		? additionalAttributes.attributes
+		: attributes;
 
 export const Icon = <BlockIcon faClasses="fal fa-list-alt" />;
 const icon = 'fal fa-list-alt';
