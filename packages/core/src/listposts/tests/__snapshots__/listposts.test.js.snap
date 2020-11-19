@@ -35,6 +35,10 @@ Object {
     "default": false,
     "type": "boolean",
   },
+  "isNonWpSourcesEnabled": Object {
+    "default": false,
+    "type": "boolean",
+  },
   "numberPerRow": Object {
     "default": 0,
     "type": "number",
@@ -73,6 +77,10 @@ Object {
   "randomOrder": Object {
     "default": false,
     "type": "boolean",
+  },
+  "selectedNonWpSource": Object {
+    "default": Object {},
+    "type": "object",
   },
   "selectedPosts": Object {
     "default": Array [],

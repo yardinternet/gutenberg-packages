@@ -7,12 +7,26 @@ import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal dependencies
  */
 import { attributes, name } from './block.json';
 import edit from './edit';
+
+/**
+ * Project specific
+ */
+const additionalAttributes = applyFilters(
+	'yard-blocks.listPostsAdditionalAttributes',
+	false
+);
+
+const finalAttributes =
+	additionalAttributes !== false
+		? additionalAttributes.attributes
+		: attributes;
 
 export const Icon = <BlockIcon faClasses="fal fa-list-alt" />;
 const icon = 'fal fa-list-alt';
@@ -22,7 +36,7 @@ const settings = {
 	description: __(
 		'Voeg allerlei typen content toe en pas deze aan naar wens'
 	),
-	attributes,
+	attributes: finalAttributes,
 	edit,
 	save: () => () => null,
 };

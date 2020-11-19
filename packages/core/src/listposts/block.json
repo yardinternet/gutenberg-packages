@@ -91,6 +91,14 @@
 		"randomOrder": {
 			"type": "boolean",
 			"default": false
+		},
+		"selectedNonWpSource": {
+			"type": "object",
+			"default": {}
+		},
+		"isNonWpSourcesEnabled": {
+			"type": "boolean",
+			"default": false
 		}
 	}
 }
