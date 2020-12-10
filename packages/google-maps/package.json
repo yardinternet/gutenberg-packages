@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-google-maps",
-	"version": "0.6.2",
+	"version": "0.7.0",
 	"description": "Display google maps with marker or other shapes",
 	"main": "src/index.js",
 	"scripts": {
