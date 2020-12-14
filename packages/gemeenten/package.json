@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-gemeenten",
-	"version": "0.3.6",
+	"version": "0.3.7",
 	"description": "Contains all gemeenten blocks",
 	"author": "Ferdie Sletering <ferdie@yard.nl>",
 	"license": "ISC",
