@@ -2,8 +2,8 @@
 	"name": "gemeenten/poll",
 	"attributes": {
 		"selectedPoll": {
-			"type": "number",
-			"default": null
+			"type": "string",
+			"default": "0"
 		}
 	}
 }

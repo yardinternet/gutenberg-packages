@@ -20,9 +20,6 @@ const Edit = ( props ) => {
 	const { attributes, setAttributes } = props;
 	const { selectedPoll } = attributes;
 	const [ pollCollection, setPollCollection ] = useState( [] );
-	const defaultOption = [
-		{ label: __( 'Selecteer poll', NAMESPACE ), value: '' },
-	];
 
 	useEffect( () => {
 		fetchPolls();
@@ -42,12 +39,18 @@ const Edit = ( props ) => {
 	};
 
 	const transformPollData = ( options = [] ) => {
-		return options.map( function ( poll ) {
+		const defaultOption = [
+			{ label: __( 'Selecteer poll', NAMESPACE ), value: '0' },
+		];
+
+		const data = options.map( function ( poll ) {
 			return {
 				value: poll.id,
 				label: poll.title,
 			};
 		} );
+
+		return [ ...defaultOption, ...data ];
 	};
 
 	return (
@@ -58,11 +61,11 @@ const Edit = ( props ) => {
 				}
 				label={ __( 'Poll', NAMESPACE ) }
 			>
-				{ pollCollection ? (
+				{ pollCollection.length > 0 ? (
 					<SelectControl
 						label={ __( 'Selecteer een poll', NAMESPACE ) }
 						value={ selectedPoll }
-						options={ [ ...defaultOption, ...pollCollection ] }
+						options={ pollCollection }
 						onChange={ ( poll ) =>
 							setAttributes( { selectedPoll: poll } )
 						}
