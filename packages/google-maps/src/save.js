@@ -14,6 +14,12 @@ function save( { attributes, className } ) {
 			return [];
 		}
 
+		if ( item === 'categories' ) {
+			return ( props[ 'data-' + item.toLowerCase() ] = JSON.stringify(
+				attributes[ item ].sort( ( a, b ) => a.priority - b.priority )
+			) );
+		}
+
 		return ( props[ 'data-' + item.toLowerCase() ] =
 			typeof attributes[ item ] === 'string'
 				? attributes[ item ]

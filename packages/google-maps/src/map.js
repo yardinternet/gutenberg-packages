@@ -217,9 +217,6 @@ function Map( {
 					);
 				} );
 
-				const infowindowTargetURL =
-					item.infowindowTargetURL === 'true' ? true : false;
-
 				const polygon = {
 					polygon: new google.maps.Polygon( {
 						id: item.id,
@@ -228,7 +225,8 @@ function Map( {
 						infowindowURL: item.infowindowURL,
 						infowindowLat: bounds.getCenter().lat(),
 						infowindowLng: bounds.getCenter().lng(),
-						infowindowTargetURL: infowindowTargetURL ? true : false,
+						infowindowTargetURL:
+							item.infowindowTargetURL === 'true' ? true : false,
 						name: item.name,
 						infowindowEmail: item.infowindowEmail,
 						infowindowPhone: item.infowindowPhone,

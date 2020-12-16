@@ -87,12 +87,13 @@ function ImportAreas( {
 										),
 										category: importCategory,
 										color: item.color,
-										borderColor: '#000000',
+										borderColor: '#FFFFFF',
 										infowindowTitle: item.township,
 										infowindow: item.infowindow,
 										infowindowPhone: item.phonenumber,
 										infowindowEmail: item.email,
-										infowindowTargetURL: item.website,
+										infowindowURL: item.website,
+										infowindowTargetURL: 'true',
 									},
 								] );
 							} );

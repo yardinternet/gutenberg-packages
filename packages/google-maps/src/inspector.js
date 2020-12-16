@@ -203,7 +203,17 @@ function Inspector( props ) {
 							{
 								type: 'TextControl',
 								id: 'url',
-								attr: { label: 'url' },
+								attr: { label: 'URL' },
+							},
+							{
+								type: 'TextControl',
+								id: 'priority',
+								attr: {
+									label: 'Prioriteit',
+									help:
+										'Dit nummer bepaalt de filters volgorde.',
+									type: 'number',
+								},
 							},
 							{
 								type: 'ToggleSwitch',
