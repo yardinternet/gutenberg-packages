@@ -335,8 +335,18 @@ function Inspector( props ) {
 							},
 							{
 								type: 'TextControl',
+								id: 'infowindowAddress',
+								attr: { label: 'Adres' },
+							},
+							{
+								type: 'TextControl',
 								id: 'infowindowTitle',
 								attr: { label: 'Titel' },
+							},
+							{
+								type: 'TextControl',
+								id: 'infowindowContactPerson',
+								attr: { label: 'Contactpersoon' },
 							},
 							{
 								type: 'TextControl',

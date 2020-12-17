@@ -1,9 +1,21 @@
 export default function InfoWindow( props ) {
-	const { title, url, urlTarget, phone, email, content } = props;
+	const {
+		title,
+		url,
+		urlTarget,
+		phone,
+		email,
+		content,
+		contactPerson,
+		address,
+	} = props;
 
 	return (
 		<div className="infowindow">
 			{ title && <div className="infowindow__title">{ title }</div> }
+			{ address && (
+				<div className="infowindow__address">{ address }</div>
+			) }
 			{ content && (
 				<div className="infowindow__content">{ content }</div>
 			) }
@@ -24,6 +36,12 @@ export default function InfoWindow( props ) {
 				<div className="infowindow__phone">
 					<span className="infowindow__label">Telefoon: </span>
 					<span className="infowindow__value">{ phone }</span>
+				</div>
+			) }
+			{ contactPerson && (
+				<div className="infowindow__contactperson">
+					<span className="infowindow__label">Contact: </span>
+					<span className="infowindow__value">{ contactPerson }</span>
 				</div>
 			) }
 			{ email && (

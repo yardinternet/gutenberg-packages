@@ -230,6 +230,8 @@ function Map( {
 						name: item.name,
 						infowindowEmail: item.infowindowEmail,
 						infowindowPhone: item.infowindowPhone,
+						infowindowContactPerson: item.infowindowContactPerson,
+						infowindowAddress: item.infowindowAddress,
 						paths: coords,
 						...polygonStyles,
 						strokeColor: item.borderColor,
@@ -420,6 +422,8 @@ function Map( {
 				title: infowindowTitle,
 				email: polygon.polygon.infowindowEmail,
 				phone: polygon.polygon.infowindowPhone,
+				contactPerson: polygon.polygon.infowindowContactPerson,
+				address: polygon.polygon.infowindowAddress,
 			} );
 		}
 	};

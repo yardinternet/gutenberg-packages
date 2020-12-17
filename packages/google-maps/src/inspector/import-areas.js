@@ -91,7 +91,10 @@ function ImportAreas( {
 										infowindowTitle: item.township,
 										infowindow: item.infowindow,
 										infowindowPhone: item.phonenumber,
+										infowindowContactPerson:
+											item.contactPerson,
 										infowindowEmail: item.email,
+										infowindowAddress: item.address,
 										infowindowURL: item.website,
 										infowindowTargetURL: 'true',
 									},

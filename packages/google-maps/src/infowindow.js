@@ -33,6 +33,8 @@ export function createInfowindowPolygon( props ) {
 		title,
 		email,
 		phone,
+		contactPerson,
+		address,
 	} = props;
 
 	const infowindowPolygon = createInfowindow( {
@@ -42,6 +44,8 @@ export function createInfowindowPolygon( props ) {
 		urlTarget,
 		email,
 		phone,
+		contactPerson,
+		address,
 	} );
 
 	google.maps.event.addListener( polygon, 'click', function () {
@@ -76,6 +80,8 @@ export function createInfowindowMarker( props ) {
 		infowindowTitle,
 		infowindowPhone,
 		infowindowEmail,
+		contactPerson,
+		address,
 	} = props;
 
 	const infowindowObject = createInfowindow( {
@@ -85,6 +91,8 @@ export function createInfowindowMarker( props ) {
 		urlTarget: infowindowTargetURL,
 		email: infowindowEmail,
 		phone: infowindowPhone,
+		contactPerson,
+		address,
 	} );
 
 	marker.addListener( 'click', function () {
@@ -99,7 +107,16 @@ export function createInfowindowMarker( props ) {
  *
  * @param {Object} param0
  */
-function createInfowindow( { title, content, url, urlTarget, email, phone } ) {
+function createInfowindow( {
+	title,
+	content,
+	url,
+	urlTarget,
+	email,
+	phone,
+	contactPerson,
+	address,
+} ) {
 	const div = document.createElement( 'div' );
 
 	render(
@@ -110,6 +127,8 @@ function createInfowindow( { title, content, url, urlTarget, email, phone } ) {
 			url={ url }
 			urlTarget={ urlTarget }
 			email={ email }
+			contactPerson={ contactPerson }
+			address={ address }
 		/>,
 		div
 	);
