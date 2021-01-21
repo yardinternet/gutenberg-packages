@@ -58,7 +58,7 @@ function Edit( {
 					{ isSelected && hasPrev && (
 						<IconButton
 							className="components-toolbar__control"
-							label={ __( 'Move left' ) }
+							label={ __( 'Verplaats naar links' ) }
 							icon="arrow-left-alt"
 							onClick={ () => onMove( '-' ) }
 						/>
@@ -66,20 +66,20 @@ function Edit( {
 					{ isSelected && hasNext && (
 						<IconButton
 							className="components-toolbar__control"
-							label={ __( 'Move right' ) }
+							label={ __( 'Verplaats naar rechts' ) }
 							icon="arrow-right-alt"
 							onClick={ () => onMove( '+' ) }
 						/>
 					) }
 					<IconButton
 						className="components-toolbar__control"
-						label={ __( 'Clone' ) }
+						label={ __( 'Dupliceer' ) }
 						icon="admin-page"
 						onClick={ onDuplicate }
 					/>
 					<IconButton
 						className="components-toolbar__control"
-						label={ __( 'Remove' ) }
+						label={ __( 'Verwijderen' ) }
 						icon="no"
 						onClick={ onRemove }
 					/>

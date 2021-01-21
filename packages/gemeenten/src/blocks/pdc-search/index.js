@@ -22,7 +22,9 @@ const { name, attributes } = metadata;
 
 const settings = {
 	title: __( 'Zoeken', NAMESPACE ),
-	description: __( 'Doorzoekt de gehele website en PDC items' ),
+	description: __(
+		'Doorzoek de gehele website, inclusief OpenPub artikelen en OpenPDC items.'
+	),
 	icon: {
 		src: Icon,
 	},

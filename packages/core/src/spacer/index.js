@@ -21,9 +21,9 @@ const { name, attributes } = metadata;
 export { metadata, name };
 
 export const settings = {
-	title: 'Spacer',
+	title: __( 'Witruimte' ),
 	category: 'yard-blocks',
-	description: __( 'Voeg ruimte tussen blokken toe.' ),
+	description: __( 'Creëer ruimte tussen blokken en pas de hoogte aan.' ),
 	icon: {
 		src: Icon,
 	},

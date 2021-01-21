@@ -14,8 +14,8 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-rectangle-wide';
 
 const settings = {
-	title: __( 'Buttongroep', 'yard-blocks' ),
-	description: __( 'Groupeer knoppen' ),
+	title: __( 'Knoppengroep', 'yard-blocks' ),
+	description: __( 'Groepeer knoppen.' ),
 	category: 'yard-blocks',
 	keywords: [ __( 'url', 'yard-blocks' ), __( 'link', 'yard-blocks' ) ],
 	supports: {},

@@ -8,7 +8,7 @@ const name = 'yard-blocks/breadcrumbs';
 const icon = 'fas fa-chevron-right';
 
 const settings = {
-	title: __( 'Breadcrumbs' ),
+	title: __( 'Broodkruimels' ),
 	description: __( 'Toont het kruimelpad waar de pagina zich onder bevindt' ),
 	edit: () => {
 		return <ServerSideRender block="yard-blocks/breadcrumbs" />;

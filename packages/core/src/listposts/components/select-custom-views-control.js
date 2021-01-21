@@ -22,7 +22,7 @@ function SelectTemplatesControl( props ) {
 		setSupportsCustomAnchorID,
 	} = props;
 	const { customView } = attributes;
-	const defaultOption = [ { label: __( 'Default' ), value: 0 } ];
+	const defaultOption = [ { label: __( 'Standaard' ), value: 0 } ];
 
 	const updateStateNumberPerRow = ( value ) => {
 		const resultNumberPerRow = templateValidateYardPropsSupport(
@@ -78,7 +78,7 @@ function SelectTemplatesControl( props ) {
 	return (
 		<SelectControl
 			value={ customView }
-			label={ __( 'Selecteer template' ) }
+			label={ __( 'Selecteer sjabloon' ) }
 			onChange={ ( value ) => onTemplateChange( value ) }
 			options={ [
 				...defaultOption,

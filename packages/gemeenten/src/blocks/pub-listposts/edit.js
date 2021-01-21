@@ -36,7 +36,7 @@ export default ( props ) => {
 			{ ! hasPosts ? (
 				<Placeholder
 					icon="excerpt-view"
-					label={ __( 'Post Block', '' ) }
+					label={ __( 'Berichtenlijst', '' ) }
 				>
 					{ ! Array.isArray( posts ) ? (
 						<Spinner />

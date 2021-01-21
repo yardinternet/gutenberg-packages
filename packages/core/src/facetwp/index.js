@@ -12,8 +12,8 @@ const name = 'yard-blocks/facet-wp';
 const icon = 'fal fa-gem';
 
 const settings = {
-	title: __( 'Facet', 'yard-blocks' ),
-	description: __( 'List Post component', 'yard-blocks' ),
+	title: __( 'Filtering', 'yard-blocks' ),
+	description: __( 'Plaats filtering op de pagina.', 'yard-blocks' ),
 	attributes: {
 		selectedFacets: {
 			type: 'array',

@@ -42,7 +42,7 @@ function edit( props ) {
 				<Toolbar>
 					<IconButton
 						className="components-toolbar__control"
-						label={ __( 'Button toevoegen' ) }
+						label={ __( 'Knop toevoegen' ) }
 						icon="plus"
 						onClick={ insertBlock }
 					/>

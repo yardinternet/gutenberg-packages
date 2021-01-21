@@ -20,8 +20,10 @@ import save from './save';
 import './card';
 
 export const settings = {
-	title: 'Cards',
-	description: __( 'Container cards' ),
+	title: __( 'Kaarten' ),
+	description: __(
+		'Kies een kaart sjabloon en plaats de kaart waarvan je de inhoud vrij kunt invullen.'
+	),
 	example: {},
 	supports: {},
 	edit,

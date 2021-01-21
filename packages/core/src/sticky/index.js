@@ -14,8 +14,10 @@ const name = 'yard-blocks/sticky';
 const icon = 'fal fa-thumbtack';
 
 const settings = {
-	title: __( 'Sticky' ),
-	description: __( 'Zet block sticky op top of bottom' ),
+	title: __( 'Vastzetelement' ),
+	description: __(
+		'Zet een blok vast aan de bovenkant of onderkant van de pagina.'
+	),
 	attributes: {
 		showOnScrollSelector: {
 			type: 'string',

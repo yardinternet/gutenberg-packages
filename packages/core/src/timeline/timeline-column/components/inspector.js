@@ -33,22 +33,22 @@ function Inspector( { attributes, setAttributes, buildGradientArray } ) {
 
 	return (
 		<InspectorControls>
-			<PanelBody title={ __( 'Opties' ) }>
+			<PanelBody title={ __( 'Instellingen' ) }>
 				<CheckboxControl
-					label={ __( 'Verbergen in de timeline' ) }
+					label={ __( 'Verbergen in de tijdlijn' ) }
 					checked={ isHidden }
 					onChange={ ( isChecked ) =>
 						onChangeVisibility( isChecked )
 					}
 				/>
-				<p className={ 'yard-label' }>{ __( 'Timeline kleur' ) }</p>
+				<p className={ 'yard-label' }>{ __( 'Kleur' ) }</p>
 				<ColorPicker
 					color={ timelineColor }
 					onChangeComplete={ ( color ) => onChangeColor( color.hex ) }
 					disableAlpha
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Icon' ) } initialOpen={ false }>
+			<PanelBody title={ __( 'Icoon' ) } initialOpen={ false }>
 				<BackgroundImageControl
 					{ ...{ setAttributes, attributes } }
 					hideControls

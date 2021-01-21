@@ -28,7 +28,7 @@ export default class Inspector extends Component {
 						initialOpen={ false }
 					>
 						<p className="components-base-control__label">
-							{ __( 'Card volledig klikbaar met link' ) }
+							{ __( 'Kaart volledig klikbaar met link' ) }
 						</p>
 						<URLInput
 							value={ url }

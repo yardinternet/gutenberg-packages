@@ -16,7 +16,7 @@ const { name, attributes } = metadata;
 const settings = {
 	title: __( 'Iframe' ),
 	description: __(
-		'Dit blok laadt een iframe in aan de hand van de URL die opgegeven is bij de instellingen'
+		'Laadt een iframe in aan de hand van de URL die opgegeven is bij de instellingen.'
 	),
 	attributes,
 	edit,

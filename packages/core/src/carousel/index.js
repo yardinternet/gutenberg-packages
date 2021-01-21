@@ -20,11 +20,11 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-images';
 
 const settings = {
-	title: __( 'Carousel' ),
-	description: __( 'Carousel, toont afbeeldingen in een slideshow' ),
+	title: __( 'Fotocarrousel' ),
+	description: __( 'Toont afbeeldingen in een slideshow.' ),
 	category: 'yard-blocks',
 	styles: [
-		{ name: 'default', label: __( 'Default' ), isSecondary: true },
+		{ name: 'default', label: __( 'Standaard' ), isSecondary: true },
 		{ name: 'dots', label: __( 'Rond' ) },
 		{ name: 'squared', label: __( 'Vierkant' ) },
 	],

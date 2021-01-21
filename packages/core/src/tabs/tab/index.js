@@ -1,4 +1,9 @@
 /**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+
+/**
  * Internal dependencies
  */
 import edit from './edit';
@@ -8,7 +13,7 @@ const icon = 'fas fa-folder';
 const name = 'yard-blocks/tabs-tab';
 
 const settings = {
-	title: 'Tab',
+	title: __( 'Tabblad' ),
 	parent: [ 'yard-blocks/tabs' ],
 	attributes: {
 		id: {

@@ -19,9 +19,9 @@ import save from './save';
 const icon = 'fal fa-grip-lines';
 
 const settings = {
-	title: __( 'Row' ),
+	title: __( 'Rij' ),
 	description: __(
-		'Een row is een strook in de pagina die bestaat uit verschillende kolommen. Rows kunnen worden gezien als het raamwerk van de pagina'
+		'Een strook in de pagina die bestaat uit verschillende kolommen. Rijen kunnen worden gezien als het raamwerk van de pagina.'
 	),
 	supports: {
 		align: [ 'wide', 'full' ],

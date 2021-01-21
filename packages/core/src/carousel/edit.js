@@ -60,7 +60,7 @@ function Edit( props ) {
 						render={ ( { open } ) => (
 							<IconButton
 								className="components-toolbar__control"
-								label={ __( 'Edit carousel' ) }
+								label={ __( 'Wijzig carrousel' ) }
 								icon="edit"
 								onClick={ open }
 							/>
@@ -90,11 +90,11 @@ function Edit( props ) {
 					value={ hasImages ? carouselImages : undefined }
 					multiple
 					labels={ {
-						title: ! hasImages && __( 'Carousel' ),
+						title: ! hasImages && __( 'Carrousel' ),
 						instructions:
 							! hasImages &&
 							__(
-								'Sleep afbeeldingen, upload nieuwe afbeeldingen vanuit de media bibliotheek'
+								'Sleep afbeeldingen of upload nieuwe afbeeldingen vanuit de mediabibliotheek.'
 							),
 					} }
 				/>

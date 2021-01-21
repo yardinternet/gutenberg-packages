@@ -21,7 +21,7 @@ const { name, attributes } = metadata;
 
 const settings = {
 	title: __( 'Servicepunten', NAMESPACE ),
-	description: __( 'Haal servicepunten op uit openPDC', NAMESPACE ),
+	description: __( 'Haal servicepunten op uit de OpenPDC.', NAMESPACE ),
 	icon: {
 		src: Icon,
 	},

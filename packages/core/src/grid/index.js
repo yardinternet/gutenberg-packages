@@ -26,8 +26,10 @@ const { name, attributes, supports } = metadata;
 const Icon = <BlockIcon faClasses="fas fa-th" />;
 
 const settings = {
-	title: __( 'Grid' ),
-	description: __( 'Layout builder' ),
+	title: __( 'Raster' ),
+	description: __(
+		'Creëer met het raster verschillende layouts. Rasters kunnen worden gezien als het raamwerk van de pagina.'
+	),
 	category: 'yard-blocks',
 	edit,
 	attributes: {

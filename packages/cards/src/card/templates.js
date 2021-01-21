@@ -22,7 +22,7 @@ export const TEMPLATE = applyFilters( 'yard-block-cards.template', [
 			[
 				'core/heading',
 				{
-					content: 'Here is some content',
+					content: 'Content',
 					level: 2,
 					className: 'px-3',
 				},
@@ -30,7 +30,7 @@ export const TEMPLATE = applyFilters( 'yard-block-cards.template', [
 			[
 				'core/paragraph',
 				{
-					content: 'Here is some content',
+					content: 'Content',
 					className: 'px-3',
 				},
 			],

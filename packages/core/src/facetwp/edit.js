@@ -87,7 +87,7 @@ class Edit extends Component {
 								marginRight={ true }
 							/>
 						}
-						label={ __( 'FacetWP' ) }
+						label={ __( 'Filtering' ) }
 					>
 						<FacetSelects
 							{ ...{

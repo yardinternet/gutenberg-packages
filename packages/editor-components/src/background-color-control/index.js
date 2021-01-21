@@ -12,14 +12,14 @@ const BackgroundColorControl = ( props ) => {
 
 	return (
 		<Fragment>
-			<p className={ 'yard-label' }>{ __( 'Background color' ) }</p>
+			<p className={ 'yard-label' }>{ __( 'Achtergrond kleur' ) }</p>
 			<ColorPalette
 				value={ bgColor }
 				onChange={ ( color ) => setAttributes( { bgColor: color } ) }
 			/>
-			<p className={ 'yard-label' }>{ __( 'Opacity' ) }</p>
+			<p className={ 'yard-label' }>{ __( 'Opaciteit' ) }</p>
 			<RangeControl
-				label={ __( 'Background Opacity' ) }
+				label={ __( 'Achtergrond opaciteit' ) }
 				value={ dimRatio }
 				onChange={ ( number ) =>
 					setAttributes( { dimRatio: parseInt( number, 10 ) } )

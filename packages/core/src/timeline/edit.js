@@ -82,7 +82,7 @@ function Edit( {
 									'is-pressed': showGridLines,
 								}
 							) }
-							label={ __( 'Verberg gridlines' ) }
+							label={ __( 'Verberg rasterlijnen' ) }
 							icon="grid-view"
 							onClick={ () =>
 								setShowGridLines( ! showGridLines )

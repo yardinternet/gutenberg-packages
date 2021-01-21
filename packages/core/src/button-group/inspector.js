@@ -33,7 +33,7 @@ function Inspector( { attributes, setAttributes } ) {
 	return (
 		<InspectorControls>
 			<PanelBody title={ __( 'Opties' ) }>
-				<p className="yard-label">{ __( 'Button breedte' ) }</p>
+				<p className="yard-label">{ __( 'Knop breedte' ) }</p>
 				<ButtonGroup>
 					{ btnOptions.map( ( { key, value } ) => (
 						<Button

@@ -13,8 +13,8 @@ import edit from './edit';
 const icon = 'fal fa-bars';
 
 const settings = {
-	title: __( 'Nav menu' ),
-	description: __( 'Toont navigatiemenu' ),
+	title: __( 'Navigatiemenu' ),
+	description: __( 'Plaats een navigatiemenu.' ),
 	attributes,
 	edit,
 

@@ -15,8 +15,10 @@ const { name, attributes } = metadata;
 const icon = 'fab fa-font-awesome';
 
 const settings = {
-	title: __( 'FontAwesome' ),
-	description: __( 'FontAwesome component' ),
+	title: __( 'Icoon' ),
+	description: __(
+		'Plaats een FontAwesome icoon op de pagina. Wijzig de kleur en grootte.'
+	),
 	attributes,
 	edit,
 	save,

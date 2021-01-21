@@ -26,8 +26,8 @@ const { name, attributes } = metadata;
 const Icon = <BlockIcon faClasses="fas fa-columns" />;
 
 const settings = {
-	title: __( 'Grid column' ),
-	description: __( 'Grid column' ),
+	title: __( 'Rasterkolom' ),
+	description: __( 'Een enkele kolom binnen het raster.' ),
 	category: 'yard-blocks',
 	parent: [ 'yard-blocks/grid' ],
 	attributes: {

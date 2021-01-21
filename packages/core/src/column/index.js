@@ -20,9 +20,9 @@ import deprecated from './deprecated';
 const icon = 'fas fa-columns';
 
 const settings = {
-	title: __( 'Column' ),
+	title: __( 'Rijkolom' ),
 	parent: [ 'yard-blocks/row' ],
-	description: __( 'A single column within a row block.' ),
+	description: __( 'Een enkele kolom binnen een rij.' ),
 	supports: {
 		inserter: false,
 	},

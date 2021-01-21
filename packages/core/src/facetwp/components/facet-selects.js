@@ -18,7 +18,7 @@ const FacetSelects = ( props ) => {
 
 	return (
 		<Fragment>
-			<p className="yard-label">{ __( 'Selecteer facet' ) }</p>
+			<p className="yard-label">{ __( 'Selecteer filters' ) }</p>
 			<Select
 				isMulti
 				value={ selectedFacets }
@@ -26,7 +26,7 @@ const FacetSelects = ( props ) => {
 				onChange={ ( val ) => setAttributes( { selectedFacets: val } ) }
 				options={ facets }
 			/>
-			<p className="yard-label">{ __( 'Selecteer template' ) }</p>
+			<p className="yard-label">{ __( 'Selecteer sjabloon' ) }</p>
 			<Select
 				value={ [ selectedTemplate ] }
 				getOptionValue={ ( opt ) => opt.name }

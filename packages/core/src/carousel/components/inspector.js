@@ -53,9 +53,9 @@ function Inspector( {
 	return (
 		!! carouselImages.length && (
 			<InspectorControls>
-				<PanelBody title={ __( 'Opties' ) }>
+				<PanelBody title={ __( 'Instellingen' ) }>
 					<TextControl
-						label={ __( 'Hoogte carousel in px' ) }
+						label={ __( 'Hoogte carrousel in px' ) }
 						type="number"
 						value={ viewportDesktopHeight }
 						onChange={ ( newValue ) =>
@@ -69,8 +69,8 @@ function Inspector( {
 						value={ imageSize }
 						options={ [
 							{ label: __( 'Volledig' ), value: 'full' },
-							{ label: __( 'Large' ), value: 'large' },
-							{ label: __( 'Medium' ), value: 'medium' },
+							{ label: __( 'Groot' ), value: 'large' },
+							{ label: __( 'Gemiddeld' ), value: 'medium' },
 						] }
 						onChange={ ( size ) => {
 							setAttributes( { imageSize: size } );
@@ -80,7 +80,7 @@ function Inspector( {
 					<ToggleControl
 						label={ __( 'Autoplay' ) }
 						help={ __(
-							'Zet autoplay aan om de carousel automatisch te laten afspelen'
+							'Zet autoplay aan om de carrousel automatisch te laten afspelen.'
 						) }
 						checked={ autoPlay }
 						onChange={ ( checked ) => {
@@ -90,7 +90,7 @@ function Inspector( {
 					<ToggleControl
 						label={ __( 'Toon indicatoren' ) }
 						help={ __(
-							'Toon indicatoren aan de onderkant van de carousel'
+							'Toon indicatoren aan de onderkant van de carrousel.'
 						) }
 						checked={ showIndicators }
 						onChange={ ( checked ) => {
@@ -98,9 +98,9 @@ function Inspector( {
 						} }
 					/>
 					<ToggleControl
-						label={ __( 'Toon controls' ) }
+						label={ __( 'Toon knoppen' ) }
 						help={ __(
-							'Toon controls waarmee naar links of rechts kan worden genavigeerd'
+							'Toon knoppen waarmee naar links of rechts kan worden genavigeerd.'
 						) }
 						checked={ showControls }
 						onChange={ ( checked ) => {
@@ -108,9 +108,9 @@ function Inspector( {
 						} }
 					/>
 					<ToggleControl
-						label={ __( 'Random volgorde' ) }
+						label={ __( 'Willekeurige volgorde' ) }
 						help={ __(
-							'Zet random volgorde aan zodat de afbeeldingen in willekeurige volgorde verschijnen'
+							'Toon afbeeldingen in willekeurige volgorde.'
 						) }
 						checked={ shuffle }
 						onChange={ ( checked ) => {
@@ -120,7 +120,7 @@ function Inspector( {
 					<TextControl
 						label={ __( 'Afspeelsnelheid' ) }
 						help={ __(
-							'In miliseconden, 1000 is gelijk aan 1 seconde'
+							'In miliseconden, 1000 is gelijk aan 1 seconde.'
 						) }
 						type="number"
 						value={ interval }
@@ -131,9 +131,9 @@ function Inspector( {
 						}
 					/>
 					<TextControl
-						label={ __( 'Carousel ID' ) }
+						label={ __( 'Carrousel ID' ) }
 						help={ __(
-							'Wijzig alleen de ID wanneer er meerdere carousels op de pagina zijn.'
+							'Wijzig alleen de ID wanneer er meerdere carrousels op de pagina zijn.'
 						) }
 						type="text"
 						value={ carouselId }

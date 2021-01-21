@@ -21,10 +21,10 @@ const { name, attributes } = metadata;
 export { metadata, name };
 
 export const settings = {
-	title: __( 'Collapse' ),
+	title: __( 'Uitklap' ),
 	category: 'yard-blocks',
 	description: __(
-		'Lijst met uitklapbare componenten om inhoud in en uit te vouwen.'
+		'Voeg uitklapbare blokken toe om inhoud in en uit te kunnen vouwen.'
 	),
 	icon: {
 		src: Icon,

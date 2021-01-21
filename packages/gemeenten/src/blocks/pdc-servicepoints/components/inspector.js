@@ -74,7 +74,7 @@ const Inspector = ( props ) => {
 					/>
 				) }
 			</PanelBody>
-			<PanelBody title={ __( 'Template' ) } initialOpen={ false }>
+			<PanelBody title={ __( 'Sjabloon' ) } initialOpen={ false }>
 				<SelectControl
 					value={ selectedView }
 					label={ __( 'Selecteer sjabloon' ) }

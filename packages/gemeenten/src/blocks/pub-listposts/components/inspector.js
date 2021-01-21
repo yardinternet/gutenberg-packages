@@ -79,21 +79,21 @@ export default ( props ) => {
 
 			<PanelBody title={ __( 'Weergave' ) } initialOpen={ false }>
 				<ToggleControl
-					label={ __( 'Display date' ) }
+					label={ __( 'Toon datum' ) }
 					checked={ displayDate }
 					onChange={ () =>
 						setAttributes( { displayDate: ! displayDate } )
 					}
 				/>
 				<ToggleControl
-					label={ __( 'Display excerpt' ) }
+					label={ __( 'Toon samenvatting' ) }
 					checked={ displayExcerpt }
 					onChange={ () =>
 						setAttributes( { displayExcerpt: ! displayExcerpt } )
 					}
 				/>
 				<ToggleControl
-					label={ __( 'Display featured image' ) }
+					label={ __( 'Toon uitgelichte afbeelding' ) }
 					checked={ displayFeaturedImage }
 					onChange={ () =>
 						setAttributes( {
@@ -105,11 +105,11 @@ export default ( props ) => {
 
 			{ !! posts.length && (
 				<PanelBody
-					title={ __( ' Klevend bericht' ) }
+					title={ __( 'Klevend bericht' ) }
 					initialOpen={ false }
 				>
 					<CheckboxControl
-						label={ __( 'Sticky post' ) }
+						label={ __( 'Klevend bericht' ) }
 						checked={ stickyPostSelection }
 						onChange={ ( checked ) =>
 							setAttributes( {
@@ -135,7 +135,7 @@ export default ( props ) => {
 				</PanelBody>
 			) }
 
-			<PanelBody title="Type" initialOpen={ false }>
+			<PanelBody title={ __( 'Type' ) } initialOpen={ false }>
 				{ terms.type && !! terms.type.length && (
 					<Select
 						value={ selectedTypeTerms }
@@ -152,11 +152,11 @@ export default ( props ) => {
 				) }
 			</PanelBody>
 
-			<PanelBody title="Doelgroep" initialOpen={ false }>
+			<PanelBody title={ __( 'Doelgroep' ) } initialOpen={ false }>
 				{ terms.audience && !! terms.audience.length && (
 					<Select
 						value={ selectedAudienceTerms }
-						label={ __( 'Selecteer Doelgroep' ) }
+						label={ __( 'Selecteer doelgroep' ) }
 						isMulti={ true }
 						onChange={ ( value ) => {
 							setAttributes( { selectedAudienceTerms: value } );
@@ -169,16 +169,16 @@ export default ( props ) => {
 				) }
 			</PanelBody>
 
-			<PanelBody title="Template" initialOpen={ false }>
+			<PanelBody title={ __( 'Sjabloon' ) } initialOpen={ false }>
 				<SelectControl
 					value={ selectedView }
-					label={ __( 'Selecteer template' ) }
+					label={ __( 'Selecteer sjabloon' ) }
 					onChange={ ( value ) => {
 						setAttributes( { selectedView: value } );
 					} }
 					options={ applyFilters(
 						'gutenberg-gemeenten.OpenPubListPostTemplates',
-						[ { value: 'index', label: 'Standaard' } ]
+						[ { value: 'index', label: __( 'Standaard' ) } ]
 					) }
 				/>
 			</PanelBody>

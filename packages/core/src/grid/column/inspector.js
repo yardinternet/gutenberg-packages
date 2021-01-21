@@ -23,30 +23,30 @@ function Inspector( { attributes, setAttributes } ) {
 
 	return (
 		<InspectorControls>
-			<PanelBody title={ __( 'Opties' ) }>
+			<PanelBody title={ __( 'Instellingen' ) }>
 				<ColumnSize
-					label="Column large"
+					label={ __( 'Desktop' ) }
 					beforeIcon="desktop"
 					attribute="colClassLg"
 					value={ colClassLg }
 					setAttributes={ setAttributes }
 				/>
 				<ColumnSize
-					label="Column medium"
+					label={ __( 'Laptop' ) }
 					beforeIcon="laptop"
 					attribute="colClass"
 					value={ colClass }
 					setAttributes={ setAttributes }
 				/>
 				<ColumnSize
-					label="Column small"
+					label={ __( 'Tablet' ) }
 					beforeIcon="tablet"
 					attribute="colClassSm"
 					value={ colClassSm }
 					setAttributes={ setAttributes }
 				/>
 				<ColumnSize
-					label="Column extra small"
+					label={ __( 'Mobiel' ) }
 					beforeIcon="smartphone"
 					attribute="colClassXs"
 					value={ colClassXs }

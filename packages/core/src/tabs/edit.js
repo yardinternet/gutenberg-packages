@@ -57,7 +57,7 @@ function Edit( {
 				<Toolbar>
 					<IconButton
 						className="components-toolbar__control"
-						label={ __( 'Tab toevoegen' ) }
+						label={ __( 'Tabblad toevoegen' ) }
 						icon="plus"
 						onClick={ () => addTab( { onTabClick } ) }
 					/>
@@ -92,7 +92,9 @@ function Edit( {
 										<ButtonGroup className="d-flex">
 											<IconButton
 												icon="admin-page"
-												label={ __( 'Dupliceer tab' ) }
+												label={ __(
+													'Dupliceer tabblad'
+												) }
 												onClick={ () =>
 													duplicateTab( {
 														clientId:
@@ -102,7 +104,9 @@ function Edit( {
 											/>
 											<IconButton
 												icon="no"
-												label={ __( 'Verwijder tab' ) }
+												label={ __(
+													'Verwijder tabblad'
+												) }
 												onClick={ () =>
 													removeTab( {
 														clientId:
