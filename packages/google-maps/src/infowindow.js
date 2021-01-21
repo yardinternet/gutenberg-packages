@@ -75,24 +75,26 @@ export function createInfowindowMarker( props ) {
 		map,
 		marker,
 		infowindow,
+		infowindowCovered,
 		infowindowURL,
 		infowindowTargetURL,
 		infowindowTitle,
 		infowindowPhone,
 		infowindowEmail,
-		contactPerson,
-		address,
+		infowindowContactPerson,
+		infowindowAddress,
 	} = props;
 
 	const infowindowObject = createInfowindow( {
 		title: infowindowTitle,
 		content: infowindow,
+		covered: infowindowCovered,
 		url: infowindowURL,
 		urlTarget: infowindowTargetURL,
 		email: infowindowEmail,
 		phone: infowindowPhone,
-		contactPerson,
-		address,
+		contactPerson: infowindowContactPerson,
+		address: infowindowAddress,
 	} );
 
 	marker.addListener( 'click', function () {
@@ -110,6 +112,7 @@ export function createInfowindowMarker( props ) {
 function createInfowindow( {
 	title,
 	content,
+	covered,
 	url,
 	urlTarget,
 	email,
@@ -123,6 +126,7 @@ function createInfowindow( {
 		<InfoWindow
 			title={ title }
 			content={ content }
+			covered={ covered }
 			phone={ phone }
 			url={ url }
 			urlTarget={ urlTarget }

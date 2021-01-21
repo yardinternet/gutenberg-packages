@@ -19,6 +19,9 @@ export const config = {
 			email: {
 				label: 'Email',
 			},
+			address: {
+				label: 'Adres',
+			},
 			content: {
 				label: 'Beschrijving voor in het informatievenster',
 			},

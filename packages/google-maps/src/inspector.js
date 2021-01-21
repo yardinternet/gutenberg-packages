@@ -12,6 +12,7 @@ import AddMarkerGroupModal from './inspector/marker-group/add-marker-group-modal
 import MarkerGroups from './inspector/marker-group/marker-groups';
 import ImportCoordinatesControl from './inspector/import-coordinates-control';
 import ImportAreas from './inspector/import-areas';
+import ImportMarkers from './inspector/import-markers';
 import ExportCoordinatesControl from './inspector/export-coordinates-control';
 import MapOptions from './inspector/map-options';
 
@@ -64,6 +65,7 @@ function Inspector( props ) {
 	] = useState( false );
 
 	const [ showImportAreas, setShowImportAreas ] = useState( false );
+	const [ showImportMarkers, setShowImportMarkers ] = useState( false );
 
 	const [
 		showExportShapeCoordinates,
@@ -493,6 +495,28 @@ function Inspector( props ) {
 							onChangeFilterOptions( 'content', val )
 						}
 					/>
+				</PanelBody>
+				<PanelBody
+					initialOpen={ false }
+					icon="location-alt"
+					title={ __( 'Bulk markers', config.textDomain ) }
+				>
+					<>
+						<Button
+							isSmall
+							isPrimary
+							onClick={ () => setShowImportMarkers( true ) }
+						>
+							Importeer gebieden
+						</Button>
+						{ showImportMarkers && (
+							<ImportMarkers
+								setModal={ setShowImportMarkers }
+								markerGroups={ markerGroups }
+								setAttributes={ setAttributes }
+							/>
+						) }
+					</>
 				</PanelBody>
 				<PanelBody
 					initialOpen={ false }

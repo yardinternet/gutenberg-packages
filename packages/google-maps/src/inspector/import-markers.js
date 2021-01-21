@@ -15,14 +15,13 @@ const msgDefault = {
 	status: null,
 };
 
-function ImportAreas( {
+function ImportMarkers( {
 	setAttributes = () => {},
-	polygons = [],
 	setModal = () => {},
-	categories = [],
+	markerGroups = [],
 } ) {
 	const [ importType, setImportType ] = useState( 'json' );
-	const [ importCategory, setImportCategory ] = useState( '' );
+	const [ importGroup, setImportGroup ] = useState( '' );
 	const [ input, setInput ] = useState( '' );
 	const [ msg, setMessage ] = useState( msgDefault );
 	const [ name, setName ] = useState( '' );
@@ -34,15 +33,13 @@ function ImportAreas( {
 	const importTypeOptions = [ { label: 'JSON', value: 'json' } ];
 
 	const jsonTypeInstructionText = __(
-		'Bijv [[{"lat":51.2135375,"lng":5.5954126},{"lat":51.3080685,"lng":5.625625},{"lat":51.3664086,"lng":5.885177}], [{lat":51.2135375,"lng":5.5954126},{"lat":51.3080685,"lng":5.625625},{"lat":51.3664086,"lng":5.885177}}]]'
+		'Bijv [ { "name": "KSV Drenthe", "address": "Europaweg-Zuid 1, \n9401 RK\nAssen", "covered": "VSV SHE (Treant)\nVSV Assen", "phonenumber": "0592-407270", "email": "info@kraamzeker.nl\n", "contactPerson": "1" } ]'
 	);
 
-	const defaultImportCategory = [
-		{ name: 'Selecteer categorie', value: '' },
-	];
+	const defaultImportGroup = [ { name: 'Selecteer groep', value: '' } ];
 
 	return (
-		<Modal title="Bulk gebieden importeren" onRequestClose={ onClose }>
+		<Modal title="Bulk markers importeren" onRequestClose={ onClose }>
 			<SelectControl
 				label={ __( 'Selecteer type' ) }
 				value={ importType }
@@ -56,49 +53,39 @@ function ImportAreas( {
 				onChange={ ( val ) => setName( val ) }
 			/>
 			<SelectControl
-				label={ __( 'Selecteer categorie' ) }
-				value={ importCategory }
-				options={ defaultImportCategory
-					.concat( categories )
+				label={ __( 'Selecteer groep' ) }
+				value={ importGroup }
+				options={ defaultImportGroup
+					.concat( markerGroups )
 					.map( ( category ) => ( {
 						label: category.name,
 						value: category.name,
 					} ) ) }
-				onChange={ ( val ) => setImportCategory( val ) }
+				onChange={ ( val ) => setImportGroup( val ) }
 			/>
-			{ name && importCategory && (
+			{ name && importGroup && (
 				<TextareaControl
 					label={ __( 'Invoer' ) }
 					value={ input }
 					onChange={ ( val ) => {
 						setInput( val );
-						const polygonsTemp = [];
+						const markersTemp = [];
 						try {
 							const parsed = Object.values( JSON.parse( val ) );
 							parsed.map( ( item ) => {
-								return polygonsTemp.push( [
-									{
-										name: item.township,
-										id: `${ item.township }-${
-											polygons.length + 1
-										}`,
-										coords: JSON.stringify(
-											item.coordinates
-										),
-										category: importCategory,
-										color: item.color,
-										borderColor: '#FFFFFF',
-										infowindowTitle: item.township,
-										infowindow: item.infowindow,
-										infowindowPhone: item.phonenumber,
-										infowindowContactPerson:
-											item.contactPerson,
-										infowindowEmail: item.email,
-										infowindowAddress: item.address,
-										infowindowURL: item.website,
-										infowindowTargetURL: 'true',
-									},
-								] );
+								return markersTemp.push( {
+									name: item.name,
+									id: `ksv-${ markersTemp.length + 1 }`,
+									latLng: item.latLng,
+									infowindowTitle: item.name,
+									infowindow: '',
+									infowindowCovered: item.covered,
+									infowindowPhone: item.phonenumber,
+									infowindowContactPerson: item.contactPerson,
+									infowindowEmail: item.email,
+									infowindowAddress: item.address,
+									infowindowTargetURL: 'true',
+								} );
 							} );
 						} catch ( e ) {
 							setMessage( {
@@ -111,13 +98,23 @@ function ImportAreas( {
 							return;
 						}
 
+						markerGroups = markerGroups.map( ( group ) => {
+							if ( group.name === importGroup ) {
+								markersTemp.map( ( marker ) => {
+									group.markers.push( marker );
+									return marker;
+								} );
+							}
+							return group;
+						} );
+
 						setAttributes( {
-							polygons: polygons.concat( polygonsTemp.flat() ),
+							markerGroups,
 						} );
 
 						setMessage( {
 							title: __(
-								'Shape succesvol geimporteerd! Venster sluit automatisch.'
+								'Markers succesvol geimporteerd! Venster sluit automatisch.'
 							),
 							status: true,
 						} );
@@ -137,4 +134,4 @@ function ImportAreas( {
 	);
 }
 
-export default ImportAreas;
+export default ImportMarkers;

@@ -61,11 +61,14 @@ export function parseMarkerGroupMarkers( markergroups ) {
 				return {
 					latLng: marker.latLng,
 					infowindow: marker.infowindow,
+					infowindowCovered: marker.infowindowCovered,
 					infowindowTargetURL: marker.infowindowTargetURL,
 					infowindowURL: marker.infowindowURL,
 					infowindowTitle: marker.infowindowTitle,
 					infowindowPhone: marker.infowindowPhone,
 					infowindowEmail: marker.infowindowEmail,
+					infowindowContactPerson: marker.infowindowContactPerson,
+					infowindowAddress: marker.infowindowAddress,
 					icon:
 						group.markerImage && group.markerImage.url
 							? group.markerImage.url
@@ -104,11 +107,14 @@ export function prepareMarkerClusterGroups( map, plotMarkerGroups ) {
 				map,
 				marker,
 				infowindow,
+				infowindowCovered: item.infowindowCovered,
 				infowindowURL: item.infowindowURL,
 				infowindowTargetURL: item.infowindowTargetURL,
 				infowindowTitle: item.infowindowTitle,
-				infowindowEmail: item.infowindowEmail,
 				infowindowPhone: item.infowindowPhone,
+				infowindowEmail: item.infowindowEmail,
+				infowindowContactPerson: item.infowindowContactPerson,
+				infowindowAddress: item.infowindowAddress,
 			} );
 
 			return groupHolder.push( marker );

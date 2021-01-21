@@ -461,11 +461,14 @@ function Map( {
 	const addMarker = ( {
 		latLng,
 		infowindow,
+		infowindowCovered,
 		infowindowTargetURL,
 		infowindowURL,
 		infowindowTitle,
 		infowindowPhone,
 		infowindowEmail,
+		infowindowContactPerson,
+		infowindowAddress,
 		icon,
 	} ) => {
 		let marker = new google.maps.Marker( {
@@ -479,11 +482,14 @@ function Map( {
 			map,
 			marker,
 			infowindow,
+			infowindowCovered,
 			infowindowURL,
 			infowindowTargetURL,
 			infowindowTitle,
 			infowindowPhone,
 			infowindowEmail,
+			infowindowContactPerson,
+			infowindowAddress,
 		} );
 
 		markers.push( marker );
