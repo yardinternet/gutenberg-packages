@@ -5,14 +5,17 @@ import classnames from 'classnames';
 import { getColorClassByColor } from '@yardinternet/gutenberg-editor-components';
 
 /**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+
+/**
  * Internal dependencies
  */
 import icons from './settings/icons';
 import Icon from './components/icon';
 import Inspector from './components/inspector';
 import { createIconsArray } from './utils';
-
-const { __ } = wp.i18n;
 
 const { Fragment } = wp.element;
 const { RichText } = wp.editor;
@@ -28,7 +31,7 @@ const Edit = ( props ) => {
 	} = attributes;
 
 	const spanStyle = { marginLeft: '10px' };
-	const placeholder = 'Typ om een icon te zoeken';
+	const placeholder = __( 'Typ om een icoon te zoeken' );
 
 	// Description.
 	const descriptionColorSlug = getColorClassByColor(
@@ -72,7 +75,7 @@ const Edit = ( props ) => {
 		<Fragment>
 			<Inspector key="inspector" { ...{ setAttributes, ...props } } />
 			{ isSelected ? (
-				<Placeholder icon="share-alt" label={ __( 'FontAwesome' ) }>
+				<Placeholder icon="share-alt" label={ __( 'Icoon' ) }>
 					<div className="components-placeholder__label yard-blocks-fontawesome__label">
 						{ __( 'Selecteer icoon:' ) }
 					</div>
@@ -98,7 +101,7 @@ const Edit = ( props ) => {
 						) }
 					</div>
 					<div className="components-placeholder__label yard-blocks-fontawesome__label">
-						{ __( 'Beschrijving(optioneel)' ) }
+						{ __( 'Beschrijving (optioneel)' ) }
 					</div>
 					<RichText
 						style={ descriptionStyles }

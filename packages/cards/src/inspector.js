@@ -13,16 +13,16 @@ function Inspector( { attributes, blockCount, clientId, setAttributes } ) {
 
 	return (
 		<InspectorControls>
-			<PanelBody title={ __( 'Opties' ) }>
+			<PanelBody title={ __( 'Instellingen' ) }>
 				<ToggleControl
-					label={ __( 'Verticale scroll op mobile' ) }
+					label={ __( 'Horizontale scroll op klein scherm' ) }
 					checked={ overflowOnMobile }
 					onChange={ ( bool ) =>
 						setAttributes( { overflowOnMobile: bool } )
 					}
 				/>
 				<ToggleControl
-					label={ __( 'Cards gelijke hoogte' ) }
+					label={ __( 'Kaarten gelijke hoogte' ) }
 					checked={ cardsEqualHeight }
 					onChange={ ( bool ) =>
 						setAttributes( { cardsEqualHeight: bool } )
@@ -30,7 +30,7 @@ function Inspector( { attributes, blockCount, clientId, setAttributes } ) {
 				/>
 				{ blockCount > 1 && (
 					<RangeControl
-						label={ __( 'Cards per rij' ) }
+						label={ __( 'Kaarten per rij' ) }
 						value={ cardsPerRow }
 						onChange={ ( count ) => {
 							const block = getBlock( clientId );

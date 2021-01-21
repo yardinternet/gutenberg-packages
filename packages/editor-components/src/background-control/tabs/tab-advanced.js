@@ -35,7 +35,7 @@ export default function TabAdvanced( { attributes, setAttributes } ) {
 			/>
 
 			<FocalPointPicker
-				label={ __( 'Focal Point Picker' ) }
+				label={ __( 'Focuspunt' ) }
 				url={ bgImgUrl }
 				dimensions={ focalPointDimensions }
 				value={ focalPoint }
@@ -46,7 +46,7 @@ export default function TabAdvanced( { attributes, setAttributes } ) {
 				}
 			/>
 			<SelectControl
-				label={ __( 'Background repeat' ) }
+				label={ __( 'Achtergrond herhalen' ) }
 				value={ bgRepeat }
 				onChange={ ( repeat ) => {
 					setAttributes( {
@@ -73,7 +73,7 @@ export default function TabAdvanced( { attributes, setAttributes } ) {
 				] }
 			/>
 			<SelectControl
-				label={ __( 'Background size' ) }
+				label={ __( 'Achtergrond instelling' ) }
 				value={ bgSize }
 				onChange={ ( size ) => {
 					setAttributes( {

@@ -62,7 +62,7 @@ function Edit( props ) {
 				>
 					<div style={ { width: '100%' } }>
 						<TextControl
-							label={ __( 'Title' ) }
+							label={ __( 'Titel' ) }
 							defaultValue={ title }
 							onChange={ ( value ) => {
 								setAttributes( { title: value } );

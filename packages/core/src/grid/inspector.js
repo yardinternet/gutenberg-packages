@@ -33,12 +33,12 @@ function Inspector( { attributes, setAttributes } ) {
 
 	return (
 		<InspectorControls>
-			<PanelBody title={ __( 'Opties' ) } initialOpen={ false }>
+			<PanelBody title={ __( 'Instellingen' ) } initialOpen={ false }>
 				<ToggleControlContainerPadding
 					{ ...{ hasContainerPadding, setAttributes } }
 				/>
 				<ToggleControl
-					label={ __( 'Row gutter' ) }
+					label={ __( 'Verberg ruimte tussen kolommen' ) }
 					checked={ rowGutter }
 					onChange={ ( bool ) =>
 						setAttributes( { rowGutter: bool } )
@@ -53,7 +53,7 @@ function Inspector( { attributes, setAttributes } ) {
 				/>
 				{ fullWidth && (
 					<ToggleControl
-						label={ __( 'Inner container fluid' ) }
+						label={ __( 'Kolommen volledige breedte' ) }
 						checked={ isInnerContainerFluid }
 						onChange={ ( bool ) =>
 							setAttributes( { isInnerContainerFluid: bool } )
@@ -66,12 +66,12 @@ function Inspector( { attributes, setAttributes } ) {
 					{ ...{ setAttributes } }
 					value={ minHeight }
 					onChange={ ( val ) => setAttributes( { minHeight: val } ) }
-					label="Min-height"
+					label={ __( 'Minimale hoogte' ) }
 				/>
 			</PanelBody>
 			<FlexboxControl
 				value={ flexAlignment }
-				panelLabel={ 'Uitlijning' }
+				panelLabel={ __( 'Uitlijning' ) }
 				onClick={ ( val ) => {
 					setAttributes( { flexAlignment: val } );
 				} }

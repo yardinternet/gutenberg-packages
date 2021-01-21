@@ -2,6 +2,10 @@
  * External dependencies
  */
 import { useState } from 'react';
+/**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
@@ -107,14 +111,14 @@ function CarouselEdit( props ) {
 
 				<CarouselControl
 					direction="prev"
-					directionText="Previous"
+					directionText={ __( 'Vorige' ) }
 					onClickHandler={ previous }
 				/>
 
 				{ showControls && (
 					<CarouselControl
 						direction="next"
-						directionText="Next"
+						directionText={ __( 'Volgende' ) }
 						onClickHandler={ next }
 					/>
 				) }

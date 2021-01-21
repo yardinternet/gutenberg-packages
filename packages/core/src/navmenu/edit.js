@@ -58,7 +58,7 @@ class NavmenuEdit extends Component {
 		const renderTitle = () => {
 			return (
 				<TextControl
-					label={ [ __( 'Title:' ) ] }
+					label={ [ __( 'Titel' ) ] }
 					value={ title }
 					onChange={ ( newTitle ) =>
 						setAttributes( { title: newTitle } )
@@ -68,7 +68,9 @@ class NavmenuEdit extends Component {
 		};
 
 		const renderNavMenuSelect = () => {
-			const defaultOption = [ { label: __( 'Select menu' ), value: '' } ];
+			const defaultOption = [
+				{ label: __( 'Selecteer menu' ), value: '' },
+			];
 
 			return (
 				<SelectControl
@@ -85,15 +87,15 @@ class NavmenuEdit extends Component {
 		return (
 			<>
 				<InspectorControls key="controls">
-					<PanelBody title={ __( 'Settings' ) }>
+					<PanelBody title={ __( 'Instellingen' ) }>
 						{ renderTitle() }
 						{ loaded ? renderNavMenuSelect() : <Spinner /> }
 						<ToggleControl
 							label="Collapse"
 							help={
 								collapsed
-									? 'Menu is collapsed.'
-									: 'Menu is expanded.'
+									? __( 'Menu is ingeklapt.' )
+									: __( 'Menu is uitgeklapt.' )
 							}
 							checked={ collapsed }
 							onChange={ ( bool ) =>
@@ -105,7 +107,7 @@ class NavmenuEdit extends Component {
 				<div>
 					{ ! menuId ? (
 						<div>
-							<h4>{ __( 'Select navmenu' ) }</h4>
+							<h4>{ __( 'Selecteer menu' ) }</h4>
 							<div>
 								{ renderTitle() }
 								{ loaded ? renderNavMenuSelect() : <Spinner /> }

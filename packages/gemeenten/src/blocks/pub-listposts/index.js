@@ -20,8 +20,8 @@ export const Icon = <BlockIcon faClasses="fal fa-list-alt" />;
 const { name, attributes } = metadata;
 
 const settings = {
-	title: __( 'List Posts OpenPub', NAMESPACE ),
-	description: __( 'Haal de nieuwste berichten op uit OpenPub' ),
+	title: __( 'Berichtenlijst OpenPub', NAMESPACE ),
+	description: __( 'Haal berichten op uit OpenPub.' ),
 	icon: {
 		src: Icon,
 	},

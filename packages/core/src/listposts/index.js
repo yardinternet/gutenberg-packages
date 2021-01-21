@@ -32,9 +32,9 @@ export const Icon = <BlockIcon faClasses="fal fa-list-alt" />;
 const icon = 'fal fa-list-alt';
 
 const settings = {
-	title: __( 'List Posts', 'yard-blocks' ),
+	title: __( 'Berichtenlijst', 'yard-blocks' ),
 	description: __(
-		'Voeg allerlei typen content toe en pas deze aan naar wens'
+		'Voeg allerlei typen content toe en pas deze aan naar wens.'
 	),
 	attributes: finalAttributes,
 	edit,

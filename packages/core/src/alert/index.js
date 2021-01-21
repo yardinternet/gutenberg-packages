@@ -14,8 +14,10 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-info';
 
 const settings = {
-	title: __( 'Alert' ),
-	description: __( 'Geef content extra aandacht' ),
+	title: __( 'Melding' ),
+	description: __(
+		'Geef content extra aandacht door middel van een melding.'
+	),
 	category: 'yard-blocks',
 	edit,
 	attributes,

@@ -9,7 +9,7 @@ const BackgroundImageControl = ( props ) => {
 
 	return (
 		<Fragment>
-			<p className="yard-label">{ __( 'Background image' ) }</p>
+			<p className="yard-label">{ __( 'Achtergrond afbeelding' ) }</p>
 			<MediaUpload
 				onSelect={ ( img ) => setAttributes( { bgImgUrl: img.url } ) }
 				type="image"
@@ -25,7 +25,7 @@ const BackgroundImageControl = ( props ) => {
 							onClick={ open }
 						>
 							<Dashicon icon="format-image" />
-							{ __( 'Select Image' ) }
+							{ __( 'Selecteer afbeelding' ) }
 						</Button>
 						{ bgImgUrl && (
 							<Fragment>
@@ -38,7 +38,7 @@ const BackgroundImageControl = ( props ) => {
 									<Dashicon icon="no-alt" />
 								</Button>
 								<SelectControl
-									label={ __( 'Background position' ) }
+									label={ __( 'Achtergrond positie' ) }
 									value={ bgPosition }
 									onChange={ ( position ) => {
 										setAttributes( {
@@ -86,7 +86,7 @@ const BackgroundImageControl = ( props ) => {
 									] }
 								/>
 								<SelectControl
-									label={ __( 'Background repeat' ) }
+									label={ __( 'Achtergrond herhalen' ) }
 									value={ bgRepeat }
 									onChange={ ( repeat ) => {
 										setAttributes( { bgRepeat: repeat } );
@@ -109,7 +109,7 @@ const BackgroundImageControl = ( props ) => {
 									] }
 								/>
 								<SelectControl
-									label={ __( 'Background size' ) }
+									label={ __( 'Achtergrond grootte' ) }
 									value={ bgSize }
 									onChange={ ( size ) => {
 										setAttributes( { bgSize: size } );

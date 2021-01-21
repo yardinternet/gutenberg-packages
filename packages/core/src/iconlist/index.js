@@ -21,8 +21,10 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-th';
 
 const settings = {
-	title: __( 'Icon List', 'yard-blocks' ),
-	description: __( 'Example' ),
+	title: __( 'Iconenlijst', 'yard-blocks' ),
+	description: __(
+		'Voeg een lijst met FontAwesome iconen toe. Verander de tekst en iconen afzonderlijk van elkaar.'
+	),
 	category: 'yard-blocks',
 	icon: {
 		background: '#0293b0',

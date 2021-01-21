@@ -20,8 +20,8 @@ import save from './save';
 const { name } = metadata;
 
 export const settings = {
-	title: 'Card',
-	description: __( 'Single Card' ),
+	title: __( 'Kaart' ),
+	description: __( 'Plaats een kaart binnen het kaarten blok.' ),
 	parent: [ 'yard-blocks/card' ],
 	example: {},
 	getEditWrapperProps( { parentCardCount } ) {

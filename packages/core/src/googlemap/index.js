@@ -12,8 +12,8 @@ const name = 'yard-blocks/google-map';
 const icon = 'fal fa-map';
 
 const settings = {
-	title: __( 'Google map' ),
-	description: __( 'Google map' ),
+	title: __( 'Google maps' ),
+	description: __( 'Voeg een Google map insluiting toe aan de pagina.' ),
 	attributes: {
 		points: {
 			type: 'array',

@@ -21,8 +21,8 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-th';
 
 const settings = {
-	title: __( 'Icon item', 'yard-blocks' ),
-	description: __( 'Icon with text' ),
+	title: __( 'Iconenlijst item', 'yard-blocks' ),
+	description: __( 'Een enkele iconenlijst item.' ),
 	parent: [ 'yard-blocks/icon-list' ],
 	category: 'yard-blocks',
 	icon: {

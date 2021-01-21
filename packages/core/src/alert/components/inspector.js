@@ -11,14 +11,14 @@ function Inspector( props ) {
 	const { alertType } = attributes;
 
 	const PRESET_ALERT_CLASSES = [
-		{ label: 'primair', value: 'alert alert-primary' },
-		{ label: 'secundair', value: 'alert alert-secondary' },
-		{ label: 'succes', value: 'alert alert-success' },
-		{ label: 'gevaar', value: 'alert alert-danger' },
-		{ label: 'waarschuwing', value: 'alert alert-warning' },
-		{ label: 'info', value: 'alert alert-info' },
-		{ label: 'licht', value: 'alert alert-light' },
-		{ label: 'donker', value: 'alert alert-dark' },
+		{ label: __( 'Primair' ), value: 'alert alert-primary' },
+		{ label: __( 'Secundair' ), value: 'alert alert-secondary' },
+		{ label: __( 'Succes' ), value: 'alert alert-success' },
+		{ label: __( 'Gevaar' ), value: 'alert alert-danger' },
+		{ label: __( 'Waarschuwing' ), value: 'alert alert-warning' },
+		{ label: __( 'Info' ), value: 'alert alert-info' },
+		{ label: __( 'Licht' ), value: 'alert alert-light' },
+		{ label: __( 'Donker' ), value: 'alert alert-dark' },
 	];
 
 	const alertClasses = applyFilters(

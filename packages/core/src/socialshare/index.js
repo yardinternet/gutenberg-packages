@@ -15,8 +15,10 @@ const icon = 'far fa-share-alt';
 const { name, attributes } = metadata;
 
 const settings = {
-	title: __( 'Social share' ),
-	description: __( 'Social share component' ),
+	title: __( 'Social media iconen' ),
+	description: __(
+		'Plaats sociale media iconen waarmee je gemakkelijk de pagina kunt delen met anderen.'
+	),
 	attributes,
 	edit: ( props ) => {
 		const { setAttributes } = props;

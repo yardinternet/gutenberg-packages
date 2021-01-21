@@ -27,15 +27,15 @@ function SocialShare( { attributes, setAttributes } ) {
 		print,
 	} = attributes;
 	const options = [
-		{ label: 'Rond', value: 'circle' },
-		{ label: 'Vierkant', value: 'square' },
+		{ label: __( 'Rond' ), value: 'circle' },
+		{ label: __( 'Vierkant' ), value: 'square' },
 	];
 
 	return (
 		<InspectorControls>
 			<PanelBody title={ __( 'Instellingen' ) } initialOpen={ false }>
 				<SelectControl
-					label={ __( 'Style' ) }
+					label={ __( 'Stijl' ) }
 					value={ type }
 					options={ options }
 					onChange={ ( value ) => {
@@ -43,21 +43,21 @@ function SocialShare( { attributes, setAttributes } ) {
 					} }
 				/>
 				<SelectControl
-					label={ __( 'Size' ) }
+					label={ __( 'Grootte' ) }
 					value={ size }
 					options={ fontawesomeSizes }
 					onChange={ ( value ) => {
 						setAttributes( { size: value } );
 					} }
 				/>
-				<p className="yard-label">Achtergrondkleur</p>
+				<p className="yard-label">{ __( 'Achtergrondkleur' ) }</p>
 				<ColorPalette
 					value={ bgColor }
 					onChange={ ( newColor ) =>
 						setAttributes( { bgColor: newColor } )
 					}
 				/>
-				<p className="yard-label">Kleur</p>
+				<p className="yard-label">{ __( 'Kleur' ) }</p>
 				<ColorPalette
 					value={ color }
 					onChange={ ( newColor ) =>
@@ -65,37 +65,37 @@ function SocialShare( { attributes, setAttributes } ) {
 					}
 				/>
 			</PanelBody>
-			<PanelBody title="Iconen">
+			<PanelBody title={ __( 'Iconen' ) }>
 				<CheckboxControl
-					label="Toon Twitter"
+					label={ __( 'Toon Twitter' ) }
 					checked={ twitter }
 					onChange={ ( isChecked ) => {
 						setAttributes( { twitter: isChecked } );
 					} }
 				/>
 				<CheckboxControl
-					label="Toon Facebook"
+					label={ __( 'Toon Facebook' ) }
 					checked={ facebook }
 					onChange={ ( isChecked ) => {
 						setAttributes( { facebook: isChecked } );
 					} }
 				/>
 				<CheckboxControl
-					label="Toon Linkedin"
+					label={ __( 'Toon LinkedIn' ) }
 					checked={ linkedin }
 					onChange={ ( isChecked ) => {
 						setAttributes( { linkedin: isChecked } );
 					} }
 				/>
 				<CheckboxControl
-					label="Toon whatsapp"
+					label={ __( 'Toon WhatsApp' ) }
 					checked={ whatsapp }
 					onChange={ ( isChecked ) => {
 						setAttributes( { whatsapp: isChecked } );
 					} }
 				/>
 				<CheckboxControl
-					label="Toon print"
+					label={ __( 'Toon print' ) }
 					checked={ print }
 					onChange={ ( isChecked ) => {
 						setAttributes( { print: isChecked } );

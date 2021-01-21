@@ -18,9 +18,9 @@ import save from './save';
 const { name, attributes } = metadata;
 
 const settings = {
-	title: __( 'Google map geavanceerd', 'yardinternet/google-maps-advanced' ),
+	title: __( 'Google map uitgebreid', 'yardinternet/google-maps-advanced' ),
 	description: __(
-		'Toont een Google maps kaart met markergroepen, diverse shapes en filter mogelijkheden'
+		'Toont een Google maps kaart met markergroepen, diverse shapes en filter mogelijkheden.'
 	),
 	supports: {
 		multiple: false,

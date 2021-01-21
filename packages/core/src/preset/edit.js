@@ -59,7 +59,7 @@ const Edit = ( {
 		);
 		removeBlock( clientId );
 		clearSelectedBlock();
-		createNotice( 'info', __( 'Preset toegevoegd' ), {
+		createNotice( 'info', __( 'Patroon toegevoegd' ), {
 			isDismissible: true,
 			type: 'snackbar',
 			id: 'yard-block-preset',
@@ -71,7 +71,7 @@ const Edit = ( {
 			icon={
 				<BlockIcon faClasses="fal fa-hammer" marginRight={ true } />
 			}
-			label={ __( 'Preset' ) }
+			label={ __( 'Patroon (sjabloon)' ) }
 		>
 			{ presetCollection ? (
 				<>
@@ -79,7 +79,7 @@ const Edit = ( {
 						className="d-block w-100"
 						htmlFor={ `preset-${ instanceId }` }
 					>
-						Selecteer preset:
+						{ __( 'Selecteer een patroon:' ) }
 					</label>
 					<select
 						id={ `preset-${ instanceId }` }

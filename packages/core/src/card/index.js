@@ -10,8 +10,8 @@ const name = 'yard-blocks/card';
 const icon = 'fas fa-copy'; // dffs
 
 const settings = {
-	title: __( 'Card', 'yard-blocks' ),
-	description: __( 'Card component', 'yard-blocks' ),
+	title: __( 'Kaart', 'yard-blocks' ),
+	description: __( 'Plaats een kaart in de pagina.', 'yard-blocks' ),
 
 	attributes: {
 		url: {

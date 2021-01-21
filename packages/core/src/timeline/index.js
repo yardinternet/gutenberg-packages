@@ -23,8 +23,8 @@ const { name, attributes, supports } = metadata;
 const icon = 'fal fa-grip-lines-vertical';
 
 const settings = {
-	title: __( 'Timeline' ),
-	description: __( 'Toon content in een tijdlijn vorm' ),
+	title: __( 'Tijdlijn' ),
+	description: __( 'Toon inhoud in de vorm van een tijdlijn.' ),
 	edit,
 	attributes: {
 		...attributes,

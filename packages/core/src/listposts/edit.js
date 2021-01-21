@@ -283,7 +283,7 @@ class ListPostsEdit extends Component {
 								marginRight={ true }
 							/>
 						}
-						label={ __( 'List Posts' ) }
+						label={ __( 'Berichtenlijst' ) }
 					>
 						<SelectPostTypeControl
 							{ ...{

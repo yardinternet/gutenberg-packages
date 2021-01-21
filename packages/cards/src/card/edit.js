@@ -30,7 +30,7 @@ function edit( { attributes, className, setAttributes } ) {
 	const options = [
 		{
 			value: null,
-			label: __( 'Selecteer template' ),
+			label: __( 'Selecteer sjabloon' ),
 			disabled: false,
 		},
 	].concat(
@@ -54,7 +54,7 @@ function edit( { attributes, className, setAttributes } ) {
 			/>
 		</Card>
 	) : (
-		<Placeholder icon="layout" label={ __( 'Card' ) }>
+		<Placeholder icon="layout" label={ __( 'Kaart' ) }>
 			<SelectControl
 				options={ options }
 				value={ selectedTemplate }

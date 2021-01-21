@@ -62,7 +62,7 @@ function Edit( {
 				<Toolbar>
 					<IconButton
 						className="components-toolbar__control"
-						label={ __( 'Remove' ) }
+						label={ __( 'Verwijder' ) }
 						icon="no"
 						onClick={ onRemove }
 					/>

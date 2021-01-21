@@ -23,7 +23,7 @@ function Inspector( props ) {
 			<PanelBody title={ __( 'Keuze opties' ) }>
 				<IconModal icon={ icon } setAttributes={ setAttributes } />
 			</PanelBody>
-			<PanelBody title={ __( 'Icoon instellingen' ) }>
+			<PanelBody title={ __( 'Icooninstellingen' ) }>
 				<FontSizePicker
 					value={ iconSize }
 					onChange={ ( size ) => setAttributes( { iconSize: size } ) }

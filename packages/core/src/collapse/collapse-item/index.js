@@ -21,7 +21,7 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-th';
 
 const settings = {
-	title: __( 'Collapse item', 'yard-blocks' ),
+	title: __( 'Uitklap item', 'yard-blocks' ),
 	description: __( 'Uitklapbaar component.' ),
 	parent: [ 'yard-blocks/collapse-list' ],
 	category: 'yard-blocks',

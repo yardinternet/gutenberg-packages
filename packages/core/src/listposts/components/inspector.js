@@ -318,7 +318,7 @@ function Inspector( props ) {
 							/>
 							<RangeControl
 								key="query-controls-range-control"
-								label={ __( 'Offset' ) }
+								label={ __( 'Afwijking' ) }
 								value={ postsOffset }
 								onChange={ ( value ) =>
 									setAttributes( { postsOffset: value } )
@@ -342,11 +342,11 @@ function Inspector( props ) {
 
 			{ ! customSelection && !! posts.length && ! isNonWpSourcesEnabled && (
 				<PanelBody
-					title={ __( ' Klevend bericht' ) }
+					title={ __( 'Klevend bericht' ) }
 					initialOpen={ false }
 				>
 					<CheckboxControl
-						label={ __( 'Sticky post' ) }
+						label={ __( 'Klevend bericht' ) }
 						checked={ stickyPostSelection }
 						onChange={ ( checked ) =>
 							setAttributes( {
@@ -591,7 +591,7 @@ function Inspector( props ) {
 							<p>
 								{ ' ' }
 								{ __(
-									'Post(s) die niet getoond mogen worden'
+									'Berichten die niet getoond mogen worden'
 								) }{ ' ' }
 							</p>
 							<Select
@@ -612,21 +612,21 @@ function Inspector( props ) {
 
 			<PanelBody title={ __( 'Weergave' ) } initialOpen={ false }>
 				<ToggleControl
-					label={ __( 'Display date' ) }
+					label={ __( 'Toon datum' ) }
 					checked={ displayDate }
 					onChange={ () =>
 						setAttributes( { displayDate: ! displayDate } )
 					}
 				/>
 				<ToggleControl
-					label={ __( 'Display excerpt' ) }
+					label={ __( 'Toon samenvatting' ) }
 					checked={ displayExcerpt }
 					onChange={ () =>
 						setAttributes( { displayExcerpt: ! displayExcerpt } )
 					}
 				/>
 				<ToggleControl
-					label={ __( 'Display featured image' ) }
+					label={ __( 'Toon uitgelichte afbeelding' ) }
 					checked={ displayFeaturedImage }
 					onChange={ () =>
 						setAttributes( {
@@ -637,7 +637,7 @@ function Inspector( props ) {
 			</PanelBody>
 
 			{ !! customViews && ( postType || isNonWpSourcesEnabled ) && (
-				<PanelBody title={ __( 'Template' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Sjabloon' ) } initialOpen={ false }>
 					<SelectCustomViewsControl
 						{ ...{
 							customViews,

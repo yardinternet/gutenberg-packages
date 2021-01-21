@@ -18,8 +18,10 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-folder';
 
 const settings = {
-	title: __( 'Tabs' ),
-	description: __( 'Groupeer content in verschillende tabs' ),
+	title: __( 'Tabbladen' ),
+	description: __(
+		'Groepeer gemakkelijk content in verschillende tabbladen.'
+	),
 	edit,
 	attributes,
 	supports: {

@@ -20,8 +20,10 @@ const { name } = metadata;
 const icon = 'fal fa-hammer';
 
 const settings = {
-	title: __( 'Preset' ),
-	description: __( 'Voeg binnen blokken een preset toe' ),
+	title: __( 'Patroon (sjabloon)' ),
+	description: __(
+		'Voeg een voorgedefinieerde layout toe en pas de inhoud aan.'
+	),
 	supports: {
 		html: false,
 		reusable: false,

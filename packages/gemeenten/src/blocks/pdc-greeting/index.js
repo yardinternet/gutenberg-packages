@@ -23,7 +23,7 @@ const icon = 'fas fa-th';
 
 const settings = {
 	title: __( 'Begroeting', NAMESPACE ),
-	description: __( 'Stel een tijd afhankelijke begroeting in' ),
+	description: __( 'Stel een tijd afhankelijke begroeting in.' ),
 	icon: {
 		src: Icon,
 	},
