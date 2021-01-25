@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-register-blocks",
-	"version": "0.2.3",
+	"version": "0.3.0",
 	"description": "Contains registerBlocks method to bootstrap theme and core blocks",
 	"main": "src/index.js",
 	"publishConfig": {
