@@ -38,6 +38,7 @@ export function registerBlocks( blocks = [], options = defaultOptions ) {
 
 		return registerBlockType( name, {
 			...options,
+			// @ts-ignore
 			...blockSettings,
 			icon: {
 				src:

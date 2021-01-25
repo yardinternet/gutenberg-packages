@@ -69,6 +69,7 @@
 		"lint-staged": "^10.0.7",
 		"postcss": "^7.0.32",
 		"prettier": "npm:wp-prettier@2.0.5",
+		"react-select": "^4.0.2",
 		"reactstrap": "^8.5.1",
 		"sass": "^1.26.10",
 		"sass-loader": "^9.0.2",

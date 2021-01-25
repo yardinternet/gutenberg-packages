@@ -74,7 +74,7 @@ function MapFilters( {
 			<button
 				className="yard-google-map-advanced__btn-reset"
 				onClick={ () => {
-					document.activeElement.blur(); // remove focus from button
+					document.activeElement.blur(); // eslint-disable-line
 					onChange( [] );
 				} }
 			>
