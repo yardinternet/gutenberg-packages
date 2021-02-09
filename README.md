@@ -19,7 +19,7 @@ Remove the last two lines, these are required by Github Actions
 ### Developing package in project or theme
 
 1. Run `npm link` inside the gutenberg-package/packages/<package>
-2. Run `npm link <package>` inside the project or theme
+2. Run `npm link <package-json-name>` inside the project or theme
 
 `npm link` creates a symbolic link between the packages.
 Run `npm start` inside theme or project and make changes in the gutenberg-packages project and the code compiles.
