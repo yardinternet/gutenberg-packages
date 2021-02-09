@@ -34,9 +34,9 @@ function Edit( {
 				<div className={ 'yard-blocks-spacer-label' }>Spacer</div>
 				{ isSelected && (
 					<RangeControl
-						onChange={ setSize }
 						max={ MAX }
 						min={ MIN }
+						onChange={ setSize }
 						value={ size }
 					/>
 				) }
