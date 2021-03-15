@@ -9,18 +9,12 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import classnames from 'classnames';
 
 function save( { attributes } ) {
-	const { defaultTab, defaultTabEnabled, innerblocks } = attributes;
-
-	const activeTab = () => {
-		if ( ! defaultTabEnabled || ! defaultTab ) return 0;
-
-		return defaultTab - 1;
-	};
+	const { defaultTab, innerblocks } = attributes;
 
 	return (
 		<div id="tab-container">
 			<ul className="nav nav-tabs" role="tablist">
-				{ innerblocks.map( ( block, i ) => (
+				{ innerblocks.map( ( block ) => (
 					<li
 						key={ block.clientId }
 						role="presentation"
@@ -28,7 +22,7 @@ function save( { attributes } ) {
 					>
 						<button
 							className={ classnames( 'nav-link', {
-								active: i === activeTab(),
+								active: block.attributes.id === defaultTab,
 							} ) }
 							data-target={ `#tab-panel-${ block.attributes.id }` }
 							role="tab"

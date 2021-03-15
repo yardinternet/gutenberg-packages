@@ -3,8 +3,8 @@
   "category": "layout",
   "attributes": {
     "defaultTab": {
-      "type": "number",
-      "default": 1
+      "type": "string",
+      "default": "tab-1"
     },
     "defaultTabEnabled": {
       "type": "boolean",

@@ -1,7 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { createContext, useState, Fragment } from '@wordpress/element';
+import {
+	createContext,
+	useEffect,
+	useState,
+	Fragment,
+} from '@wordpress/element';
 import { withSelect, withDispatch } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 import {
@@ -11,10 +16,10 @@ import {
 	PlainText,
 } from '@wordpress/block-editor';
 import {
-	__experimentalNumberControl as NumberControl,
 	ButtonGroup,
 	IconButton,
 	PanelBody,
+	SelectControl,
 	ToggleControl,
 	Toolbar,
 } from '@wordpress/components';
@@ -54,7 +59,7 @@ function Edit( {
 	const TEMPLATE = [
 		[
 			'yard-blocks/tabs-tab',
-			{ title: 'Titel', id: 'tab-1' },
+			{ title: 'Titel', id: 'tab-1', defaultTab: activeTab },
 			[ [ 'core/paragraph', { content: '' } ] ],
 		],
 	];
@@ -63,10 +68,16 @@ function Edit( {
 		setActiveTab( id );
 	};
 
+	useEffect( () => {
+		if ( ! defaultTabEnabled ) {
+			setAttributes( { defaultTab: 'tab-1' } );
+		}
+	}, [ defaultTabEnabled ] );
+
 	return (
 		<Fragment>
 			<BlockControls>
-				<Toolbar>
+				<Toolbar label={ __( 'Tabblad opties' ) }>
 					<IconButton
 						className="components-toolbar__control"
 						label={ __( 'Tabblad toevoegen' ) }
@@ -88,15 +99,16 @@ function Edit( {
 						}
 					/>
 					{ defaultTabEnabled && (
-						<NumberControl
-							label={ __( 'Nummer van het actieve tabblad' ) }
+						<SelectControl
+							label={ __( 'Tabblad' ) }
 							value={ defaultTab }
-							onChange={ ( number ) =>
-								setAttributes( {
-									defaultTab: number,
-								} )
-							}
-							shiftStep={ 1 }
+							options={ innerBlocks.map( ( props ) => ( {
+								label: props.attributes.title,
+								value: props.attributes.id,
+							} ) ) }
+							onChange={ ( value ) => {
+								setAttributes( { defaultTab: value } );
+							} }
 						/>
 					) }
 				</PanelBody>
