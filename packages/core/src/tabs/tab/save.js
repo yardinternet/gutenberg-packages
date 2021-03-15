@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { InnerBlocks } from '@wordpress/block-editor';
+
 /**
  * External dependencies
  */
@@ -9,6 +10,7 @@ import classnames from 'classnames';
 
 function save( { attributes } ) {
 	const { id } = attributes;
+
 	return (
 		<div
 			role="tabpanel"

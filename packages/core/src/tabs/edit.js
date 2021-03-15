@@ -4,8 +4,20 @@
 import { createContext, useState, Fragment } from '@wordpress/element';
 import { withSelect, withDispatch } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
-import { InnerBlocks, BlockControls, PlainText } from '@wordpress/block-editor';
-import { Toolbar, IconButton, ButtonGroup } from '@wordpress/components';
+import {
+	BlockControls,
+	InnerBlocks,
+	InspectorControls,
+	PlainText,
+} from '@wordpress/block-editor';
+import {
+	__experimentalNumberControl as NumberControl,
+	ButtonGroup,
+	IconButton,
+	PanelBody,
+	ToggleControl,
+	Toolbar,
+} from '@wordpress/components';
 import { createBlock, cloneBlock } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
@@ -31,7 +43,7 @@ function Edit( {
 	duplicateTab,
 } ) {
 	const [ activeTab, setActiveTab ] = useState( 'tab-1' );
-	const { innerblocks } = attributes;
+	const { defaultTab, defaultTabEnabled, innerblocks } = attributes;
 
 	if ( ! innerblocks.length ) {
 		setAttributes( {
@@ -63,6 +75,32 @@ function Edit( {
 					/>
 				</Toolbar>
 			</BlockControls>
+			<InspectorControls>
+				<PanelBody title={ __( 'Instellingen' ) }>
+					<ToggleControl
+						label={ __( 'Actief tabblad opgeven' ) }
+						help={ __( 'Standaard te openen tabblad opgeven' ) }
+						checked={ defaultTabEnabled }
+						onChange={ () =>
+							setAttributes( {
+								defaultTabEnabled: ! defaultTabEnabled,
+							} )
+						}
+					/>
+					{ defaultTabEnabled && (
+						<NumberControl
+							label={ __( 'Nummer van het actieve tabblad' ) }
+							value={ defaultTab }
+							onChange={ ( number ) =>
+								setAttributes( {
+									defaultTab: number,
+								} )
+							}
+							shiftStep={ 1 }
+						/>
+					) }
+				</PanelBody>
+			</InspectorControls>
 			<MyContext.Provider value={ { activeTab } }>
 				<div>
 					<ul className="nav nav-tabs" role="tablist">

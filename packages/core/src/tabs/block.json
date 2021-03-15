@@ -1,7 +1,15 @@
 {
-	"name": "yard-blocks/tabs",
-	"category": "layout",
-	"attributes": {
+  "name": "yard-blocks/tabs",
+  "category": "layout",
+  "attributes": {
+    "defaultTab": {
+      "type": "number",
+      "default": 1
+    },
+    "defaultTabEnabled": {
+      "type": "boolean",
+      "default": false
+    },
     "id": {
       "type": "string"
     },

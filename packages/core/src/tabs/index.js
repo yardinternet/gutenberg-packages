@@ -22,6 +22,10 @@ const settings = {
 	description: __(
 		'Groepeer gemakkelijk content in verschillende tabbladen.'
 	),
+	providesContext: {
+		[ `${ name }/defaultTab` ]: 'defaultTab',
+		[ `${ name }/defaultTabEnabled` ]: 'defaultTabEnabled',
+	},
 	edit,
 	attributes,
 	supports: {

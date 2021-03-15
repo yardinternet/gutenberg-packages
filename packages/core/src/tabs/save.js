@@ -2,13 +2,20 @@
  * WordPress dependencies
  */
 import { InnerBlocks } from '@wordpress/block-editor';
+
 /**
  * External dependencies
  */
 import classnames from 'classnames';
 
 function save( { attributes } ) {
-	const { innerblocks } = attributes;
+	const { defaultTab, defaultTabEnabled, innerblocks } = attributes;
+
+	const activeTab = () => {
+		if ( ! defaultTabEnabled || ! defaultTab ) return 0;
+
+		return defaultTab - 1;
+	};
 
 	return (
 		<div id="tab-container">
@@ -21,7 +28,7 @@ function save( { attributes } ) {
 					>
 						<button
 							className={ classnames( 'nav-link', {
-								active: i === 0,
+								active: i === activeTab(),
 							} ) }
 							data-target={ `#tab-panel-${ block.attributes.id }` }
 							role="tab"

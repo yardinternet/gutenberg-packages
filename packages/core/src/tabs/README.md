@@ -1,4 +1,3 @@
-# Example block
+# Tabs
 
-Explain the purpose of this block
-
+Easily group content within tabs.

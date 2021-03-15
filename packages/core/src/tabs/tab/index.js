@@ -12,15 +12,28 @@ import save from './save';
 const icon = 'fas fa-folder';
 const name = 'yard-blocks/tabs-tab';
 
+const parent = 'yard-blocks/tabs';
+
 const settings = {
 	title: __( 'Tabblad' ),
-	parent: [ 'yard-blocks/tabs' ],
+	parent: [ parent ],
+	usesContext: [
+		[ `${ parent }/defaultTab` ],
+		[ `${ parent }/defaultTabEnabled` ],
+	],
 	attributes: {
 		id: {
 			type: 'string',
 		},
 		title: {
 			type: 'string',
+		},
+		defaultTab: {
+			type: 'boolean',
+		},
+		defaultTabEnabled: {
+			type: 'boolean',
+			default: false,
 		},
 	},
 	supports: {
