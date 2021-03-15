@@ -17,23 +17,12 @@ const parent = 'yard-blocks/tabs';
 const settings = {
 	title: __( 'Tabblad' ),
 	parent: [ parent ],
-	usesContext: [
-		[ `${ parent }/defaultTab` ],
-		[ `${ parent }/defaultTabEnabled` ],
-	],
 	attributes: {
 		id: {
 			type: 'string',
 		},
 		title: {
 			type: 'string',
-		},
-		defaultTab: {
-			type: 'boolean',
-		},
-		defaultTabEnabled: {
-			type: 'boolean',
-			default: false,
 		},
 	},
 	supports: {
