@@ -2,18 +2,20 @@
  * WordPress dependencies
  */
 import { InnerBlocks } from '@wordpress/block-editor';
+
 /**
  * External dependencies
  */
 import classnames from 'classnames';
 
 function save( { attributes } ) {
-	const { id } = attributes;
+	const { defaultTab, id } = attributes;
+
 	return (
 		<div
 			role="tabpanel"
 			className={ classnames(
-				{ 'active show': id === 'tab-1' },
+				{ 'active show': id === defaultTab },
 				'tab-pane fade'
 			) }
 			id={ `tab-panel-${ id }` }

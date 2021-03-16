@@ -1,11 +1,28 @@
 /**
  * WordPress dependencies
  */
-import { createContext, useState, Fragment } from '@wordpress/element';
+import {
+	createContext,
+	useEffect,
+	useState,
+	Fragment,
+} from '@wordpress/element';
 import { withSelect, withDispatch } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
-import { InnerBlocks, BlockControls, PlainText } from '@wordpress/block-editor';
-import { Toolbar, IconButton, ButtonGroup } from '@wordpress/components';
+import {
+	BlockControls,
+	InnerBlocks,
+	InspectorControls,
+	PlainText,
+} from '@wordpress/block-editor';
+import {
+	ButtonGroup,
+	IconButton,
+	PanelBody,
+	SelectControl,
+	ToggleControl,
+	Toolbar,
+} from '@wordpress/components';
 import { createBlock, cloneBlock } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
@@ -31,7 +48,7 @@ function Edit( {
 	duplicateTab,
 } ) {
 	const [ activeTab, setActiveTab ] = useState( 'tab-1' );
-	const { innerblocks } = attributes;
+	const { defaultTab, defaultTabEnabled, innerblocks } = attributes;
 
 	if ( ! innerblocks.length ) {
 		setAttributes( {
@@ -42,7 +59,7 @@ function Edit( {
 	const TEMPLATE = [
 		[
 			'yard-blocks/tabs-tab',
-			{ title: 'Titel', id: 'tab-1' },
+			{ title: 'Titel', id: 'tab-1', defaultTab: activeTab },
 			[ [ 'core/paragraph', { content: '' } ] ],
 		],
 	];
@@ -51,10 +68,16 @@ function Edit( {
 		setActiveTab( id );
 	};
 
+	useEffect( () => {
+		if ( ! defaultTabEnabled ) {
+			setAttributes( { defaultTab: 'tab-1' } );
+		}
+	}, [ defaultTabEnabled ] );
+
 	return (
 		<Fragment>
 			<BlockControls>
-				<Toolbar>
+				<Toolbar label={ __( 'Tabblad opties' ) }>
 					<IconButton
 						className="components-toolbar__control"
 						label={ __( 'Tabblad toevoegen' ) }
@@ -63,10 +86,37 @@ function Edit( {
 					/>
 				</Toolbar>
 			</BlockControls>
-			<MyContext.Provider value={ { activeTab } }>
+			<InspectorControls>
+				<PanelBody title={ __( 'Instellingen' ) }>
+					<ToggleControl
+						label={ __( 'Actief tabblad opgeven' ) }
+						help={ __( 'Standaard te openen tabblad' ) }
+						checked={ defaultTabEnabled }
+						onChange={ () =>
+							setAttributes( {
+								defaultTabEnabled: ! defaultTabEnabled,
+							} )
+						}
+					/>
+					{ defaultTabEnabled && (
+						<SelectControl
+							label={ __( 'Tabblad' ) }
+							value={ defaultTab }
+							options={ innerBlocks?.map( ( props ) => ( {
+								label: props.attributes.title,
+								value: props.attributes.id,
+							} ) ) }
+							onChange={ ( value ) => {
+								setAttributes( { defaultTab: value } );
+							} }
+						/>
+					) }
+				</PanelBody>
+			</InspectorControls>
+			<MyContext.Provider value={ { activeTab, defaultTab } }>
 				<div>
 					<ul className="nav nav-tabs" role="tablist">
-						{ innerBlocks.map( ( props ) => {
+						{ innerBlocks?.map( ( props ) => {
 							const { title, id } = props.attributes;
 							const active = activeTab === id;
 							return (
@@ -178,7 +228,11 @@ export default compose( [
 
 				const newBlock = createBlock(
 					'yard-blocks/tabs-tab',
-					{ id: 'x', title: 'Titel' },
+					{
+						id: 'x',
+						title: 'Titel',
+						defaultTab: 'tab-1',
+					},
 					[ innerBlock ]
 				);
 
@@ -213,7 +267,11 @@ export default compose( [
 
 				const newBlock = createBlock(
 					'yard-blocks/tabs-tab',
-					{ id: 'x', title: 'Titel' },
+					{
+						id: 'x',
+						title: 'Titel',
+						defaultTab: 'tab-1',
+					},
 					clonedBlocks
 				);
 
