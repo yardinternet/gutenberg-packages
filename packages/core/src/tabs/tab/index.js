@@ -24,6 +24,9 @@ const settings = {
 		title: {
 			type: 'string',
 		},
+		defaultTab: {
+			type: 'string',
+		},
 	},
 	supports: {
 		inserter: false,

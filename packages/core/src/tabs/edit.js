@@ -113,7 +113,7 @@ function Edit( {
 					) }
 				</PanelBody>
 			</InspectorControls>
-			<MyContext.Provider value={ { activeTab } }>
+			<MyContext.Provider value={ { activeTab, defaultTab } }>
 				<div>
 					<ul className="nav nav-tabs" role="tablist">
 						{ innerBlocks.map( ( props ) => {
@@ -228,7 +228,11 @@ export default compose( [
 
 				const newBlock = createBlock(
 					'yard-blocks/tabs-tab',
-					{ id: 'x', title: 'Titel' },
+					{
+						id: 'x',
+						title: 'Titel',
+						defaultTab: 'tab-1',
+					},
 					[ innerBlock ]
 				);
 
@@ -263,7 +267,11 @@ export default compose( [
 
 				const newBlock = createBlock(
 					'yard-blocks/tabs-tab',
-					{ id: 'x', title: 'Titel' },
+					{
+						id: 'x',
+						title: 'Titel',
+						defaultTab: 'tab-1',
+					},
 					clonedBlocks
 				);
 
