@@ -90,7 +90,7 @@ function Edit( {
 				<PanelBody title={ __( 'Instellingen' ) }>
 					<ToggleControl
 						label={ __( 'Actief tabblad opgeven' ) }
-						help={ __( 'Standaard te openen tabblad opgeven' ) }
+						help={ __( 'Standaard te openen tabblad' ) }
 						checked={ defaultTabEnabled }
 						onChange={ () =>
 							setAttributes( {
