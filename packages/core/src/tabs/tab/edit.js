@@ -9,17 +9,19 @@ import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
-import { Fragment } from '@wordpress/element';
+import { Fragment, useEffect } from '@wordpress/element';
 
 /**
  * Internal dependencies
  */
 import { MyContext } from '../edit';
 
-function edit( { attributes, defaultTab, setAttributes } ) {
+function Edit( { attributes, defaultTab, setAttributes } ) {
 	const { id } = attributes;
 
-	setAttributes( { defaultTab } );
+	useEffect( () => {
+		setAttributes( { defaultTab } );
+	}, [ defaultTab ] );
 
 	return (
 		<Fragment>
@@ -48,11 +50,16 @@ export default compose( [
 		const parentData = select( 'core/block-editor' ).getBlocksByClientId(
 			parentBlocks
 		);
+		const innerBlock = 'yard-blocks/tabs';
 
-		const { defaultTab } = parentData[ 0 ].attributes;
+		for ( let i = 0; i < parentData.length; i++ ) {
+			if ( parentData[ i ].name === innerBlock ) {
+				const { defaultTab } = parentData[ i ].attributes;
 
-		return {
-			defaultTab,
-		};
+				return {
+					defaultTab,
+				};
+			}
+		}
 	} ),
-] )( edit );
+] )( Edit );
