@@ -102,7 +102,7 @@ function Edit( {
 						<SelectControl
 							label={ __( 'Tabblad' ) }
 							value={ defaultTab }
-							options={ innerBlocks.map( ( props ) => ( {
+							options={ innerBlocks?.map( ( props ) => ( {
 								label: props.attributes.title,
 								value: props.attributes.id,
 							} ) ) }
@@ -116,7 +116,7 @@ function Edit( {
 			<MyContext.Provider value={ { activeTab, defaultTab } }>
 				<div>
 					<ul className="nav nav-tabs" role="tablist">
-						{ innerBlocks.map( ( props ) => {
+						{ innerBlocks?.map( ( props ) => {
 							const { title, id } = props.attributes;
 							const active = activeTab === id;
 							return (
