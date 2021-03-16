@@ -16,10 +16,10 @@ import { Fragment } from '@wordpress/element';
  */
 import { MyContext } from '../edit';
 
-function edit( props ) {
-	const { id } = props.attributes;
+function edit( { attributes, defaultTab, setAttributes } ) {
+	const { id } = attributes;
 
-	props.setAttributes( { defaultTab: props.defaultTab } );
+	setAttributes( { defaultTab } );
 
 	return (
 		<Fragment>
@@ -45,14 +45,14 @@ export default compose( [
 		const parentBlocks = select( 'core/block-editor' ).getBlockParents(
 			clientId
 		);
-		const parentAttributes = select(
-			'core/block-editor'
-		).getBlocksByClientId( parentBlocks );
+		const parentData = select( 'core/block-editor' ).getBlocksByClientId(
+			parentBlocks
+		);
 
-		const parentDefaultTabSelection = parentAttributes[ 0 ].attributes;
+		const { defaultTab } = parentData[ 0 ].attributes;
 
 		return {
-			defaultTab: parentDefaultTabSelection.defaultTab,
+			defaultTab,
 		};
 	} ),
 ] )( edit );

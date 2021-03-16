@@ -8,8 +8,8 @@ import { InnerBlocks } from '@wordpress/block-editor';
  */
 import classnames from 'classnames';
 
-function save( props ) {
-	const { defaultTab, innerblocks } = props.attributes;
+function save( { attributes } ) {
+	const { defaultTab, innerblocks } = attributes;
 
 	return (
 		<div id="tab-container">
