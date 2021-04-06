@@ -16,6 +16,9 @@ export const config = {
 			phone: {
 				label: 'Telefoon',
 			},
+			contactPerson: {
+				label: 'Contactpersoon',
+			},
 			email: {
 				label: 'Email',
 			},
