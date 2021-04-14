@@ -64,39 +64,60 @@ class ListPostsEdit extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		const { setAttributes } = this.props;
 		const { isMultipleSourcesEnabled } = this.props.attributes;
 
 		if (
 			prevProps.attributes.isMultipleSourcesEnabled !==
 			isMultipleSourcesEnabled
 		) {
-			let postTypes = [
-				...this.state.postTypes,
-				...[
-					{
-						name: 'Alleen externe',
-						slug: 'external',
-						rest_base: 'external',
-					},
-				],
-			];
-
-			if ( ! isMultipleSourcesEnabled ) {
-				postTypes = this.state.postTypes.filter( ( postType ) => {
-					return postType.slug !== 'external';
-				} );
-				setAttributes( { postType: '' } );
-			}
-
-			this.setState( {
-				postTypes,
-			} );
+			this.removeAdditionalPostTypes();
 		}
 	}
 
+	removeAdditionalPostTypes = () => {
+		const { setAttributes } = this.props;
+		const { isMultipleSourcesEnabled, postType } = this.props.attributes;
+
+		const additionalPostTypes = [
+			{
+				name: 'Alle',
+				slug: 'any',
+				rest_base: 'any',
+			},
+			{
+				name: 'Alleen externe',
+				slug: 'external',
+				rest_base: 'external',
+			},
+		];
+
+		let postTypes = [ ...this.state.postTypes, ...additionalPostTypes ];
+
+		// When isMultipleSourcesEnabled is false, posttype 'external' is not needed.
+		if ( ! isMultipleSourcesEnabled ) {
+			postTypes = postTypes.filter( ( type ) => {
+				return type.slug !== 'external';
+			} );
+		}
+
+		// postType with slug 'any' only works with wp_query (used in back-end).
+		// When isMultipleSourcesEnabled is true, local posts are retrieved by the api.
+		if ( isMultipleSourcesEnabled ) {
+			postTypes = postTypes.filter( ( type ) => {
+				return type.slug !== 'any';
+			} );
+		}
+
+		if ( postType === 'any' || postType === 'external' )
+			setAttributes( { postType: '' } );
+
+		this.setState( {
+			postTypes,
+		} );
+	};
+
 	/**
-	 * Set the postType to query posts
+	 * Set the postType to query posts.
 	 *
 	 * @param {string} postType postType
 	 */
@@ -115,8 +136,7 @@ class ListPostsEdit extends Component {
 	};
 
 	/**
-	 * Get postTypes that are available by the wp rest api
-	 *
+	 * Get postTypes that are available by the wp rest api.
 	 */
 	getPostTypes = async () => {
 		const { postType, isMultipleSourcesEnabled } = this.props.attributes;
@@ -141,7 +161,7 @@ class ListPostsEdit extends Component {
 				];
 			}
 
-			if ( allowAnyPostType ) {
+			if ( allowAnyPostType && ! isMultipleSourcesEnabled ) {
 				result = [
 					...[ { name: 'Alle', slug: 'any', rest_base: 'any' } ],
 					...result,

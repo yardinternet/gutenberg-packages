@@ -30,6 +30,11 @@ export async function fetchSources( urlObjects = [] ) {
 		}
 	);
 
+	const remoteSourcesKeys = applyFilters(
+		'yard-blocks.listPostsRemoteSourcesKeys',
+		[]
+	);
+
 	const urlParams = new URLSearchParams( extraParams ).toString();
 	const errors = [];
 
@@ -38,20 +43,28 @@ export async function fetchSources( urlObjects = [] ) {
 			try {
 				const response = await fetch( `${ obj.url }?${ urlParams }` );
 				const json = await response.json();
+				let filterJSON = [];
 
-				if ( ! Array.isArray( json ) ) {
+				// Validate if the posts are in a nested object.
+				remoteSourcesKeys.forEach( ( key ) => {
+					if ( json[ key ] ) filterJSON = json[ key ];
+				} );
+
+				const mapData = filterJSON.length > 0 ? filterJSON : json;
+
+				if ( ! Array.isArray( mapData ) ) {
 					return false;
 				}
 
 				// Add select option
-				return json.map( ( item ) => {
+				return mapData.map( ( item ) => {
 					return {
 						...item,
 						...{
 							_yb_list_posts_option: JSON.stringify( {
 								siteTitle: obj.title,
 								postId: item.id,
-								title: item.title.rendered,
+								title: item.title.rendered ?? item.title,
 								url: obj.url,
 								baseUrl: obj.baseUrl,
 								slug: obj.slug,
