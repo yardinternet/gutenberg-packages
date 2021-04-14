@@ -123,6 +123,12 @@ function Inspector( props ) {
 			? `(${ selectedPosts.length })`
 			: '';
 
+	const renderStickyPostPanel =
+		! customSelection &&
+		!! posts.length &&
+		! isNonWpSourcesEnabled &&
+		! isMultipleSourcesEnabled;
+
 	/**
 	 * hasSupportsNumberPerRow
 	 */
@@ -269,6 +275,13 @@ function Inspector( props ) {
 		return false;
 	};
 
+	const shouldRenderCustomSelectionSpinner = () => {
+		if ( ! customSelection ) return false;
+		if ( !! posts.length || !! remotePostsOptions.length ) return false;
+
+		return true;
+	};
+
 	return (
 		<InspectorControls>
 			{ !! remoteNonWpSources.length && ! postType && ProjectComponent && (
@@ -316,31 +329,37 @@ function Inspector( props ) {
 									} )
 								}
 							/>
-							<RangeControl
-								key="query-controls-range-control"
-								label={ __( 'Afwijking' ) }
-								value={ postsOffset }
-								onChange={ ( value ) =>
-									setAttributes( { postsOffset: value } )
-								}
-								min={ 0 }
-								max={ 30 }
-							/>
-							<ToggleControl
-								label={ __( 'Willekeurige volgorde' ) }
-								checked={ randomOrder }
-								onChange={ () =>
-									setAttributes( {
-										randomOrder: ! randomOrder,
-									} )
-								}
-							/>
+							{ ! customSelection && ! stickyPostSelection && (
+								<>
+									<RangeControl
+										key="query-controls-range-control"
+										label={ __( 'Afwijking' ) }
+										value={ postsOffset }
+										onChange={ ( value ) =>
+											setAttributes( {
+												postsOffset: value,
+											} )
+										}
+										min={ 0 }
+										max={ 30 }
+									/>
+									<ToggleControl
+										label={ __( 'Willekeurige volgorde' ) }
+										checked={ randomOrder }
+										onChange={ () =>
+											setAttributes( {
+												randomOrder: ! randomOrder,
+											} )
+										}
+									/>
+								</>
+							) }
 						</Fragment>
 					) }
 				</PanelBody>
 			) }
 
-			{ ! customSelection && !! posts.length && ! isNonWpSourcesEnabled && (
+			{ renderStickyPostPanel && (
 				<PanelBody
 					title={ __( 'Klevend bericht' ) }
 					initialOpen={ false }
@@ -370,7 +389,7 @@ function Inspector( props ) {
 								} }
 								options={ filterStickyPostSelectOptions(
 									excludedPosts,
-									posts
+									posts.concat( remotePostsOptions )
 								) }
 							/>
 						</div>
@@ -379,7 +398,7 @@ function Inspector( props ) {
 					{ stickyPostSelection && posts.length === 0 && (
 						<Fragment>
 							<Spinner />
-							<span>{ __( 'Data ophalen...' ) }</span>
+							<span>{ __( 'Data ophalen' ) }...</span>
 						</Fragment>
 					) }
 				</PanelBody>
@@ -394,6 +413,8 @@ function Inspector( props ) {
 							onChange={ () =>
 								setAttributes( {
 									isMultipleSourcesEnabled: ! isMultipleSourcesEnabled,
+									stickyPostSelection: false,
+									selectedStickyPostID: 0,
 								} )
 							}
 						/>
@@ -571,10 +592,10 @@ function Inspector( props ) {
 							/>
 						</div>
 					) }
-					{ ! shouldRenderCustomSelectionSelect() && (
+					{ shouldRenderCustomSelectionSpinner() && (
 						<div>
 							<Spinner />
-							<span>{ __( 'Data ophalen...' ) }</span>
+							<span>{ __( 'Data ophalen' ) }...</span>
 						</div>
 					) }
 				</PanelBody>
