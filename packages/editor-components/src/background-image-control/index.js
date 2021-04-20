@@ -1,7 +1,10 @@
-const { Fragment } = wp.element;
-const { MediaUpload } = wp.editor;
-const { Button, Dashicon, SelectControl } = wp.components;
-const { __ } = wp.i18n;
+/**
+ * WordPress dependencies
+ */
+import { MediaUpload } from '@wordpress/block-editor';
+import { Fragment } from '@wordpress/element';
+import { Button, Dashicon, SelectControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 const BackgroundImageControl = ( props ) => {
 	const { setAttributes, attributes } = props;

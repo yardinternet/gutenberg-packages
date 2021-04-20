@@ -8,8 +8,8 @@ import {
 } from '@wordpress/block-editor';
 import { Fragment, Component } from '@wordpress/element';
 import {
-	Toolbar,
-	IconButton,
+	ToolbarGroup,
+	ToolbarButton,
 	Dashicon,
 	PanelBody,
 	Button,
@@ -52,13 +52,13 @@ class Inspector extends Component {
 		return (
 			<Fragment>
 				<BlockControls>
-					<Toolbar>
-						<IconButton
+					<ToolbarGroup>
+						<ToolbarButton
 							icon={ <Dashicon icon="location" /> }
 							label={ __( 'Marker toevoegen' ) }
 							onClick={ () => togglePopover() }
 						/>
-					</Toolbar>
+					</ToolbarGroup>
 				</BlockControls>
 				<InspectorControls>
 					<PanelBody title={ __( 'Opties' ) }>

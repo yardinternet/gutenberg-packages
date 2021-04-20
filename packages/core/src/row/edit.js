@@ -1,11 +1,15 @@
 /**
- * External dependencies
- */
-import times from 'lodash/times';
-/**
  * WordPress dependencies
  */
 import { ResizableBox } from '@wordpress/components';
+import { InnerBlocks } from '@wordpress/block-editor';
+import { Fragment, Component, createRef } from '@wordpress/element';
+
+/**
+ * External dependencies
+ */
+import times from 'lodash/times';
+
 /**
  * Internal dependencies
  */
@@ -14,9 +18,6 @@ import ToolbarControls from './components/toolbar-controls';
 import Row from './components/row';
 import SelectLayout from './components/select-layout';
 import { findLayoutByID } from './layout';
-
-const { Fragment, Component, createRef } = wp.element;
-const { InnerBlocks } = wp.editor;
 
 const ALLOWED_BLOCKS = [ 'yard-blocks/column' ];
 

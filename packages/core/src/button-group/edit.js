@@ -1,14 +1,14 @@
 /**
- * External dependencies
- */
-import { insertBlockAtEnd } from '@yardinternet/gutenberg-editor-components';
-
-/**
  * WordPress dependencies
  */
 import { BlockControls, InnerBlocks } from '@wordpress/block-editor';
-import { IconButton, Toolbar } from '@wordpress/components';
+import { ToolbarButton, Toolbar } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+
+/**
+ * External dependencies
+ */
+import { insertBlockAtEnd } from '@yardinternet/gutenberg-editor-components';
 
 /**
  * Internal dependencies
@@ -39,9 +39,8 @@ function edit( props ) {
 		<>
 			<Inspector { ...props } />
 			<BlockControls>
-				<Toolbar>
-					<IconButton
-						className="components-toolbar__control"
+				<Toolbar label={ __( 'Instellingen' ) }>
+					<ToolbarButton
 						label={ __( 'Knop toevoegen' ) }
 						icon="plus"
 						onClick={ insertBlock }

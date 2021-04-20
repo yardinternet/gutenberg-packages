@@ -1,11 +1,14 @@
 /**
+ * WordPress dependencies
+ */
+import { InnerBlocks } from '@wordpress/block-editor';
+
+/**
  * Internal dependencies
  */
 import Column from './components/column';
 import ColumnDeprecated from './components/column-deprecated';
 import { attributes } from './settings';
-
-const { InnerBlocks } = wp.editor;
 
 const deprecated = [
 	// Deprecated version is used in EVB Plus

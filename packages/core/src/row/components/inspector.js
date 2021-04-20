@@ -1,4 +1,17 @@
 /**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { Component, Fragment } from '@wordpress/element';
+import {
+	RangeControl,
+	PanelBody,
+	TabPanel,
+	ToggleControl,
+} from '@wordpress/components';
+
+/**
  * External dependencies
  */
 import {
@@ -12,12 +25,6 @@ import {
  */
 import ColumnOptions from './column-options';
 import { getPresetColumnCount } from '../layout';
-
-const { Component, Fragment } = wp.element;
-const { InspectorControls, ColorPalette } = wp.editor;
-const { __ } = wp.i18n;
-
-const { RangeControl, PanelBody, TabPanel, ToggleControl } = wp.components;
 
 const MIN = 1;
 const MAX = getPresetColumnCount();

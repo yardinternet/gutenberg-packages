@@ -1,9 +1,12 @@
 /**
+ * WordPress dependencies
+ */
+import { InspectorControls } from '@wordpress/block-editor';
+
+/**
  * Internal dependencies
  */
 import FacetSelects from './facet-selects';
-
-const { InspectorControls } = wp.editor;
 
 const Inspector = ( props ) => {
 	const { facets, templates, templateOnChange } = props;

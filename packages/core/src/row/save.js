@@ -1,10 +1,14 @@
 /**
+ * WordPress dependencies
+ */
+import { InnerBlocks } from '@wordpress/block-editor';
+import { Component } from '@wordpress/element';
+
+/**
  * Internal dependencies
  */
 import Row from './components/row';
 
-const { Component } = wp.element;
-const { InnerBlocks } = wp.editor;
 class RowSave extends Component {
 	render() {
 		const { className } = this.props;

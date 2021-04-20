@@ -1,13 +1,16 @@
 /**
+ * WordPress dependencies
+ */
+import { InnerBlocks } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
+import { applyFilters } from '@wordpress/hooks';
+
+/**
  * Internal dependencies
  */
 import Card from './components/card';
 import Inspector from './components/inspector';
-
-const { __ } = wp.i18n;
-const { InnerBlocks } = wp.editor;
-const { Fragment } = wp.element;
-const { applyFilters } = wp.hooks;
 
 const PRESET_TEMPLATE = [
 	[ 'core/cover', { className: 'yard-blocks-card__media' }, [] ],
