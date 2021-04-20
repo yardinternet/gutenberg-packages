@@ -1,13 +1,19 @@
 /**
+ * WordPress dependencies
+ */
+import {
+	InspectorControls,
+	ColorPalette,
+	FontSizePicker,
+} from '@wordpress/block-editor';
+import { Component } from '@wordpress/element';
+import { SelectControl, PanelBody } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+
+/**
  * Internal dependencies
  */
 import sizes from '../settings/sizes';
-
-const { Component } = wp.element;
-const { SelectControl, PanelBody } = wp.components;
-const { InspectorControls, ColorPalette, FontSizePicker } = wp.editor;
-const { __ } = wp.i18n;
-
 export default class Inspector extends Component {
 	render() {
 		const { setAttributes, attributes } = this.props;

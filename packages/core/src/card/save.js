@@ -1,10 +1,13 @@
 /**
+ * WordPress dependencies
+ */
+import { InnerBlocks } from '@wordpress/block-editor';
+import { Fragment } from '@wordpress/element';
+
+/**
  * Internal dependencies
  */
 import Card from './components/card';
-
-const { Fragment } = wp.element;
-const { InnerBlocks } = wp.editor;
 
 const CardSave = ( props ) => {
 	const { attributes } = props;

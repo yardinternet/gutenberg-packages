@@ -6,10 +6,17 @@
  */
 import { PanelMarginPadding } from '@yardinternet/gutenberg-editor-components';
 
-const { Component, Fragment } = wp.element;
-const { InspectorControls, URLInput, ColorPalette } = wp.editor;
-const { PanelBody, ToggleControl } = wp.components;
-const { __ } = wp.i18n;
+/**
+ * WordPress dependencies
+ */
+import {
+	InspectorControls,
+	URLInput,
+	ColorPalette,
+} from '@wordpress/block-editor';
+import { Component, Fragment } from '@wordpress/element';
+import { PanelBody, ToggleControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 export default class Inspector extends Component {
 	render() {

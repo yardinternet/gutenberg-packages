@@ -1,4 +1,14 @@
 /**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+import { InnerBlocks, BlockControls } from '@wordpress/block-editor';
+import { useEffect } from '@wordpress/element';
+import { withDispatch, withSelect } from '@wordpress/data';
+import { compose, withInstanceId } from '@wordpress/compose';
+import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
+
+/**
  * External dependencies
  */
 import classnames from 'classnames';
@@ -7,16 +17,6 @@ import {
 	withBackgroundImage,
 	withSpacing,
 } from '@yardinternet/gutenberg-editor-components';
-
-/**
- * WordPress dependencies
- */
-import { __ } from '@wordpress/i18n';
-import { InnerBlocks, BlockControls } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
-import { withDispatch, withSelect } from '@wordpress/data';
-import { compose, withInstanceId } from '@wordpress/compose';
-import { Toolbar, IconButton } from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -59,14 +59,14 @@ function Edit( {
 				} }
 			/>
 			<BlockControls>
-				<Toolbar>
-					<IconButton
+				<ToolbarGroup>
+					<ToolbarButton
 						className="components-toolbar__control"
 						label={ __( 'Verwijder' ) }
 						icon="no"
 						onClick={ onRemove }
 					/>
-				</Toolbar>
+				</ToolbarGroup>
 			</BlockControls>
 			<div
 				style={ styles }

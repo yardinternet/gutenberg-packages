@@ -1,12 +1,4 @@
 /**
- * External dependencies
- */
-import {
-	withBackground,
-	withSpacing,
-} from '@yardinternet/gutenberg-editor-components';
-
-/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -14,8 +6,16 @@ import { InnerBlocks, BlockControls } from '@wordpress/block-editor';
 import { Fragment, useEffect } from '@wordpress/element';
 import { withDispatch, withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
-import { Toolbar, IconButton } from '@wordpress/components';
+import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { cloneBlock } from '@wordpress/blocks';
+
+/**
+ * External dependencies
+ */
+import {
+	withBackground,
+	withSpacing,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * Internal dependencies
@@ -54,9 +54,9 @@ function Edit( {
 		<Fragment>
 			<Inspector { ...{ attributes, setAttributes } } />
 			<BlockControls>
-				<Toolbar>
+				<ToolbarGroup label={ __( 'Instellingen' ) }>
 					{ isSelected && hasPrev && (
-						<IconButton
+						<ToolbarButton
 							className="components-toolbar__control"
 							label={ __( 'Verplaats naar links' ) }
 							icon="arrow-left-alt"
@@ -64,26 +64,26 @@ function Edit( {
 						/>
 					) }
 					{ isSelected && hasNext && (
-						<IconButton
+						<ToolbarButton
 							className="components-toolbar__control"
 							label={ __( 'Verplaats naar rechts' ) }
 							icon="arrow-right-alt"
 							onClick={ () => onMove( '+' ) }
 						/>
 					) }
-					<IconButton
+					<ToolbarButton
 						className="components-toolbar__control"
 						label={ __( 'Dupliceer' ) }
 						icon="admin-page"
 						onClick={ onDuplicate }
 					/>
-					<IconButton
+					<ToolbarButton
 						className="components-toolbar__control"
 						label={ __( 'Verwijderen' ) }
 						icon="no"
 						onClick={ onRemove }
 					/>
-				</Toolbar>
+				</ToolbarGroup>
 			</BlockControls>
 			<Column
 				style={ styles }

@@ -17,11 +17,12 @@ import {
 } from '@wordpress/block-editor';
 import {
 	ButtonGroup,
-	IconButton,
+	Button,
+	ToolbarButton,
 	PanelBody,
 	SelectControl,
 	ToggleControl,
-	Toolbar,
+	ToolbarGroup,
 } from '@wordpress/components';
 import { createBlock, cloneBlock } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
@@ -50,11 +51,13 @@ function Edit( {
 	const [ activeTab, setActiveTab ] = useState( 'tab-1' );
 	const { defaultTab, defaultTabEnabled, innerblocks } = attributes;
 
-	if ( ! innerblocks.length ) {
-		setAttributes( {
-			innerblocks: innerBlocks,
-		} );
-	}
+	useEffect( () => {
+		if ( ! innerblocks.length ) {
+			setAttributes( {
+				innerblocks: innerBlocks,
+			} );
+		}
+	}, [] );
 
 	const TEMPLATE = [
 		[
@@ -77,14 +80,14 @@ function Edit( {
 	return (
 		<Fragment>
 			<BlockControls>
-				<Toolbar label={ __( 'Tabblad opties' ) }>
-					<IconButton
+				<ToolbarGroup>
+					<ToolbarButton
 						className="components-toolbar__control"
 						label={ __( 'Tabblad toevoegen' ) }
 						icon="plus"
 						onClick={ () => addTab( { onTabClick } ) }
 					/>
-				</Toolbar>
+				</ToolbarGroup>
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={ __( 'Instellingen' ) }>
@@ -140,7 +143,7 @@ function Edit( {
 									/>
 									{ active && (
 										<ButtonGroup className="d-flex">
-											<IconButton
+											<Button
 												icon="admin-page"
 												label={ __(
 													'Dupliceer tabblad'
@@ -152,7 +155,7 @@ function Edit( {
 													} )
 												}
 											/>
-											<IconButton
+											<Button
 												icon="no"
 												label={ __(
 													'Verwijder tabblad'

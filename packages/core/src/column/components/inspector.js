@@ -1,4 +1,10 @@
 /**
+ * WordPress dependencies
+ */
+import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { Component, Fragment } from '@wordpress/element';
+
+/**
  * External dependencies
  */
 import {
@@ -6,8 +12,6 @@ import {
 	PanelMarginPadding,
 } from '@yardinternet/gutenberg-editor-components';
 
-const { Component, Fragment } = wp.element;
-const { InspectorControls, ColorPalette } = wp.editor;
 const {
 	PanelBody,
 	SelectControl,

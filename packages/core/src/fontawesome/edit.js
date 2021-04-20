@@ -1,13 +1,16 @@
 /**
+ * WordPress dependencies
+ */
+import { RichText } from '@wordpress/block-editor';
+import { Fragment } from '@wordpress/element';
+import { Placeholder } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+
+/**
  * External dependencies
  */
 import classnames from 'classnames';
 import { getColorClassByColor } from '@yardinternet/gutenberg-editor-components';
-
-/**
- * WordPress dependencies
- */
-import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
@@ -16,10 +19,6 @@ import icons from './settings/icons';
 import Icon from './components/icon';
 import Inspector from './components/inspector';
 import { createIconsArray } from './utils';
-
-const { Fragment } = wp.element;
-const { RichText } = wp.editor;
-const { Placeholder } = wp.components;
 
 const Edit = ( props ) => {
 	const { attributes, setAttributes, isSelected } = props;

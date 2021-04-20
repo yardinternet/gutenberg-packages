@@ -1,12 +1,20 @@
 /**
+ * WordPress dependencies
+ */
+import { BlockControls, MediaUpload } from '@wordpress/block-editor';
+import {
+	ToolbarGroup,
+	Tooltip,
+	Button,
+	ToolbarButton,
+} from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+
+/**
  * External dependencies
  */
 import classNames from 'classnames';
 import { icons } from '@yardinternet/gutenberg-editor-components';
-
-const { BlockControls, MediaUpload } = wp.editor;
-const { Toolbar, Tooltip, Button, IconButton } = wp.components;
-const { __ } = wp.i18n;
 
 const ToolbarControls = ( props ) => {
 	const { setAttributes, attributes } = props;
@@ -14,7 +22,7 @@ const ToolbarControls = ( props ) => {
 
 	return (
 		<BlockControls key="controls">
-			<Toolbar>
+			<ToolbarGroup>
 				<MediaUpload
 					onSelect={ ( img ) =>
 						setAttributes( { bgImgUrl: img.url } )
@@ -22,17 +30,17 @@ const ToolbarControls = ( props ) => {
 					type="image"
 					value={ null }
 					render={ ( { open } ) => (
-						<IconButton
+						<ToolbarButton
 							className="components-toolbar__control"
-							label={ __( 'Background Image' ) }
+							label={ __( 'Achtergrondafbeelding' ) }
 							icon="format-image"
 							onClick={ open }
 						/>
 					) }
 				/>
-			</Toolbar>
-			<Toolbar>
-				<Tooltip text={ __( 'Vertical Align Top' ) }>
+			</ToolbarGroup>
+			<ToolbarGroup>
+				<Tooltip text={ __( 'Verticaal uitlijnen boven' ) }>
 					<Button
 						className={ classNames(
 							'components-icon-button',
@@ -48,9 +56,9 @@ const ToolbarControls = ( props ) => {
 						{ icons.aligntop }
 					</Button>
 				</Tooltip>
-			</Toolbar>
-			<Toolbar>
-				<Tooltip text={ __( 'Vertical Align Middle' ) }>
+			</ToolbarGroup>
+			<ToolbarGroup>
+				<Tooltip text={ __( 'Verticaal uitlijnen midden' ) }>
 					<Button
 						className={ classNames(
 							'components-icon-button',
@@ -66,9 +74,9 @@ const ToolbarControls = ( props ) => {
 						{ icons.aligncenter }
 					</Button>
 				</Tooltip>
-			</Toolbar>
-			<Toolbar>
-				<Tooltip text={ __( 'Vertical Align Bottom' ) }>
+			</ToolbarGroup>
+			<ToolbarGroup>
+				<Tooltip text={ __( 'Verticaal uitlijnen beneden' ) }>
 					<Button
 						className={ classNames(
 							'components-icon-button',
@@ -84,7 +92,7 @@ const ToolbarControls = ( props ) => {
 						{ icons.alignbottom }
 					</Button>
 				</Tooltip>
-			</Toolbar>
+			</ToolbarGroup>
 		</BlockControls>
 	);
 };

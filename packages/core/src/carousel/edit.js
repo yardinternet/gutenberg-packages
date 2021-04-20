@@ -1,13 +1,19 @@
 /**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+import {
+	BlockControls,
+	MediaPlaceholder,
+	MediaUpload,
+} from '@wordpress/block-editor';
+import { Toolbar, ToolbarButton } from '@wordpress/components';
+
+/**
  * External dependencies
  */
 import { useState, useCallback, Fragment } from 'react';
 import { isEmpty } from 'lodash';
-
-/**
- * WordPress dependencies
- */
-import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
@@ -18,9 +24,6 @@ import Inspector from './components/inspector';
 import CarouselEdit from './components/carouselEdit';
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
-
-const { BlockControls, MediaUpload, MediaPlaceholder } = wp.editor;
-const { Toolbar, IconButton } = wp.components;
 
 function Edit( props ) {
 	const { setAttributes, attributes, isSelected } = props;
@@ -50,7 +53,7 @@ function Edit( props ) {
 	const controls = (
 		<BlockControls>
 			{ hasImages && (
-				<Toolbar>
+				<Toolbar label={ __( 'Instellingen' ) }>
 					<MediaUpload
 						onSelect={ onSelectImages }
 						allowedTypes={ ALLOWED_MEDIA_TYPES }
@@ -58,7 +61,7 @@ function Edit( props ) {
 						gallery
 						value={ carouselImages.map( ( img ) => img.id ) }
 						render={ ( { open } ) => (
-							<IconButton
+							<ToolbarButton
 								className="components-toolbar__control"
 								label={ __( 'Wijzig carrousel' ) }
 								icon="edit"

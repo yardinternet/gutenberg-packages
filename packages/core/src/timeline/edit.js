@@ -1,15 +1,4 @@
 /**
- * External dependencies
- */
-import classnames from 'classnames';
-
-import {
-	withBackgroundClass,
-	withBackgroundImage,
-	withSpacing,
-} from '@yardinternet/gutenberg-editor-components';
-
-/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -18,7 +7,17 @@ import { InnerBlocks, BlockControls } from '@wordpress/block-editor';
 import { withDispatch } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
 import { compose } from '@wordpress/compose';
-import { Toolbar, IconButton } from '@wordpress/components';
+import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
+
+/**
+ * External dependencies
+ */
+import classnames from 'classnames';
+import {
+	withBackgroundClass,
+	withBackgroundImage,
+	withSpacing,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * Internal dependencies
@@ -67,15 +66,15 @@ function Edit( {
 			>
 				<Inspector { ...{ attributes, setAttributes } } />
 				<BlockControls>
-					<Toolbar>
-						<IconButton
+					<ToolbarGroup>
+						<ToolbarButton
 							className="components-toolbar__control"
 							label={ __( 'Kolom toevoegen' ) }
 							icon="plus"
 							onClick={ addColumn }
 						/>
 
-						<IconButton
+						<ToolbarButton
 							className={ classnames(
 								'components-toolbar__control',
 								{
@@ -89,7 +88,7 @@ function Edit( {
 							}
 						/>
 
-						<IconButton
+						<ToolbarButton
 							className={ classnames(
 								'components-toolbar__control',
 								{
@@ -102,7 +101,7 @@ function Edit( {
 								setAttributes( { fullWidth: ! fullWidth } )
 							}
 						/>
-					</Toolbar>
+					</ToolbarGroup>
 				</BlockControls>
 				<div
 					style={ { ...styles, ...{ minHeight } } }
