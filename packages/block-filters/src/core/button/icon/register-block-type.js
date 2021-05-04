@@ -22,7 +22,7 @@ export default function RegisterBlockType( settings, name ) {
 			},
 			yardButtonIconColor: {
 				type: 'string',
-				default: '#fff',
+				default: '',
 			},
 		},
 	};
