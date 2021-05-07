@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { PanelBody, RangeControl, Fill } from '@wordpress/components';
+import { PanelBody, RangeControl, Fill, Button } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
 
 /**
@@ -44,6 +44,14 @@ function SpacingControl( {
 					] ),
 				},
 			},
+		} );
+	};
+
+	const resetControlVal = () => {
+		const sides = [ 'Top', 'Right', 'Bottom', 'Left' ];
+
+		sides.forEach( ( side ) => {
+			setAttributes( { [ `${ type }${ side }` ]: '' } );
 		} );
 	};
 
@@ -128,6 +136,9 @@ function SpacingControl( {
 					) }
 				</Fill>
 			) ) }
+			<Button isDefault onClick={ () => resetControlVal() }>
+				Reset
+			</Button>
 		</PanelBody>
 	);
 }
