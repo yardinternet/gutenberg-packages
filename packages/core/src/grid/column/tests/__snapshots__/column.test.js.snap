@@ -3,11 +3,11 @@
 exports[`basic column, classes should not change 1`] = `
 Object {
   "colClass": Object {
-    "default": 6,
+    "default": 0,
     "type": "number",
   },
   "colClassLg": Object {
-    "default": 0,
+    "default": 6,
     "type": "number",
   },
   "colClassSm": Object {
