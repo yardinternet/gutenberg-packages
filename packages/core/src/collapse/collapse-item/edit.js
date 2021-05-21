@@ -10,22 +10,14 @@ import { useEffect } from '@wordpress/element';
 import { InnerBlocks } from '@wordpress/block-editor';
 
 function Edit( props ) {
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, clientId } = props;
 	const { id, headerText, showOpen, isAccordion } = attributes;
 
 	const TEMPLATE = [ [ 'core/paragraph' ] ];
 
 	useEffect( () => {
-		if ( id === 0 ) {
-			setAttributes( { id: getRandomInt( 1, 100000 ) } );
-		}
-	}, [] );
-
-	function getRandomInt( min, max ) {
-		min = Math.ceil( min );
-		max = Math.floor( max );
-		return Math.floor( Math.random() * ( max - min ) ) + min;
-	}
+		setAttributes( { id: `${ clientId }` } );
+	}, [ clientId ] );
 
 	return (
 		<>
