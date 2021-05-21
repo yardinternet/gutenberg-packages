@@ -76,7 +76,6 @@ export default function TabGeneral( {
 										top: '10px',
 										right: '58px',
 									} }
-									isSecondary
 									className={ 'yard-btn' }
 									onClick={ open }
 								>
@@ -88,7 +87,7 @@ export default function TabGeneral( {
 										top: '10px',
 										right: '10px',
 									} }
-									isSecondary
+									isPrimary
 									className={ 'yard-btn' }
 									onClick={ () =>
 										setAttributes( {
