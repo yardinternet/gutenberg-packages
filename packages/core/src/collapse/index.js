@@ -13,6 +13,7 @@ import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
 import metadata from './block.json';
 import edit from './edit';
 import save from './save';
+import deprecated from './deprecated';
 
 const Icon = <BlockIcon faClasses="fas fa-chevron-double-down" />;
 
@@ -32,4 +33,5 @@ export const settings = {
 	edit,
 	save,
 	attributes,
+	deprecated,
 };
