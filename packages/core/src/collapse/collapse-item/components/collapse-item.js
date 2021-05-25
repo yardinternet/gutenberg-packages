@@ -11,6 +11,7 @@ function CollapseItem( {
 	id = 0,
 	isAccordion = true,
 	children = [],
+	accordionId = '',
 } ) {
 	return (
 		<div className={ `yard-blocks-collapse-item` } key={ id }>
@@ -19,7 +20,12 @@ function CollapseItem( {
 				headerText={ headerText }
 				setHeaderText={ setHeaderText }
 			/>
-			<Body id={ id } showOpen={ showOpen } isAccordion={ isAccordion }>
+			<Body
+				id={ id }
+				showOpen={ showOpen }
+				isAccordion={ isAccordion }
+				accordionId={ accordionId }
+			>
 				{ children }
 			</Body>
 		</div>

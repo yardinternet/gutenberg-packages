@@ -16,6 +16,10 @@
 		"id": {
 			"type": "string",
 			"default": "0"
+		},
+		"parentClientId": {
+			"type": "string",
+			"default": "0"
 		}
 	}
 }

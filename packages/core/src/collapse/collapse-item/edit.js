@@ -3,21 +3,43 @@
  */
 import Inspector from './components/inspector';
 import CollapseItem from './components/collapse-item';
+
 /**
  * WordPress dependencies
  */
 import { useEffect } from '@wordpress/element';
 import { InnerBlocks } from '@wordpress/block-editor';
+import { useSelect } from '@wordpress/data';
 
 function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
-	const { id, headerText, showOpen, isAccordion } = attributes;
+	const {
+		id,
+		headerText,
+		showOpen,
+		isAccordion,
+		parentClientId,
+	} = attributes;
+
+	const { parentClientIds } = useSelect( ( select ) => {
+		return {
+			parentClientIds: select( 'core/block-editor' ).getBlockParents(
+				clientId
+			),
+		};
+	}, [] );
 
 	const TEMPLATE = [ [ 'core/paragraph' ] ];
 
 	useEffect( () => {
 		setAttributes( { id: `${ clientId }` } );
 	}, [ clientId ] );
+
+	useEffect( () => {
+		setAttributes( {
+			parentClientId: `${ parentClientIds.slice( -1 )[ 0 ] }`,
+		} );
+	}, [ parentClientIds ] );
 
 	return (
 		<>
@@ -40,6 +62,7 @@ function Edit( props ) {
 				showOpen={ showOpen }
 				id={ id }
 				isAccordion={ isAccordion }
+				accordionId={ parentClientId }
 			>
 				<InnerBlocks
 					allowedBlocks={ true }

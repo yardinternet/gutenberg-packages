@@ -3,9 +3,14 @@
  */
 import { InnerBlocks } from '@wordpress/block-editor';
 
-function Save() {
+function Save( { attributes } ) {
+	const { accordionId } = attributes;
+
 	return (
-		<div className={ `yard-blocks-collapse` } id={ `accordion` }>
+		<div
+			className={ `yard-blocks-collapse` }
+			id={ `accordion-${ accordionId }` }
+		>
 			<InnerBlocks.Content />
 		</div>
 	);

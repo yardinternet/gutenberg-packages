@@ -1,4 +1,9 @@
 {
 	"name": "yard-blocks/collapse-list",
-	"attributes": {}
+	"attributes": {
+		"accordionId": {
+			"type": "string",
+			"default": "0"
+		}
+	}
 }

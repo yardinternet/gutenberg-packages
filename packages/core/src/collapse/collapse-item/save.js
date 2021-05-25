@@ -5,7 +5,13 @@ import { InnerBlocks } from '@wordpress/block-editor';
 
 function save( props ) {
 	const { attributes } = props;
-	const { id, headerText, showOpen, isAccordion } = attributes;
+	const {
+		id,
+		headerText,
+		showOpen,
+		isAccordion,
+		parentClientId,
+	} = attributes;
 
 	return (
 		<div className={ `yard-blocks-collapse-item` }>
@@ -24,7 +30,9 @@ function save( props ) {
 			<div
 				className={ `collapse ${ showOpen ? 'show' : '' }` }
 				id={ `collapse-${ id }` }
-				data-parent={ isAccordion ? '#accordion' : false }
+				data-parent={
+					isAccordion ? `#accordion-${ parentClientId }` : false
+				}
 			>
 				<div className={ `yard-blocks-collapse-item__body` }>
 					<InnerBlocks.Content />
