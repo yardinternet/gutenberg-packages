@@ -30,9 +30,11 @@ import { __ } from '@wordpress/i18n';
  */
 import {
 	populateTaxonomyValues,
+	populateExternalTaxonomyValues,
 	filterRemovedTerms,
 	getValueLabelObjectByValue,
 	hasSupportsNumberPerRow,
+	taxInSelectedSource,
 	hasPostypeTaxonomy,
 	findSourceByBaseUrl,
 	filterStickyPostSelectOptions,
@@ -73,6 +75,7 @@ function Inspector( props ) {
 		postTypes,
 		customViews,
 		taxonomies,
+		externalTaxonomies,
 		allTaxonomyTerms,
 	} = props;
 	const {
@@ -91,6 +94,7 @@ function Inspector( props ) {
 		displayExcerpt,
 		displayFeaturedImage,
 		taxonomyTerms,
+		externalTaxonomyTerms,
 		numberPerRow,
 		numberPerRowLg,
 		numberPerRowSm,
@@ -112,6 +116,9 @@ function Inspector( props ) {
 	);
 	const [ remotePostsOptions, setRemotePostOptions ] = useState( [] );
 	const [ failedRemoteEndpoints, setFailedRemoteEndpoints ] = useState( [] );
+	const [ allExternalTaxonomyTerms, setAllExternalTaxonomyTerms ] = useState(
+		[]
+	);
 
 	const excludedCount =
 		excludedPosts && excludedPosts.length
@@ -144,6 +151,23 @@ function Inspector( props ) {
 			setSupportsNumberPerRow( true );
 		}
 	}, [] );
+
+	useEffect( () => {
+		if ( externalTaxonomies.length ) {
+			const mappedExternalTaxonomyTerms = map(
+				externalTaxonomies,
+				( taxonomy ) => {
+					return {
+						name: taxonomy.panelName,
+						slug: taxonomy.name,
+						source: taxonomy.source,
+						terms: taxonomy.terms,
+					};
+				}
+			);
+			setAllExternalTaxonomyTerms( mappedExternalTaxonomyTerms );
+		}
+	}, [ externalTaxonomies ] );
 
 	/**
 	 * Taxonomies
@@ -189,7 +213,7 @@ function Inspector( props ) {
 	const createUrlsObj = ( urls = [] ) => {
 		return urls.reduce( ( acc, curr ) => {
 			return acc.concat(
-				curr.slugs.map( ( type ) => {
+				curr.slugs.map( ( type, index ) => {
 					const { title } = findSourceByBaseUrl(
 						sources,
 						curr.baseUrl
@@ -197,12 +221,18 @@ function Inspector( props ) {
 						? findSourceByBaseUrl( sources, curr.baseUrl )
 						: '';
 
-					return {
+					const urlObject = {
 						title,
 						url: `${ curr.baseUrl }${ type }`,
 						baseUrl: curr.baseUrl,
 						slug: type,
 					};
+
+					if ( curr.hasOwnProperty( 'taxonomies' ) ) {
+						urlObject.taxonomies = curr.taxonomies[ index ];
+					}
+
+					return urlObject;
 				} )
 			);
 		}, [] );
@@ -213,7 +243,7 @@ function Inspector( props ) {
 	 */
 	const formatRemotePostsKeyValues = async () => {
 		const urlObjects = createUrlsObj( selectedSources );
-		const results = await fetchSources( urlObjects );
+		const results = await fetchSources( urlObjects, externalTaxonomyTerms );
 
 		if ( results.errors.length ) {
 			setFailedRemoteEndpoints( results.errors );
@@ -240,12 +270,21 @@ function Inspector( props ) {
 	useEffect( () => {
 		if ( ! sources.length ) return;
 		formatRemotePostsKeyValues();
-	}, [ selectedSources ] );
+	}, [ selectedSources, externalTaxonomyTerms ] );
 
 	const setTermsByTaxonomySlug = ( val, taxonomy ) => {
 		setAttributes( {
 			taxonomyTerms: {
 				...taxonomyTerms,
+				...{ [ taxonomy ]: val.map( ( item ) => item.value ) },
+			},
+		} );
+	};
+
+	const setTermsByExternalTaxonomySlug = ( val, taxonomy ) => {
+		setAttributes( {
+			externalTaxonomyTerms: {
+				...externalTaxonomyTerms,
 				...{ [ taxonomy ]: val.map( ( item ) => item.value ) },
 			},
 		} );
@@ -522,6 +561,45 @@ function Inspector( props ) {
 					</Fragment>
 				</PanelBody>
 			) }
+
+			{ !! allExternalTaxonomyTerms.length &&
+				map( allExternalTaxonomyTerms, ( taxonomy ) => {
+					if ( ! taxInSelectedSource( selectedSources, taxonomy ) ) {
+						return null;
+					}
+
+					const values = populateExternalTaxonomyValues(
+						taxonomy.terms,
+						externalTaxonomyTerms[ taxonomy.slug ]
+					);
+
+					return (
+						<PanelBody
+							key={ taxonomy.slug }
+							title={ taxonomy.name }
+							initialOpen={ false }
+						>
+							{ taxonomy.terms && !! taxonomy.terms.length && (
+								<Select
+									value={ values }
+									onChange={ ( value ) =>
+										setTermsByExternalTaxonomySlug(
+											value,
+											taxonomy.slug
+										)
+									}
+									isMulti={ true }
+									options={ taxonomy.terms.map(
+										( item ) => ( {
+											label: item.name,
+											value: item.slug,
+										} )
+									) }
+								/>
+							) }
+						</PanelBody>
+					);
+				} ) }
 
 			{ taxoResolved &&
 				map( allTaxonomyTerms, ( taxonomy ) => {

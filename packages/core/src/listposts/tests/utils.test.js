@@ -195,7 +195,9 @@ describe( 'populateTaxonomyValues', () => {
 
 		const expected = [ { label: 'Ontwikkeling', value: 'ontwikkeling' } ];
 
-		expect( populateTaxonomyValues( taxonomies, selectedTerms ) ).toEqual( expected );
+		expect( populateTaxonomyValues( taxonomies, selectedTerms ) ).toEqual(
+			expected
+		);
 	} );
 } );
 
@@ -248,7 +250,9 @@ describe( 'filterRemovedTerms', () => {
 	};
 
 	test( 'should filter out removed terms', () => {
-		expect( filterRemovedTerms( validTerms, selectedTerms ) ).toEqual( expected );
+		expect( filterRemovedTerms( validTerms, selectedTerms ) ).toEqual(
+			expected
+		);
 	} );
 
 	test( 'should return empty array', () => {
@@ -291,7 +295,11 @@ describe( 'templateSupportsNumberPerRow', () => {
 		];
 
 		expect(
-			templateValidateYardPropsSupport( customViews, customView, 'HAS_NUMBER_PER_ROW' )
+			templateValidateYardPropsSupport(
+				customViews,
+				customView,
+				'HAS_NUMBER_PER_ROW'
+			)
 		).toEqual( expected );
 	} );
 } );
@@ -302,9 +310,13 @@ describe( 'hasSupportsNumberPerRow', () => {
 	const numberPerRowXs = 3;
 
 	test( 'should return true, all values are set', () => {
-		expect( hasSupportsNumberPerRow( { numberPerRow, numberPerRowSm, numberPerRowXs } ) ).toEqual(
-			true
-		);
+		expect(
+			hasSupportsNumberPerRow( {
+				numberPerRow,
+				numberPerRowSm,
+				numberPerRowXs,
+			} )
+		).toEqual( true );
 	} );
 
 	test( 'should return true, only numberPerRowXs isset', () => {
@@ -336,15 +348,21 @@ describe( 'hasPostTypeTaxonomy', () => {
 	} );
 
 	test( 'posttype `organisations` has taxonomy, should return true', () => {
-		expect( hasPostypeTaxonomy( taxonomies, currentTaxonomy, 'organisations' ) ).toEqual( true );
+		expect(
+			hasPostypeTaxonomy( taxonomies, currentTaxonomy, 'organisations' )
+		).toEqual( true );
 	} );
 
 	test( 'posttype `any ` has taxonomies, should return true', () => {
-		expect( hasPostypeTaxonomy( taxonomies, currentTaxonomy, 'any' ) ).toEqual( true );
+		expect(
+			hasPostypeTaxonomy( taxonomies, currentTaxonomy, 'any' )
+		).toEqual( true );
 	} );
 
 	test( 'posttype `faq` has no taxonomies, should return false', () => {
-		expect( hasPostypeTaxonomy( taxonomies, currentTaxonomy, 'faq' ) ).toEqual( false );
+		expect(
+			hasPostypeTaxonomy( taxonomies, currentTaxonomy, 'faq' )
+		).toEqual( false );
 	} );
 } );
 
@@ -353,6 +371,10 @@ describe( 'parseAttributes', () => {
 		{
 			baseUrl: 'https://www.valente.nl/wp-json/wp/v2/',
 			slugs: [ 'pages', 'faq' ],
+			taxonomies: [
+				{ source: 'pages', taxonomies: undefined },
+				{ source: 'faq', taxonomies: undefined },
+			],
 		},
 	];
 
@@ -368,6 +390,8 @@ describe( 'parseAttributes', () => {
 			label: 'Valente: Faq',
 		},
 	];
+
+	console.log( parseToAttributes( options ) );
 
 	test( 'parseAttributes with values', () => {
 		expect( parseToAttributes( options ) ).toEqual( expected );

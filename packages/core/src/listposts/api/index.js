@@ -4,6 +4,11 @@
 import apiFetch from '@wordpress/api-fetch';
 import { applyFilters } from '@wordpress/hooks';
 
+/**
+ * Internal dependencies
+ */
+import { createTaxObject, buildTaxParamsQueryString } from '../utils';
+
 export const fetchListPosts = ( slug, baseSlug = 'wp/v2/' ) => {
 	return apiFetch( { path: `${ baseSlug }${ slug }?per_page=100` } );
 };
@@ -19,10 +24,46 @@ export function fetchTaxonomies() {
 }
 
 /**
+ * Fetch external taxonomies including terms.
+ * Result is used for creating the filter panel in the inspector, used for filtering.
+ *
+ * @return {Array} externalTaxObjects
+ */
+export async function fetchExternalTaxonomies() {
+	const configTaxonomies = applyFilters(
+		'yard-blocks.listPostsExternalTaxonomies',
+		false
+	);
+
+	if ( ! configTaxonomies ) {
+		return [];
+	}
+
+	const externalTaxObjects = [];
+
+	for ( const [ taxonomySource, taxonomy ] of Object.entries(
+		configTaxonomies
+	) ) {
+		// Taxonomy is an indexed array therefore this for loop is required.
+		for ( let iteration = 0; iteration < taxonomy.length; iteration++ ) {
+			const taxObject = await createTaxObject(
+				taxonomySource,
+				taxonomy,
+				iteration
+			);
+
+			externalTaxObjects.push( taxObject );
+		}
+	}
+
+	return externalTaxObjects;
+}
+
+/**
  * @param {Array} urlObjects
  * @return {Object} - { errors: [], posts: [] }
  */
-export async function fetchSources( urlObjects = [] ) {
+export async function fetchSources( urlObjects = [], taxonomyTerms = [] ) {
 	const extraParams = applyFilters(
 		'yard-blocks.listPostsFetchSourcesParams',
 		{
@@ -39,9 +80,20 @@ export async function fetchSources( urlObjects = [] ) {
 	const errors = [];
 
 	const promises = await Promise.all(
-		urlObjects.map( async ( obj ) => {
+		urlObjects.map( async ( urlObject ) => {
+			const taxParams = buildTaxParamsQueryString(
+				urlObject,
+				taxonomyTerms
+			);
+			let url = `${ urlObject.url }?${ urlParams }`;
+
+			// Add taxParams to url when not empty.
+			if ( !! taxParams.length ) {
+				url += '&' + taxParams;
+			}
+
 			try {
-				const response = await fetch( `${ obj.url }?${ urlParams }` );
+				const response = await fetch( url );
 				const json = await response.json();
 				let filterJSON = [];
 
@@ -56,26 +108,29 @@ export async function fetchSources( urlObjects = [] ) {
 					return false;
 				}
 
-				// Add select option
+				// Add select options.
 				return mapData.map( ( item ) => {
 					return {
 						...item,
 						...{
 							_yb_list_posts_option: JSON.stringify( {
-								siteTitle: obj.title,
+								siteTitle: urlObject.title,
 								postId: item.id,
 								title: item.title.rendered ?? item.title,
-								url: obj.url,
-								baseUrl: obj.baseUrl,
-								slug: obj.slug,
+								url: urlObject.url,
+								baseUrl: urlObject.baseUrl,
+								slug: urlObject.slug,
 							} ),
 						},
 					};
 				} );
 			} catch ( error ) {
-				errors.push( { url: obj.url, title: obj.title } );
+				errors.push( { url: urlObject.url, title: urlObject.title } );
 				// eslint-disable-next-line
-				console.log( error, `site ${ obj.url } could not be fetched` );
+				console.log(
+					error,
+					`site ${ urlObject.url } could not be fetched`
+				);
 			}
 		} )
 	);

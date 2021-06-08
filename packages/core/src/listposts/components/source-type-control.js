@@ -41,6 +41,7 @@ export const formatOption = ( source = {}, type = {} ) => {
 			title: source.title,
 			type: type.name,
 			slug: type.slug,
+			taxonomies: type.taxonomies,
 		} ),
 		label: `${ source.title }: ${ type.name }`,
 	};

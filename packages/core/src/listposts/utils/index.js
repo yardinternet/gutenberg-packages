@@ -155,6 +155,27 @@ export function templateValidateYardPropsSupport(
 	);
 }
 
+export function populateExternalTaxonomyValues(
+	taxonomies = [],
+	selectedTerms = []
+) {
+	const values = [];
+	selectedTerms.map( ( term ) => {
+		const taxonomy = find( taxonomies, [ 'slug', term ] );
+
+		if ( taxonomy ) {
+			values.push( {
+				label: taxonomy.name,
+				value: taxonomy.slug,
+			} );
+		}
+
+		return false;
+	} );
+
+	return values;
+}
+
 /**
  *	Returns array with selected options for each taxonomy
  *
@@ -248,6 +269,40 @@ export function hasSupportsNumberPerRow( {
 }
 
 /**
+ * Validate if the taxonomy is present in the selected external source.
+ *
+ * @param {Array} selectedSources
+ * @param {Object} taxonomy
+ *
+ * @return {boolean} true|false
+ */
+export function taxInSelectedSource( selectedSources = [], taxonomy = {} ) {
+	const filteredSelectedSource = selectedSources.filter( ( source ) => {
+		if (
+			! source.hasOwnProperty( 'taxonomies' ) ||
+			source.taxonomies === undefined
+		) {
+			return false;
+		}
+
+		const filtered = source.taxonomies.filter( ( item ) => {
+			if (
+				! item.hasOwnProperty( 'taxonomies' ) ||
+				item.taxonomies === undefined
+			) {
+				return false;
+			}
+
+			return item.taxonomies.includes( taxonomy.slug );
+		} );
+
+		return !! filtered.length;
+	} );
+
+	return !! filteredSelectedSource.length;
+}
+
+/**
  * Check if taxonomy is associated with the given postType
  * Only render taxonomy select control when the taxonomy contains the postType
  *
@@ -278,17 +333,24 @@ export function parseToAttributes( options = [] ) {
 	if ( options === null ) return [];
 
 	const parseOptions = options.map( ( item ) => JSON.parse( item.value ) );
-
 	const mergeObj = {};
 
 	// Merge items with the same baseUrl
 	parseOptions.map( ( item ) => {
+		const taxObject = { source: item.slug, taxonomies: item.taxonomies };
+
 		if ( ! mergeObj[ item.baseUrl ] ) {
 			return ( mergeObj[ item.baseUrl ] = {
 				baseUrl: item.baseUrl,
 				slugs: [ item.slug ],
+				taxonomies: [ taxObject ],
 			} );
 		}
+
+		mergeObj[ item.baseUrl ].taxonomies = mergeObj[
+			item.baseUrl
+		].taxonomies.concat( [ taxObject ] );
+
 		return ( mergeObj[ item.baseUrl ].slugs = mergeObj[
 			item.baseUrl
 		].slugs.concat( [ item.slug ] ) );
@@ -367,3 +429,71 @@ export const filterExcludedPostsSelectOptions = (
 		return post.value !== selectedStickyPostID;
 	} );
 };
+
+/**
+ *
+ * @param {string} taxonomySource
+ * @param {Array} taxonomy
+ * @param {number} iteration
+ *
+ * @return {Object} taxObject
+ */
+export async function createTaxObject( taxonomySource, taxonomy, iteration ) {
+	const terms = [];
+	const response = await fetch( taxonomy[ iteration ].url );
+	const json = await response.json();
+	const taxObject = {
+		source: taxonomySource,
+		name: taxonomy[ iteration ].taxonomy,
+		panelName: taxonomy[ iteration ].panelName,
+	};
+
+	Object.values( json ).map( ( taxonomyTerm ) => {
+		if ( taxonomyTerm.taxonomy === taxonomy[ iteration ].taxonomy ) {
+			taxonomyTerm.source = taxonomySource;
+			terms.push( taxonomyTerm );
+		}
+
+		return taxonomyTerm;
+	} );
+
+	taxObject.terms = terms;
+
+	return taxObject;
+}
+
+/**
+ *
+ * @param {Object} obj
+ * @param {Array} taxonomyTerms
+ *
+ * @return {string} taxQueryString
+ */
+export function buildTaxParamsQueryString( obj, taxonomyTerms ) {
+	if (
+		! obj.hasOwnProperty( 'taxonomies' ) ||
+		! obj.taxonomies.hasOwnProperty( 'taxonomies' ) ||
+		obj.taxonomies.taxonomies === undefined
+	) {
+		return '';
+	}
+
+	if ( ! obj.taxonomies.taxonomies.length ) {
+		return '';
+	}
+
+	let taxQueryString = '';
+
+	obj.taxonomies.taxonomies.forEach( ( tax ) => {
+		if ( taxonomyTerms[ tax ] !== undefined ) {
+			// taxQueryString contains one or more query strings, append '&' for seperating query string per taxonomy.
+			if ( !! taxQueryString.length ) {
+				taxQueryString += '&';
+			}
+
+			taxQueryString += tax + '=' + taxonomyTerms[ tax ].toString();
+		}
+	} );
+
+	return taxQueryString;
+}
