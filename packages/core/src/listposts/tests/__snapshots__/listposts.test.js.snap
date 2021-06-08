@@ -31,6 +31,10 @@ Object {
     "default": Array [],
     "type": "array",
   },
+  "externalTaxonomyTerms": Object {
+    "default": Object {},
+    "type": "object",
+  },
   "isMultipleSourcesEnabled": Object {
     "default": false,
     "type": "boolean",

@@ -19,7 +19,12 @@ import Inspector from './components/inspector';
 import SSR from './components/ssr';
 import SelectPostTypeControl from './components/select-posttype-control';
 
-import { fetchListPosts, fetchCustomViews, fetchTaxonomies } from './api';
+import {
+	fetchListPosts,
+	fetchCustomViews,
+	fetchTaxonomies,
+	fetchExternalTaxonomies,
+} from './api';
 import {
 	filterPostTypes,
 	mapPosts,
@@ -49,6 +54,8 @@ class ListPostsEdit extends Component {
 					: [],
 			posts: [],
 			taxonomies: [],
+			externalTaxonomiesResolved: false,
+			externalTaxonomies: [],
 			customViews: {},
 			customView: '',
 			supportsNumberPerRow: false,
@@ -71,6 +78,14 @@ class ListPostsEdit extends Component {
 			isMultipleSourcesEnabled
 		) {
 			this.removeAdditionalPostTypes();
+		}
+
+		if (
+			! this.state.externalTaxonomies.length &&
+			! this.state.externalTaxonomiesResolved
+		) {
+			this.getExternalTaxonomies();
+			this.setState( { externalTaxonomiesResolved: true } );
 		}
 	}
 
@@ -189,7 +204,6 @@ class ListPostsEdit extends Component {
 	 */
 	getPosts = async ( postType = '' ) => {
 		const { setAttributes } = this.props;
-
 		let posts = [];
 
 		const postTypeObj = find( this.state.postTypes, [ 'slug', postType ] );
@@ -237,6 +251,22 @@ class ListPostsEdit extends Component {
 		}
 	};
 
+	async getExternalTaxonomies() {
+		const { isMultipleSourcesEnabled } = this.props.attributes;
+
+		if ( ! isMultipleSourcesEnabled ) {
+			return;
+		}
+
+		try {
+			this.setState( {
+				externalTaxonomies: await fetchExternalTaxonomies(),
+			} );
+		} catch ( e ) {
+			throw new Error( e.message );
+		}
+	}
+
 	/**
 	 * Get taxonomies
 	 */
@@ -273,6 +303,7 @@ class ListPostsEdit extends Component {
 			posts,
 			postTypes,
 			taxonomies,
+			externalTaxonomies,
 			customViews,
 			customView,
 			supportsNumberPerRow,
@@ -288,6 +319,7 @@ class ListPostsEdit extends Component {
 						postTypes,
 						posts,
 						taxonomies,
+						externalTaxonomies,
 						customViews,
 						customView,
 						supportsNumberPerRow,

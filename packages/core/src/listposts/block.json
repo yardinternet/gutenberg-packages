@@ -18,6 +18,10 @@
 			"type": "object",
 			"default": {}
 		},
+		"externalTaxonomyTerms": {
+			"type": "object",
+			"default": {}
+		},
 		"selectedPosts": {
 			"type": "array",
 			"default": []
