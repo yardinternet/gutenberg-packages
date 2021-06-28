@@ -136,7 +136,7 @@ function SpacingControl( {
 					) }
 				</Fill>
 			) ) }
-			<Button isDefault onClick={ () => resetControlVal() }>
+			<Button isSecondary onClick={ () => resetControlVal() }>
 				Reset
 			</Button>
 		</PanelBody>
