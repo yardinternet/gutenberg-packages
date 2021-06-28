@@ -41,12 +41,12 @@ export function registerBlocks( blocks = [], options = defaultOptions ) {
 			// @ts-ignore
 			...blockSettings,
 			icon: {
-				src:
-					icon !== undefined ? (
-						<BlockIcon faClasses={ icon } />
-					) : (
-						blockSettings.icon.src
-					),
+				src: icon ? (
+					<BlockIcon faClasses={ icon } />
+				) : (
+					// @ts-ignore
+					blockSettings.icon.src
+				),
 				...options.icon,
 			},
 		} );
