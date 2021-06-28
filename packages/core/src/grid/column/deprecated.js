@@ -3,15 +3,25 @@
  */
 import classnames from 'classnames';
 import {
+	withBackground,
 	withBackgroundClass,
 	withBackgroundImage,
 	withSpacing,
+	getMarginAttributes,
+	getPaddingAttributes,
+	backgroundAttributes,
 } from '@yardinternet/gutenberg-editor-components';
+
 /**
  * WordPress dependencies
  */
 import { compose } from '@wordpress/compose';
 import { InnerBlocks } from '@wordpress/block-editor';
+
+/**
+ * Internal dependencies
+ */
+import Column from './components/column';
 
 const blockAttributes = {
 	editIsSelected: {
@@ -103,7 +113,77 @@ const blockAttributes = {
 	},
 };
 
+const deprecatedDefaultAttributes = {
+	editIsSelected: {
+		type: 'boolean',
+		default: false,
+	},
+	colClassLg: {
+		type: 'number',
+		default: 0,
+	},
+	colClass: {
+		type: 'number',
+		default: 6,
+	},
+	colClassSm: {
+		type: 'number',
+		default: 0,
+	},
+	colClassXs: {
+		type: 'number',
+		default: 0,
+	},
+};
+
 const deprecated = [
+	{
+		attributes: {
+			...deprecatedDefaultAttributes,
+			...backgroundAttributes,
+			...getMarginAttributes(),
+			...getPaddingAttributes(),
+		},
+		save: compose( [ withBackground(), withSpacing() ] )(
+			( {
+				className,
+				attributes,
+				styles,
+				spacingClasses,
+				backgroundFixedClass,
+				dimRatioClass,
+			} ) => {
+				const {
+					colClassLg,
+					colClass,
+					colClassSm,
+					colClassXs,
+				} = attributes;
+				const classNames = classnames( [
+					!! colClassLg && `col-lg-${ colClassLg }`,
+					!! colClass && `col-md-${ colClass }`,
+					!! colClassSm && `col-sm-${ colClassSm }`,
+					!! colClassXs && `col-${ colClassXs }`,
+					className,
+				] );
+
+				return (
+					<Column
+						className={ classNames }
+						innerStyles={ styles }
+						innerClassName={ [
+							spacingClasses,
+							backgroundFixedClass,
+							dimRatioClass,
+							'column',
+						] }
+					>
+						<InnerBlocks.Content />
+					</Column>
+				);
+			}
+		),
+	},
 	// since 0.4.2
 	{
 		attributes: blockAttributes,
