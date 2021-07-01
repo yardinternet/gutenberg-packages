@@ -3,6 +3,10 @@
 exports[`basic tests metadata should not change 1`] = `
 Object {
   "attributes": Object {
+    "altText": Object {
+      "default": "",
+      "type": "string",
+    },
     "icon": Object {
       "default": "fas fa-envelope",
       "type": "string",

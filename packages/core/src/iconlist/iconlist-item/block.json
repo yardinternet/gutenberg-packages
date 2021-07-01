@@ -21,6 +21,10 @@
 		"placeholder": {
 			"type": "string",
 			"default": "Begin met schrijven"
+		},
+		"altText": {
+			"type": "string",
+			"default": ""
 		}
 	}
 }

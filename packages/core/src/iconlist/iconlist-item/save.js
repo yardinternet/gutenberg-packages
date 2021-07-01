@@ -1,7 +1,4 @@
 /**
- * External dependencies
- */
-/**
  * WordPress dependencies
  */
 import { RichText } from '@wordpress/block-editor';
@@ -13,11 +10,12 @@ import Icon from './components/icon';
 
 function save( props ) {
 	const { attributes } = props;
-	const { labelText } = attributes;
+	const { labelText, altText } = attributes;
 
 	return (
 		<li className="yard-blocks-iconlist__item">
 			<Icon { ...props } />
+			{ altText && <span className="sr-only">{ altText }</span> }
 			<RichText.Content
 				className="yard-blocks-iconlist__text"
 				tagName="span"

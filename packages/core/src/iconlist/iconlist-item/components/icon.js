@@ -6,7 +6,7 @@ import { css, cx } from 'emotion';
 
 function Icon( props ) {
 	const { attributes } = props;
-	const { icon, iconColor, iconSize } = attributes;
+	const { icon, iconColor, iconSize, altText } = attributes;
 
 	const classname = 'yard-blocks-iconlist__icon';
 	const styles = css`
@@ -17,6 +17,7 @@ function Icon( props ) {
 		<i
 			className={ cx( classname, styles, icon ) }
 			style={ { color: iconColor, fontSize: iconSize } }
+			title={ altText ? altText : null }
 		></i>
 	);
 }
