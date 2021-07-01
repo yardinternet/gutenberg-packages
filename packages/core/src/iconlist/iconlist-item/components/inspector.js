@@ -6,7 +6,7 @@ import {
 	FontSizePicker,
 	ColorPalette,
 } from '@wordpress/block-editor';
-import { PanelBody } from '@wordpress/components';
+import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -16,7 +16,7 @@ import IconModal from './modal';
 
 function Inspector( props ) {
 	const { setAttributes, attributes } = props;
-	const { iconSize, iconColor, icon } = attributes;
+	const { iconSize, iconColor, icon, altText } = attributes;
 
 	return (
 		<InspectorControls>
@@ -33,6 +33,20 @@ function Inspector( props ) {
 					onChange={ ( newColor ) =>
 						setAttributes( { iconColor: newColor } )
 					}
+				/>
+			</PanelBody>
+			<PanelBody title={ __( 'Toegankelijkheid' ) } initialOpen={ false }>
+				<TextControl
+					label={ __( 'Alternatieve tekst' ) }
+					value={ altText }
+					onChange={ ( value ) =>
+						setAttributes( {
+							altText: value,
+						} )
+					}
+					help={ __(
+						'Voeg een alternatieve tekst toe als een icoon betekenis heeft.'
+					) }
 				/>
 			</PanelBody>
 		</InspectorControls>
