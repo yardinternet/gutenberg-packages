@@ -8,8 +8,8 @@ import { __ } from '@wordpress/i18n';
  */
 import metadata from './block.json';
 import SocialShare from './components/socialshare';
-import Inspector from './inspector';
 import deprecated from './deprecated';
+import edit from './edit';
 
 const icon = 'far fa-share-alt';
 const { name, attributes } = metadata;
@@ -20,16 +20,7 @@ const settings = {
 		'Plaats sociale media iconen waarmee je gemakkelijk de pagina kunt delen met anderen.'
 	),
 	attributes,
-	edit: ( props ) => {
-		const { setAttributes } = props;
-
-		return (
-			<>
-				<Inspector key="inspector" { ...{ setAttributes, ...props } } />
-				<SocialShare view="edit" { ...props } />
-			</>
-		);
-	},
+	edit,
 	save: ( props ) => {
 		return <SocialShare { ...props } />;
 	},
