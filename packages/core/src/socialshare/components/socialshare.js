@@ -19,6 +19,8 @@ function SocialShare( { attributes, view } ) {
 		linkedin,
 		whatsapp,
 		print,
+		pageUrl,
+		pageTitle,
 	} = attributes;
 
 	const classes = classnames( [ size, 'yard-blocks-socialshare' ] );
@@ -38,7 +40,7 @@ function SocialShare( { attributes, view } ) {
 			font: 'fab',
 			icon: 'twitter',
 			ariaLabel: ariaLabelMsg( 'Twitter' ),
-			url: `https://twitter.com/intent/tweet/?text=${ blockSettings.page_title }&url=${ blockSettings.page_url }`, // eslint-disable-line
+			url: `https://twitter.com/intent/tweet/?text=${ pageTitle }&url=${ pageUrl }`,
 			externalLink: true,
 		},
 		{
@@ -47,7 +49,7 @@ function SocialShare( { attributes, view } ) {
 			font: 'fab',
 			icon: 'facebook-f',
 			ariaLabel: ariaLabelMsg( 'Facebook' ),
-			url: `https://facebook.com/sharer/sharer.php?u=${ blockSettings.page_url }`, // eslint-disable-line
+			url: `https://facebook.com/sharer/sharer.php?u=${ pageUrl }`,
 			externalLink: true,
 		},
 		{
@@ -56,7 +58,7 @@ function SocialShare( { attributes, view } ) {
 			font: 'fab',
 			icon: 'linkedin-in',
 			ariaLabel: ariaLabelMsg( 'LinkedIn' ),
-			url: `https://www.linkedin.com/shareArticle?mini=true&title=${ blockSettings.page_title }&url=${ blockSettings.page_url }`, // eslint-disable-line
+			url: `https://www.linkedin.com/shareArticle?mini=true&title=${ pageTitle }&url=${ pageUrl }`,
 			externalLink: true,
 		},
 		{
@@ -65,7 +67,7 @@ function SocialShare( { attributes, view } ) {
 			font: 'fab',
 			icon: 'whatsapp',
 			ariaLabel: ariaLabelMsg( 'Whatsapp' ),
-			url: `https://api.whatsapp.com/send?text=${ blockSettings.page_title }%20${ blockSettings.page_url }`, // eslint-disable-line
+			url: `https://wa.me/?text=${ pageUrl }`,
 			externalLink: true,
 		},
 		{
