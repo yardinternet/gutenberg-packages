@@ -61,6 +61,7 @@ export function parseMarkerGroupMarkers( markergroups ) {
 				return {
 					latLng: marker.latLng,
 					infowindow: marker.infowindow,
+					infowindowPharos: marker.infowindowPharos,
 					infowindowCovered: marker.infowindowCovered,
 					infowindowTargetURL: marker.infowindowTargetURL,
 					infowindowURL: marker.infowindowURL,
@@ -107,6 +108,7 @@ export function prepareMarkerClusterGroups( map, plotMarkerGroups ) {
 				map,
 				marker,
 				infowindow,
+				infowindowPharos: item.infowindowPharos,
 				infowindowCovered: item.infowindowCovered,
 				infowindowURL: item.infowindowURL,
 				infowindowTargetURL: item.infowindowTargetURL,

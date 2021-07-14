@@ -6,6 +6,7 @@ export default function InfoWindow( props ) {
 		phone,
 		email,
 		content,
+		pharos,
 		covered,
 		contactPerson,
 		address,
@@ -42,12 +43,6 @@ export default function InfoWindow( props ) {
 					</a>
 				</div>
 			) }
-			{ phone && (
-				<div className="infowindow__phone">
-					<span className="infowindow__label">Telefoon: </span>
-					<span className="infowindow__value">{ phone }</span>
-				</div>
-			) }
 			{ contactPerson && (
 				<div className="infowindow__contactperson">
 					<span className="infowindow__label">Contact: </span>
@@ -63,6 +58,18 @@ export default function InfoWindow( props ) {
 					>
 						{ email }
 					</a>
+				</div>
+			) }
+			{ phone && (
+				<div className="infowindow__phone">
+					<span className="infowindow__label">Telefoon: </span>
+					<span className="infowindow__value">{ phone }</span>
+				</div>
+			) }
+			{ pharos && (
+				<div className="infowindow__pharos | d-block">
+					<span className="infowindow__label">Adviseur Pharos: </span>
+					<span className="infowindow__value">{ pharos }</span>
 				</div>
 			) }
 		</div>

@@ -8,16 +8,16 @@ import { Component } from '@wordpress/element';
  */
 import { withFocusOutside, TextareaControl } from '@wordpress/components';
 
-class TextAreaControlFocusOutside extends Component {
+class TextAreaControlPharosFocusOutside extends Component {
 	constructor( props ) {
 		super( props );
-		this.state = { infowindow: props.infowindow };
+		this.state = { infowindowPharos: props.infowindowPharos };
 	}
 
 	handleFocusOutside() {
 		this.props.setMarker( {
 			...this.props.marker,
-			...{ infowindow: this.state.infowindow },
+			...{ infowindowPharos: this.state.infowindowPharos },
 		} );
 	}
 
@@ -26,10 +26,10 @@ class TextAreaControlFocusOutside extends Component {
 			<div>
 				<TextareaControl
 					label={ this.props.label }
-					defaultValue={ this.props.marker.infowindow }
+					defaultValue={ this.props.marker.infowindowPharos }
 					onChange={ ( value ) => {
 						this.setState( {
-							infowindow: value,
+							infowindowPharos: value,
 						} );
 					} }
 				/>
@@ -38,4 +38,4 @@ class TextAreaControlFocusOutside extends Component {
 	}
 }
 
-export default withFocusOutside( TextAreaControlFocusOutside );
+export default withFocusOutside( TextAreaControlPharosFocusOutside );

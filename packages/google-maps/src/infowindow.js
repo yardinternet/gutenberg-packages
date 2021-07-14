@@ -28,6 +28,7 @@ export function createInfowindowPolygon( props ) {
 		map,
 		polygon,
 		content,
+		pharos,
 		url,
 		urlTarget,
 		title,
@@ -40,6 +41,7 @@ export function createInfowindowPolygon( props ) {
 	const infowindowPolygon = createInfowindow( {
 		title,
 		content,
+		pharos,
 		url,
 		urlTarget,
 		email,
@@ -75,6 +77,7 @@ export function createInfowindowMarker( props ) {
 		map,
 		marker,
 		infowindow,
+		infowindowPharos,
 		infowindowCovered,
 		infowindowURL,
 		infowindowTargetURL,
@@ -88,6 +91,7 @@ export function createInfowindowMarker( props ) {
 	const infowindowObject = createInfowindow( {
 		title: infowindowTitle,
 		content: infowindow,
+		pharos: infowindowPharos,
 		covered: infowindowCovered,
 		url: infowindowURL,
 		urlTarget: infowindowTargetURL,
@@ -112,6 +116,7 @@ export function createInfowindowMarker( props ) {
 function createInfowindow( {
 	title,
 	content,
+	pharos,
 	covered,
 	url,
 	urlTarget,
@@ -127,6 +132,7 @@ function createInfowindow( {
 			title={ title }
 			content={ content }
 			covered={ covered }
+			pharos={ pharos }
 			phone={ phone }
 			url={ url }
 			urlTarget={ urlTarget }

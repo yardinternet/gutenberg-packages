@@ -221,6 +221,7 @@ function Map( {
 					polygon: new google.maps.Polygon( {
 						id: item.id,
 						infowindow: item.infowindow,
+						infowindowPharos: item.infowindowPharos,
 						infowindowTitle: item.infowindowTitle,
 						infowindowURL: item.infowindowURL,
 						infowindowLat: bounds.getCenter().lat(),
@@ -417,6 +418,7 @@ function Map( {
 				map,
 				polygon: polygon.polygon,
 				content: polygon.polygon.infowindow,
+				pharos: polygon.polygon.infowindowPharos,
 				url: polygon.polygon.infowindowURL,
 				urlTarget: polygon.polygon.infowindowTargetURL,
 				title: infowindowTitle,
@@ -461,6 +463,7 @@ function Map( {
 	const addMarker = ( {
 		latLng,
 		infowindow,
+		infowindowPharos,
 		infowindowCovered,
 		infowindowTargetURL,
 		infowindowURL,
@@ -482,6 +485,7 @@ function Map( {
 			map,
 			marker,
 			infowindow,
+			infowindowPharos,
 			infowindowCovered,
 			infowindowURL,
 			infowindowTargetURL,

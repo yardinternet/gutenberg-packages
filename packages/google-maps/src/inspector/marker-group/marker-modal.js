@@ -10,6 +10,7 @@ import { Button, Modal, PanelRow, ToggleControl } from '@wordpress/components';
 import { config } from '../../config';
 import GeocodeAutocomplete from '../geocode-autocomplete';
 import TextAreaControlFocusOutside from './textareacontrol-focus-outside';
+import TextAreaControlPharosFocusOutside from './textareacontrol-pharos-focus-outside';
 import TextControlFocusOutside from './textcontrol-focus-outside';
 
 /**
@@ -26,6 +27,7 @@ function MarkerModal( {
 		name: '',
 		indexVal: null,
 		infowindow: '',
+		infowindowPharos: '',
 		infowindowTitle: '',
 		infowindowURL: '',
 		infowindowTargetURL: false,
@@ -151,6 +153,16 @@ function MarkerModal( {
 										config.infowindow.fields.content.label
 									}
 									name={ 'infowindow' }
+									setMarker={ setMarker }
+									marker={ marker }
+								/>
+							</PanelRow>
+							<PanelRow>
+								<TextAreaControlPharosFocusOutside
+									label={
+										config.infowindow.fields.pharos.label
+									}
+									name={ 'infowindowPharos' }
 									setMarker={ setMarker }
 									marker={ marker }
 								/>

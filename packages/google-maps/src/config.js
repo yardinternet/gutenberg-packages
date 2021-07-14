@@ -26,7 +26,10 @@ export const config = {
 				label: 'Adres',
 			},
 			content: {
-				label: 'Beschrijving voor in het informatievenster',
+				label: 'Beschrijving voor in het informatievenster.',
+			},
+			pharos: {
+				label: 'Pharos contactgegevens.',
 			},
 		},
 	},

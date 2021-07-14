@@ -372,6 +372,17 @@ function Inspector( props ) {
 								},
 							},
 							{
+								type: 'TextareaControl',
+								id: 'infowindowPharos',
+								attr: {
+									label: 'Adviseur Pharos',
+									help: __(
+										'Pharos contactgegevens.',
+										config.textDomain
+									),
+								},
+							},
+							{
 								type: 'TextControl',
 								id: 'infowindowURL',
 								attr: {
