@@ -50,15 +50,15 @@ function ListControlModal( {
 		const formData = {};
 		e.preventDefault();
 		let fillColorFound = false;
+		let strokeColorFound = false;
+
 		if ( e.target.length > 0 ) {
 			for ( let i = 0; i < e.target.length; i++ ) {
 				const name = e.target[ i ].name;
 				const value = e.target[ i ].value;
+				const type = e.target[ i ].type;
 
-				if (
-					e.target[ i ].type === 'submit' ||
-					e.target[ i ].type === 'button'
-				) {
+				if ( type === 'submit' || type === 'button' ) {
 					continue;
 				}
 
@@ -67,12 +67,13 @@ function ListControlModal( {
 				}
 
 				// For colorPicker
-				if ( isValidHex( value ) ) {
+				if ( isValidHex( value ) && type === 'text' ) {
 					if ( ! fillColorFound ) {
 						formData.color = value;
 						fillColorFound = true;
-					} else {
+					} else if ( ! strokeColorFound ) {
 						formData.borderColor = value;
+						strokeColorFound = true;
 					}
 				}
 
