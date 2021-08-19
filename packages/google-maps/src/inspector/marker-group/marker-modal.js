@@ -116,6 +116,16 @@ function MarkerModal( {
 							<PanelRow>
 								<TextControlFocusOutside
 									label={
+										config.infowindow.fields.covered.label
+									}
+									name={ 'infowindowCovered' }
+									setMarker={ setMarker }
+									marker={ marker }
+								/>
+							</PanelRow>
+							<PanelRow>
+								<TextControlFocusOutside
+									label={
 										config.infowindow.fields.address.label
 									}
 									name={ 'infowindowAddress' }

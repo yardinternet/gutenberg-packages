@@ -28,6 +28,9 @@ export const config = {
 			content: {
 				label: 'Beschrijving voor in het informatievenster.',
 			},
+			covered: {
+				label: 'Beslaat',
+			},
 			pharos: {
 				label: 'Pharos contactgegevens.',
 			},
