@@ -106,7 +106,7 @@ $grid-flex-options: (
 				margin-left: 0 !important;
 
 				.yard-blocks-grid-column {
-					height: calc( 100% - 60px );
+					height: calc(100% - 60px);
 				}
 			}
 		}
@@ -130,19 +130,27 @@ $grid-flex-options: (
 	}
 
 	.yard-blocks-grid-column {
+		min-height: 91px; // Make column easier clickable.
 		margin-right: 0;
 		margin-left: 0;
 
-		&:not( :first-child ) {
+		&:not(:first-child) {
 			margin-left: 28px;
 		}
 
 		> .block-editor-block-list__layout {
 			display: block;
 		}
+
+		.wp-block {
+			max-width: 100%; // Remove max-width from blocks inside grid.
+		}
 	}
 
-	.yard-blocks-grid > div > .block-editor-inner-blocks > .block-editor-block-list__layout {
+	.yard-blocks-grid
+		> div
+		> .block-editor-inner-blocks
+		> .block-editor-block-list__layout {
 		display: flex;
 		flex-wrap: wrap;
 		margin-right: 0;
