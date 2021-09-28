@@ -6,30 +6,34 @@ import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
 /**
  * WordPress dependencies
  */
-import { Placeholder, Spinner } from '@wordpress/components';
+import { Placeholder, Spinner, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { withDispatch } from '@wordpress/data';
-import { compose, withInstanceId } from '@wordpress/compose';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { parse } from '@wordpress/blocks';
 
 /**
  * Internal dependencies
  */
 import { findElementById } from './helpers';
+import PreviewPreset from './components/preview-preset';
 
-const Edit = ( {
-	insertBlocks,
-	getBlockRootClientId,
-	getBlockIndex,
-	removeBlock,
-	createNotice,
-	clientId,
-	clearSelectedBlock,
-	instanceId,
-} ) => {
+const Edit = ( { clientId } ) => {
 	const [ presetCollection, setPresetCollection ] = useState( false );
+	const [ patterns, setPatterns ] = useState();
+	const [ presetId, setPresetId ] = useState();
+
+	const { getBlockIndex, getBlockRootClientId } = useSelect( ( select ) => ( {
+		getBlockIndex: select( 'core/block-editor' ).getBlockIndex,
+		getBlockRootClientId: select( 'core/block-editor' )
+			.getBlockRootClientId,
+	} ) );
+
+	const { clearSelectedBlock, insertBlocks, removeBlock } = useDispatch(
+		'core/block-editor'
+	);
+	const { createNotice } = useDispatch( 'core/notices' );
 
 	useEffect( () => {
 		fetchPresets();
@@ -38,6 +42,18 @@ const Edit = ( {
 	const fetchPresets = () => {
 		apiFetch( { path: '/yard/blocks/v1/presets' } ).then( ( presets ) => {
 			setPresetCollection( presets );
+
+			const presetArray = presets
+				.map( ( preset ) => preset.items )
+				.flat();
+
+			setPatterns(
+				presetArray.map( ( preset ) => ( {
+					id: preset.id,
+					title: preset.label,
+					content: preset.code,
+				} ) )
+			);
 		} );
 	};
 
@@ -45,12 +61,8 @@ const Edit = ( {
 		// TODO for a11y
 	};
 
-	const onChange = ( event ) => {
-		const value = event.currentTarget.value;
-		const preset = findElementById(
-			presetCollection,
-			parseInt( value, 10 )
-		);
+	const loadPreset = ( id ) => {
+		const preset = findElementById( presetCollection, parseInt( id, 10 ) );
 
 		insertBlocks(
 			parse( preset.code ),
@@ -77,14 +89,16 @@ const Edit = ( {
 				<>
 					<label
 						className="d-block w-100"
-						htmlFor={ `preset-${ instanceId }` }
+						htmlFor={ `preset-${ clientId }` }
 					>
 						{ __( 'Selecteer een patroon:' ) }
 					</label>
 					<select
-						id={ `preset-${ instanceId }` }
+						id={ `preset-${ clientId }` }
 						onBlur={ onBlur }
-						onChange={ onChange }
+						onChange={ ( e ) =>
+							setPresetId( e.currentTarget.value )
+						}
 					>
 						<option defaultValue>Selecteer</option>
 						{ presetCollection.map( ( group ) => (
@@ -97,6 +111,22 @@ const Edit = ( {
 							</optgroup>
 						) ) }
 					</select>
+					{ presetId && (
+						<>
+							<div className="w-100 mb-4">
+								<PreviewPreset
+									presetId={ presetId }
+									patterns={ patterns }
+								/>
+							</div>
+							<Button
+								isPrimary
+								onClick={ () => loadPreset( presetId ) }
+							>
+								{ __( 'Patroon inladen' ) }
+							</Button>
+						</>
+					) }
 				</>
 			) : (
 				<Spinner />
@@ -105,15 +135,4 @@ const Edit = ( {
 	);
 };
 
-export default compose( [
-	withDispatch( ( dispatch, props, registry ) => ( {
-		clearSelectedBlock: dispatch( 'core/block-editor' ).clearSelectedBlock,
-		insertBlocks: dispatch( 'core/block-editor' ).insertBlocks,
-		removeBlock: dispatch( 'core/block-editor' ).removeBlock,
-		getBlockIndex: registry.select( 'core/block-editor' ).getBlockIndex,
-		getBlockRootClientId: registry.select( 'core/block-editor' )
-			.getBlockRootClientId,
-		createNotice: dispatch( 'core/notices' ).createNotice,
-	} ) ),
-	withInstanceId,
-] )( Edit );
+export default Edit;
