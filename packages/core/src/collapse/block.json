@@ -4,6 +4,10 @@
 		"accordionId": {
 			"type": "string",
 			"default": "0"
+		},
+		"heading": {
+			"type": "string",
+			"default": ""
 		}
 	}
 }
