@@ -3,15 +3,15 @@
  */
 import { InnerBlocks } from '@wordpress/block-editor';
 
-/**
- * Internal dependencies
- */
-import attributes from './block.json';
-
 const deprecated = [
 	// since 1.3.0
 	{
-		attributes,
+		attributes: {
+			accordionId: {
+				type: 'string',
+				default: '0',
+			},
+		},
 		save() {
 			return (
 				<div className={ `yard-blocks-collapse` } id={ `accordion` }>

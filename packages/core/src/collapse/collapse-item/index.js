@@ -16,10 +16,10 @@ import edit from './edit';
 import save from './save';
 import deprecated from './deprecated';
 
-const Icon = <BlockIcon faClasses="fas fa-chevron-double-down" />;
+const Icon = <BlockIcon faClasses="fas fa-chevron-down" />;
 
 const { name, attributes } = metadata;
-const icon = 'fas fa-th';
+const icon = 'fas fa-chevron-down';
 
 const settings = {
 	title: __( 'Uitklap item', 'yard-blocks' ),

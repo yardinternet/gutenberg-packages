@@ -11,22 +11,51 @@ function save( props ) {
 		showOpen,
 		isAccordion,
 		parentClientId,
+		heading,
 	} = attributes;
+
+	const button =
+		`
+		<button
+			class="yard-blocks-collapse-item__button"
+			type="button"
+			data-toggle="collapse"
+			data-target="#collapse-` +
+		id +
+		`"
+			aria-expanede="false"
+			aria-controls="collapse-` +
+		id +
+		`"
+		>
+			` +
+		headerText +
+		`
+		</button>
+	`;
+
+	let header = button;
+	if ( heading !== '' ) {
+		header =
+			`
+			<` +
+			heading +
+			` class="yard-blocks-collapse-item__heading">
+				` +
+			button +
+			`
+			</` +
+			heading +
+			`>
+		`;
+	}
 
 	return (
 		<div className={ `yard-blocks-collapse-item` }>
-			<div className={ `yard-blocks-collapse-item__header` }>
-				<button
-					className={ `yard-blocks-collapse-item__button` }
-					type={ `button` }
-					data-toggle={ `collapse` }
-					data-target={ `#collapse-${ id }` }
-					aria-expanded="false"
-					aria-controls={ `collapse-${ id }` }
-				>
-					{ headerText }
-				</button>
-			</div>
+			<div
+				className={ `yard-blocks-collapse-item__header` }
+				dangerouslySetInnerHTML={ { __html: header } }
+			/>
 			<div
 				className={ `collapse ${ showOpen ? 'show' : '' }` }
 				id={ `collapse-${ id }` }
