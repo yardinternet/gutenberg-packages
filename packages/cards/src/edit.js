@@ -7,7 +7,8 @@ import { Global } from '@emotion/core';
  * WordPress dependencies
  */
 import { InnerBlocks } from '@wordpress/block-editor';
-import { dispatch, subscribe, select } from '@wordpress/data';
+import { dispatch, select } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -24,40 +25,36 @@ function Edit( props ) {
 	const { updateBlockAttributes } = dispatch( 'core/block-editor' );
 	const { cardsPerRow } = attributes;
 
-	let blockCount = getBlockCount( clientId );
+	useEffect( () => {
+		updateAttributes();
+	}, [ getBlockCount( clientId ) ] );
 
-	subscribe( () => {
+	const updateAttributes = () => {
 		const newBlockCount = getBlockCount( clientId );
-		const blockCountChanged = blockCount !== newBlockCount;
+		const currentBlock = getBlock( clientId );
 
-		blockCount = newBlockCount;
-
-		if ( blockCountChanged ) {
-			const currentBlock = getBlock( clientId );
-
-			if ( currentBlock && !! currentBlock.innerBlocks ) {
-				currentBlock.innerBlocks.map( ( innerBlock ) => {
-					return updateBlockAttributes( innerBlock.clientId, {
-						...innerBlock.attributes,
-						...{
-							parentCardCount:
-								cardsPerRow > 0 ? cardsPerRow : newBlockCount,
-						},
-					} );
+		if ( currentBlock && !! currentBlock.innerBlocks ) {
+			currentBlock.innerBlocks.map( ( innerBlock ) => {
+				return updateBlockAttributes( innerBlock.clientId, {
+					...innerBlock.attributes,
+					...{
+						parentCardCount:
+							cardsPerRow > 0 ? cardsPerRow : newBlockCount,
+					},
 				} );
-			}
-
-			updateBlockAttributes( clientId, {
-				...attributes,
-				...{ cardCount: newBlockCount },
 			} );
 		}
-	} );
+
+		updateBlockAttributes( clientId, {
+			...attributes,
+			...{ cardCount: newBlockCount },
+		} );
+	};
 
 	return (
 		<>
 			<Global styles={ editorStyles } />
-			<Inspector { ...{ blockCount, clientId, ...props } } />
+			<Inspector { ...{ clientId, ...props } } />
 			<Cards { ...props }>
 				<InnerBlocks
 					allowedBlocks={ [ cardMetaData.name ] }
