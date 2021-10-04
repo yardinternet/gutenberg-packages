@@ -8,7 +8,7 @@ function Save( { attributes } ) {
 
 	return (
 		<div
-			className={ `yard-blocks-collapse` }
+			className="yard-blocks-collapse"
 			id={ `accordion-${ accordionId }` }
 		>
 			<InnerBlocks.Content />
