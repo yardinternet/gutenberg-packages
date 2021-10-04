@@ -20,6 +20,7 @@
 	"dependencies": {
 		"@sentry/browser": "^5.21.4",
 		"@yardinternet/gutenberg-editor-components": "file:../editor-components",
+		"html-react-parser": "^1.4.0",
 		"react-select": "^4.0.2",
 		"reactstrap": "^8.5.1"
 	}

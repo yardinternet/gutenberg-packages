@@ -38,12 +38,12 @@ const deprecated = [
 			} = attributes;
 
 			return (
-				<div className={ `yard-blocks-collapse-item` }>
-					<div className={ `yard-blocks-collapse-item__header` }>
+				<div className="yard-blocks-collapse-item">
+					<div className="yard-blocks-collapse-item__header">
 						<button
-							className={ `yard-blocks-collapse-item__button` }
-							type={ `button` }
-							data-toggle={ `collapse` }
+							className="yard-blocks-collapse-item__button"
+							type="button"
+							data-toggle="collapse"
 							data-target={ `#collapse-${ id }` }
 							aria-expanded="false"
 							aria-controls={ `collapse-${ id }` }
@@ -60,7 +60,7 @@ const deprecated = [
 								: false
 						}
 					>
-						<div className={ `yard-blocks-collapse-item__body` }>
+						<div className="yard-blocks-collapse-item__body">
 							<InnerBlocks.Content />
 						</div>
 					</div>
@@ -93,12 +93,12 @@ const deprecated = [
 			const { id, headerText, showOpen, isAccordion } = attributes;
 
 			return (
-				<div className={ `yard-blocks-collapse-item` }>
-					<div className={ `yard-blocks-collapse-item__header` }>
+				<div className="yard-blocks-collapse-item">
+					<div className="yard-blocks-collapse-item__header">
 						<button
-							className={ `yard-blocks-collapse-item__button` }
-							type={ `button` }
-							data-toggle={ `collapse` }
+							className="yard-blocks-collapse-item__button"
+							type="button"
+							data-toggle="collapse"
 							data-target={ `#collapse-${ id }` }
 							aria-expanded="false"
 							aria-controls={ `collapse-${ id }` }
@@ -111,7 +111,7 @@ const deprecated = [
 						id={ `collapse-${ id }` }
 						data-parent={ isAccordion ? '#accordion' : false }
 					>
-						<div className={ `yard-blocks-collapse-item__body` }>
+						<div className="yard-blocks-collapse-item__body">
 							<InnerBlocks.Content />
 						</div>
 					</div>

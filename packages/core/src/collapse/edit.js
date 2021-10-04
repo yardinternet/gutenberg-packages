@@ -27,7 +27,7 @@ function Edit( { clientId, attributes, setAttributes } ) {
 				clientId={ clientId }
 			/>
 			<div
-				className={ `yard-blocks-collapse` }
+				className="yard-blocks-collapse"
 				id={ `accordion-${ accordionId }` }
 			>
 				<InnerBlocks

@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import parse from 'html-react-parser';
+
+/**
  * WordPress dependencies
  */
 import { InnerBlocks } from '@wordpress/block-editor';
@@ -14,48 +19,36 @@ function save( props ) {
 		heading,
 	} = attributes;
 
-	const button =
-		`
-		<button
-			class="yard-blocks-collapse-item__button"
-			type="button"
-			data-toggle="collapse"
-			data-target="#collapse-` +
-		id +
-		`"
-			aria-expanede="false"
-			aria-controls="collapse-` +
-		id +
-		`"
-		>
-			` +
-		headerText +
-		`
-		</button>
-	`;
-
-	let header = button;
-	if ( heading !== '' ) {
-		header =
-			`
-			<` +
-			heading +
-			` class="yard-blocks-collapse-item__heading">
-				` +
-			button +
-			`
-			</` +
-			heading +
-			`>
+	const button = () => {
+		return `
+			<button
+				class="yard-blocks-collapse-item__button"
+				type="button"
+				data-toggle="collapse"
+				data-target="#collapse-${ id }"
+				aria-expanded="false"
+				aria-controls="collapse-${ id }"
+			>
+				${ headerText }
+			</button>
 		`;
-	}
+	};
+
+	const header = () => {
+		if ( heading === '' ) return button();
+
+		return `
+			<${ heading } class="yard-blocks-collapse-item__heading">
+				${ button() }
+			</${ heading }>
+		`;
+	};
 
 	return (
-		<div className={ `yard-blocks-collapse-item` }>
-			<div
-				className={ `yard-blocks-collapse-item__header` }
-				dangerouslySetInnerHTML={ { __html: header } }
-			/>
+		<div className="yard-blocks-collapse-item">
+			<div className="yard-blocks-collapse-item__header">
+				{ parse( header() ) }
+			</div>
 			<div
 				className={ `collapse ${ showOpen ? 'show' : '' }` }
 				id={ `collapse-${ id }` }
@@ -63,7 +56,7 @@ function save( props ) {
 					isAccordion ? `#accordion-${ parentClientId }` : false
 				}
 			>
-				<div className={ `yard-blocks-collapse-item__body` }>
+				<div className="yard-blocks-collapse-item__body">
 					<InnerBlocks.Content />
 				</div>
 			</div>

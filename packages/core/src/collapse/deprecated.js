@@ -14,7 +14,7 @@ const deprecated = [
 		},
 		save() {
 			return (
-				<div className={ `yard-blocks-collapse` } id={ `accordion` }>
+				<div className="yard-blocks-collapse" id="accordion">
 					<InnerBlocks.Content />
 				</div>
 			);
