@@ -1,0 +1,35 @@
+{
+ "name": "@yardinternet/gutenberg-pre-publish-checklist",
+ "version": "1.0.0",
+ "description": "Pre publish checklist for gutenberg",
+ "author": "Lara van Diemen <lara@yard.nl>",
+ "homepage": "https://github.com/yardinternet/gutenberg-packages#readme",
+ "license": "ISC",
+ "main": "src/index.js",
+ "module": "src/index.js",
+ "publishConfig": {
+  "registry": "https://npm.pkg.github.com"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/yardinternet/gutenberg-packages.git"
+ },
+ "scripts": {
+  "start": "wp-scripts start",
+  "test": "jest",
+  "test:watch": "jest --watch"
+ },
+ "jest": {
+  "transform": {
+   "^.+\\.(js)$": [
+    "babel-jest",
+    {
+     "rootMode": "upward"
+    }
+   ]
+  }
+ },
+ "bugs": {
+  "url": "https://github.com/yardinternet/gutenberg-packages/issues"
+ }
+}
