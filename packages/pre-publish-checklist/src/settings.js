@@ -30,3 +30,8 @@ export const settings = applyFilters( 'yard-blocks.prePublishChecklist', [
 		],
 	},
 ] );
+
+export const customCheck = applyFilters(
+	'yard-blocks.prePublishChecklistCustomCheck',
+	[]
+);

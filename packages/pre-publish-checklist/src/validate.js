@@ -32,8 +32,9 @@ export const checkWordCount = ( currentSettings, blocks, updateErrorLogs ) => {
 	if (
 		wordCount < settingWordCount?.minWords ||
 		wordCount > settingWordCount?.maxWords
-	)
+	) {
 		hasError = true;
+	}
 
 	updateErrorLogs( {
 		type: 'wordCount',
