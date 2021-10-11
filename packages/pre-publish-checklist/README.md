@@ -69,3 +69,18 @@ addFilter(
     ]
 );
 ```
+
+Add custom checks with this hook.
+
+``` js
+addFilter(
+    'yard-blocks.prePublishChecklistCustomCheck',
+    'yard-blocks',
+    () => [
+        {
+            hasError: true,
+            msg: 'Dit is de error melding'
+        }
+    ]
+);
+```

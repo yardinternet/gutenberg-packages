@@ -18,6 +18,7 @@ import {
 	checkExcerpt,
 	checkTaxonomies,
 } from './validate';
+import { customCheck } from './settings';
 
 const PrePublishCheckList = () => {
 	const [ errorLogs, setErrorLogs ] = useState( {} );
@@ -94,15 +95,20 @@ const PrePublishCheckList = () => {
 	}, [ currentSettings, isPublishSidebarOpened, blocks, title ] );
 
 	useEffect( () => {
-		if ( ! Object.keys( errorLogs ).length ) return;
+		if ( ! Object.keys( errorLogs ).length && ! customCheck.length ) return;
 		let errorFound = false;
 
 		for ( const value of Object.values( errorLogs ) ) {
 			if ( value.hasError ) errorFound = true;
 		}
+
+		for ( let i = 0; i < customCheck.length; i++ ) {
+			if ( customCheck[ i ].hasError ) errorFound = true;
+		}
+
 		if ( errorFound ) return setLockPost( true );
 		setLockPost( false );
-	}, [ errorLogs ] );
+	}, [ errorLogs, customCheck ] );
 
 	if ( ! currentSettings.postType ) return null;
 
@@ -136,6 +142,11 @@ const PrePublishCheckList = () => {
 					{ __( 'Samenvatting verplicht' ) }
 				</p>
 			) }
+			{ customCheck.map( ( check, key ) => (
+				<p key={ key } className={ getClassName( check.hasError ) }>
+					{ check.msg }
+				</p>
+			) ) }
 			{ Object.entries( taxonomiesStatus ).map( ( [ key, value ] ) => (
 				<p key={ key } className={ getClassName( value.hasError ) }>
 					{ value.msg }
