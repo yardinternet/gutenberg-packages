@@ -78,8 +78,9 @@ addFilter(
     'yard-blocks',
     () => [
         {
+            postType: 'page',
             hasError: true,
-            msg: 'Dit is de error melding'
+            msg: 'This is the error message'
         }
     ]
 );
