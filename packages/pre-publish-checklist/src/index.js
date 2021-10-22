@@ -102,9 +102,11 @@ const PrePublishCheckList = () => {
 			if ( value.hasError ) errorFound = true;
 		}
 
-		for ( let i = 0; i < customCheck.length; i++ ) {
-			if ( customCheck[ i ].hasError ) errorFound = true;
-		}
+		customCheck.forEach( ( check ) => {
+			if ( check.postType === currentPostType && check.hasError ) {
+				errorFound = true;
+			}
+		} );
 
 		if ( errorFound ) return setLockPost( true );
 		setLockPost( false );
@@ -142,11 +144,17 @@ const PrePublishCheckList = () => {
 					{ __( 'Samenvatting verplicht' ) }
 				</p>
 			) }
-			{ customCheck.map( ( check, key ) => (
-				<p key={ key } className={ getClassName( check.hasError ) }>
-					{ check.msg }
-				</p>
-			) ) }
+			{ customCheck.map(
+				( check, key ) =>
+					check.postType === currentPostType && (
+						<p
+							key={ key }
+							className={ getClassName( check.hasError ) }
+						>
+							{ check.msg }
+						</p>
+					)
+			) }
 			{ Object.entries( taxonomiesStatus ).map( ( [ key, value ] ) => (
 				<p key={ key } className={ getClassName( value.hasError ) }>
 					{ value.msg }
