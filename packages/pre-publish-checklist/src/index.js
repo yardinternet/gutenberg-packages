@@ -18,9 +18,8 @@ import {
 	checkExcerpt,
 	checkTaxonomies,
 } from './validate';
-import { customCheck } from './settings';
 
-const PrePublishCheckList = () => {
+const PrePublishCheckList = ( settings, customCheck = [] ) => {
 	const [ errorLogs, setErrorLogs ] = useState( {} );
 	const [ lockPost, setLockPost ] = useState( false );
 	const [ currentSettings, setCurrentSettings ] = useState( {} );
@@ -75,7 +74,7 @@ const PrePublishCheckList = () => {
 	const { lockPostSaving, unlockPostSaving } = useDispatch( 'core/editor' );
 
 	useEffect( () => {
-		setCurrentSettings( getSettings( currentPostType ) ?? {} );
+		setCurrentSettings( getSettings( settings, currentPostType ) ?? {} );
 	}, [ currentPostType ] );
 
 	useEffect( () => {
@@ -95,13 +94,26 @@ const PrePublishCheckList = () => {
 	}, [ currentSettings, isPublishSidebarOpened, blocks, title ] );
 
 	useEffect( () => {
-		if ( ! Object.keys( errorLogs ).length && ! customCheck.length ) return;
+		if (
+			! Object.keys( errorLogs ).length &&
+			! Object.entries( taxonomiesStatus ).length &&
+			! customCheck.length
+		) {
+			return;
+		}
 		let errorFound = false;
 
+		// Check errors in errorLogs
 		for ( const value of Object.values( errorLogs ) ) {
 			if ( value.hasError ) errorFound = true;
 		}
 
+		// Check taxonomies errors
+		for ( const value of Object.values( taxonomiesStatus ) ) {
+			if ( value.hasError ) errorFound = true;
+		}
+
+		// Check errors in custom check
 		customCheck.forEach( ( check ) => {
 			if ( check.postType === currentPostType && check.hasError ) {
 				errorFound = true;
@@ -164,6 +176,8 @@ const PrePublishCheckList = () => {
 	);
 };
 
-export function registerPrePublishChecklist() {
-	registerPlugin( 'pre-publish-checklist', { render: PrePublishCheckList } );
+export function registerPrePublishChecklist( settings, customCheck ) {
+	registerPlugin( 'pre-publish-checklist', {
+		render: () => PrePublishCheckList( settings, customCheck ),
+	} );
 }
