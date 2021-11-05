@@ -17,71 +17,55 @@ npm install @yardinternet/gutenberg-pre-publish-checklist --save
 
 ### JS
 
+Add settings and customCheck (optional) variables to registerPrePublishChecklist.
+
 ```js
 import { registerPrePublishChecklist } from '@yardinternet/gutenberg-pre-publish-checklist';
-registerPrePublishChecklist();
+
+const settings = [
+    {
+        postType: 'page',
+        title: {
+            required: true,
+        },
+        wordCount: {
+            required: true,
+            minWords: 50,
+            maxWords: 1000,
+        },
+        featuredImage: {
+            required: true,
+        },
+        excerpt: {
+            required: true,
+        },
+        taxonomies: [
+            {
+                name: 'Taxonomy',
+                key: '_ys_taxonomy',
+                minSelected: 1,
+                maxSelected: 3,
+            },
+        ],
+    },
+];
+
+// optional
+const customCheck = [
+    {
+        postType: 'page',
+        hasError: true,
+        msg: 'This is the error message',
+    },
+];
+
+registerPrePublishChecklist( settings, customCheck );
 ```
 
 ### Styling
 
 Import the editor styles (outside the yard-blocks-backend mixin).
 
-``` scss
+```scss
 @import '~@yardinternet/gutenberg-pre-publish-checklist/src/editor';
-```
-
-### Hooks
-
-#### Settings
-
-Alter or override settings with this hook. Place this filter before `registerPrePublishChecklist`.
-
-``` js
-addFilter(
-    'yard-blocks.prePublishChecklist',
-    'yard-blocks',
-    () => [
-        {
-            postType: 'page',
-            title: {
-                required: true,
-            },
-            wordCount: {
-                required: true,
-                minWords: 50,
-                maxWords: 1000,
-            },
-            featuredImage: {
-                required: true,
-            },
-            excerpt: {
-                required: true,
-            },
-            taxonomies: [
-                {
-                    name: 'Taxonomy',
-                    key: '_ys_taxonomy',
-                    minSelected: 1,
-                    maxSelected: 3,
-                },
-            ],
-        }
-    ]
-);
-```
-
-Add custom checks with this hook.
-
-``` js
-addFilter(
-    'yard-blocks.prePublishChecklistCustomCheck',
-    'yard-blocks',
-    () => [
-        {
-            postType: 'page',
-            hasError: true,
-            msg: 'This is the error message'
-        }
-    ]
-);
 ```

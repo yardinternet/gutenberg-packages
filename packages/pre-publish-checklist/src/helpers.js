@@ -1,9 +1,4 @@
-/**
- * Internal dependencies
- */
-import { settings } from './settings';
-
-export const getSettings = ( postType ) => {
+export const getSettings = ( settings, postType ) => {
 	return settings.filter( ( item ) => item.postType === postType ).pop();
 };
 

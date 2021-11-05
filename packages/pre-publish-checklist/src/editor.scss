@@ -1,39 +1,38 @@
 $block: 'pre-publish-checklist';
 
 .#{$block} {
-    &-correct,
-    &-wrong {
-        display: flex;
-        gap: 0.5rem;
+	&-correct,
+	&-wrong {
+		display: flex;
+		gap: 0.5rem;
 
-        &::before {
-            $size: 8px;
-            display:flex;
-            justify-content: center;
-            width: $size;
-            height: $size;
-            font-family: 'Font Awesome 5 Pro';
-        }
-    }
+		&::before {
+			$size: 8px;
+			display: flex;
+			justify-content: center;
+			width: $size;
+			height: $size;
+		}
+	}
 
-    &-correct {
-        color: #46B450;
+	&-correct {
+		color: #46b450;
 
-        &::before {
-            content: '\f00c';
-        }
-    }
+		&::before {
+			content: '✓';
+		}
+	}
 
-    &-wrong {
-        color: #DC3232;
+	&-wrong {
+		color: #dc3232;
 
-        &::before {
-            content: '\f00d';
-        }
-    }
+		&::before {
+			content: '×';
+		}
+	}
 }
 
 // Hide checkbox "Always show pre-publish checks"
 .editor-post-publish-panel__footer .components-base-control {
-    display: none;
+	display: none;
 }
