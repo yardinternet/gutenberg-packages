@@ -1,6 +1,8 @@
 /**
  * External dependencies
  */
+import classnames from 'classnames';
+
 /**
  * WordPress dependencies
  */
@@ -14,10 +16,10 @@ import Inspector from './components/inspector';
 import Icon from './components/icon';
 
 function edit( props ) {
-	const { setAttributes, attributes } = props;
+	const { className, setAttributes, attributes } = props;
 	const { labelText, placeholder } = attributes;
 
-	const classname = 'yard-blocks-icon-list__item';
+	const classname = classnames( 'yard-blocks-iconlist__item', className );
 	const styles = css`
 		position: relative;
 		display: flex;
