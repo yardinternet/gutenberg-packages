@@ -34,6 +34,7 @@ function save( {
 		flexAlignment,
 		isInnerContainerFluid,
 		hasContainerPadding,
+		displayBlock,
 	} = attributes;
 	const gridStyles = { ...styles, ...{ minHeight } };
 	const gridClasses = classnames( className, spacingClasses, {
@@ -55,7 +56,8 @@ function save( {
 						gridClasses,
 						dimRatioClass,
 						backgroundFixedClass,
-						flexAlignment
+						flexAlignment,
+						! displayBlock && 'd-none'
 					) }
 				>
 					<div className={ containerClass }>
@@ -65,7 +67,13 @@ function save( {
 					</div>
 				</div>
 			) : (
-				<div className={ classnames( 'container', gridClasses ) }>
+				<div
+					className={ classnames(
+						'container',
+						gridClasses,
+						! displayBlock && 'd-none'
+					) }
+				>
 					<div
 						style={ gridStyles }
 						className={ classnames(

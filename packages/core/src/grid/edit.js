@@ -22,6 +22,10 @@ import classnames from 'classnames';
  * Internal dependencies
  */
 import Inspector from './inspector';
+import {
+	BlockVisibilityControls,
+	BlockVisibilityOverlay,
+} from './components/block-visibility';
 
 // TODO add filter
 const TEMPLATE = [
@@ -46,6 +50,7 @@ function Edit( {
 		columnsEqualHeight,
 		flexAlignment,
 		hasContainerPadding,
+		displayBlock,
 	} = attributes;
 	const [ showGridLines, setShowGridLines ] = useState( true );
 
@@ -62,6 +67,13 @@ function Edit( {
 
 	return (
 		<Fragment>
+			<BlockVisibilityControls
+				displayBlock={ displayBlock }
+				setAttributes={ setAttributes }
+			/>
+			{ ! displayBlock && (
+				<BlockVisibilityOverlay name={ __( 'Raster' ) } />
+			) }
 			<div
 				className={ classnames(
 					!! fullWidth && 'fullwidth',
