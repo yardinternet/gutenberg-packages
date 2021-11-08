@@ -1,6 +1,6 @@
 {
  "name": "@yardinternet/gutenberg-pre-publish-checklist",
- "version": "1.0.1",
+ "version": "1.0.2",
  "description": "Pre publish checklist for gutenberg",
  "author": "Lara van Diemen <lara@yard.nl>",
  "homepage": "https://github.com/yardinternet/gutenberg-packages#readme",
