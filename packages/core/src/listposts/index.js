@@ -12,8 +12,10 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
-import { attributes, name } from './block.json';
+import metadata from './block.json';
 import edit from './edit';
+
+const { name, attributes } = metadata;
 
 /**
  * Project specific
