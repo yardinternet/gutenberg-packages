@@ -113,14 +113,22 @@ export async function fetchSources( urlObjects = [], taxonomyTerms = [] ) {
 					return {
 						...item,
 						...{
-							_yb_list_posts_option: JSON.stringify( {
-								siteTitle: urlObject.title,
-								postId: item.id,
-								title: item.title.rendered ?? item.title,
-								url: urlObject.url,
-								baseUrl: urlObject.baseUrl,
-								slug: urlObject.slug,
-							} ),
+							_yb_list_posts_option: JSON.stringify(
+								applyFilters(
+									'yard-blocks.listPostsRemoteSourcesMapping',
+									{
+										siteTitle: urlObject.title,
+										postId: item.id,
+										title:
+											item.title.rendered ?? item.title,
+										url: urlObject.url,
+										baseUrl: urlObject.baseUrl,
+										slug: urlObject.slug,
+									},
+									item,
+									urlObject
+								)
+							),
 						},
 					};
 				} );

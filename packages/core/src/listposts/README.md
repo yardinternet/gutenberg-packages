@@ -31,7 +31,7 @@ Example:
 
 We want to set the number of items per row of our listpost template.
 
-```
+```PHP
 /**
  * @param Collection[] \Yard\Support\Post $posts
  * @yard-prop HAS_NUMBER_PER_ROW true
@@ -43,7 +43,7 @@ Chose the amount of columns per row and the listpost will pass the variable `$ro
 
 Change
 
-````
+````PHP
  <div class="col-md-6">
  ```
 
@@ -63,11 +63,11 @@ Thus, in {active-theme}/templates/blocks/ListPosts/view/custom/example.blade.php
 
 -   Get all custom views available in the template:
 
-        	```/wp-json/yard/blocks/v1/list-posts/custom-views/```
+         ```/wp-json/yard/blocks/v1/list-posts/custom-views/```
 
 -   Get all the posttypes, and their pages:
 
-        	```/wp-json/yard/blocks/v1/list-posts/posts/any```
+         ```/wp-json/yard/blocks/v1/list-posts/posts/any```
 ````
 
 ## Remote sources
@@ -80,25 +80,25 @@ Add the following hook from your project to integrate remoteSources
 
 ```JS
 addFilter( 'yard-blocks.listPostsRemoteSources', 'yard-blocks', () => {
-	return [
-		{
-			title: 'Valente',
-			value: 'site-1',
-			id: 'site-1',
-			baseUrl: 'https://www.valente.nl/wp-json/wp/v2/',
-			types: [
-				{ id: 'pages', name: 'Paginas', slug: 'pages' },
-				{ id: 'faq', name: 'Faq', slug: 'faq' },
-			],
-		},
-		{
-			title: 'Yard',
-			value: 'site-2',
-			id: 'site-2',
-			baseUrl: 'https://www.yard.nl/wp-json/wp/v2/',
-			types: [ { id: 'pages', name: 'Paginas', slug: 'pages' } ],
-		},
-	];
+ return [
+  {
+   title: 'Valente',
+   value: 'site-1',
+   id: 'site-1',
+   baseUrl: 'https://www.valente.nl/wp-json/wp/v2/',
+   types: [
+    { id: 'pages', name: 'Paginas', slug: 'pages' },
+    { id: 'faq', name: 'Faq', slug: 'faq' },
+   ],
+  },
+  {
+   title: 'Yard',
+   value: 'site-2',
+   id: 'site-2',
+   baseUrl: 'https://www.yard.nl/wp-json/wp/v2/',
+   types: [ { id: 'pages', name: 'Paginas', slug: 'pages' } ],
+  },
+ ];
 } );
 ```
 
@@ -108,4 +108,15 @@ The `yard-blocks.listPostsFetchSourcesParam` is available to add extra params wh
 
 ```JS
 addFilter( 'yard-blocks.listPostsFetchSourcesParam', 'yard-blocks', () => ( { limit: 100, data: 'data' } )
+```
+
+### Mapping options
+
+The `yard-blocks.listPostsRemoteSourcesMapping` is available to customize the remote sources mapping
+
+```JS
+addFilter( 'yard-blocks.listPostsRemoteSourcesMapping', 'yard-blocks', (mapping, item, urlObject) => {
+ mapping.siteTitle = urlObject.slug;
+ return mapping;
+}
 ```
