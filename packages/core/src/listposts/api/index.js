@@ -120,7 +120,9 @@ export async function fetchSources( urlObjects = [], taxonomyTerms = [] ) {
 										siteTitle: urlObject.title,
 										postId: item.id,
 										title:
-											item.title.rendered ?? item.title,
+											item.title instanceof Object
+												? item.title.rendered ?? ''
+												: item.title ?? '',
 										url: urlObject.url,
 										baseUrl: urlObject.baseUrl,
 										slug: urlObject.slug,
