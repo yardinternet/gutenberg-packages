@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-block-filters",
-	"version": "0.4.2",
+	"version": "0.4.3",
 	"description": "Contains filters to override block output or settings",
 	"main": "src/index.js",
 	"publishConfig": {
@@ -27,7 +27,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@emotion/core": "^10.0.28",
-		"@yardinternet/gutenberg-editor-components": "^1.4.2",
+		"@yardinternet/gutenberg-editor-components": "^1.4.3",
 		"filesize": "^6.1.0"
 	}
 }
