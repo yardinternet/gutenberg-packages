@@ -1,14 +1,28 @@
 /**
  * For updating: run the script below on every category of icon. https://fontawesome.com/cheatsheet/pro/solid
+ * Source: https://gist.github.com/sakalauskas/b0c5049d5dc349713a82f1cb2a30b2fa
  */
-
-// let names = new Set();
-// let icons = document.getElementsByClassName('icon');
-// for (const icon of icons) {
-//   const name = icon.getElementsByTagName('dd')[0].innerText;
-//   names.add('fas fa-' + name);
-// }
-// console.log(JSON.stringify(Array.from(names)));
+//  [].concat.apply([], Array.prototype.map.call(document.querySelectorAll('.cheatsheet-set'), e => e.id).map(e =>{
+// 	let prefix = '';
+// 	switch (e) {
+// 		case 'regular':
+// 			prefix = 'far'
+// 			break;
+// 		case 'solid':
+// 			prefix = 'fas'
+// 			break;
+// 		case 'light':
+// 			prefix = 'fal'
+// 			break;
+// 		case 'brands':
+// 			prefix = 'fab'
+// 			break;
+// 	}
+// 	return {
+// 		id: e,
+// 		prefix: prefix
+// 	}
+//   }).map(e => Array.prototype.map.call(document.querySelectorAll(`#${e.id} article.icon > dl > .select-all.word-wrap`), element => `${e.prefix} fa-${element.outerText}`))).map(e => `"${e}"`).join(',')
 
 const fontAwesomeIconList = {
 	'Solid icons': [
