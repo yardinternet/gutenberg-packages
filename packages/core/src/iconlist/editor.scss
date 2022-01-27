@@ -17,3 +17,12 @@
 	position: relative !important;
 	box-shadow: none !important;
 }
+
+.yard-blocks-iconlist {
+	padding-left: 0;
+	
+	.block-list-appender {
+		position: static;
+		margin-bottom: 1rem;
+	}
+}

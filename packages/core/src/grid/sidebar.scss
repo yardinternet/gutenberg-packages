@@ -1,0 +1,5 @@
+.block-editor-block-preview__content-iframe {
+	.yard-blocks-grid-column-container {
+		height: fit-content; // Fixes height in the editor sidebar preview window
+	}
+}
