@@ -40,6 +40,7 @@ $grid-flex-options: (
 .edit-post-visual-editor,
 .editor-styles-wrapper {
 	[data-type='yard-blocks/grid'] {
+		height: min-content; // Fixes height of the pattern preview window
 		min-width: 100%;
 		margin-top: 15px;
 		margin-bottom: 15px;
