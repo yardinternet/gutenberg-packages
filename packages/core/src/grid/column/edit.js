@@ -22,6 +22,10 @@ import {
  */
 import Inspector from './inspector';
 import Column from './components/column';
+import {
+	BlockVisibilityControls,
+	BlockVisibilityOverlay,
+} from '../components/block-visibility';
 
 function Edit( {
 	attributes,
@@ -39,6 +43,8 @@ function Edit( {
 	backgroundFixedClass,
 	spacingClasses,
 } ) {
+	const { displayBlock } = attributes;
+
 	/**
 	 * Used in getEditWrapperProps
 	 * ClassName or isSelected are not passed to getEditWrapperProps()
@@ -52,6 +58,13 @@ function Edit( {
 
 	return (
 		<Fragment>
+			<BlockVisibilityControls
+				displayBlock={ displayBlock }
+				setAttributes={ setAttributes }
+			/>
+			{ ! displayBlock && (
+				<BlockVisibilityOverlay name={ __( 'Rasterkolom' ) } />
+			) }
 			<Inspector { ...{ attributes, setAttributes } } />
 			<BlockControls>
 				<ToolbarGroup label={ __( 'Instellingen' ) }>

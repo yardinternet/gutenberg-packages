@@ -20,6 +20,10 @@
 		"colClassXs": {
 			"type": "number",
 			"default": 0
+		},
+		"displayBlock": {
+			"type": "boolean",
+			"default": true
 		}
 	}
 }
