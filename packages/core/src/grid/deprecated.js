@@ -3,7 +3,11 @@
  */
 import classnames from 'classnames';
 import {
+	getMarginAttributes,
+	getPaddingAttributes,
+	backgroundAttributes,
 	withSpacing,
+	withBackground,
 	withBackgroundClass,
 	withBackgroundImage,
 } from '@yardinternet/gutenberg-editor-components';
@@ -120,7 +124,118 @@ const blockAttributes = {
 	},
 };
 
+const deprecatedDefaultAttributes = {
+	fullWidth: {
+		type: 'boolean',
+		default: false,
+	},
+	minHeight: {
+		type: 'string',
+	},
+	rowGutter: {
+		type: 'boolean',
+		default: false,
+	},
+	isInnerContainerFluid: {
+		type: 'boolean',
+		default: false,
+	},
+	columnsEqualHeight: {
+		type: 'boolean',
+		default: false,
+	},
+	flexAlignment: {
+		type: 'string',
+		default: '',
+	},
+	hasContainerPadding: {
+		type: 'boolean',
+		default: true,
+	},
+};
+
 const deprecated = [
+	{
+		attributes: {
+			...deprecatedDefaultAttributes,
+			...backgroundAttributes,
+			...getMarginAttributes(),
+			...getPaddingAttributes(),
+		},
+		save: compose( [ withBackground(), withSpacing() ] )(
+			( {
+				className,
+				attributes,
+				styles,
+				dimRatioClass,
+				backgroundFixedClass,
+				spacingClasses,
+			} ) => {
+				const {
+					fullWidth,
+					minHeight,
+					columnsEqualHeight,
+					flexAlignment,
+					isInnerContainerFluid,
+					hasContainerPadding,
+				} = attributes;
+				const gridStyles = { ...styles, ...{ minHeight } };
+				const gridClasses = classnames( className, spacingClasses, {
+					'columns-equal-height': columnsEqualHeight,
+					'remove-container-padding': ! hasContainerPadding,
+				} );
+
+				const containerClass = isInnerContainerFluid
+					? 'container-fluid'
+					: 'container';
+
+				return (
+					<Fragment>
+						{ fullWidth ? (
+							<div
+								style={ gridStyles }
+								className={ classnames(
+									'container-fluid',
+									gridClasses,
+									dimRatioClass,
+									backgroundFixedClass,
+									flexAlignment
+								) }
+							>
+								<div className={ containerClass }>
+									<Row attributes={ attributes }>
+										<InnerBlocks.Content />
+									</Row>
+								</div>
+							</div>
+						) : (
+							<div
+								className={ classnames(
+									'container',
+									gridClasses
+								) }
+							>
+								<div
+									style={ gridStyles }
+									className={ classnames(
+										dimRatioClass,
+										backgroundFixedClass
+									) }
+								>
+									<Row
+										attributes={ attributes }
+										flexAlignment={ flexAlignment }
+									>
+										<InnerBlocks.Content />
+									</Row>
+								</div>
+							</div>
+						) }
+					</Fragment>
+				);
+			}
+		),
+	},
 	// since 0.4.2
 	{
 		attributes: blockAttributes,
