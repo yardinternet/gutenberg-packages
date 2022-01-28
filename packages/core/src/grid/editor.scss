@@ -172,7 +172,7 @@ $grid-flex-options: (
 	align-items: center;
 	justify-content: center;
 	position: absolute;
-	z-index: 3;
+	z-index: 4;
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -187,4 +187,9 @@ $grid-flex-options: (
 		font-weight: $font-weight-bold;
 		text-align: center;
 	}
+}
+
+// Decrease the z-index if the block-visibility-overlay is on the column
+.yard-blocks-grid .yard-blocks-grid-column-container .block-visibility-overlay {
+	z-index: 3;
 }
