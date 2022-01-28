@@ -5,23 +5,19 @@ import { BlockControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 export const BlockVisibilityControls = ( { displayBlock, setAttributes } ) => {
-	const toggleDisplayBlock = ( value ) => {
-		setAttributes( { displayBlock: value } );
+	const toggleDisplayBlock = () => {
+		setAttributes( { displayBlock: ! displayBlock } );
 	};
 
 	return (
 		<BlockControls
 			controls={ [
 				{
-					icon: 'visibility',
-					title: __( 'Blok tonen' ),
-					onClick: () => toggleDisplayBlock( true ),
-					isActive: displayBlock,
-				},
-				{
 					icon: 'hidden',
-					title: __( 'Blok verbergen' ),
-					onClick: () => toggleDisplayBlock( false ),
+					title: displayBlock
+						? __( 'Blok verbergen' )
+						: __( 'Blok tonen' ),
+					onClick: () => toggleDisplayBlock(),
 					isActive: ! displayBlock,
 				},
 			] }
