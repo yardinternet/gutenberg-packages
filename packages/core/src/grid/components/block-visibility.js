@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { BlockControls } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 
 export const BlockVisibilityControls = ( { displayBlock, setAttributes } ) => {
 	const toggleDisplayBlock = () => {
@@ -28,7 +28,11 @@ export const BlockVisibilityControls = ( { displayBlock, setAttributes } ) => {
 export const BlockVisibilityOverlay = ( { name } ) => (
 	<div className="block-visibility-overlay">
 		<p className="block-visibility-overlay-text">
-			Het &quot;{ name }&quot; blok wordt niet getoond op de website.
+			{ sprintf(
+				/* translators: %s: Name of the block */
+				__( 'Het "%s" blok wordt niet getoond op de website.' ),
+				name
+			) }
 		</p>
 	</div>
 );
