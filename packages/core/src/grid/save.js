@@ -57,7 +57,7 @@ function save( {
 						dimRatioClass,
 						backgroundFixedClass,
 						flexAlignment,
-						! displayBlock && 'd-none'
+						! displayBlock && 'd-none is-hidden'
 					) }
 				>
 					<div className={ containerClass }>
@@ -71,7 +71,7 @@ function save( {
 					className={ classnames(
 						'container',
 						gridClasses,
-						! displayBlock && 'd-none'
+						! displayBlock && 'd-none is-hidden'
 					) }
 				>
 					<div

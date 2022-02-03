@@ -39,7 +39,7 @@ function save( {
 		!! colClass && `col-md-${ colClass }`,
 		!! colClassSm && `col-sm-${ colClassSm }`,
 		!! colClassXs && `col-${ colClassXs }`,
-		! displayBlock && 'd-none',
+		! displayBlock && 'd-none is-hidden',
 		className,
 	] );
 
