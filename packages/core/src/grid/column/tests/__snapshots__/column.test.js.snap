@@ -18,6 +18,10 @@ Object {
     "default": 0,
     "type": "number",
   },
+  "displayBlock": Object {
+    "default": true,
+    "type": "boolean",
+  },
   "editIsSelected": Object {
     "default": false,
     "type": "boolean",
