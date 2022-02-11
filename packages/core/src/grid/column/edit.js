@@ -46,6 +46,17 @@ function Edit( {
 	const { displayBlock } = attributes;
 
 	/**
+	 * Weird bug on sites that bootstrap the blocks from yard-blocks. On these sites
+	 * the displayBlock attribute starts as undefined, breaking the column and making
+	 * all colums invisible.
+	 */
+	useEffect( () => {
+		if ( typeof displayBlock === 'undefined' ) {
+			setAttributes( { displayBlock: true } );
+		}
+	}, [] );
+
+	/**
 	 * Used in getEditWrapperProps
 	 * ClassName or isSelected are not passed to getEditWrapperProps()
 	 * Only attributes are available
