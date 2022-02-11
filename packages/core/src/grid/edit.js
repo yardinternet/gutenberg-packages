@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Fragment, useState } from '@wordpress/element';
+import { Fragment, useState, useEffect } from '@wordpress/element';
 import { InnerBlocks, BlockControls } from '@wordpress/block-editor';
 import { withDispatch } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
@@ -53,6 +53,17 @@ function Edit( {
 		displayBlock,
 	} = attributes;
 	const [ showGridLines, setShowGridLines ] = useState( true );
+
+	/**
+	 * Weird bug on sites that bootstrap the blocks from yard-blocks. On these sites
+	 * the displayBlock attribute starts as undefined, breaking the grid and making
+	 * all columns invisible.
+	 */
+	useEffect( () => {
+		if ( typeof displayBlock === 'undefined' ) {
+			setAttributes( { displayBlock: true } );
+		}
+	}, [] );
 
 	const containerClasses = classnames(
 		{
