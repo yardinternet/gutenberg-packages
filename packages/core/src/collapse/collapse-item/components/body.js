@@ -9,7 +9,7 @@ function Body( {
 		<div
 			className={ `collapse ${ showOpen ? 'show' : '' }` }
 			id={ `collapse-${ id }` }
-			data-parent={ isAccordion ? `#accordion-${ accordionId }` : false }
+			data-parent={ isAccordion ? `#accordion-${ accordionId }` : null }
 		>
 			<div className={ `yard-blocks-collapse-item__body` }>
 				{ children }

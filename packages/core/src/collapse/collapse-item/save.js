@@ -53,7 +53,7 @@ function save( props ) {
 				className={ `collapse ${ showOpen ? 'show' : '' }` }
 				id={ `collapse-${ id }` }
 				data-parent={
-					isAccordion ? `#accordion-${ parentClientId }` : false
+					isAccordion ? `#accordion-${ parentClientId }` : null
 				}
 			>
 				<div className="yard-blocks-collapse-item__body">
