@@ -18,3 +18,83 @@
 		padding: 1rem;
 	}
 }
+
+$flex-alignment-options: (
+	'flex-align-top-left': (
+		'flex-start',
+		'flex-start',
+	),
+	'flex-align-top-center': (
+		'center',
+		'flex-start',
+	),
+	'flex-align-top-right': (
+		'flex-end',
+		'flex-start',
+	),
+	'flex-align-center-left': (
+		'flex-start',
+		'center',
+	),
+	'flex-align-center-center': (
+		'center',
+		'center',
+	),
+	'flex-align-center-right': (
+		'flex-end',
+		'center',
+	),
+	'flex-align-bottom-left': (
+		'flex-start',
+		'flex-end',
+	),
+	'flex-align-bottom-center': (
+		'center',
+		'flex-end',
+	),
+	'flex-align-bottom-right': (
+		'flex-end',
+		'flex-end',
+	),
+);
+
+@mixin create-flex-alignment( $justify-content: center, $align-items: center ) {
+	display: flex;
+	justify-content: #{$justify-content};
+
+	@if ( $align-items ) {
+		align-items: #{$align-items};
+	}
+}
+
+@mixin wrap-flex-alignment( $selector, $options ) {
+	@each $flex-alignment, $properties in $options {
+		.#{$flex-alignment} {
+			#{$selector} {
+				@include create-flex-alignment(
+					nth( $properties, 1 ),
+					nth( $properties, 2 )
+				);
+			}
+		}
+	}
+}
+
+@mixin setup-flex-alignment( $options ) {
+	@each $wrapperClass, $properties in $options {
+		.#{$wrapperClass} {
+			@include create-flex-alignment(
+				nth( $properties, 1 ),
+				nth( $properties, 2 )
+			);
+		}
+	}
+}
+
+@include setup-flex-alignment( $flex-alignment-options );
+
+// Add wrapper to fix aligment bug for container-fluid
+@include wrap-flex-alignment(
+	'&.container-fluid > .container > .row',
+	$flex-alignment-options
+);
