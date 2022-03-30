@@ -9,7 +9,8 @@ import styled from '@emotion/styled';
  * Internal dependencies
  */
 import { extractFromBlockAttributes } from '../../../helpers';
-import { attributes } from '../block.json';
+import metadata from '../block.json';
+const { attributes } = metadata;
 
 const minWidthBreakpoint = `450px`;
 
