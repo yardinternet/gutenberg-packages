@@ -52,16 +52,27 @@ As a rule of thumb, **only update packages from the master branch**
 
 In feature branch or development you can publish alpha releases
 
-### Why lerna finds individual package changes without changing it
+### Why lerna finds individual package changes without changing it 
 
 When changes made to a package that another package depends on, lerna will update the package.json file.
 As example: package-foo has a dependency on package-bar. When you make changes to package-bar, it will update the package.json file of package-foo.
+
+## Recover from a failed publish
+
+Lerna uses git tags to keep track of published versions. The tag for the versions are first created and pushed. If a publish fails, you have to remove these tags and the newly created commits and try again.
+
+1. Check which tags were created. Remove them from origin `git push -d origin {tagname}`
+2. Sync your local tags with the tags from origin `git fetch --prune --prune-tags`
+2. Remove the created commits `git reset HEAD~{number-of-commits} --hard`
+3. Push your git history `git push --force-with-lease`
+
+Fix the reason why the publish failed and try publishing again.
 
 ## Github actions
 
 ### format & lint
 
-Runs the code trough a formatter and commits the format code if necassery. After formatting, the linter will run.
+Runs the code trough a formatter and commits the format code if necessary. After formatting, the linter will run.
 
 ## Format & lint
 
