@@ -10,6 +10,10 @@
 			"type": "string",
 			"default": "/zoeken/"
 		},
+		"searchFieldName": {
+			"type": "string",
+			"default": "q"
+		},
 		"btnText": {
 			"type": "string",
 			"default": "Zoeken"

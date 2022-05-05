@@ -20,6 +20,13 @@ function Inspector( { attributes, setAttributes } ) {
 					value={ attributes.searchUrl }
 					onChange={ ( url ) => setAttributes( { searchUrl: url } ) }
 				/>
+				<TextControl
+					label={ __( 'Naam attribuut' ) }
+					value={ attributes.searchFieldName }
+					onChange={ ( name ) =>
+						setAttributes( { searchFieldName: name } )
+					}
+				/>
 				<CheckboxControl
 					label={ __( 'Tekst in plaats van icoon' ) }
 					value={ attributes.hasBtnText }
