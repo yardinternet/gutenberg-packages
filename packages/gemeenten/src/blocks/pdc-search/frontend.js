@@ -19,6 +19,7 @@ function SearchWrapper() {
 			btnText={ dataAttributes.btntext }
 			label={ dataAttributes.label }
 			searchUrl={ dataAttributes.searchurl }
+			searchFieldName={ dataAttributes.searchfieldname }
 			hasBtnText={ dataAttributes.hasbtntext === 'true' }
 		/>
 	);

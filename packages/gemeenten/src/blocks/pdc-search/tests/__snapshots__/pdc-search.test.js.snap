@@ -15,6 +15,10 @@ Object {
       "default": "Waar bent u naar op zoek?",
       "type": "string",
     },
+    "searchFieldName": Object {
+      "default": "q",
+      "type": "string",
+    },
     "searchUrl": Object {
       "default": "/zoeken/",
       "type": "string",

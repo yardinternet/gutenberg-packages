@@ -141,7 +141,7 @@ function BasicForm( props ) {
 					className="gemeenten-block--pdc-search__input"
 					type="text"
 					value={ searchTerm }
-					name="q"
+					name={ props.searchFieldName }
 					id="pdc-search"
 					onBlur={ onBlur }
 					onFocus={ onFocus }
@@ -168,6 +168,7 @@ BasicForm.defaultProps = {
 	btnText: 'Zoek',
 	disabled: true,
 	searchUrl: '',
+	searchFieldName: 'q',
 	...extractFromBlockAttributes( attributes ),
 };
 
