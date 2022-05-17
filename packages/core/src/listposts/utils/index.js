@@ -13,6 +13,10 @@ export const excludePostTypes = [
 	'post',
 	'wp_block',
 	'yard-presets',
+	'wp_template',
+	'wp_template_part',
+	'wp_navigation',
+	'nav_menu_item',
 ];
 
 export const excludeTaxonomies = [
