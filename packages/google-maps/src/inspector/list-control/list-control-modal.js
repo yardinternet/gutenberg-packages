@@ -9,8 +9,8 @@ import {
 	SelectControl,
 	TextareaControl,
 	ColorPicker,
-	ColorPalette,
 } from '@wordpress/components';
+
 /**
  * Internal dependencies
  */
@@ -37,8 +37,6 @@ function ListControlModal( {
 				return ColorPicker;
 			case 'BaseControl':
 				return BaseControl;
-			case 'ColorPalette':
-				return ColorPalette;
 			case 'ToggleSwitch':
 				return ToggleSwitch;
 			default:

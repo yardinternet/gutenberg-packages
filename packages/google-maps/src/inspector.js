@@ -279,21 +279,16 @@ function Inspector( props ) {
 								},
 							},
 							{
-								type: 'BaseControl',
-								id: 'BaseControlColor',
-								attr: {
-									help: __(
-										'Kies een kleur voor het legenda item.',
-										config.textDomain
-									),
-								},
-							},
-							{
-								type: 'ColorPicker',
+								type: 'TextControl',
 								id: 'color',
 								attr: {
-									label: 'color',
+									label:
+										'Kies een kleur voor het legenda item.',
 									name: 'color',
+									help: __(
+										'HTML hex code, bijvoorbeeld: #FFFFFF (wit)',
+										config.textDomain
+									),
 								},
 							},
 						] }
@@ -406,41 +401,33 @@ function Inspector( props ) {
 								attr: { type: 'hidden' },
 							},
 							{
-								type: 'BaseControl',
-								id: 'BaseControlColor',
+								type: 'TextControl',
+								id: 'color',
 								attr: {
-									label: 'Kleur',
-									help: __(
+									label: __(
 										'Kies een kleur voor de polygon.',
 										config.textDomain
 									),
-								},
-							},
-							{
-								type: 'ColorPicker',
-								id: 'color',
-								attr: {
-									label: 'color',
 									name: 'color',
-								},
-							},
-							{
-								type: 'BaseControl',
-								id: 'BaseControlBorderColor',
-								attr: {
-									label: 'Lijn kleur',
 									help: __(
-										'Kies een lijn kleur voor de polygon.',
+										'HTML hex code, bijvoorbeeld: #FFFFFF (wit)',
 										config.textDomain
 									),
 								},
 							},
 							{
-								type: 'ColorPicker',
+								type: 'TextControl',
 								id: 'borderColor',
 								attr: {
-									label: 'borderColor',
+									label: __(
+										'Kies een lijn kleur voor de polygon.',
+										config.textDomain
+									),
 									name: 'borderColor',
+									help: __(
+										'HTML hex code, bijvoorbeeld: #FFFFFF (wit)',
+										config.textDomain
+									),
 								},
 							},
 						] }
