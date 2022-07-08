@@ -15,9 +15,6 @@ export default function InfoWindow( props ) {
 	return (
 		<div className="infowindow">
 			{ title && <div className="infowindow__title">{ title }</div> }
-			{ content && (
-				<div className="infowindow__content">{ content }</div>
-			) }
 			{ covered && (
 				<div className="infowindow__covered">
 					<span className="infowindow__label">Beslaat: </span>
@@ -71,6 +68,9 @@ export default function InfoWindow( props ) {
 					<span className="infowindow__label">Adviseur Pharos: </span>
 					<span className="infowindow__value">{ pharos }</span>
 				</div>
+			) }
+			{ content && (
+				<div className="infowindow__content">{ content }</div>
 			) }
 		</div>
 	);
