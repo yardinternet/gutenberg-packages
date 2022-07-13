@@ -13,6 +13,10 @@ export const fetchListPosts = ( slug, baseSlug = 'wp/v2/' ) => {
 	return apiFetch( { path: `${ baseSlug }${ slug }?per_page=100` } );
 };
 
+export const searchListPosts = ( slug, baseSlug = 'wp/v2/', search ) => {
+	return apiFetch( { path: `${ baseSlug }${ slug }?search=${ search }` } );
+};
+
 export function fetchCustomViews() {
 	return apiFetch( {
 		path: 'yard/blocks/v1/yard-blocks/list-posts/custom-views',

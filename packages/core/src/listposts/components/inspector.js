@@ -1,9 +1,10 @@
 /**
  * External dependencies
  */
-import { map, countBy } from 'lodash';
+import { map, countBy, debounce } from 'lodash';
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
+import AsyncSelect from 'react-select/async';
 
 /**
  * WordPress dependencies
@@ -40,13 +41,21 @@ import {
 	filterStickyPostSelectOptions,
 	filterExcludedPostsSelectOptions,
 } from '../utils';
-import { fetchSources } from '../api';
+import { fetchSources, searchListPosts } from '../api';
 import SelectPostTypeControl from './select-posttype-control';
 import SelectCustomViewsControl from './select-custom-views-control';
 import ColumnSize from './column-size';
 import SourceTypeControl from './source-type-control';
 
 const sources = applyFilters( 'yard-blocks.listPostsRemoteSources', [] );
+
+/**
+ * Use custom selection component with search functionality
+ */
+const searchCustomSelection = applyFilters(
+	'yard-blocks.listPostsSearchCustomSelection',
+	false
+);
 
 /**
  * Retrieve component from project theme
@@ -119,6 +128,7 @@ function Inspector( props ) {
 	const [ allExternalTaxonomyTerms, setAllExternalTaxonomyTerms ] = useState(
 		[]
 	);
+	const [ stateSearchedItems, setStateSearchedItems ] = useState( [] );
 
 	const excludedCount =
 		excludedPosts && excludedPosts.length
@@ -309,9 +319,17 @@ function Inspector( props ) {
 
 	const shouldRenderCustomSelectionSelect = () => {
 		if ( ! customSelection ) return false;
-		if ( !! posts.length || !! remotePostsOptions.length ) return true;
+		if ( searchCustomSelection && postType !== 'external' ) return false;
+		if ( ! posts.length && ! remotePostsOptions.length ) return false;
 
-		return false;
+		return true;
+	};
+
+	const shouldRenderSearchCustomSelectionSelect = () => {
+		if ( ! customSelection ) return false;
+		if ( postType === 'external' || ! searchCustomSelection ) return false; // Search does not work for external sources.
+
+		return true;
 	};
 
 	const shouldRenderCustomSelectionSpinner = () => {
@@ -319,6 +337,40 @@ function Inspector( props ) {
 		if ( !! posts.length || !! remotePostsOptions.length ) return false;
 
 		return true;
+	};
+
+	/**
+	 * Load options for async select.
+	 */
+	const loadOptions = async ( inputValue, callback ) => {
+		if ( ! inputValue || ! postType ) {
+			return;
+		}
+
+		const data = await searchListPosts(
+			postType !== 'attachment' ? postType : 'media',
+			'wp/v2/',
+			inputValue
+		);
+
+		if ( data ) {
+			transformPostsToState( data );
+			callback( createOptions( data ) );
+		}
+	};
+
+	const transformPostsToState = ( data = [] ) => {
+		setStateSearchedItems(
+			data.map( ( item ) => {
+				return { value: item.id, label: item.title.rendered };
+			} )
+		);
+	};
+
+	const createOptions = ( data ) => {
+		return data.map( ( item ) => {
+			return { value: item.id, label: item.title.rendered };
+		} );
 	};
 
 	return (
@@ -667,6 +719,23 @@ function Inspector( props ) {
 									} )
 								}
 								options={ posts.concat( remotePostsOptions ) }
+							/>
+						</div>
+					) }
+					{ shouldRenderSearchCustomSelectionSelect() && (
+						<div style={ { marginBottom: 20 } }>
+							<p>{ __( 'Vul je zoekterm in.' ) }</p>
+							<AsyncSelect
+								isMulti
+								value={ selectedPosts }
+								cacheOptions={ false }
+								defaultOptions={ stateSearchedItems }
+								onChange={ ( val ) =>
+									setAttributes( {
+										selectedPosts: val === null ? [] : val,
+									} )
+								}
+								loadOptions={ debounce( loadOptions, 200 ) }
 							/>
 						</div>
 					) }
