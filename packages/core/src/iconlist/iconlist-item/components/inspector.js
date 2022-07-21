@@ -12,7 +12,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import IconModal from './modal';
+import IconSearch from './search';
 
 function Inspector( props ) {
 	const { setAttributes, attributes } = props;
@@ -21,7 +21,7 @@ function Inspector( props ) {
 	return (
 		<InspectorControls>
 			<PanelBody title={ __( 'Keuze opties' ) }>
-				<IconModal icon={ icon } setAttributes={ setAttributes } />
+				<IconSearch icon={ icon } setAttributes={ setAttributes } />
 			</PanelBody>
 			<PanelBody title={ __( 'Icooninstellingen' ) }>
 				<FontSizePicker
