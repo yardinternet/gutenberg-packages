@@ -1,21 +1,34 @@
-.fipicon-angle-down,
-.fipicon-angle-left,
-.fipicon-angle-right {
-	&::before {
-		/* stylelint-disable-next-line */
-		font-family: 'Font Awesome 6 Pro';
+.yard-blocks-iconlist {
+	&-preview-icon {
+		margin-bottom: 1rem;
+		font-size: 3rem;
 	}
-}
 
-.rfipcategory {
-	.fipicon-angle-down::before {
-		content: none;
+	&-popover {
+		&-container {
+			display: flex;
+			width: 300px;
+			flex-wrap: wrap;
+			justify-content: center;
+			margin: 1rem;
+			row-gap: 10px;
+		}
+
+		&-btn-container {
+			display: flex;
+			width: 60px;
+			justify-content: center;
+
+			i {
+				font-size: 2rem;
+			}
+		}
 	}
-}
 
-.rfipdropdown--default {
-	position: relative !important;
-	box-shadow: none !important;
+	&-notice {
+		margin-right: 0;
+		margin-left: 0;
+	}
 }
 
 .yard-blocks-iconlist {
