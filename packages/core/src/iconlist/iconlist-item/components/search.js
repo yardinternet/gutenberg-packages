@@ -4,12 +4,22 @@
 import { Button, Popover, SearchControl, Notice } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 function IconSearch( { setAttributes, icon } ) {
 	const [ isOpen, setOpen ] = useState( false );
 	const [ searchInput, setSearchInput ] = useState( '' );
 	const [ searchResults, setSearchResults ] = useState( [] );
 	const [ error, setError ] = useState( '' );
+
+	const allowedStyles = applyFilters( 'yard-blocks.fontawesome-styles', [
+		'solid',
+		'regular',
+		'light',
+		'thin',
+		'duotone',
+		'brands',
+	] );
 
 	const searchFontAwesomeIcons = async ( searchValue ) => {
 		const response = await getFontAwesomeIcons( searchValue );
@@ -25,6 +35,7 @@ function IconSearch( { setAttributes, icon } ) {
 			},
 			[]
 		);
+
 		if ( ! result ) return;
 
 		setSearchResults( result );
@@ -32,13 +43,7 @@ function IconSearch( { setAttributes, icon } ) {
 	};
 
 	const getFontAwesomeIcons = ( search ) => {
-		const query = `{ search(version: "6.1.1", first: 50, query: "${ search }") {
-			id
-			membership {
-				free
-				pro
-			}
-		} }`;
+		const query = `{ search(version: "6.1.1", first: 100, query: "${ search }") { id styles } }`;
 
 		return fetch( 'https://api.fontawesome.com', {
 			method: 'POST',
@@ -59,14 +64,9 @@ function IconSearch( { setAttributes, icon } ) {
 	};
 
 	const convertResponseToClassnames = ( response ) => {
-		const styles = [
-			...response.membership.free,
-			...response.membership.pro.filter(
-				( style ) => ! response.membership.free.includes( style )
-			),
-		];
-
-		return styles.map( ( style ) => `fa-${ style } fa-${ response.id }` );
+		return response.styles
+			.filter( ( style ) => allowedStyles.includes( style ) ?? false )
+			.map( ( style ) => `fa-${ style } fa-${ response.id }` );
 	};
 
 	return (
