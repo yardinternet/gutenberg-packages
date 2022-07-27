@@ -1,8 +1,10 @@
 /**
  * WordPress dependencies
  */
-import { Button, Popover, SearchControl, Notice } from '@wordpress/components';
+import { Button, Popover, SearchControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
+import { useDispatch } from '@wordpress/data';
+import { store as noticesStore } from '@wordpress/notices';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -15,7 +17,8 @@ const IconPickerControl = ( { onChange, icon } ) => {
 	const [ isOpen, setOpen ] = useState( false );
 	const [ searchInput, setSearchInput ] = useState( '' );
 	const [ searchResults, setSearchResults ] = useState( [] );
-	const [ error, setError ] = useState( '' );
+
+	const { createNotice } = useDispatch( noticesStore );
 
 	const allowedStyles = applyFilters( 'yard-blocks.fontawesome-styles', [
 		'solid',
@@ -29,6 +32,7 @@ const IconPickerControl = ( { onChange, icon } ) => {
 	const searchFontAwesomeIcons = async ( searchValue ) => {
 		const response = await getFontAwesomeIcons( searchValue );
 		if ( ! response ) return;
+		if ( response.errors ) return showErrorNotice();
 
 		const result = response.data.search.reduce(
 			( iconResults, iconData ) => {
@@ -42,8 +46,8 @@ const IconPickerControl = ( { onChange, icon } ) => {
 		);
 		if ( ! result ) return;
 
-		setSearchResults( result );
-		setOpen( true );
+		setSearchResults( () => result );
+		setOpen( () => true );
 	};
 
 	const getFontAwesomeIcons = ( search ) => {
@@ -58,19 +62,27 @@ const IconPickerControl = ( { onChange, icon } ) => {
 			body: JSON.stringify( { query } ),
 		} )
 			.then( ( res ) => res.json() )
-			.catch( () =>
-				setError(
-					__(
-						'Momenteel kunnen er geen iconen worden opgehaald, probeer het later nog een keer.'
-					)
-				)
-			);
+			.catch( () => showErrorNotice() );
 	};
 
 	const convertResponseToClassnames = ( response ) => {
 		return response.styles
 			.filter( ( style ) => allowedStyles.includes( style ) ?? false )
 			.map( ( style ) => `fa-${ style } fa-${ response.id }` );
+	};
+
+	const showErrorNotice = () => {
+		createNotice(
+			'error',
+			__(
+				'Momenteel kunnen er geen iconen worden opgehaald, probeer het later nog een keer.'
+			),
+			{
+				isDismissible: true,
+				type: 'snackbar',
+				id: 'icon-picker-control-error',
+			}
+		);
 	};
 
 	return (
@@ -83,46 +95,37 @@ const IconPickerControl = ( { onChange, icon } ) => {
 				value={ searchInput }
 				help={ __( 'Gebruik Engelse termen om een icoon te zoeken.' ) }
 				onChange={ ( searchValue ) => {
-					setSearchInput( searchValue );
+					setSearchInput( () => searchValue );
 					searchFontAwesomeIcons( searchValue );
 				} }
 			/>
-			{ error && (
-				<Notice
-					className="icon-picker-control-notice"
-					status="error"
-					isDismissible={ false }
-				>
-					{ error }
-				</Notice>
-			) }
 			{ isOpen && searchInput && (
 				<Popover
 					title={ __( 'Kies een icoon' ) }
-					onClose={ () => setOpen( false ) }
+					onClose={ () => setOpen( () => false ) }
 					focusOnMount={ false }
 				>
 					<div className="icon-picker-control-popover-container">
-						{ searchResults.length > 0 ? (
-							searchResults.map( ( result, key ) => {
-								return (
-									<div
-										className="icon-picker-control-popover-btn-container"
-										key={ key }
+						{ searchResults?.map( ( result, key ) => {
+							return (
+								<div
+									className="icon-picker-control-popover-btn-container"
+									key={ key }
+								>
+									<Button
+										onClick={ () => {
+											onChange( result );
+											setSearchInput( () => '' );
+											setOpen( () => false );
+										} }
 									>
-										<Button
-											onClick={ () => {
-												onChange( result );
-												setSearchInput( '' );
-												setOpen( false );
-											} }
-										>
-											<i className={ result }></i>
-										</Button>
-									</div>
-								);
-							} )
-						) : (
+										<i className={ result }></i>
+									</Button>
+								</div>
+							);
+						} ) }
+
+						{ ! searchResults.length && (
 							<p>{ __( 'Er zijn geen iconen gevonden' ) }</p>
 						) }
 					</div>
