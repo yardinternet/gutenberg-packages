@@ -1,0 +1,32 @@
+.icon-picker-control {
+	&-preview-icon {
+		margin-bottom: 1rem;
+		font-size: 3rem;
+	}
+
+	&-popover {
+		&-container {
+			display: flex;
+			width: 300px;
+			flex-wrap: wrap;
+			justify-content: center;
+			margin: 1rem;
+			row-gap: 10px;
+		}
+
+		&-btn-container {
+			display: flex;
+			width: 60px;
+			justify-content: center;
+
+			i {
+				font-size: 2rem;
+			}
+		}
+	}
+
+	&-notice {
+		margin-right: 0;
+		margin-left: 0;
+	}
+}
