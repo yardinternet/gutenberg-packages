@@ -10,9 +10,9 @@ import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
- * Internal dependencies
+ * External dependencies
  */
-import IconSearch from './search';
+import { IconPickerControl } from '@yardinternet/gutenberg-editor-components';
 
 function Inspector( props ) {
 	const { setAttributes, attributes } = props;
@@ -21,7 +21,14 @@ function Inspector( props ) {
 	return (
 		<InspectorControls>
 			<PanelBody title={ __( 'Keuze opties' ) }>
-				<IconSearch icon={ icon } setAttributes={ setAttributes } />
+				<IconPickerControl
+					icon={ icon }
+					onChange={ ( result ) =>
+						setAttributes( {
+							icon: result,
+						} )
+					}
+				/>
 			</PanelBody>
 			<PanelBody title={ __( 'Icooninstellingen' ) }>
 				<FontSizePicker

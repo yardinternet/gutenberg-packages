@@ -1,14 +1,14 @@
 /**
  * WordPress dependencies
  */
+import { PanelBody, ToggleControl } from '@wordpress/components';
+import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
+
 /**
  * External dependencies
  */
 import { IconPickerControl } from '@yardinternet/gutenberg-editor-components';
-import { PanelBody, ToggleControl, Button, Modal } from '@wordpress/components';
-import { useState } from '@wordpress/element';
-import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
 
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
@@ -17,7 +17,6 @@ function Inspector( props ) {
 		yardButtonIcon,
 		yardButtonIconColor,
 	} = attributes;
-	const [ isOpen, setOpen ] = useState( false );
 
 	return (
 		<InspectorControls>
@@ -33,34 +32,23 @@ function Inspector( props ) {
 				/>
 				{ yardShowButtonIcon && (
 					<>
-						<Button isSecondary onClick={ () => setOpen( true ) }>
-							{ __( 'Kies een icoon' ) }
-						</Button>
 						<ColorPalette
 							value={ yardButtonIconColor }
 							onChange={ ( value ) =>
-								setAttributes( { yardButtonIconColor: value } )
-							}
-						/>
-					</>
-				) }
-				{ isOpen && (
-					<Modal
-						title={ __( 'Kies een icoon' ) }
-						onRequestClose={ () => setOpen( false ) }
-					>
-						<IconPickerControl
-							icon={ yardButtonIcon }
-							onChange={ ( value ) =>
 								setAttributes( {
-									yardButtonIcon: value,
+									yardButtonIconColor: value,
 								} )
 							}
 						/>
-						<Button isSecondary onClick={ () => setOpen( false ) }>
-							{ __( 'Sluit' ) }
-						</Button>
-					</Modal>
+						<IconPickerControl
+							icon={ yardButtonIcon }
+							onChange={ ( result ) =>
+								setAttributes( {
+									yardButtonIcon: result,
+								} )
+							}
+						/>
+					</>
 				) }
 			</PanelBody>
 		</InspectorControls>
