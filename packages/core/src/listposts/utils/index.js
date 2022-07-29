@@ -219,6 +219,7 @@ export function filterRemovedTerms( allTerms = [], selectedTerms = {} ) {
 	const filteredTerms = {};
 
 	map( allTerms, ( taxonomy ) => {
+		if ( ! taxonomy.data ) return;
 		if ( !! taxonomy.data.length ) {
 			const filtered = filter(
 				selectedTerms[ taxonomy.slug ],
