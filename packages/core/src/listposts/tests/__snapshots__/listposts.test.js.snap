@@ -43,6 +43,10 @@ Object {
     "default": false,
     "type": "boolean",
   },
+  "keepCustomSelectionOrder": Object {
+    "default": false,
+    "type": "boolean",
+  },
   "numberPerRow": Object {
     "default": 0,
     "type": "number",

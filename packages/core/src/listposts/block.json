@@ -11,6 +11,10 @@
 			"type": "boolean",
 			"default": false
 		},
+		"keepCustomSelectionOrder": {
+			"type": "boolean",
+			"default": false
+		},
 		"customView": {
 			"type": "string"
 		},

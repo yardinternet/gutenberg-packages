@@ -3,8 +3,13 @@
  */
 import { map, countBy, debounce } from 'lodash';
 import { useState, useEffect } from 'react';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
 import AsyncSelect from 'react-select/async';
+import {
+	SortableContainer,
+	SortableElement,
+	SortableHandle,
+} from 'react-sortable-hoc';
 
 /**
  * WordPress dependencies
@@ -75,6 +80,15 @@ const remoteNonWpSources = applyFilters(
 
 const errorFetchRemoteSources = __( 'data kan niet worden opgehaald' );
 
+const SortableMultiValue = SortableElement( ( props ) => (
+	<components.MultiValue { ...props } />
+) );
+const SortableMultiValueLabel = SortableHandle( ( props ) => (
+	<components.MultiValueLabel { ...props } />
+) );
+const SortableSelect = SortableContainer( Select );
+const AsyncSortableSelect = SortableContainer( AsyncSelect );
+
 function Inspector( props ) {
 	const {
 		attributes,
@@ -92,6 +106,7 @@ function Inspector( props ) {
 		selectedStickyPostID,
 		customID,
 		customSelection,
+		keepCustomSelectionOrder,
 		selectedPosts,
 		excludedPosts,
 		order,
@@ -370,6 +385,36 @@ function Inspector( props ) {
 	const createOptions = ( data ) => {
 		return data.map( ( item ) => {
 			return { value: item.id, label: item.title.rendered };
+		} );
+	};
+
+	/**
+	 * Helper function to change the position of the posts that is moved in the sortable select
+	 */
+	const arrayMove = ( array, from, to ) => {
+		const slicedArray = array.slice();
+		slicedArray.splice(
+			to < 0 ? array.length + to : to,
+			0,
+			slicedArray.splice( from, 1 )[ 0 ]
+		);
+		return slicedArray;
+	};
+
+	const onChangeSortableSelect = ( value ) => {
+		setAttributes( {
+			selectedPosts: value ? value : [],
+		} );
+	};
+
+	/**
+	 * Function is called when an user change the order in the sortable select
+	 */
+	const onSortEndSortableSelect = ( { oldIndex, newIndex } ) => {
+		const newValue = arrayMove( selectedPosts, oldIndex, newIndex );
+
+		setAttributes( {
+			selectedPosts: newValue,
 		} );
 	};
 
@@ -710,34 +755,64 @@ function Inspector( props ) {
 					/>
 					{ shouldRenderCustomSelectionSelect() && (
 						<div style={ { marginBottom: 20 } }>
-							<Select
+							<SortableSelect
+								axis="xy"
+								closeMenuOnSelect={ false }
+								components={ {
+									MultiValue: SortableMultiValue,
+									MultiValueLabel: SortableMultiValueLabel,
+								} }
 								isMulti
-								value={ selectedPosts }
-								onChange={ ( val ) =>
-									setAttributes( {
-										selectedPosts: val === null ? [] : val,
-									} )
+								isOptionDisabled={ () =>
+									selectedPosts.length >= postsToShow
 								}
+								onChange={ onChangeSortableSelect }
+								onSortEnd={ onSortEndSortableSelect }
 								options={ posts.concat( remotePostsOptions ) }
+								useDragHandle
+								value={ selectedPosts }
 							/>
 						</div>
 					) }
 					{ shouldRenderSearchCustomSelectionSelect() && (
 						<div style={ { marginBottom: 20 } }>
 							<p>{ __( 'Vul je zoekterm in.' ) }</p>
-							<AsyncSelect
-								isMulti
-								value={ selectedPosts }
+							<AsyncSortableSelect
+								axis="xy"
 								cacheOptions={ false }
+								closeMenuOnSelect={ false }
+								components={ {
+									MultiValue: SortableMultiValue,
+									MultiValueLabel: SortableMultiValueLabel,
+								} }
 								defaultOptions={ stateSearchedItems }
-								onChange={ ( val ) =>
-									setAttributes( {
-										selectedPosts: val === null ? [] : val,
-									} )
+								isMulti
+								isOptionDisabled={ () =>
+									selectedPosts.length >= postsToShow
 								}
 								loadOptions={ debounce( loadOptions, 200 ) }
+								onChange={ onChangeSortableSelect }
+								onSortEnd={ onSortEndSortableSelect }
+								options={ posts.concat( remotePostsOptions ) }
+								useDragHandle
+								value={ selectedPosts }
 							/>
 						</div>
+					) }
+					{ ( shouldRenderCustomSelectionSelect() ||
+						shouldRenderSearchCustomSelectionSelect() ) && (
+						<CheckboxControl
+							label={ __( 'Behoud volgorde' ) }
+							checked={ keepCustomSelectionOrder }
+							onChange={ ( checked ) =>
+								setAttributes( {
+									keepCustomSelectionOrder: checked,
+								} )
+							}
+							help={ __(
+								'Versleep de labels om de volgorde van de berichten te veranderen.'
+							) }
+						/>
 					) }
 					{ shouldRenderCustomSelectionSpinner() && (
 						<div>
