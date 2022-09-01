@@ -1,8 +1,4 @@
 /**
- * External dependencies
- */
-import { isEmpty } from 'lodash';
-/**
  * WordPress dependencies
  */
 import { render } from '@wordpress/element';
@@ -20,7 +16,7 @@ const infowindowCollection = [];
  * @param {Object} props
  */
 export function createInfowindowPolygon( props ) {
-	if ( isEmpty( map ) && ! hasInfowindowContent( props ) ) {
+	if ( hasInfowindowContent( props ) ) {
 		return false;
 	}
 
@@ -69,7 +65,7 @@ export function createInfowindowPolygon( props ) {
  * @param {Object} props
  */
 export function createInfowindowMarker( props ) {
-	if ( isEmpty( map ) && ! hasInfowindowContent( props ) ) {
+	if ( ! hasInfowindowContent( props ) ) {
 		return props.marker;
 	}
 
