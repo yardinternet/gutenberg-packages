@@ -110,7 +110,6 @@ function Edit( {
 				</ToolbarGroup>
 			</BlockControls>
 			<Column
-				style={ styles }
 				className={ [
 					backgroundColorClass,
 					dimRatioClass,
@@ -118,6 +117,7 @@ function Edit( {
 					className,
 				] }
 				innerClassName={ [ 'column', spacingClasses ] }
+				innerStyles={ styles }
 			>
 				<InnerBlocks templateLock={ false } />
 			</Column>

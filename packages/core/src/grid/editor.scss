@@ -39,48 +39,18 @@ $grid-flex-options: (
 
 .edit-post-visual-editor,
 .editor-styles-wrapper {
+	/*------------------------------------*
+		Grid styles
+	*------------------------------------*/
 	[data-type='yard-blocks/grid'] {
 		height: min-content; // Fixes height of the pattern preview window
 		min-width: 100%;
-		margin-top: 15px;
-		margin-bottom: 15px;
-	}
-
-	[data-type='yard-blocks/grid-column'] {
-		height: 100%;
-	}
-
-	.yard-blocks-grid-column-container {
-		margin: 15px 0 15px 0;
-
-		.block-editor-block-list__layout {
-			padding-top: 1px;
-			padding-bottom: 1px;
-			margin-right: 5px;
-			margin-left: 5px;
-		}
-	}
-
-	.no-gutters {
-		[data-type='yard-blocks/grid-column'] {
-			padding-right: 0 !important;
-			padding-left: 0 !important;
-		}
 	}
 
 	.show-gridlines {
 		.yard-blocks-grid-column-container {
 			> .yard-blocks-grid-column {
-				border: 1px dashed #555d66;
-			}
-		}
-	}
-
-	// Show transparent border in the patterns preview
-	&.block-editor-block-preview__container {
-		.yard-blocks-grid-column-container {
-			> .yard-blocks-grid-column {
-				border-color: transparent;
+				border: 1px dashed #dddddd;
 			}
 		}
 	}
@@ -88,82 +58,68 @@ $grid-flex-options: (
 	.yard-blocks-grid {
 		height: 100%;
 
-		&--spacing {
-			border: 1px dashed #555d66;
+		> div > .block-editor-inner-blocks > .block-editor-block-list__layout {
+			display: flex;
+			flex-wrap: wrap;
+			margin-right: 0;
+			margin-left: 0;
+		}
+
+		// Grid options
+		.no-gutters {
+			[data-type='yard-blocks/grid-column'] {
+				padding-right: 0 !important;
+				padding-left: 0 !important;
+			}
 		}
 
 		.columns-equal-height {
-			.block-editor-inner-blocks {
-				min-height: inherit;
-
-				.block-editor-block-list__layout {
-					min-height: inherit;
-				}
+			[data-type="yard-blocks/grid-column"] {
+				height: auto;
 			}
 
-			[data-type='yard-blocks/grid-column'] {
-				margin-left: 0 !important;
+			.column {
+				height: 100%;
+			}
 
-				.yard-blocks-grid-column {
-					height: calc( 100% - 60px );
-				}
+			.yard-blocks-grid-column {
+				height: 100%;
 			}
 		}
 
 		.block-editor-inner-blocks {
-			min-width: 97%;
-			max-width: 97%;
 			margin: 0 auto;
-		}
-
-		&.fullwidth {
-			.block-editor-inner-blocks {
-				max-width: 98%;
-			}
 		}
 
 		@include wrap-flex-alignment(
 			'> .block-editor-inner-blocks > .block-editor-block-list__layout',
 			$grid-flex-options
 		);
+	}
 
-		// Since 5.9 wp-block-images only float if they're at the root of the
-		// editor. This css enables aligning images in a grid again (#33385)
-		.wp-block[data-align='right'] > .wp-block-image {
-			float: right;
-		}
-
-		.wp-block[data-align='left'] > .wp-block-image {
-			float: left;
-		}
+	/*------------------------------------*
+		Column styles
+	*------------------------------------*/
+	[data-type='yard-blocks/grid-column'] {
+		height: 100%;
+		margin: 15px 0 15px 0;
 	}
 
 	.yard-blocks-grid-column {
-		min-height: 91px; // Make column easier clickable.
+		min-height: 53px; // Make column easier clickable
 		margin-right: 0;
 		margin-left: 0;
-
-		&:not( :first-child ) {
-			margin-left: 28px;
-		}
-
-		> .block-editor-block-list__layout {
-			display: block;
-		}
 
 		.wp-block {
-			max-width: 100%; // Remove max-width from blocks inside grid.
+			max-width: 100%; // Remove max-width from blocks inside grid
 		}
-	}
 
-	.yard-blocks-grid
-		> div
-		> .block-editor-inner-blocks
-		> .block-editor-block-list__layout {
-		display: flex;
-		flex-wrap: wrap;
-		margin-right: 0;
-		margin-left: 0;
+		// Remove margin from last item in column
+		.column > .block-editor-inner-blocks > .block-editor-block-list__layout {
+			> :last-child {
+				margin-bottom: 0;
+			}
+		}
 	}
 }
 
