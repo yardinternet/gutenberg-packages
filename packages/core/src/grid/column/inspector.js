@@ -17,13 +17,15 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import ColumnSize from '../components/column-size';
+import WidthButtons from './components/width-buttons';
 
 function Inspector( { attributes, setAttributes } ) {
 	const { colClassLg, colClass, colClassSm, colClassXs } = attributes;
 
 	return (
 		<InspectorControls>
-			<PanelBody title={ __( 'Instellingen' ) }>
+			<PanelBody title={ __( 'Breedte-instellingen' ) }>
+				<WidthButtons setAttributes={ setAttributes } />
 				<ColumnSize
 					label={ __( 'Desktop' ) }
 					beforeIcon="desktop"
