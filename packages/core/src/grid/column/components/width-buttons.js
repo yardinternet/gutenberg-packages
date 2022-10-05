@@ -5,10 +5,13 @@ import { applyFilters } from '@wordpress/hooks';
 import { Button, ButtonGroup } from '@wordpress/components';
 
 const WidthButtons = ( { setAttributes } ) => {
-	const widthButtons = applyFilters(
-		'yard-blocks.gridColumnWidthButtons',
-		[ 25, 33, 50, 75, 100 ]
-	);
+	const widthButtons = applyFilters( 'yard-blocks.gridColumnWidthButtons', [
+		25,
+		33,
+		50,
+		75,
+		100,
+	] );
 
 	const handleClick = ( value ) => {
 		const fraction = value / 100;
