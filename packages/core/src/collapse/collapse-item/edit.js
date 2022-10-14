@@ -21,10 +21,15 @@ function Edit( props ) {
 		parentClientId,
 	} = attributes;
 
-	const { parentClientIds } = useSelect( ( select ) => {
+	const { parentClientIds, parentAttributes } = useSelect( ( select ) => {
 		return {
 			parentClientIds: select( 'core/block-editor' ).getBlockParents(
 				clientId
+			),
+			parentAttributes: select( 'core/block-editor' ).getBlockAttributes(
+				select( 'core/block-editor' )
+					.getBlockParents( clientId )
+					.slice( -1 )[ 0 ]
 			),
 		};
 	}, [] );
@@ -40,6 +45,14 @@ function Edit( props ) {
 			parentClientId: `${ parentClientIds.slice( -1 )[ 0 ] }`,
 		} );
 	}, [ parentClientIds ] );
+
+	useEffect( () => {
+		if ( ! parentAttributes ) return;
+
+		setAttributes( {
+			heading: parentAttributes?.heading,
+		} );
+	}, [ parentAttributes ] );
 
 	return (
 		<>
@@ -64,11 +77,7 @@ function Edit( props ) {
 				isAccordion={ isAccordion }
 				accordionId={ parentClientId }
 			>
-				<InnerBlocks
-					allowedBlocks={ true }
-					templateLock={ false }
-					template={ TEMPLATE }
-				/>
+				<InnerBlocks templateLock={ false } template={ TEMPLATE } />
 			</CollapseItem>
 		</>
 	);
