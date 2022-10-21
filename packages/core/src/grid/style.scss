@@ -1,11 +1,10 @@
-.yard-blocks-row {
-	&.alignfull .yard-blocks-grid [class^='col'] {
-		padding-right: 15px;
-		padding-left: 15px;
-	}
-}
-
 .yard-blocks-grid {
+	&.columns-equal-height {
+		.column {
+			height: 100%;
+		}
+	}
+	
 	&.container-fluid {
 		padding-right: 0;
 		padding-left: 0;
@@ -76,6 +75,7 @@ $flex-alignment-options: (
 @mixin setup-flex-alignment( $options ) {
 	@each $wrapperClass, $properties in $options {
 		.#{$wrapperClass} {
+			min-height: inherit;
 			@include create-flex-alignment(
 				nth( $properties, 1 ),
 				nth( $properties, 2 )
