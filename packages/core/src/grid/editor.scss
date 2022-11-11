@@ -38,42 +38,42 @@ $grid-flex-options: (
 );
 
 $flex-alignment-options: (
-	"flex-align-top-left": (
-		"flex-start",
-		"flex-start"
+	'flex-align-top-left': (
+		'flex-start',
+		'flex-start',
 	),
-	"flex-align-top-center": (
-		"center",
-		"flex-start"
+	'flex-align-top-center': (
+		'center',
+		'flex-start',
 	),
-	"flex-align-top-right": (
-		"flex-end",
-		"flex-start"
+	'flex-align-top-right': (
+		'flex-end',
+		'flex-start',
 	),
-	"flex-align-center-left": (
-		"flex-start",
-		"center"
+	'flex-align-center-left': (
+		'flex-start',
+		'center',
 	),
-	"flex-align-center-center": (
-		"center",
-		"center"
+	'flex-align-center-center': (
+		'center',
+		'center',
 	),
-	"flex-align-center-right": (
-		"flex-end",
-		"center"
+	'flex-align-center-right': (
+		'flex-end',
+		'center',
 	),
-	"flex-align-bottom-left": (
-		"flex-start",
-		"flex-end"
+	'flex-align-bottom-left': (
+		'flex-start',
+		'flex-end',
 	),
-	"flex-align-bottom-center": (
-		"center",
-		"flex-end"
+	'flex-align-bottom-center': (
+		'center',
+		'flex-end',
 	),
-	"flex-align-bottom-right": (
-		"flex-end",
-		"flex-end"
-	)
+	'flex-align-bottom-right': (
+		'flex-end',
+		'flex-end',
+	),
 );
 
 @mixin create-flex-alignment( $justify-content: center, $align-items: center ) {
@@ -98,18 +98,18 @@ $flex-alignment-options: (
 	}
 }
 
-@mixin setup-flex-alignment($options) {
+@mixin setup-flex-alignment( $options ) {
 	@each $wrapperClass, $properties in $options {
 		.#{$wrapperClass} {
 			@include create-flex-alignment(
-				nth($properties, 1),
-				nth($properties, 2)
+				nth( $properties, 1 ),
+				nth( $properties, 2 )
 			);
 		}
 	}
 }
 
-@include setup-flex-alignment($flex-alignment-options);
+@include setup-flex-alignment( $flex-alignment-options );
 
 .edit-post-visual-editor,
 .editor-styles-wrapper {
@@ -136,11 +136,15 @@ $flex-alignment-options: (
 	.yard-blocks-grid {
 		height: 100%;
 
-		> div > .block-editor-inner-blocks > .block-editor-block-list__layout {
-			display: flex;
-			flex-wrap: wrap;
-			margin-right: 0;
-			margin-left: 0;
+		> div > .block-editor-inner-blocks {
+			width: 100%;
+
+			> .block-editor-block-list__layout {
+				display: flex;
+				flex-wrap: wrap;
+				margin-right: 0;
+				margin-left: 0;
+			}
 		}
 
 		// Grid options
@@ -152,7 +156,7 @@ $flex-alignment-options: (
 		}
 
 		.columns-equal-height {
-			[data-type="yard-blocks/grid-column"] {
+			[data-type='yard-blocks/grid-column'] {
 				height: auto;
 			}
 
@@ -193,7 +197,9 @@ $flex-alignment-options: (
 		}
 
 		// Remove margin from last item in column
-		.column > .block-editor-inner-blocks > .block-editor-block-list__layout {
+		.column
+			> .block-editor-inner-blocks
+			> .block-editor-block-list__layout {
 			> :last-child {
 				margin-bottom: 0;
 			}
