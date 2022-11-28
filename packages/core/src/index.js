@@ -19,6 +19,7 @@ import * as googlemap from './googlemap';
 import * as grid from './grid';
 import * as gridColumn from './grid/column';
 import * as listposts from './listposts';
+import * as icon from './icon';
 import * as iconList from './iconlist';
 import * as iconListItem from './iconlist/iconlist-item';
 import * as iframe from './iframe';
@@ -61,6 +62,7 @@ export {
 	googlemap,
 	grid,
 	gridColumn,
+	icon,
 	iconList,
 	iconListItem,
 	iframe,
