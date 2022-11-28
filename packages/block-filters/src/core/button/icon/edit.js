@@ -16,11 +16,8 @@ export default createHigherOrderComponent( ( BlockEdit ) => {
 		}
 
 		const { attributes } = props;
-		const {
-			yardButtonIcon,
-			yardButtonIconColor,
-			yardShowButtonIcon,
-		} = attributes;
+		const { yardButtonIcon, yardButtonIconColor, yardShowButtonIcon } =
+			attributes;
 
 		return (
 			<>

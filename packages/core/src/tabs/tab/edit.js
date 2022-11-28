@@ -44,12 +44,10 @@ export default compose( [
 	withSelect( ( select, props ) => {
 		const { clientId } = props;
 
-		const parentBlocks = select( 'core/block-editor' ).getBlockParents(
-			clientId
-		);
-		const parentData = select( 'core/block-editor' ).getBlocksByClientId(
-			parentBlocks
-		);
+		const parentBlocks =
+			select( 'core/block-editor' ).getBlockParents( clientId );
+		const parentData =
+			select( 'core/block-editor' ).getBlocksByClientId( parentBlocks );
 		const innerBlock = 'yard-blocks/tabs';
 
 		for ( let i = 0; i < parentData.length; i++ ) {

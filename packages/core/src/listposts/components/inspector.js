@@ -135,9 +135,8 @@ function Inspector( props ) {
 		supportsNumberPerRowInitialOpen,
 		setSupportsNumberPerRowInitialOpen,
 	] = useState( false );
-	const [ supportsCustomAnchorID, setSupportsCustomAnchorID ] = useState(
-		false
-	);
+	const [ supportsCustomAnchorID, setSupportsCustomAnchorID ] =
+		useState( false );
 	const [ remotePostsOptions, setRemotePostOptions ] = useState( [] );
 	const [ failedRemoteEndpoints, setFailedRemoteEndpoints ] = useState( [] );
 	const [ allExternalTaxonomyTerms, setAllExternalTaxonomyTerms ] = useState(
@@ -548,7 +547,8 @@ function Inspector( props ) {
 							label={ __( 'Selecteer externe bronnen' ) }
 							onChange={ () =>
 								setAttributes( {
-									isMultipleSourcesEnabled: ! isMultipleSourcesEnabled,
+									isMultipleSourcesEnabled:
+										! isMultipleSourcesEnabled,
 									stickyPostSelection: false,
 									selectedStickyPostID: 0,
 								} )

@@ -13,9 +13,11 @@ describe( 'withBackgroundClass', () => {
 			},
 		};
 
-		const Component = withBackgroundClass( 'backgroundColor' )( ( props ) => (
-			<div className={ props.backgroundColorClass }>Awesome</div>
-		) );
+		const Component = withBackgroundClass( 'backgroundColor' )(
+			( props ) => (
+				<div className={ props.backgroundColorClass }>Awesome</div>
+			)
+		);
 
 		const tree = renderer.create( <Component { ...settings } /> ).toJSON();
 
@@ -29,9 +31,11 @@ describe( 'withBackgroundClass', () => {
 			},
 		};
 
-		const Component = withBackgroundClass( 'backgroundColor' )( ( props ) => (
-			<div className={ props.backgroundColorClass }>Awesome</div>
-		) );
+		const Component = withBackgroundClass( 'backgroundColor' )(
+			( props ) => (
+				<div className={ props.backgroundColorClass }>Awesome</div>
+			)
+		);
 
 		const tree = renderer.create( <Component { ...settings } /> ).toJSON();
 

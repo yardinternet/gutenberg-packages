@@ -1,21 +1,21 @@
 {
-  "name": "yard-blocks/tabs",
-  "category": "layout",
-  "attributes": {
-    "defaultTab": {
-      "type": "string",
-      "default": "tab-1"
-    },
-    "defaultTabEnabled": {
-      "type": "boolean",
-      "default": false
-    },
-    "id": {
-      "type": "string"
-    },
-    "innerblocks": {
-      "type": "array",
-      "default": []
-    }
-  }
+	"name": "yard-blocks/tabs",
+	"category": "layout",
+	"attributes": {
+		"defaultTab": {
+			"type": "string",
+			"default": "tab-1"
+		},
+		"defaultTabEnabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"id": {
+			"type": "string"
+		},
+		"innerblocks": {
+			"type": "array",
+			"default": []
+		}
+	}
 }

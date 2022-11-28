@@ -158,13 +158,8 @@ export default compose( [
 		};
 	} ),
 	withDispatch( ( dispatch, props ) => {
-		const {
-			clientId,
-			rootClientId,
-			blocks,
-			getBlocks,
-			currentBlockIndex,
-		} = props;
+		const { clientId, rootClientId, blocks, getBlocks, currentBlockIndex } =
+			props;
 
 		const {
 			replaceInnerBlocks,

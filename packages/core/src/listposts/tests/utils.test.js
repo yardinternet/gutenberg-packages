@@ -380,13 +380,11 @@ describe( 'parseAttributes', () => {
 
 	const options = [
 		{
-			value:
-				'{"baseUrl":"https://www.valente.nl/wp-json/wp/v2/","title":"Valente","type":"Paginas","slug":"pages"}',
+			value: '{"baseUrl":"https://www.valente.nl/wp-json/wp/v2/","title":"Valente","type":"Paginas","slug":"pages"}',
 			label: 'Valente: Paginas',
 		},
 		{
-			value:
-				'{"baseUrl":"https://www.valente.nl/wp-json/wp/v2/","title":"Valente","type":"Faq","slug":"faq"}',
+			value: '{"baseUrl":"https://www.valente.nl/wp-json/wp/v2/","title":"Valente","type":"Faq","slug":"faq"}',
 			label: 'Valente: Faq',
 		},
 	];

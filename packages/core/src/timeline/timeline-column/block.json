@@ -1,24 +1,24 @@
 {
-  "name": "yard-blocks/timeline-column",
-  "attributes": {
-    "editIsSelected": {
-      "type": "boolean",
-      "default": false
-    },
-    "colClass": {
-      "type": "number",
-      "default": 6
-    },
-    "bgImgUrl": {
-      "type": "string"
-    },
-    "timelineColor": {
-      "type": "string",
-      "default": "#ff0000"
-    },
-    "isHidden": {
-      "type": "boolean",
-      "default": false
-    }
-  }
+	"name": "yard-blocks/timeline-column",
+	"attributes": {
+		"editIsSelected": {
+			"type": "boolean",
+			"default": false
+		},
+		"colClass": {
+			"type": "number",
+			"default": 6
+		},
+		"bgImgUrl": {
+			"type": "string"
+		},
+		"timelineColor": {
+			"type": "string",
+			"default": "#ff0000"
+		},
+		"isHidden": {
+			"type": "boolean",
+			"default": false
+		}
+	}
 }

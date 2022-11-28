@@ -204,7 +204,8 @@ export default class Inspector extends Component {
 								checked={ columnsEqualHeight }
 								onChange={ ( newColumnsEqualHeight ) =>
 									setAttributes( {
-										columnsEqualHeight: newColumnsEqualHeight,
+										columnsEqualHeight:
+											newColumnsEqualHeight,
 									} )
 								}
 							/>

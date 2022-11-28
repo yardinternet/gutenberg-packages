@@ -45,19 +45,18 @@ const PrePublishCheckList = ( settings, customCheck = [] ) => {
 		( select ) => {
 			return {
 				currentPostType: select( 'core/editor' ).getCurrentPostType(),
-				isPublishSidebarOpened: select(
-					'core/edit-post'
-				).isPublishSidebarOpened(),
+				isPublishSidebarOpened:
+					select( 'core/edit-post' ).isPublishSidebarOpened(),
 				blocks: select( 'core/block-editor' ).getBlocks(),
 				title: select( 'core/editor' ).getEditedPostAttribute(
 					'title'
 				),
-				featuredImageID: select( 'core/editor' ).getEditedPostAttribute(
-					'featured_media'
-				),
-				excerpt: select( 'core/editor' ).getEditedPostAttribute(
-					'excerpt'
-				),
+				featuredImageID:
+					select( 'core/editor' ).getEditedPostAttribute(
+						'featured_media'
+					),
+				excerpt:
+					select( 'core/editor' ).getEditedPostAttribute( 'excerpt' ),
 				taxonomies: currentSettings.taxonomies
 					? currentSettings?.taxonomies.map( ( taxonomy ) => ( {
 							...taxonomy,

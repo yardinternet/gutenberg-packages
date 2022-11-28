@@ -132,14 +132,11 @@ function Markergroup( {
 	};
 
 	const [ showAddMarkerModal, setShowAddMarkerModal ] = useState( false );
-	const [ showAddMarkerModalCPT, setShowAddMarkerModalCPT ] = useState(
-		false
-	);
+	const [ showAddMarkerModalCPT, setShowAddMarkerModalCPT ] =
+		useState( false );
 	const [ showEditMarkerModal, setShowEditMarkerModal ] = useState( false );
-	const [
-		showAddMarkerModalOptions,
-		setShowAddMarkerModalOptions,
-	] = useState( false );
+	const [ showAddMarkerModalOptions, setShowAddMarkerModalOptions ] =
+		useState( false );
 	const [ showRemoveGroupModal, setRemoveGroupModal ] = useState( false );
 
 	const [ markerData, setMarkerData ] = useState( {} );

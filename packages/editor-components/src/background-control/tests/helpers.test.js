@@ -42,13 +42,11 @@ describe( 'backgroundControl', () => {
 	const expected = [
 		{
 			label: 'Thumbnail',
-			value:
-				'http://whitelabel.local/wp-content/uploads/2019/05/event-150x150.jpeg',
+			value: 'http://whitelabel.local/wp-content/uploads/2019/05/event-150x150.jpeg',
 		},
 		{
 			label: 'Gemiddeld',
-			value:
-				'http://whitelabel.local/wp-content/uploads/2019/05/event-300x214.jpeg',
+			value: 'http://whitelabel.local/wp-content/uploads/2019/05/event-300x214.jpeg',
 		},
 	];
 

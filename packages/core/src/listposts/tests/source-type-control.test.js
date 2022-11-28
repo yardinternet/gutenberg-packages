@@ -9,8 +9,7 @@ describe( 'sourceTypeControl', () => {
 	};
 
 	const result = {
-		value:
-			'{"baseUrl":"https://www.valente.nl/wp-json/wp/v2/","title":"Valente","type":"Pages","slug":"pages"}',
+		value: '{"baseUrl":"https://www.valente.nl/wp-json/wp/v2/","title":"Valente","type":"Pages","slug":"pages"}',
 		label: 'Valente: Pages',
 	};
 

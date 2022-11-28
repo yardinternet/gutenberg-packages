@@ -11,8 +11,12 @@ describe( 'helpers', () => {
 	} );
 
 	test( 'should add new custom property', () => {
-		const newSettings = { settings: { color: 'red', google_map_api_key: 'key' } };
+		const newSettings = {
+			settings: { color: 'red', google_map_api_key: 'key' },
+		};
 
-		expect( getGoogleMapBlockSettings( newSettings ) ).toEqual( newSettings );
+		expect( getGoogleMapBlockSettings( newSettings ) ).toEqual(
+			newSettings
+		);
 	} );
 } );

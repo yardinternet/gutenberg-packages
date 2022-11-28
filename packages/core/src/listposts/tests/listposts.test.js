@@ -3,7 +3,10 @@ import React from 'react'; // eslint-disable-line
  * Internal dependencies
  */
 import { attributes, name } from '../block.json';
-import { filterStickyPostSelectOptions, filterExcludedPostsSelectOptions } from '../utils';
+import {
+	filterStickyPostSelectOptions,
+	filterExcludedPostsSelectOptions,
+} from '../utils';
 
 describe( 'basic tests', () => {
 	test( 'block name should not change', () => {
@@ -46,13 +49,21 @@ describe( 'utils', () => {
 
 	test( 'should return excluded values in excludes posts select options', () => {
 		expect(
-			filterExcludedPostsSelectOptions( stickyPostSelection, selectedStickyPostID, posts )
+			filterExcludedPostsSelectOptions(
+				stickyPostSelection,
+				selectedStickyPostID,
+				posts
+			)
 		).toEqual( expectedExcludedPostsSelectOptions );
 	} );
 
 	test( 'should return original posts array', () => {
-		expect( filterExcludedPostsSelectOptions( false, selectedStickyPostID, posts ) ).toEqual(
-			posts
-		);
+		expect(
+			filterExcludedPostsSelectOptions(
+				false,
+				selectedStickyPostID,
+				posts
+			)
+		).toEqual( posts );
 	} );
 } );

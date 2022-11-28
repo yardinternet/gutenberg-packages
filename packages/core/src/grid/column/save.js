@@ -26,13 +26,8 @@ function save( {
 	backgroundFixedClass,
 	dimRatioClass,
 } ) {
-	const {
-		colClassLg,
-		colClass,
-		colClassSm,
-		colClassXs,
-		displayBlock,
-	} = attributes;
+	const { colClassLg, colClass, colClassSm, colClassXs, displayBlock } =
+		attributes;
 
 	const classNames = classnames( [
 		!! colClassLg && `col-lg-${ colClassLg }`,

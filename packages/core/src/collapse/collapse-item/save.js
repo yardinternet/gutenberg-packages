@@ -10,14 +10,8 @@ import { InnerBlocks } from '@wordpress/block-editor';
 
 function save( props ) {
 	const { attributes } = props;
-	const {
-		id,
-		headerText,
-		showOpen,
-		isAccordion,
-		parentClientId,
-		heading,
-	} = attributes;
+	const { id, headerText, showOpen, isAccordion, parentClientId, heading } =
+		attributes;
 
 	const button = () => {
 		return `

@@ -40,9 +40,10 @@ function Inspector( {
 	} = attributes;
 
 	const onSelectImageSize = ( size ) => {
-		const carouselImagesMediaObjects = convertedCarouselImagesMediaObjects.map(
-			( image ) => pickRelevantMediaFiles( image, size )
-		);
+		const carouselImagesMediaObjects =
+			convertedCarouselImagesMediaObjects.map( ( image ) =>
+				pickRelevantMediaFiles( image, size )
+			);
 
 		// set the converted image object to 'carouselImages' atttribute.
 		setAttributes( {

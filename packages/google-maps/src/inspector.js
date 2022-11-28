@@ -55,22 +55,17 @@ function Inspector( props ) {
 		filterOptions,
 		mapOptions,
 	} = attributes;
-	const [ showAddMarkerGroupModal, setShowAddMarkerGroupModal ] = useState(
-		false
-	);
+	const [ showAddMarkerGroupModal, setShowAddMarkerGroupModal ] =
+		useState( false );
 
-	const [
-		showImportShapeCoordinates,
-		setShowImportShapeCoordinates,
-	] = useState( false );
+	const [ showImportShapeCoordinates, setShowImportShapeCoordinates ] =
+		useState( false );
 
 	const [ showImportAreas, setShowImportAreas ] = useState( false );
 	const [ showImportMarkers, setShowImportMarkers ] = useState( false );
 
-	const [
-		showExportShapeCoordinates,
-		setShowExportShapeCoordinates,
-	] = useState( false );
+	const [ showExportShapeCoordinates, setShowExportShapeCoordinates ] =
+		useState( false );
 
 	const addMarkerGroup = ( group ) => {
 		const defaultMarkerGroup = {
@@ -212,8 +207,7 @@ function Inspector( props ) {
 								id: 'priority',
 								attr: {
 									label: 'Prioriteit',
-									help:
-										'Dit nummer bepaalt de filters volgorde.',
+									help: 'Dit nummer bepaalt de filters volgorde.',
 									type: 'number',
 								},
 							},
@@ -282,8 +276,7 @@ function Inspector( props ) {
 								type: 'TextControl',
 								id: 'color',
 								attr: {
-									label:
-										'Kies een kleur voor het legenda item.',
+									label: 'Kies een kleur voor het legenda item.',
 									name: 'color',
 									help: __(
 										'HTML hex code, bijvoorbeeld: #FFFFFF (wit)',

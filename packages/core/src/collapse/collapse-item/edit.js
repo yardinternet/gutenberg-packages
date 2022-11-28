@@ -13,19 +13,13 @@ import { useSelect } from '@wordpress/data';
 
 function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
-	const {
-		id,
-		headerText,
-		showOpen,
-		isAccordion,
-		parentClientId,
-	} = attributes;
+	const { id, headerText, showOpen, isAccordion, parentClientId } =
+		attributes;
 
 	const { parentClientIds, parentAttributes } = useSelect( ( select ) => {
 		return {
-			parentClientIds: select( 'core/block-editor' ).getBlockParents(
-				clientId
-			),
+			parentClientIds:
+				select( 'core/block-editor' ).getBlockParents( clientId ),
 			parentAttributes: select( 'core/block-editor' ).getBlockAttributes(
 				select( 'core/block-editor' )
 					.getBlockParents( clientId )

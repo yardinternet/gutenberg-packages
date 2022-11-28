@@ -1,33 +1,33 @@
 {
-  "name": "yard-blocks/timeline",
-  "attributes": {
-    "fullWidth": {
-      "type": "boolean",
-      "default": false
-    },
-    "minHeight": {
-      "type": "string"
-    },
-    "rowGutter": {
-      "type": "boolean",
-      "default": false
-    },
-    "flexAlignment": {
-      "type": "string",
-      "default": ""
-    },
-    "bgColor": {
-      "type": "string"
-    },
-    "bgImgUrl": {
-      "type": "string"
-    },
-    "gradientArray": {
-      "type": "array",
-      "default": []
-    }
-  },
-  "supports": {
-    "html": false
-  }
+	"name": "yard-blocks/timeline",
+	"attributes": {
+		"fullWidth": {
+			"type": "boolean",
+			"default": false
+		},
+		"minHeight": {
+			"type": "string"
+		},
+		"rowGutter": {
+			"type": "boolean",
+			"default": false
+		},
+		"flexAlignment": {
+			"type": "string",
+			"default": ""
+		},
+		"bgColor": {
+			"type": "string"
+		},
+		"bgImgUrl": {
+			"type": "string"
+		},
+		"gradientArray": {
+			"type": "array",
+			"default": []
+		}
+	},
+	"supports": {
+		"html": false
+	}
 }

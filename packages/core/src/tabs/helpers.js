@@ -45,13 +45,11 @@ const withInnerBlocks = () =>
 			withDispatch( ( dispatch, props, registry ) => {
 				const { getBlocks } = props;
 
-				const { replaceInnerBlocks, clearSelectedBlock } = dispatch(
-					'core/block-editor'
-				);
+				const { replaceInnerBlocks, clearSelectedBlock } =
+					dispatch( 'core/block-editor' );
 
-				const { getBlockRootClientId } = registry.select(
-					'core/block-editor'
-				);
+				const { getBlockRootClientId } =
+					registry.select( 'core/block-editor' );
 
 				return {
 					/**

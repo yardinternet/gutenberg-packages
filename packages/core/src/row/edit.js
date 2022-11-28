@@ -30,12 +30,8 @@ class RowEdit extends Component {
 
 	render() {
 		const { setAttributes, attributes } = this.props;
-		const {
-			layoutDesktop,
-			rowHeight,
-			rowHeightAuto,
-			rowStyles,
-		} = attributes;
+		const { layoutDesktop, rowHeight, rowHeightAuto, rowStyles } =
+			attributes;
 
 		/**
 		 * SetColumn helper passed down to child components

@@ -22,12 +22,8 @@ import { createIconsArray } from './utils';
 
 const Edit = ( props ) => {
 	const { attributes, setAttributes, isSelected } = props;
-	const {
-		content,
-		description,
-		descriptionColor,
-		descriptionFontSize,
-	} = attributes;
+	const { content, description, descriptionColor, descriptionFontSize } =
+		attributes;
 
 	const spanStyle = { marginLeft: '10px' };
 	const placeholder = __( 'Typ om een icoon te zoeken' );

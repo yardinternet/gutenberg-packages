@@ -1,0 +1,7 @@
+{
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"css.validate": false,
+	"scss.validate": false,
+	"prettier.configPath": ".prettierrc.js",
+	"stylelint.validate": ["css", "scss"]
+}

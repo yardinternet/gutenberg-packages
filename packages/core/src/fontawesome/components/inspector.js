@@ -17,12 +17,8 @@ import sizes from '../settings/sizes';
 export default class Inspector extends Component {
 	render() {
 		const { setAttributes, attributes } = this.props;
-		const {
-			size,
-			color,
-			descriptionColor,
-			descriptionFontSize,
-		} = attributes;
+		const { size, color, descriptionColor, descriptionFontSize } =
+			attributes;
 
 		return (
 			<InspectorControls>

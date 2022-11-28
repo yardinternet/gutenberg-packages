@@ -11,7 +11,11 @@ describe( 'basic tests', () => {
 		};
 
 		const expected = [
-			{ visual: 'internet-explorer', name: 'internet-explorer', type: 'fab' },
+			{
+				visual: 'internet-explorer',
+				name: 'internet-explorer',
+				type: 'fab',
+			},
 			{ visual: 'bitcoin', name: 'bitcoin', type: 'fab' },
 			{ visual: 'ad', name: 'ad', type: 'fal' },
 			{ visual: 'adversal', name: 'adversal', type: 'fal' },

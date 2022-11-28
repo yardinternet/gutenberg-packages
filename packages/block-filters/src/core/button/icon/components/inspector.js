@@ -12,11 +12,8 @@ import { IconPickerControl } from '@yardinternet/gutenberg-editor-components';
 
 function Inspector( props ) {
 	const { attributes, setAttributes } = props;
-	const {
-		yardShowButtonIcon,
-		yardButtonIcon,
-		yardButtonIconColor,
-	} = attributes;
+	const { yardShowButtonIcon, yardButtonIcon, yardButtonIconColor } =
+		attributes;
 
 	return (
 		<InspectorControls>

@@ -7,13 +7,8 @@ const { Fragment } = wp.element;
 const { __ } = wp.i18n;
 
 const FacetSelects = ( props ) => {
-	const {
-		setAttributes,
-		attributes,
-		facets,
-		templates,
-		templateOnChange,
-	} = props;
+	const { setAttributes, attributes, facets, templates, templateOnChange } =
+		props;
 	const { selectedFacets, selectedTemplate } = attributes;
 
 	return (

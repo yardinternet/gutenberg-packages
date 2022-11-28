@@ -1,31 +1,31 @@
 {
-  "name": "yard-blocks/font-awesome",
-  "attributes": {
-    "content": {
-      "type": "string"
-    },
-    "description": {
-      "type": "html",
-      "default": ""
-    },
-    "descriptionColor": {
-      "type": "string",
-      "default": ""
-    },
-    "descriptionFontSize": {
-      "type": "string",
-      "default": "16"
-    },
-    "size": {
-      "type": "string",
-      "default": "fa-lg"
-    },
-    "style": {
-      "type": "string",
-      "default": "far"
-    },
-    "color": {
-      "type": "string"
-    }
-  }
+	"name": "yard-blocks/font-awesome",
+	"attributes": {
+		"content": {
+			"type": "string"
+		},
+		"description": {
+			"type": "html",
+			"default": ""
+		},
+		"descriptionColor": {
+			"type": "string",
+			"default": ""
+		},
+		"descriptionFontSize": {
+			"type": "string",
+			"default": "16"
+		},
+		"size": {
+			"type": "string",
+			"default": "fa-lg"
+		},
+		"style": {
+			"type": "string",
+			"default": "far"
+		},
+		"color": {
+			"type": "string"
+		}
+	}
 }

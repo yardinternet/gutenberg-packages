@@ -14,13 +14,8 @@ const focalPointDimensions = {
 };
 
 export default function TabAdvanced( { attributes, setAttributes } ) {
-	const {
-		backgroundFixed,
-		bgImgUrl,
-		bgRepeat,
-		bgSize,
-		focalPoint,
-	} = attributes;
+	const { backgroundFixed, bgImgUrl, bgRepeat, bgSize, focalPoint } =
+		attributes;
 	return (
 		<>
 			<ToggleControl

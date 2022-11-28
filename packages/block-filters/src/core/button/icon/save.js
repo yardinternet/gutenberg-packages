@@ -4,11 +4,8 @@
 import { coreButtonIcon } from '../../../config';
 
 export default function Save( element, blockType, attributes ) {
-	const {
-		yardShowButtonIcon,
-		yardButtonIcon,
-		yardButtonIconColor,
-	} = attributes;
+	const { yardShowButtonIcon, yardButtonIcon, yardButtonIconColor } =
+		attributes;
 
 	if ( blockType.name !== coreButtonIcon.block || ! yardShowButtonIcon ) {
 		return element;

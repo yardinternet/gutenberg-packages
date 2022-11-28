@@ -1,7 +1,6 @@
 export const options = [
 	{
-		value:
-			'{"baseUrl":"https://www.valente.nl/wp-json/wp/v2/","title":"Valente","type":"Paginas","slug":"pages"}',
+		value: '{"baseUrl":"https://www.valente.nl/wp-json/wp/v2/","title":"Valente","type":"Paginas","slug":"pages"}',
 		label: 'Valente: Paginas',
 	},
 ];

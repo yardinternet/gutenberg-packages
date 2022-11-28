@@ -16,9 +16,8 @@ const includePackages = require( '@yardinternet/webpack-include-packages' );
  * @return {Object} config
  */
 const gutenbergPackagesConfig = ( { packages = [] } ) => {
-	defaultConfig.module.rules[
-		isProduction ? 0 : 1
-	].exclude = includePackages( packages );
+	defaultConfig.module.rules[ isProduction ? 0 : 1 ].exclude =
+		includePackages( packages );
 	return {
 		...defaultConfig,
 		module: {

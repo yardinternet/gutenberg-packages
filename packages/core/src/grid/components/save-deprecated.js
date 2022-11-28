@@ -25,12 +25,8 @@ function save( {
 	backgroundColorClass,
 	spacingClasses,
 } ) {
-	const {
-		fullWidth,
-		minHeight,
-		columnsEqualHeight,
-		flexAlignment,
-	} = attributes;
+	const { fullWidth, minHeight, columnsEqualHeight, flexAlignment } =
+		attributes;
 	const gridStyles = { ...styles, ...{ minHeight } };
 	const gridClasses = classnames( className, spacingClasses, {
 		'columns-equal-height': columnsEqualHeight,

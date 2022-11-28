@@ -14,15 +14,14 @@ export function filterPresetByLayoutIDs( filteredPreset, layoutIDs ) {
 	Object.keys( filteredPreset ).map( ( col ) => {
 		return Object.keys( filteredPreset[ col ].layouts ).map(
 			( viewport ) => {
-				return ( filteredPreset[ col ].layouts[
-					viewport
-				] = filteredPreset[ col ].layouts[ viewport ].filter(
-					( item ) => {
-						return layoutIDs.indexOf( item.id ) !== -1
-							? true
-							: false;
-					}
-				) );
+				return ( filteredPreset[ col ].layouts[ viewport ] =
+					filteredPreset[ col ].layouts[ viewport ].filter(
+						( item ) => {
+							return layoutIDs.indexOf( item.id ) !== -1
+								? true
+								: false;
+						}
+					) );
 			}
 		);
 	} );

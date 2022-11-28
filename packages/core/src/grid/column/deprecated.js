@@ -153,12 +153,8 @@ const deprecated = [
 				backgroundFixedClass,
 				dimRatioClass,
 			} ) => {
-				const {
-					colClassLg,
-					colClass,
-					colClassSm,
-					colClassXs,
-				} = attributes;
+				const { colClassLg, colClass, colClassSm, colClassXs } =
+					attributes;
 				const classNames = classnames( [
 					!! colClassLg && `col-lg-${ colClassLg }`,
 					!! colClass && `col-md-${ colClass }`,

@@ -26,13 +26,12 @@ const Edit = ( { clientId } ) => {
 
 	const { getBlockIndex, getBlockRootClientId } = useSelect( ( select ) => ( {
 		getBlockIndex: select( 'core/block-editor' ).getBlockIndex,
-		getBlockRootClientId: select( 'core/block-editor' )
-			.getBlockRootClientId,
+		getBlockRootClientId:
+			select( 'core/block-editor' ).getBlockRootClientId,
 	} ) );
 
-	const { clearSelectedBlock, insertBlocks, removeBlock } = useDispatch(
-		'core/block-editor'
-	);
+	const { clearSelectedBlock, insertBlocks, removeBlock } =
+		useDispatch( 'core/block-editor' );
 	const { createNotice } = useDispatch( 'core/notices' );
 
 	useEffect( () => {

@@ -119,13 +119,8 @@ const deprecated = [
 		},
 		save( props ) {
 			const { attributes } = props;
-			const {
-				id,
-				headerText,
-				showOpen,
-				isAccordion,
-				parentClientId,
-			} = attributes;
+			const { id, headerText, showOpen, isAccordion, parentClientId } =
+				attributes;
 
 			return (
 				<div className="yard-blocks-collapse-item">

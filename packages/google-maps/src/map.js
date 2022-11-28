@@ -63,10 +63,8 @@ function Map( {
 	},
 } ) {
 	const [ map, setMap ] = useState( false );
-	const [
-		clusterMarkersScriptLoaded,
-		setClusterMarkersScriptLoaded,
-	] = useState( false );
+	const [ clusterMarkersScriptLoaded, setClusterMarkersScriptLoaded ] =
+		useState( false );
 	const [ currentPolyLines, setCurrentPolyLines ] = useState( [] );
 	const [ filteredMarkerGroups, setFilteredMarkerGroups ] = useState( [] );
 	const [ filteredPolygons, setFilteredPolygons ] = useState( [] );

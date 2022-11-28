@@ -1,13 +1,13 @@
 {
-  "name": "yard-block/card",
-  "category": "layout",
-  "parent": ["yard-block/cards"],
-  "attributes": {
-    "parentCardCount": {
-      "type": "number"
-    },
-    "selectedTemplate": {
-      "type": "string"
-    }
-  }
+	"name": "yard-block/card",
+	"category": "layout",
+	"parent": [ "yard-block/cards" ],
+	"attributes": {
+		"parentCardCount": {
+			"type": "number"
+		},
+		"selectedTemplate": {
+			"type": "string"
+		}
+	}
 }

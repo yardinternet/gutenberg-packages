@@ -201,13 +201,11 @@ export default compose( [
 	} ),
 	withDispatch( ( dispatch, props, registry ) => {
 		const { clientId, setAttributes, onInnerBlocksRemove } = props;
-		const { getBlocks, getBlockRootClientId } = registry.select(
-			'core/block-editor'
-		);
+		const { getBlocks, getBlockRootClientId } =
+			registry.select( 'core/block-editor' );
 
-		const { replaceInnerBlocks, updateBlockAttributes } = dispatch(
-			'core/block-editor'
-		);
+		const { replaceInnerBlocks, updateBlockAttributes } =
+			dispatch( 'core/block-editor' );
 
 		const { createNotice } = dispatch( 'core/notices' );
 

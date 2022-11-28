@@ -54,11 +54,19 @@ describe( 'withBackground', () => {
 			},
 		};
 
-		const Component = withBackground()( ( { styles, dimRatioClass, backgroundFixedClass } ) => (
-			<div style={ styles } className={ classnames( dimRatioClass, backgroundFixedClass ) }>
-				WithBackground
-			</div>
-		) );
+		const Component = withBackground()(
+			( { styles, dimRatioClass, backgroundFixedClass } ) => (
+				<div
+					style={ styles }
+					className={ classnames(
+						dimRatioClass,
+						backgroundFixedClass
+					) }
+				>
+					WithBackground
+				</div>
+			)
+		);
 
 		const tree = renderer.create( <Component { ...props } /> ).toJSON();
 
