@@ -11,17 +11,17 @@ on:
             - master
             - develop
 jobs:
-    lint:
-        name: 'lint'
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
-              with:
-                  node-version: '12.x'
-            - run: mv .npmrc.example .npmrc 
-            - run: npm ci
-            - run: npm run lint
+    # lint:
+    #     name: 'lint'
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - uses: actions/checkout@v2
+    #         - uses: actions/setup-node@v1
+    #           with:
+    #               node-version: '12.x'
+    #         - run: mv .npmrc.example .npmrc
+    #         - run: npm ci
+    #         - run: npm run lint
     format:
         name: 'format'
         needs: lint
@@ -31,9 +31,9 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: '12.x'
-            - run: mv .npmrc.example .npmrc      
+            - run: mv .npmrc.example .npmrc
             - run: npm ci
-            - run: mv .npmrc .npmrc.example    
+            - run: mv .npmrc .npmrc.example
             - run: npm run format
             - uses: stefanzweifel/git-auto-commit-action@v4.1.1
               with:
