@@ -10,7 +10,7 @@ import { useEffect } from '@wordpress/element';
 import Inspector from './components/inspector';
 
 function Edit( { clientId, attributes, setAttributes } ) {
-	const { accordionId, heading } = attributes;
+	const { accordionId, heading, structuredData } = attributes;
 
 	const TEMPLATE = [ [ 'yard-blocks/collapse-item' ] ];
 	const ALLOWED_BLOCKS = [ 'yard-blocks/collapse-item' ];
@@ -23,6 +23,7 @@ function Edit( { clientId, attributes, setAttributes } ) {
 		<>
 			<Inspector
 				heading={ heading }
+				structuredData={ structuredData }
 				setAttributes={ setAttributes }
 				clientId={ clientId }
 			/>
