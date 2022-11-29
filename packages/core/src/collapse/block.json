@@ -8,6 +8,10 @@
 		"heading": {
 			"type": "string",
 			"default": ""
+		},
+		"structuredData": {
+			"type": "boolean",
+			"default": false
 		}
 	}
 }

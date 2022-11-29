@@ -45,6 +45,7 @@ function Edit( props ) {
 
 		setAttributes( {
 			heading: parentAttributes?.heading,
+			structuredData: parentAttributes?.structuredData,
 		} );
 	}, [ parentAttributes ] );
 
