@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-editor-components",
-	"version": "1.4.6",
+	"version": "1.4.7",
 	"description": "UI components for yard blocks",
 	"main": "build/index.js",
 	"module": "src/index.js",
