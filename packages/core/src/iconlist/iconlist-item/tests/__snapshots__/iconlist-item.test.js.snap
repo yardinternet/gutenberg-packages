@@ -16,8 +16,8 @@ Object {
       "type": "string",
     },
     "iconSize": Object {
-      "default": 18,
-      "type": "number",
+      "default": "18px",
+      "type": "string",
     },
     "labelText": Object {
       "default": "",

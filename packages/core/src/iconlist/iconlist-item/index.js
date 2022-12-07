@@ -14,6 +14,7 @@ import { __ } from '@wordpress/i18n';
 import metadata from './block.json';
 import edit from './edit';
 import save from './save';
+import deprecated from './deprecated';
 
 const Icon = <BlockIcon faClasses="fal fa-icons" />;
 
@@ -37,6 +38,7 @@ const settings = {
 	edit,
 	attributes,
 	save,
+	deprecated,
 };
 
 export { icon, name, settings };
