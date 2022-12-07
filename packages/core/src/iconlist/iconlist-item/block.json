@@ -11,8 +11,8 @@
 			"default": ""
 		},
 		"iconSize": {
-			"type": "number",
-			"default": 18
+			"type": "string",
+			"default": "18px"
 		},
 		"labelText": {
 			"type": "string",
