@@ -1,13 +1,7 @@
 /**
- * External dependencies
- */
-import classnames from 'classnames';
-
-/**
  * WordPress dependencies
  */
-import { RichText } from '@wordpress/block-editor';
-import { css, cx } from 'emotion';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
@@ -15,21 +9,19 @@ import { css, cx } from 'emotion';
 import Inspector from './components/inspector';
 import Icon from './components/icon';
 
-function edit( props ) {
-	const { className, setAttributes, attributes } = props;
+const Edit = ( props ) => {
+	const { setAttributes, attributes } = props;
 	const { labelText, placeholder } = attributes;
 
-	const classname = classnames( 'yard-blocks-iconlist__item', className );
-	const styles = css`
-		position: relative;
-		display: flex;
-		align-items: center;
-	`;
+	const blockProps = useBlockProps( {
+		className: 'yard-blocks-iconlist__item',
+		style: { position: 'relative', display: 'flex', alignItems: 'center' },
+	} );
 
 	return (
 		<>
 			<Inspector { ...props } />
-			<li className={ cx( classname, styles ) }>
+			<li { ...blockProps }>
 				<Icon { ...props } />
 				<RichText
 					tagName="span"
@@ -42,6 +34,6 @@ function edit( props ) {
 			</li>
 		</>
 	);
-}
+};
 
-export default edit;
+export default Edit;
