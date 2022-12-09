@@ -22,6 +22,7 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-th';
 
 const settings = {
+	apiVersion: 2,
 	title: __( 'Iconenlijst item', 'yard-blocks' ),
 	description: __( 'Een enkele iconenlijst item.' ),
 	parent: [ 'yard-blocks/icon-list' ],
@@ -34,6 +35,13 @@ const settings = {
 	keywords: [ __( 'url', 'yard-blocks' ), __( 'link', 'yard-blocks' ) ],
 	supports: {
 		align: [ 'wide', 'full' ],
+		color: {
+			background: false,
+			text: true,
+		},
+		typography: {
+			fontSize: true,
+		},
 	},
 	edit,
 	attributes,

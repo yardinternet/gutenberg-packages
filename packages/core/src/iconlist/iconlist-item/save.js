@@ -1,19 +1,23 @@
 /**
  * WordPress dependencies
  */
-import { RichText } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
  */
 import Icon from './components/icon';
 
-function save( props ) {
+const Save = ( props ) => {
 	const { attributes } = props;
 	const { labelText, altText } = attributes;
 
+	const blockProps = useBlockProps.save( {
+		className: 'yard-blocks-iconlist__item',
+	} );
+
 	return (
-		<li className="yard-blocks-iconlist__item">
+		<li { ...blockProps }>
 			<Icon { ...props } />
 			{ altText && <span className="sr-only">{ altText }</span> }
 			<RichText.Content
@@ -23,6 +27,6 @@ function save( props ) {
 			/>
 		</li>
 	);
-}
+};
 
-export default save;
+export default Save;
