@@ -40,7 +40,7 @@ export function loadGoogleMaps() {
 		};
 
 		loadScript(
-			`https://maps.googleapis.com/maps/api/js?key=AIzaSyDjyUL9_S1E4INlI53pqe9t04OtCHhrJ_A&callback=resolveGoogleMapsPromise&sensor=true`,
+			`https://maps.googleapis.com/maps/api/js?key=AIzaSyB74QitrBPl_gsHZ0jU5eP9TNq_vy-iX9Q&callback=resolveGoogleMapsPromise&sensor=true`,
 			true
 		).catch( () => {
 			reject();
