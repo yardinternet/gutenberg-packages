@@ -10,8 +10,6 @@ import { text, boolean } from '@storybook/addon-knobs';
 
 import { attributes } from '../block.json';
 
-import '@fortawesome/fontawesome-pro/css/all.min.css';
-
 export default { title: 'PDC search' };
 
 export const withBasicForm = () => (
