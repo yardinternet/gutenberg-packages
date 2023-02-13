@@ -16,7 +16,7 @@ const infowindowCollection = [];
  * @param {Object} props
  */
 export function createInfowindowPolygon( props ) {
-	if ( hasInfowindowContent( props ) ) {
+	if ( ! hasInfowindowContent( props ) ) {
 		return false;
 	}
 
