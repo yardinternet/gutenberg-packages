@@ -27,6 +27,8 @@ import * as navmenu from './navmenu';
 import * as preset from './preset';
 import * as row from './row';
 import * as rowColumn from './column';
+import * as slider from './slider';
+import * as slide from './slider/slide';
 import * as socialshare from './socialshare';
 import * as spacer from './spacer';
 import * as sticky from './sticky';
@@ -71,6 +73,8 @@ export {
 	preset,
 	row,
 	rowColumn,
+	slider,
+	slide,
 	socialshare,
 	spacer,
 	sticky,

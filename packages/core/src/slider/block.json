@@ -1,0 +1,10 @@
+{
+	"name": "yard-blocks/slider",
+	"category": "layout",
+	"attributes": {
+		"activeSlide": {
+			"type": "string",
+			"default": null
+		}
+	}
+}
