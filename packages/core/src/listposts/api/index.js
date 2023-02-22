@@ -13,8 +13,14 @@ export const fetchListPosts = ( slug, baseSlug = 'wp/v2/' ) => {
 	return apiFetch( { path: `${ baseSlug }${ slug }?per_page=100` } );
 };
 
-export const searchListPosts = ( slug, baseSlug = 'wp/v2/', search ) => {
-	return apiFetch( { path: `${ baseSlug }${ slug }?search=${ search }` } );
+export const searchListPosts = (
+	baseSlug = 'wp/v2/search/',
+	subtype = 'any',
+	search
+) => {
+	return apiFetch( {
+		path: `${ baseSlug }?subtype=${ subtype }&search=${ search }`,
+	} );
 };
 
 export function fetchCustomViews() {

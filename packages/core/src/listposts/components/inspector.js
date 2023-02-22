@@ -1,7 +1,8 @@
 /**
  * External dependencies
  */
-import { map, countBy, debounce } from 'lodash';
+import { map, countBy } from 'lodash';
+import debounce from 'debounce-promise';
 import { useState, useEffect } from 'react';
 import Select, { components } from 'react-select';
 import AsyncSelect from 'react-select/async';
@@ -341,6 +342,7 @@ function Inspector( props ) {
 
 	const shouldRenderSearchCustomSelectionSelect = () => {
 		if ( ! customSelection ) return false;
+		if ( ! posts.length ) return false;
 		if ( postType === 'external' || ! searchCustomSelection ) return false; // Search does not work for external sources.
 
 		return true;
@@ -358,33 +360,32 @@ function Inspector( props ) {
 	 */
 	const loadOptions = async ( inputValue, callback ) => {
 		if ( ! inputValue || ! postType ) {
-			return;
+			return callback( [] );
 		}
 
 		const data = await searchListPosts(
+			'wp/v2/search/',
 			postType !== 'attachment' ? postType : 'media',
-			'wp/v2/',
 			inputValue
 		);
 
-		if ( data ) {
-			transformPostsToState( data );
-			callback( createOptions( data ) );
-		}
+		if ( ! data ) return callback( [] );
+
+		transformPostsToState( data );
+		callback( createOptions( data ) );
 	};
 
 	const transformPostsToState = ( data = [] ) => {
 		setStateSearchedItems(
-			data.map( ( item ) => {
-				return { value: item.id, label: item.title.rendered };
-			} )
+			data.map( ( item ) => ( { value: item.id, label: item.title } ) )
 		);
 	};
 
 	const createOptions = ( data ) => {
-		return data.map( ( item ) => {
-			return { value: item.id, label: item.title.rendered };
-		} );
+		return data.map( ( item ) => ( {
+			value: item.id,
+			label: item.title,
+		} ) );
 	};
 
 	/**
@@ -776,7 +777,11 @@ function Inspector( props ) {
 					) }
 					{ shouldRenderSearchCustomSelectionSelect() && (
 						<div style={ { marginBottom: 20 } }>
-							<p>{ __( 'Vul je zoekterm in.' ) }</p>
+							<p>
+								{ __(
+									'Vul je zoekterm in. Zoekt op hele woorden.'
+								) }
+							</p>
 							<AsyncSortableSelect
 								axis="xy"
 								cacheOptions={ false }
@@ -790,7 +795,7 @@ function Inspector( props ) {
 								isOptionDisabled={ () =>
 									selectedPosts.length >= postsToShow
 								}
-								loadOptions={ debounce( loadOptions, 200 ) }
+								loadOptions={ debounce( loadOptions, 500 ) }
 								onChange={ onChangeSortableSelect }
 								onSortEnd={ onSortEndSortableSelect }
 								options={ posts.concat( remotePostsOptions ) }
