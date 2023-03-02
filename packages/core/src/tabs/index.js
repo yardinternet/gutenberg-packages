@@ -25,10 +25,6 @@ const settings = {
 	),
 	edit,
 	attributes,
-	supports: {
-		html: false,
-		reusable: false,
-	},
 	save,
 	deprecated,
 };
