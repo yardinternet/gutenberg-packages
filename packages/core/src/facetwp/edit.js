@@ -7,9 +7,10 @@ import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
 /**
  * WordPress dependencies
  */
+import ServerSideRender from '@wordpress/server-side-render';
 import { Component, Fragment } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { ServerSideRender, Placeholder } from '@wordpress/components';
+import { Placeholder } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
