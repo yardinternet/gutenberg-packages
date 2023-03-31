@@ -39,6 +39,9 @@ const settings = {
 		'Voeg allerlei typen content toe en pas deze aan naar wens.'
 	),
 	attributes: finalAttributes,
+	supports: {
+		align: [ 'full', 'wide' ],
+	},
 	edit,
 	save: () => () => null,
 };
