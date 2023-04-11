@@ -107,6 +107,10 @@
 		"isNonWpSourcesEnabled": {
 			"type": "boolean",
 			"default": false
+		},
+		"align": {
+			"type": "string",
+			"default": "wide"
 		}
 	}
 }
