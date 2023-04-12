@@ -2,6 +2,10 @@
 
 exports[`basic tests attributes should not change 1`] = `
 Object {
+  "align": Object {
+    "default": "wide",
+    "type": "string",
+  },
   "className": Object {
     "type": "string",
   },

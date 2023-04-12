@@ -25,6 +25,9 @@ const settings = {
 	),
 	edit,
 	attributes,
+	supports: {
+		align: [ 'full', 'wide' ],
+	},
 	save,
 	deprecated,
 };
