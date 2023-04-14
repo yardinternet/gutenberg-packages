@@ -22,6 +22,7 @@ const { name, attributes } = metadata;
 export { metadata, name };
 
 export const settings = {
+	apiVersion: 2,
 	title: __( 'Uitklap' ),
 	category: 'yard-blocks',
 	description: __(
