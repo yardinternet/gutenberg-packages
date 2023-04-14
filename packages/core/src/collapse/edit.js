@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 
 /**
@@ -15,6 +15,10 @@ function Edit( { clientId, attributes, setAttributes } ) {
 	const TEMPLATE = [ [ 'yard-blocks/collapse-item' ] ];
 	const ALLOWED_BLOCKS = [ 'yard-blocks/collapse-item' ];
 
+	const blockProps = useBlockProps( {
+		className: 'yard-blocks-collapse',
+	} );
+
 	useEffect( () => {
 		setAttributes( { accordionId: `${ clientId }` } );
 	}, [ clientId ] );
@@ -27,10 +31,7 @@ function Edit( { clientId, attributes, setAttributes } ) {
 				setAttributes={ setAttributes }
 				clientId={ clientId }
 			/>
-			<div
-				className="yard-blocks-collapse"
-				id={ `accordion-${ accordionId }` }
-			>
+			<div { ...blockProps } id={ `accordion-${ accordionId }` }>
 				<InnerBlocks
 					renderAppender={ () => <InnerBlocks.ButtonBlockAppender /> }
 					allowedBlocks={ ALLOWED_BLOCKS }

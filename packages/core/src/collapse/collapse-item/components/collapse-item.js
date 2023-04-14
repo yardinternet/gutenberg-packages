@@ -1,4 +1,9 @@
 /**
+ * WordPress dependencies
+ */
+import { useBlockProps } from '@wordpress/block-editor';
+
+/**
  * Internal dependencies
  */
 import Header from './header';
@@ -13,8 +18,12 @@ function CollapseItem( {
 	children = [],
 	accordionId = '',
 } ) {
+	const blockProps = useBlockProps( {
+		className: 'yard-blocks-collapse-item',
+	} );
+
 	return (
-		<div className={ `yard-blocks-collapse-item` } key={ id }>
+		<div { ...blockProps } key={ id }>
 			<Header
 				id={ id }
 				headerText={ headerText }

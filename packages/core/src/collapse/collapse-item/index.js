@@ -22,6 +22,7 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-chevron-down';
 
 const settings = {
+	apiVersion: 2,
 	title: __( 'Uitklap item', 'yard-blocks' ),
 	description: __( 'Uitklapbaar component.' ),
 	parent: [ 'yard-blocks/collapse-list' ],
