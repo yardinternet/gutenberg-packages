@@ -4,6 +4,39 @@
 import { InnerBlocks } from '@wordpress/block-editor';
 
 const deprecated = [
+	// Since adding blockprops
+	{
+		attributes: {
+			accordionId: {
+				type: 'string',
+				default: '0',
+			},
+			heading: {
+				type: 'string',
+				default: '',
+			},
+			structuredData: {
+				type: 'boolean',
+				default: false,
+			},
+		},
+		save( { attributes } ) {
+			const { accordionId, structuredData } = attributes;
+
+			return (
+				<div
+					className="yard-blocks-collapse"
+					id={ `accordion-${ accordionId }` }
+					itemScope={ structuredData }
+					itemType={
+						structuredData ? 'https://schema.org/FAQPage' : null
+					}
+				>
+					<InnerBlocks.Content />
+				</div>
+			);
+		},
+	},
 	// Since adding structured data
 	{
 		attributes: {

@@ -1,14 +1,18 @@
 /**
  * WordPress dependencies
  */
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 function Save( { attributes } ) {
 	const { accordionId, structuredData } = attributes;
 
+	const blockProps = useBlockProps.save( {
+		className: 'yard-blocks-collapse',
+	} );
+
 	return (
 		<div
-			className="yard-blocks-collapse"
+			{ ...blockProps }
 			id={ `accordion-${ accordionId }` }
 			itemScope={ structuredData }
 			itemType={ structuredData ? 'https://schema.org/FAQPage' : null }

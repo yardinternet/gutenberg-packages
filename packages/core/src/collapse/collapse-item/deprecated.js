@@ -9,6 +9,113 @@ import parse from 'html-react-parser';
 import { InnerBlocks } from '@wordpress/block-editor';
 
 const deprecated = [
+	// Since adding blockprops
+	{
+		attributes: {
+			headerText: {
+				type: 'string',
+				default: ' ',
+			},
+			showOpen: {
+				type: 'boolean',
+				default: false,
+			},
+			isAccordion: {
+				type: 'boolean',
+				default: true,
+			},
+			id: {
+				type: 'string',
+				default: '0',
+			},
+			parentClientId: {
+				type: 'string',
+				default: '0',
+			},
+			heading: {
+				type: 'string',
+				default: '',
+			},
+			structuredData: {
+				type: 'boolean',
+				default: false,
+			},
+		},
+		save( props ) {
+			const { attributes } = props;
+			const {
+				id,
+				headerText,
+				showOpen,
+				isAccordion,
+				parentClientId,
+				heading,
+				structuredData,
+			} = attributes;
+
+			const button = () => {
+				return `
+					<button
+						class="yard-blocks-collapse-item__button"
+						type="button"
+						data-toggle="collapse"
+						data-target="#collapse-${ id }"
+						aria-expanded="false"
+						aria-controls="collapse-${ id }"
+						${ structuredData ? 'itemprop="name"' : '' }
+					>
+						${ headerText }
+					</button>
+				`;
+			};
+
+			const header = () => {
+				if ( heading === '' ) return button();
+
+				return `
+					<${ heading } class="yard-blocks-collapse-item__heading">
+						${ button() }
+					</${ heading }>
+				`;
+			};
+
+			return (
+				<div
+					className="yard-blocks-collapse-item"
+					itemScope={ structuredData }
+					itemProp={ structuredData ? 'mainEntity' : null }
+					itemType={
+						structuredData ? 'https://schema.org/Question' : null
+					}
+				>
+					<div className="yard-blocks-collapse-item__header">
+						{ parse( header() ) }
+					</div>
+					<div
+						className={ `collapse ${ showOpen ? 'show' : '' }` }
+						id={ `collapse-${ id }` }
+						data-parent={
+							isAccordion
+								? `#accordion-${ parentClientId }`
+								: null
+						}
+						itemScope={ structuredData }
+						itemProp={ structuredData ? 'acceptedAnswer' : null }
+						itemType={
+							structuredData ? 'https://schema.org/Answer' : null
+						}
+					>
+						<div
+							className="yard-blocks-collapse-item__body"
+							itemProp={ structuredData ? 'text' : null }
+						>
+							<InnerBlocks.Content />
+						</div>
+					</div>
+				</div>
+			);
+		},
+	},
 	// Since adding structured data
 	{
 		attributes: {
