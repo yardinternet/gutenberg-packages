@@ -6,7 +6,7 @@ import parse from 'html-react-parser';
 /**
  * WordPress dependencies
  */
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 function save( props ) {
 	const { attributes } = props;
@@ -19,6 +19,10 @@ function save( props ) {
 		heading,
 		structuredData,
 	} = attributes;
+
+	const blockProps = useBlockProps.save( {
+		className: 'yard-blocks-collapse-item',
+	} );
 
 	const button = () => {
 		return `
@@ -48,7 +52,7 @@ function save( props ) {
 
 	return (
 		<div
-			className="yard-blocks-collapse-item"
+			{ ...blockProps }
 			itemScope={ structuredData }
 			itemProp={ structuredData ? 'mainEntity' : null }
 			itemType={ structuredData ? 'https://schema.org/Question' : null }
