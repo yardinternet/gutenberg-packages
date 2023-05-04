@@ -183,13 +183,13 @@ class ListPostsEdit extends Component {
 				];
 			}
 
-			this.setState( {
-				postTypes: [ ...this.state.postTypes, ...result ],
-			} );
+			const postTypes = [ ...this.state.postTypes, ...result ];
+
+			this.setState( { postTypes } );
 
 			// If there is a posttype fetch the posts to populate include or exclude
 			if ( postType ) {
-				this.getPosts( postType );
+				this.getPosts( postType, postTypes );
 			}
 		} catch ( e ) {
 			throw new Error( e.message );
@@ -202,11 +202,11 @@ class ListPostsEdit extends Component {
 	 * @param {string} postType postType
 	 * @return {Array} posts posts
 	 */
-	getPosts = async ( postType = '' ) => {
+	getPosts = async ( postType = '', postTypes = this.state.postTypes ) => {
 		const { setAttributes } = this.props;
 		let posts = [];
 
-		const postTypeObj = find( this.state.postTypes, [ 'slug', postType ] );
+		const postTypeObj = find( postTypes, [ 'slug', postType ] );
 
 		if (
 			typeof postTypeObj !== 'object' ||
