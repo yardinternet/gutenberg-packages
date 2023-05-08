@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 /**
  * External dependencies
@@ -11,8 +11,12 @@ import classnames from 'classnames';
 function save( { attributes } ) {
 	const { defaultTab, innerblocks } = attributes;
 
+	const blockProps = useBlockProps.save( {
+		className: 'yard-blocks-tabs',
+	} );
+
 	return (
-		<div id="tab-container">
+		<div id="tab-container" { ...blockProps }>
 			<ul className="nav nav-tabs" role="tablist">
 				{ innerblocks.map( ( block ) => (
 					<li

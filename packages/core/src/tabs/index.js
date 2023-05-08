@@ -19,6 +19,7 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-folder';
 
 const settings = {
+	apiVersion: 2,
 	title: __( 'Tabbladen' ),
 	description: __(
 		'Groepeer gemakkelijk content in verschillende tabbladen.'
