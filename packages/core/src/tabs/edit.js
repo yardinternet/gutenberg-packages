@@ -14,6 +14,7 @@ import {
 	InnerBlocks,
 	InspectorControls,
 	PlainText,
+	useBlockProps,
 } from '@wordpress/block-editor';
 import {
 	ButtonGroup,
@@ -50,6 +51,10 @@ function Edit( {
 } ) {
 	const [ activeTab, setActiveTab ] = useState( 'tab-1' );
 	const { defaultTab, defaultTabEnabled, innerblocks } = attributes;
+
+	const blockProps = useBlockProps( {
+		className: 'yard-blocks-tabs',
+	} );
 
 	useEffect( () => {
 		if ( ! innerblocks.length ) {
@@ -117,7 +122,7 @@ function Edit( {
 				</PanelBody>
 			</InspectorControls>
 			<MyContext.Provider value={ { activeTab, defaultTab } }>
-				<div>
+				<div { ...blockProps }>
 					<ul className="nav nav-tabs" role="tablist">
 						{ innerBlocks?.map( ( props ) => {
 							const { title, id } = props.attributes;
