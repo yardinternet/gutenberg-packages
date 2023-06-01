@@ -445,7 +445,9 @@ export const filterExcludedPostsSelectOptions = (
  */
 export async function createTaxObject( taxonomySource, taxonomy, iteration ) {
 	const terms = [];
-	const response = await fetch( taxonomy[ iteration ].url );
+	const response = await fetch(
+		`${ taxonomy[ iteration ].url }?per_page=100`
+	);
 	const json = await response.json();
 	const taxObject = {
 		source: taxonomySource,
