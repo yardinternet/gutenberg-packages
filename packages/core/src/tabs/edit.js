@@ -42,6 +42,7 @@ export const MyContext = createContext();
 
 function Edit( {
 	attributes,
+	clientId,
 	setAttributes,
 	innerBlocks = [],
 	updateTitle,
@@ -49,7 +50,7 @@ function Edit( {
 	removeTab,
 	duplicateTab,
 } ) {
-	const [ activeTab, setActiveTab ] = useState( 'tab-1' );
+	const [ activeTab, setActiveTab ] = useState( 'tab-default-' + clientId );
 	const { defaultTab, defaultTabEnabled, innerblocks } = attributes;
 
 	const blockProps = useBlockProps( {
@@ -64,10 +65,25 @@ function Edit( {
 		}
 	}, [] );
 
+	/**
+	 * Set the active tab on first load in the editor
+	 */
+	useEffect( () => {
+		if ( defaultTabEnabled ) {
+			setActiveTab( defaultTab );
+		} else if ( innerblocks.length > 0 ) {
+			setActiveTab( innerblocks[ 0 ].attributes.id );
+		}
+	}, [] );
+
 	const TEMPLATE = [
 		[
 			'yard-blocks/tabs-tab',
-			{ title: 'Titel', id: 'tab-1', defaultTab: activeTab },
+			{
+				title: 'Titel',
+				id: 'tab-default-' + clientId,
+				defaultTab: activeTab,
+			},
 			[ [ 'core/paragraph', { content: '' } ] ],
 		],
 	];
@@ -78,7 +94,7 @@ function Edit( {
 
 	useEffect( () => {
 		if ( ! defaultTabEnabled ) {
-			setAttributes( { defaultTab: 'tab-1' } );
+			setAttributes( { defaultTab: 'tab-default-' + clientId } );
 		}
 	}, [ defaultTabEnabled ] );
 
@@ -237,7 +253,7 @@ export default compose( [
 					{
 						id: 'x',
 						title: 'Titel',
-						defaultTab: 'tab-1',
+						defaultTab: 'tab-default-' + clientId,
 					},
 					[ innerBlock ]
 				);
@@ -276,7 +292,7 @@ export default compose( [
 					{
 						id: 'x',
 						title: 'Titel',
-						defaultTab: 'tab-1',
+						defaultTab: 'tab-default-' + clientId,
 					},
 					clonedBlocks
 				);
