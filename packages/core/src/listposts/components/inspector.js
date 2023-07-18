@@ -363,9 +363,12 @@ function Inspector( props ) {
 			return callback( [] );
 		}
 
+		const baseSlug =
+			postType !== 'attachment' ? 'wp/v2/search/' : 'wp/v2/media';
+
 		const data = await searchListPosts(
-			'wp/v2/search/',
-			postType !== 'attachment' ? postType : 'media',
+			baseSlug,
+			postType !== 'attachment' ? postType : 'any',
 			inputValue
 		);
 
@@ -377,14 +380,17 @@ function Inspector( props ) {
 
 	const transformPostsToState = ( data = [] ) => {
 		setStateSearchedItems(
-			data.map( ( item ) => ( { value: item.id, label: item.title } ) )
+			data.map( ( item ) => ( {
+				value: item.id,
+				label: item.title.rendered ? item.title.rendered : item.title,
+			} ) )
 		);
 	};
 
 	const createOptions = ( data ) => {
 		return data.map( ( item ) => ( {
 			value: item.id,
-			label: item.title,
+			label: item.title.rendered ? item.title.rendered : item.title,
 		} ) );
 	};
 
