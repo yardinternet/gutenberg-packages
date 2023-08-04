@@ -51,7 +51,7 @@ const IconPickerControl = ( { onChange, icon } ) => {
 	};
 
 	const getFontAwesomeIcons = ( search ) => {
-		const query = `{ search(version: "6.1.2", first: 100, query: "${ search }") { id styles } }`;
+		const query = `{ search(version: "6.4.2", first: 100, query: "${ search }") { id styles } }`;
 
 		return fetch( 'https://api.fontawesome.com', {
 			method: 'POST',
