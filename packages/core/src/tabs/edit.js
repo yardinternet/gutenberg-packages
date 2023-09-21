@@ -58,6 +58,10 @@ function Edit( {
 	} );
 
 	useEffect( () => {
+		if ( ! defaultTab || defaultTab === 'tab-1' ) {
+			setAttributes( { defaultTab: 'tab-default-' + clientId } );
+		}
+
 		if ( ! innerblocks.length ) {
 			setAttributes( {
 				innerblocks: innerBlocks,
@@ -93,8 +97,8 @@ function Edit( {
 	};
 
 	useEffect( () => {
-		if ( ! defaultTabEnabled ) {
-			setAttributes( { defaultTab: 'tab-default-' + clientId } );
+		if ( ! defaultTabEnabled && innerblocks.length > 0 ) {
+			setAttributes( { defaultTab: innerblocks[ 0 ].attributes.id } );
 		}
 	}, [ defaultTabEnabled ] );
 
