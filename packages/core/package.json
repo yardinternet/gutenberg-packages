@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-core",
-	"version": "1.4.28",
+	"version": "1.4.29",
 	"description": "This packages contains all core blocks",
 	"author": "Yard Internet",
 	"license": "ISC",
