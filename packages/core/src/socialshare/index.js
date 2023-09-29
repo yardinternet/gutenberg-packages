@@ -15,7 +15,7 @@ const icon = 'far fa-share-alt';
 const { name, attributes } = metadata;
 
 const settings = {
-	title: __( 'Social media iconen' ),
+	title: __( 'Social media deelknoppen' ),
 	description: __(
 		'Plaats sociale media iconen waarmee je gemakkelijk de pagina kunt delen met anderen.'
 	),

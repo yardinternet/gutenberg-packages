@@ -6,9 +6,9 @@ import classnames from 'classnames';
 /**
  * Internal dependencies
  */
-import FontAwesomeWrapper from './fontawesome-wrapper';
+import FontAwesomeWrapper from '../components/fontawesome-wrapper';
 
-function SocialShare( { attributes, view } ) {
+function SocialShareWithoutXTwitter( { attributes, view } ) {
 	const {
 		type,
 		bgColor,
@@ -38,7 +38,7 @@ function SocialShare( { attributes, view } ) {
 			...iconDefaults,
 			id: twitter,
 			font: 'fab',
-			icon: 'x-twitter',
+			icon: 'twitter',
 			ariaLabel: ariaLabelMsg( 'Twitter' ),
 			url: `https://twitter.com/intent/tweet/?text=${ pageTitle }&url=${ pageUrl }`,
 			externalLink: true,
@@ -96,4 +96,4 @@ function SocialShare( { attributes, view } ) {
 	);
 }
 
-export default SocialShare;
+export default SocialShareWithoutXTwitter;

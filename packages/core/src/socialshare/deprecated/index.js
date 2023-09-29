@@ -5,6 +5,7 @@ import metadata from '../block.json';
 
 import Inspector from '../inspector';
 import SocialShare from './socialshare';
+import SocialShareWithoutXTwitter from './socialshare-without-x-twitter';
 import SocialShareWithoutAriaLabel from './socialshare-without-arialabel';
 import SocialShareWithoutWhatsAppFix from './socialshare-without-whatsapp-fix';
 
@@ -72,6 +73,27 @@ const deprecated = [
 
 		save: ( props ) => {
 			return <SocialShareWithoutWhatsAppFix { ...props } />;
+		},
+	},
+	{
+		attributes,
+
+		edit: ( props ) => {
+			const { setAttributes } = props;
+
+			return (
+				<>
+					<Inspector
+						key="inspector"
+						{ ...{ setAttributes, ...props } }
+					/>
+					<SocialShareWithoutXTwitter { ...props } />
+				</>
+			);
+		},
+
+		save: ( props ) => {
+			return <SocialShareWithoutXTwitter { ...props } />;
 		},
 	},
 ];
