@@ -16,9 +16,11 @@ Add the following to your hook.js
 import { BlockFilters } from '@yardinternet/gutenberg-block-filters';
 
 const blockFilters = {
+    'core/column/visibility': {},
+    'core/button/icon': {},
     'core/file/filesize': {
         append: ')',
-        prepend: '(', // add extra options from project
+        prepend: '(', 
     },
 };
 
@@ -28,12 +30,14 @@ BlockFilters(blockFilters);
 
 ## Available blockFilters
 
+### core/button/icon
+
+Adds icon options to the button block.
+
+### core/column/visibility
+
+Adds visibility options to the column block. Toggles the class "is-hidden".
+
 ### core/file/filesize
 
-#### description
-
-Adds filesize to each file block
-
-#### config
-
-None
+Adds filesize to the file block
