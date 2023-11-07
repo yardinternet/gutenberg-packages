@@ -89,6 +89,7 @@
 		"@yardinternet/gutenberg-editor-components": "*",
 		"@yardinternet/gutenberg-gemeenten": "*",
 		"@yardinternet/gutenberg-google-maps": "*",
-		"@yardinternet/gutenberg-webpack-loaders": "*"
+		"@yardinternet/gutenberg-webpack-loaders": "*",
+		"emotion": "^10.0.27"
 	}
 }
