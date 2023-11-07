@@ -56,8 +56,8 @@ export const withBackground = () =>
 /**
  *	Unset bgColor when the bgImgUrl isset with a dimRatio of 0
  *
- * @param {string} bgColor hex
- * @param {string} bgImgUrl  url
+ * @param {string} bgColor  hex
+ * @param {string} bgImgUrl url
  * @param {number} dimRatio 0 to 100
  * @return {string|undefined} return
  */

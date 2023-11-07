@@ -12,9 +12,9 @@ import { compose } from '@wordpress/compose';
 /**
  * Internal dependencies
  */
-import { withBackgroundClass } from '../../../Containers/withBackgroundClass';
-import { withBackgroundImage } from '../../../Containers/withBackgroundImage';
-import { withSpacing } from '../../../Containers/withSpacing';
+import { withBackgroundClass } from '../../../Containers/withBackgroundClass'; // eslint-disable-line
+import { withBackgroundImage } from '../../../Containers/withBackgroundImage'; // eslint-disable-line
+import { withSpacing } from '../../../Containers/withSpacing'; // eslint-disable-line
 
 import Row from './row';
 

@@ -7,7 +7,7 @@ import { filteredPreset as preset } from '../hooks';
  * Filter the default preset, mostly called when a preset must be excluded
  *
  * @param {Object} filteredPreset nested object preset with layout options per viewport
- * @param {Array} layoutIDs all the layoutID that must be included in the preset
+ * @param {Array}  layoutIDs      all the layoutID that must be included in the preset
  * @return {Object} preset with all the specified layoutIDs
  */
 export function filterPresetByLayoutIDs( filteredPreset, layoutIDs ) {
@@ -56,7 +56,7 @@ export function findLayoutByID( id ) {
 /**
  * Returns the layoutOptions by column and viewport
  *
- * @param {string} column - column
+ * @param {string} column   - column
  * @param {string} viewport - desktop or mobile
  * @return {Object} - LayoutOptions
  */

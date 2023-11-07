@@ -3,6 +3,7 @@
  */
 import { getSpacingUtilClass } from '../src/utils-yard-blocks/helpers.js';
 
+/* eslint-disable */
 describe( 'getSpacingUtilClass to return bootstrap utility classes', () => {
 	test( 'should return m-md-5', () => {
 		expect( getSpacingUtilClass( [ 'm', 'md', '5' ] ) ).toEqual( 'm-md-5' );

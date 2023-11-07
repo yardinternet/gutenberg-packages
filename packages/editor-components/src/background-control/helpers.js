@@ -2,7 +2,7 @@
  * Populate select from getMedia redux selector
  *
  * @param {Object} sizes
- * @param {Array} labels
+ * @param {Array}  labels
  * @return {Object} key/pair
  */
 export function populateSelectFromMediaSizes( sizes = {}, labels = [] ) {

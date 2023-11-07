@@ -30,7 +30,7 @@ function parseData( data = {} ) {
  * Add data props to the wrapped element
  *
  * @param {Element} WrappedComponent
- * @param {Object} data
+ * @param {Object}  data
  * @return {Element} - Element
  */
 function withSaveDataAttributes( WrappedComponent, data = {} ) {
@@ -41,8 +41,8 @@ function withSaveDataAttributes( WrappedComponent, data = {} ) {
  * Transform data-attr to props
  *
  * @param {Object} object
- * @param {*} object.Component
- * @param {*} object.Element
+ * @param {*}      object.Component
+ * @param {*}      object.Element
  * @return {Element} - Element
  */
 function withFrontRender( { Component, element } ) {

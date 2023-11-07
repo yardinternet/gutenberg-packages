@@ -136,9 +136,9 @@ export function mapCustomViewsToKeyPair( customViews = {} ) {
 /**
  * 	Validation if the template supports given yard-props
  *
- *  @param {Array} customViews - received from the rest api endpoint i.e. [ 'example', 'news' ]
- *	@param {string} customView
- *	@param {string} propName
+ * @param {Array}  customViews - received from the rest api endpoint i.e. [ 'example', 'news' ]
+ * @param {string} customView
+ * @param {string} propName
  *  @return {boolean|Array} boolean|array
  */
 export function templateValidateYardPropsSupport(
@@ -183,7 +183,7 @@ export function populateExternalTaxonomyValues(
 /**
  *	Returns array with selected options for each taxonomy
  *
- * @param {Array} taxonomies - all taxonomies
+ * @param {Array} taxonomies         - all taxonomies
  * @param {Array} [selectedTerms=[]] - selected taxonomy terms
  * @return {Array} [ { label: 'Pages', value: 'pages' } ]
  */
@@ -211,7 +211,7 @@ export function populateTaxonomyValues( taxonomies = [], selectedTerms = [] ) {
  *	These terms can be deleted by the user but still present as attribute
  * 	This influences the query params with deleted terms, which can result in unexpected behaviour
  *
- * @param {Array} allTerms All terms/taxos found by WP
+ * @param {Array}  allTerms      All terms/taxos found by WP
  * @param {Object} selectedTerms All terms/taxos selected
  * @return {Object} filteredTerms
  */
@@ -239,7 +239,7 @@ export function filterRemovedTerms( allTerms = [], selectedTerms = {} ) {
 /**
  * Find chosen stickypost in posts array and return it as value for the select.
  *
- * @param {Array} posts
+ * @param {Array}  posts
  * @param {number} value
  *
  * @return {Object} post
@@ -276,7 +276,7 @@ export function hasSupportsNumberPerRow( {
 /**
  * Validate if the taxonomy is present in the selected external source.
  *
- * @param {Array} selectedSources
+ * @param {Array}  selectedSources
  * @param {Object} taxonomy
  *
  * @return {boolean} true|false
@@ -311,7 +311,7 @@ export function taxInSelectedSource( selectedSources = [], taxonomy = {} ) {
  * Check if taxonomy is associated with the given postType
  * Only render taxonomy select control when the taxonomy contains the postType
  *
- * @param {Array} taxonomies
+ * @param {Array}  taxonomies
  * @param {Object} taxonomy
  * @param {string} postType
  * @return {boolean} true|false
@@ -367,7 +367,7 @@ export function parseToAttributes( options = [] ) {
 
 /**
  *
- * @param {Array} sources
+ * @param {Array}  sources
  * @param {string} value
  */
 export const findSourceByBaseUrl = ( sources = [], value = '' ) => {
@@ -376,7 +376,7 @@ export const findSourceByBaseUrl = ( sources = [], value = '' ) => {
 
 /**
  *
- * @param {Array} types
+ * @param {Array}  types
  * @param {string} value
  */
 export const findTypeBySlug = ( types = [], value = '' ) => {
@@ -413,8 +413,8 @@ export const filterStickyPostSelectOptions = ( excludedPosts, posts ) => {
  * Filter the excluded posts select so it does not include sticky post
  *
  * @param {boolean} stickyPostSelection
- * @param {number} selectedStickyPostID
- * @param {Array} posts
+ * @param {number}  selectedStickyPostID
+ * @param {Array}   posts
  *
  * @return {Array} posts
  */
@@ -438,7 +438,7 @@ export const filterExcludedPostsSelectOptions = (
 /**
  *
  * @param {string} taxonomySource
- * @param {Array} taxonomy
+ * @param {Array}  taxonomy
  * @param {number} iteration
  *
  * @return {Object} taxObject
@@ -472,7 +472,7 @@ export async function createTaxObject( taxonomySource, taxonomy, iteration ) {
 /**
  *
  * @param {Object} obj
- * @param {Array} taxonomyTerms
+ * @param {Array}  taxonomyTerms
  *
  * @return {string} taxQueryString
  */

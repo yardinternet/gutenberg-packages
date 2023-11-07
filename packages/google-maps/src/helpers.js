@@ -11,7 +11,7 @@ import tinycolor from 'tinycolor2';
 /**
  * Appends loaded script to DOM
  *
- * @param {string} src url
+ * @param {string}  src   url
  * @param {boolean} async
  * @return {Promise} promise
  */
@@ -84,7 +84,7 @@ export function parseMarkerGroupMarkers( markergroups ) {
  * Divide the markers between marker cluster groups
  *
  * @param {Object} map
- * @param {Array} plotMarkerGroups
+ * @param {Array}  plotMarkerGroups
  * @return {Array} markerGroupsObjects
  */
 export function prepareMarkerClusterGroups( map, plotMarkerGroups ) {

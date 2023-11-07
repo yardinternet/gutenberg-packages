@@ -10,7 +10,7 @@ const setMax = ( unit ) => ( unit === 'px' ? 1000 : 100 );
  * Limit value when unit is switching from px to %
  *
  * @param {number} value 200
- * @param {string} unit %
+ * @param {string} unit  %
  * @return {number} 100
  */
 const limitValueByUnit = ( value, unit ) =>

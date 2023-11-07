@@ -64,7 +64,7 @@ export const formatGroupOptions = ( sources = [] ) => {
 
 /**
  *
- * @param {Array} failedRemoteEndpoints
+ * @param {Array}  failedRemoteEndpoints
  * @param {string} currentUrl
  */
 export const remoteExists = ( failedRemoteEndpoints = [], currentUrl = '' ) => {

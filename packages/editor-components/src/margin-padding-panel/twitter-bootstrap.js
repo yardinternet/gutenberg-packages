@@ -47,7 +47,7 @@ const TwitterBootstrap = ( props ) => {
 	/**
 	 *
 	 * @param {string} attribute - class property, marginTopClass etc.
-	 * @param {string} value - formatted value, mt-2, pb-1 etc.
+	 * @param {string} value     - formatted value, mt-2, pb-1 etc.
 	 */
 	const setValue = ( attribute, value ) => {
 		setAttributes( {
@@ -57,8 +57,8 @@ const TwitterBootstrap = ( props ) => {
 
 	/**
 	 *
-	 * @param {string} value - from sizingclasses
-	 * @param {string} property - m(margin) or p(padding)
+	 * @param {string} value     - from sizingclasses
+	 * @param {string} property  - m(margin) or p(padding)
 	 * @param {string} direction - t,b,l,r( right )
 	 * @return {string} - formatted value
 	 */
@@ -74,8 +74,8 @@ const TwitterBootstrap = ( props ) => {
 
 	/**
 	 *
-	 * @param {string} options - sizing classes
-	 * @param {string} property - m(margin) or p(padding)
+	 * @param {string} options   - sizing classes
+	 * @param {string} property  - m(margin) or p(padding)
 	 * @param {string} direction - t,b,l,r( right )
 	 * @return {Array} - formatted options
 	 */

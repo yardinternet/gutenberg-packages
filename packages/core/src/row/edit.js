@@ -57,7 +57,7 @@ class RowEdit extends Component {
 		 * Sets the layout type and renders the colomuns
 		 *
 		 * @param {string} layout - Layout
-		 * @param {string} id - id
+		 * @param {string} id     - id
 		 */
 		const setLayout = ( layout, id ) => {
 			setAttributes( {

@@ -42,7 +42,7 @@ export const withBackgroundClass = ( backgroundColorProperty = 'bgColor' ) =>
  * Returns the color slug
  *
  * @param {Object} colors - colorpallete global variable
- * @param {string} color - hexcolor
+ * @param {string} color  - hexcolor
  * @return {string} - primary
  */
 export function getColorClassByColor( colors, color ) {
@@ -53,7 +53,7 @@ export function getColorClassByColor( colors, color ) {
  * Returns the color slug background class
  *
  * @param {Object} colors - colorpalette global variable
- * @param {string} color - hexcolor
+ * @param {string} color  - hexcolor
  * @return {string|undefined} - bg-primary
  */
 export function getBackgroundClassByColor( colors, color ) {

@@ -18,7 +18,7 @@ const defaultOptions = {
 };
 
 /**
- * @param {Array} blocks
+ * @param {Array}  blocks
  * @param {Object} options
  *
  */

@@ -58,12 +58,12 @@ function SpacingControl( {
 	/**
 	 * Creates rangeControl for each viewport and side
 	 *
-	 * @param {string} label Top
-	 * @param {Object} attr { MarginTop: { desktop: 'mt-5' } }
+	 * @param {string} label    Top
+	 * @param {Object} attr     { MarginTop: { desktop: 'mt-5' } }
 	 * @param {string} attrName marginTop
 	 * @param {string} viewport desktop
-	 * @param {string} side mt
-	 * @param {string} size lg
+	 * @param {string} side     mt
+	 * @param {string} size     lg
 	 * @return { RangeControl } RangeControl
 	 */
 	const createControl = (

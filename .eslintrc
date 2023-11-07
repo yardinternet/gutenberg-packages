@@ -24,7 +24,8 @@
 		"jsdoc/require-property": "off",
 		"jsdoc/require-property-description": "off",
 		"jsdoc/require-property-name": "off",
-		"jsdoc/require-property-type": "off"
+		"jsdoc/require-property-type": "off",
+		"import/no-extraneous-dependencies": "off"
 	},
 	"globals": {
 		"theme": true,
