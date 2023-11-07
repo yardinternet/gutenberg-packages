@@ -21,8 +21,8 @@ jobs:
             - name: Setup Node
               uses: actions/setup-node@v1
               with:
-                  node-version: 12.x.x
-            - run: mv .npmrc.example .npmrc    
+                  node-version: 14.x
+            - run: mv .npmrc.example .npmrc
             - run: npm ci
             - run: npm test
             - run: tsc

@@ -40,8 +40,8 @@ Lerna uses git tags to track published versions. If a publish fails, you need to
 
 1. Check which tags were created. Remove them from origin `git push -d origin {tagname}`
 2. Sync your local tags with the tags from origin `git fetch --prune --prune-tags`
-2. Remove the created commits `git reset HEAD~{number-of-commits} --hard`
-3. Push your git history `git push --force-with-lease`
+3. Remove the created commits `git reset HEAD~{number-of-commits} --hard`
+4. Push your git history `git push --force-with-lease`
 
 After completing these steps, address the issue that caused the publish to fail and try publishing again.
 
