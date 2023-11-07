@@ -26,7 +26,7 @@ Alternatively, running `npm install` in your theme will also remove the linked v
 
 ## Releasing packages
 
-Run `lerna publish` to publish packages to the GitHub Package Registry. Lerna checks each package for changes and lets you decide which version to upgrade. It then pushes the changes to GitHub.
+Run `HUSKY=0 lerna publish` to publish packages to the GitHub Package Registry. Lerna checks each package for changes and lets you decide which version to upgrade. It then pushes the changes to GitHub.
 
 As a general rule, only update packages from the master branch. For feature branches or development, you can publish alpha releases.
 
