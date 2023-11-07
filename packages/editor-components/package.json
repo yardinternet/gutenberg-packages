@@ -30,6 +30,6 @@
 		}
 	},
 	"dependencies": {
-		"emotion": "^11.0.0"
+		"emotion": "^10.0.27"
 	}
 }

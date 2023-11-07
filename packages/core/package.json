@@ -21,7 +21,7 @@
 		"@sentry/browser": "^5.30.0",
 		"@yardinternet/gutenberg-editor-components": "file:../editor-components",
 		"debounce-promise": "^3.1.2",
-		"emotion": "^11.0.0",
+		"emotion": "^10.0.27",
 		"html-react-parser": "^1.4.3",
 		"react-select": "^4.3.1",
 		"react-sortable-hoc": "^2.0.0",

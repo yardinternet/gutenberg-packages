@@ -15,6 +15,9 @@ import { namespace, coreColumnVisibility } from '../../../config';
 
 const { name } = coreColumnVisibility;
 
+/*
+ * Register the block filters.
+ */
 const register = () => {
 	addFilter(
 		'blocks.registerBlockType',
