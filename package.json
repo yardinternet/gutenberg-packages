@@ -14,7 +14,7 @@
 		"storybook": "start-storybook -p 6006",
 		"packages-update": "wp-scripts packages-update",
 		"tsc": "tsc",
-		"version:release": "HUSKY=0 lerna version"
+		"version:release": "HUSKY=0 lerna publish"
 	},
 	"repository": {
 		"type": "git",
