@@ -1,84 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`row settings attributes of yard-blocks/row should not change 1`] = `
-Object {
-  "align": Object {
+{
+  "align": {
     "default": "wide",
     "type": "string",
   },
-  "alignVertical": Object {
+  "alignVertical": {
     "default": "center",
     "type": "string",
   },
-  "bgColor": Object {
+  "bgColor": {
     "type": "string",
   },
-  "columns": Object {
+  "columns": {
     "default": 1,
     "type": "number",
   },
-  "columnsEqualHeight": Object {
+  "columnsEqualHeight": {
     "default": false,
     "type": "boolean",
   },
-  "hasColumnContainer": Object {
+  "hasColumnContainer": {
     "default": false,
     "type": "boolean",
   },
-  "layoutDesktop": Object {
+  "layoutDesktop": {
     "default": "",
     "type": "string",
   },
-  "layoutMobile": Object {
+  "layoutMobile": {
     "default": "",
     "type": "string",
   },
-  "layoutTablet": Object {
+  "layoutTablet": {
     "default": "",
     "type": "string",
   },
-  "marginBottomClass": Object {
+  "marginBottomClass": {
     "default": "",
     "type": "string",
   },
-  "marginTopClass": Object {
+  "marginTopClass": {
     "default": "",
     "type": "string",
   },
-  "paddingBottomClass": Object {
+  "paddingBottomClass": {
     "default": "",
     "type": "string",
   },
-  "paddingLeftClass": Object {
+  "paddingLeftClass": {
     "default": "",
     "type": "string",
   },
-  "paddingRightClass": Object {
+  "paddingRightClass": {
     "default": "",
     "type": "string",
   },
-  "paddingTopClass": Object {
+  "paddingTopClass": {
     "default": "",
     "type": "string",
   },
-  "rowClass": Object {
+  "rowClass": {
     "default": "row",
     "type": "string",
   },
-  "rowGutter": Object {
+  "rowGutter": {
     "default": true,
     "type": "boolean",
   },
-  "rowHeight": Object {
+  "rowHeight": {
     "default": 150,
     "type": "number",
   },
-  "rowHeightAuto": Object {
+  "rowHeightAuto": {
     "default": true,
     "type": "boolean",
   },
-  "rowStyles": Object {
-    "default": Object {
+  "rowStyles": {
+    "default": {
       "minHeight": "auto",
     },
     "type": "object",

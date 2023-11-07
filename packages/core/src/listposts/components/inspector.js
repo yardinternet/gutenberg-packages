@@ -10,7 +10,7 @@ import {
 	SortableContainer,
 	SortableElement,
 	SortableHandle,
-} from 'react-sortable-hoc';
+} from 'react-sortable-hoc'; // eslint-disable-line import/no-unresolved
 
 /**
  * WordPress dependencies
@@ -426,14 +426,16 @@ function Inspector( props ) {
 
 	return (
 		<InspectorControls>
-			{ !! remoteNonWpSources.length && ! postType && ProjectComponent && (
-				<ProjectComponent
-					{ ...{
-						remoteNonWpSources,
-						...props,
-					} }
-				/>
-			) }
+			{ !! remoteNonWpSources.length &&
+				! postType &&
+				ProjectComponent && (
+					<ProjectComponent
+						{ ...{
+							remoteNonWpSources,
+							...props,
+						} }
+					/>
+				) }
 			{ ! isNonWpSourcesEnabled && (
 				<PanelBody
 					title={ __( 'Instellingen' ) }

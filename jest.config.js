@@ -7,6 +7,10 @@ module.exports = {
 		'!**/node_modules/**',
 		'!**/vendor/**',
 	],
+	moduleNameMapper: {
+		'^@yardinternet/gutenberg-editor-components$':
+			'<rootDir>/packages/editor-components/src/index.js',
+	},
 	globals: {
 		yardBlocks: {
 			editorColorPalette: [

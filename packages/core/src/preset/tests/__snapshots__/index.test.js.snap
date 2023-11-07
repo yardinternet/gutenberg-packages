@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic tests metadata should not change 1`] = `
-Object {
+{
   "category": "layout",
   "name": "yard-blocks/preset",
 }

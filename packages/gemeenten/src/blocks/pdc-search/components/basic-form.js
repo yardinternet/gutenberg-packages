@@ -45,7 +45,8 @@ const Label = styled.label`
 			calc( var( --pdc-search-padding ) / 2 )
 		)
 		scale( 1 );
-	transition: color 200ms cubic-bezier( 0, 0, 0.2, 1 ) 0ms,
+	transition:
+		color 200ms cubic-bezier( 0, 0, 0.2, 1 ) 0ms,
 		transform 200ms cubic-bezier( 0, 0, 0.2, 1 ) 0ms;
 
 	&.gemeenten-block--pdc-search__label--active {

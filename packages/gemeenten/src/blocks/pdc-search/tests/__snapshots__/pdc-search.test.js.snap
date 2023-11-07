@@ -1,25 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic tests metadata should not change 1`] = `
-Object {
-  "attributes": Object {
-    "btnText": Object {
+{
+  "attributes": {
+    "btnText": {
       "default": "Zoeken",
       "type": "string",
     },
-    "hasBtnText": Object {
+    "hasBtnText": {
       "default": false,
       "type": "boolean",
     },
-    "label": Object {
+    "label": {
       "default": "Waar bent u naar op zoek?",
       "type": "string",
     },
-    "searchFieldName": Object {
+    "searchFieldName": {
       "default": "q",
       "type": "string",
     },
-    "searchUrl": Object {
+    "searchUrl": {
       "default": "/zoeken/",
       "type": "string",
     },

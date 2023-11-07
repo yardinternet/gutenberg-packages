@@ -1,60 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`column settings attributes of yard-blocks/column should not change 1`] = `
-Object {
-  "alignItems": Object {
+{
+  "alignItems": {
     "default": "align-items-center",
     "type": "string",
   },
-  "bgColor": Object {
+  "bgColor": {
     "default": "",
     "type": "string",
   },
-  "flexDirection": Object {
+  "flexDirection": {
     "default": "flex-direction-column",
     "type": "string",
   },
-  "id": Object {
+  "id": {
     "default": 1,
     "type": "number",
   },
-  "isFlex": Object {
+  "isFlex": {
     "default": false,
     "type": "boolean",
   },
-  "isHidden": Object {
+  "isHidden": {
     "default": false,
     "type": "boolean",
   },
-  "justifyContent": Object {
+  "justifyContent": {
     "default": "justify-content-center",
     "type": "string",
   },
-  "marginBottomClass": Object {
+  "marginBottomClass": {
     "default": "",
     "type": "string",
   },
-  "marginTopClass": Object {
+  "marginTopClass": {
     "default": "",
     "type": "string",
   },
-  "paddingBottomClass": Object {
+  "paddingBottomClass": {
     "default": "",
     "type": "string",
   },
-  "paddingClass": Object {
+  "paddingClass": {
     "default": "",
     "type": "string",
   },
-  "paddingLeftClass": Object {
+  "paddingLeftClass": {
     "default": "",
     "type": "string",
   },
-  "paddingRightClass": Object {
+  "paddingRightClass": {
     "default": "",
     "type": "string",
   },
-  "paddingTopClass": Object {
+  "paddingTopClass": {
     "default": "",
     "type": "string",
   },

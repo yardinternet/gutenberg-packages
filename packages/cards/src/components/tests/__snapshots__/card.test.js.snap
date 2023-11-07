@@ -24,7 +24,7 @@ exports[`Card render card with props 1`] = `
 <li
   className="className"
   style={
-    Object {
+    {
       "color": "red",
     }
   }

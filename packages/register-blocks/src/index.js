@@ -20,7 +20,6 @@ const defaultOptions = {
 /**
  * @param {Array}  blocks
  * @param {Object} options
- *
  */
 export function registerBlocks( blocks = [], options = defaultOptions ) {
 	if ( ! Array.isArray( blocks ) ) {

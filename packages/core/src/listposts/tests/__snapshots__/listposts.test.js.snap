@@ -1,116 +1,116 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic tests attributes should not change 1`] = `
-Object {
-  "align": Object {
+{
+  "align": {
     "default": "wide",
     "type": "string",
   },
-  "className": Object {
+  "className": {
     "type": "string",
   },
-  "customID": Object {
+  "customID": {
     "type": "string",
   },
-  "customSelection": Object {
+  "customSelection": {
     "default": false,
     "type": "boolean",
   },
-  "customView": Object {
+  "customView": {
     "type": "string",
   },
-  "displayDate": Object {
+  "displayDate": {
     "default": true,
     "type": "boolean",
   },
-  "displayExcerpt": Object {
+  "displayExcerpt": {
     "default": true,
     "type": "boolean",
   },
-  "displayFeaturedImage": Object {
+  "displayFeaturedImage": {
     "default": true,
     "type": "boolean",
   },
-  "excludedPosts": Object {
-    "default": Array [],
+  "excludedPosts": {
+    "default": [],
     "type": "array",
   },
-  "externalTaxonomyTerms": Object {
-    "default": Object {},
+  "externalTaxonomyTerms": {
+    "default": {},
     "type": "object",
   },
-  "isMultipleSourcesEnabled": Object {
+  "isMultipleSourcesEnabled": {
     "default": false,
     "type": "boolean",
   },
-  "isNonWpSourcesEnabled": Object {
+  "isNonWpSourcesEnabled": {
     "default": false,
     "type": "boolean",
   },
-  "keepCustomSelectionOrder": Object {
+  "keepCustomSelectionOrder": {
     "default": false,
     "type": "boolean",
   },
-  "numberPerRow": Object {
+  "numberPerRow": {
     "default": 0,
     "type": "number",
   },
-  "numberPerRowLg": Object {
+  "numberPerRowLg": {
     "default": 0,
     "type": "number",
   },
-  "numberPerRowSm": Object {
+  "numberPerRowSm": {
     "default": 0,
     "type": "number",
   },
-  "numberPerRowXs": Object {
+  "numberPerRowXs": {
     "default": 0,
     "type": "number",
   },
-  "order": Object {
+  "order": {
     "default": "date",
     "type": "string",
   },
-  "orderBy": Object {
+  "orderBy": {
     "default": "desc",
     "type": "string",
   },
-  "postType": Object {
+  "postType": {
     "type": "string",
   },
-  "postsOffset": Object {
+  "postsOffset": {
     "default": 0,
     "type": "number",
   },
-  "postsToShow": Object {
+  "postsToShow": {
     "default": 5,
     "type": "number",
   },
-  "randomOrder": Object {
+  "randomOrder": {
     "default": false,
     "type": "boolean",
   },
-  "selectedNonWpSource": Object {
-    "default": Object {},
+  "selectedNonWpSource": {
+    "default": {},
     "type": "object",
   },
-  "selectedPosts": Object {
-    "default": Array [],
+  "selectedPosts": {
+    "default": [],
     "type": "array",
   },
-  "selectedSources": Object {
-    "default": Array [],
+  "selectedSources": {
+    "default": [],
     "type": "array",
   },
-  "selectedStickyPostID": Object {
+  "selectedStickyPostID": {
     "type": "number",
   },
-  "stickyPostSelection": Object {
+  "stickyPostSelection": {
     "default": false,
     "type": "boolean",
   },
-  "taxonomyTerms": Object {
-    "default": Object {},
+  "taxonomyTerms": {
+    "default": {},
     "type": "object",
   },
 }

@@ -1,41 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic tests metadata should not change 1`] = `
-Object {
-  "attributes": Object {
-    "autoPlay": Object {
+{
+  "attributes": {
+    "autoPlay": {
       "default": true,
       "type": "boolean",
     },
-    "carouselId": Object {
+    "carouselId": {
       "default": "carousel-1",
       "type": "string",
     },
-    "carouselImages": Object {
-      "default": Array [],
+    "carouselImages": {
+      "default": [],
       "type": "array",
     },
-    "imageSize": Object {
+    "imageSize": {
       "default": "full",
       "type": "string",
     },
-    "interval": Object {
+    "interval": {
       "default": 5000,
       "type": "number",
     },
-    "showControls": Object {
+    "showControls": {
       "default": true,
       "type": "boolean",
     },
-    "showIndicators": Object {
+    "showIndicators": {
       "default": true,
       "type": "boolean",
     },
-    "shuffle": Object {
+    "shuffle": {
       "default": false,
       "type": "boolean",
     },
-    "viewportDesktopHeight": Object {
+    "viewportDesktopHeight": {
       "default": 300,
       "type": "number",
     },

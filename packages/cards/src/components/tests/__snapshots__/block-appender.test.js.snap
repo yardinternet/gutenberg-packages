@@ -13,6 +13,7 @@ exports[`Cards blockappender 1`] = `
   </span>
   <span
     className="dashicon dashicons dashicons-insert"
+    style={{}}
   />
 </button>
 `;

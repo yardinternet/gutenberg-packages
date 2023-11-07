@@ -1,36 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic tests metadata should not change 1`] = `
-Object {
-  "attributes": Object {
-    "bgColor": Object {
+{
+  "attributes": {
+    "bgColor": {
       "type": "string",
     },
-    "bgImgUrl": Object {
+    "bgImgUrl": {
       "type": "string",
     },
-    "flexAlignment": Object {
+    "flexAlignment": {
       "default": "",
       "type": "string",
     },
-    "fullWidth": Object {
+    "fullWidth": {
       "default": false,
       "type": "boolean",
     },
-    "gradientArray": Object {
-      "default": Array [],
+    "gradientArray": {
+      "default": [],
       "type": "array",
     },
-    "minHeight": Object {
+    "minHeight": {
       "type": "string",
     },
-    "rowGutter": Object {
+    "rowGutter": {
       "default": false,
       "type": "boolean",
     },
   },
   "name": "yard-blocks/timeline",
-  "supports": Object {
+  "supports": {
     "html": false,
   },
 }

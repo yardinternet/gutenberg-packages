@@ -1,25 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic tests metadata should not change 1`] = `
-Object {
-  "attributes": Object {
-    "icon": Object {
+{
+  "attributes": {
+    "icon": {
       "default": "fas fa-truck",
       "type": "string",
     },
-    "iconColor": Object {
+    "iconColor": {
       "default": "",
       "type": "string",
     },
-    "iconSize": Object {
+    "iconSize": {
       "default": 18,
       "type": "number",
     },
-    "labelText": Object {
+    "labelText": {
       "default": "",
       "type": "string",
     },
-    "placeholder": Object {
+    "placeholder": {
       "default": "Begin met schrijven",
       "type": "string",
     },

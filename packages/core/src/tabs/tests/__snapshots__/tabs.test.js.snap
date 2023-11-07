@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic tests metadata should not change 1`] = `
-Object {
-  "attributes": Object {
-    "defaultTab": Object {
+{
+  "attributes": {
+    "defaultTab": {
       "default": "tab-1",
       "type": "string",
     },
-    "defaultTabEnabled": Object {
+    "defaultTabEnabled": {
       "default": false,
       "type": "boolean",
     },
-    "id": Object {
+    "id": {
       "type": "string",
     },
-    "innerblocks": Object {
-      "default": Array [],
+    "innerblocks": {
+      "default": [],
       "type": "array",
     },
   },

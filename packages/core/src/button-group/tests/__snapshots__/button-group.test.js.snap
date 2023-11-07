@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic tests metadata should not change 1`] = `
-Object {
-  "attributes": Object {
-    "btnAlignment": Object {
+{
+  "attributes": {
+    "btnAlignment": {
       "default:": "flex-align-center-left",
       "type": "string",
     },
-    "btnWidth": Object {
+    "btnWidth": {
       "default": "auto",
       "type": "string",
     },

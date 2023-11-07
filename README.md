@@ -5,7 +5,7 @@
 ### Initial Setup
 
 1. Copy `.npmrc.example` to `.npmrc` and add your tokens.
-2. Run `(npx) lerna bootstrap` in the root directory.
+2. Run `npm install` in the root directory.
 
 ### Developing package in project or theme
 

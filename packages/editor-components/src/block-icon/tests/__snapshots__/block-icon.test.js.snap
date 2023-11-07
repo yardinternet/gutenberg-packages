@@ -4,7 +4,7 @@ exports[`Blockicon basic BlockIcon, add marginRight property 1`] = `
 <i
   className="yard-blocks__block-icon fa-icon"
   style={
-    Object {
+    {
       "marginRight": "5px",
     }
   }
@@ -14,13 +14,13 @@ exports[`Blockicon basic BlockIcon, add marginRight property 1`] = `
 exports[`Blockicon basic BlockIcon, pass faClasses 1`] = `
 <i
   className="yard-blocks__block-icon fa-icon"
-  style={Object {}}
+  style={{}}
 />
 `;
 
 exports[`Blockicon basic basic test 1`] = `
 <i
   className="yard-blocks__block-icon"
-  style={Object {}}
+  style={{}}
 />
 `;

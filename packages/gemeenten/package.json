@@ -32,9 +32,6 @@
 		"url": "https://github.com/yardinternet/gutenberg-packages/issues"
 	},
 	"dependencies": {
-		"@emotion/styled": "^10.3.0",
-		"@wordpress/dom-ready": "^2.13.2",
-		"@wordpress/server-side-render": "^1.21.3",
 		"@yardinternet/gutenberg-editor-components": "file:../editor-components",
 		"react-select": "^4.3.1"
 	}

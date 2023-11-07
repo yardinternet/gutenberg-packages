@@ -1,28 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic column, classes should not change 1`] = `
-Object {
-  "colClass": Object {
+{
+  "colClass": {
     "default": 0,
     "type": "number",
   },
-  "colClassLg": Object {
+  "colClassLg": {
     "default": 6,
     "type": "number",
   },
-  "colClassSm": Object {
+  "colClassSm": {
     "default": 0,
     "type": "number",
   },
-  "colClassXs": Object {
+  "colClassXs": {
     "default": 0,
     "type": "number",
   },
-  "displayBlock": Object {
+  "displayBlock": {
     "default": true,
     "type": "boolean",
   },
-  "editIsSelected": Object {
+  "editIsSelected": {
     "default": false,
     "type": "boolean",
   },
@@ -33,7 +33,7 @@ exports[`basic column, should render column block with attributes 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "backgroundColor": "red",
     }
   }
@@ -41,7 +41,7 @@ exports[`basic column, should render column block with attributes 1`] = `
   <div
     className="inner_example_one inner_example_two"
     style={
-      Object {
+      {
         "color": "blue",
       }
     }

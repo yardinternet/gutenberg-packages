@@ -4,7 +4,7 @@ exports[`Cards render cards 1`] = `
 <ul
   className=""
   style={
-    Object {
+    {
       "listStyleType": "none",
       "paddingLeft": 0,
     }
@@ -22,7 +22,7 @@ exports[`Cards render cards with props 1`] = `
 <ul
   className="className has-overflow-on-mobile has-cards-equal-height"
   style={
-    Object {
+    {
       "listStyleType": "none",
       "paddingLeft": 0,
     }

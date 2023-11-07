@@ -19,10 +19,10 @@ jobs:
             - run: git fetch origin +refs/tags/*:refs/tags/*
             - uses: actions/setup-node@v1
               with:
-                  node-version: '12.x'
-            - run: mv .npmrc.example .npmrc      
+                  node-version: '18.16.0'
+            - run: mv .npmrc.example .npmrc
             - run: npm ci
-            - run: mv .npmrc .npmrc.example  
+            - run: mv .npmrc .npmrc.example
             - run: npm run auto-changelog
             - uses: stefanzweifel/git-auto-commit-action@v4.1.1
               with:

@@ -14,7 +14,7 @@ exports[`filesize component should not change save component of core/file 1`] = 
 <div
   className="yard-block-filter--core-file"
   style={
-    Object {
+    {
       "display": "flex",
     }
   }
@@ -23,7 +23,6 @@ exports[`filesize component should not change save component of core/file 1`] = 
     className="yard-block-filter--core-file__filesize"
   >
     (
-    
     )
   </div>
 </div>

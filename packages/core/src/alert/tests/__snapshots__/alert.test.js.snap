@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic tests metadata should not change 1`] = `
-Object {
-  "attributes": Object {
-    "alertType": Object {
+{
+  "attributes": {
+    "alertType": {
       "default": "alert alert-warning",
       "type": "string",
     },

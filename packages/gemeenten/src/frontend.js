@@ -16,10 +16,8 @@ components.map( ( item ) => {
 	const element = document.getElementById( item.domID );
 
 	if ( element ) {
-		ReactDOM.render(
-			<item.Component />,
-			document.getElementById( item.domID )
-		);
+		const root = ReactDOM.createRoot( element );
+		root.render( <item.Component /> );
 	}
 	return false;
 } );

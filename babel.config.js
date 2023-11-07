@@ -6,7 +6,7 @@ module.exports = function ( api ) {
 		plugins: [
 			'@wordpress/babel-plugin-import-jsx-pragma',
 			'@babel/plugin-transform-runtime',
-			'@babel/plugin-proposal-class-properties',
+			'@babel/plugin-transform-class-properties',
 		],
 	};
 };

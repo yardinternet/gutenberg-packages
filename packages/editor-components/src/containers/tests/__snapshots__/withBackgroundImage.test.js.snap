@@ -3,7 +3,7 @@
 exports[`withBackgroundImage withBackgroundImage, bgPosition should be omitted 1`] = `
 <div
   style={
-    Object {
+    {
       "backgroundSize": "contain",
     }
   }
@@ -15,7 +15,7 @@ exports[`withBackgroundImage withBackgroundImage, bgPosition should be omitted 1
 exports[`withBackgroundImage withBackgroundImage, render bgSize and don't override other styles  1`] = `
 <div
   style={
-    Object {
+    {
       "backgroundSize": "contain",
       "color": "red",
     }
@@ -28,7 +28,7 @@ exports[`withBackgroundImage withBackgroundImage, render bgSize and don't overri
 exports[`withBackgroundImage withBackgroundImage, render with background-image and no-repeat 1`] = `
 <div
   style={
-    Object {
+    {
       "backgroundImage": "url(http://www.awesome.com/image.jpg)",
       "backgroundPosition": "center center",
       "backgroundRepeat": "no-repeat",
