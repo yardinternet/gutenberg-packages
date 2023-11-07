@@ -3,6 +3,7 @@
  */
 import { attributes, name } from '../settings';
 
+// Test
 describe( `row settings`, () => {
 	test( `block name of ${ name } should not change`, () => {
 		expect( name ).toMatchSnapshot();

@@ -4,6 +4,7 @@ import {
 } from '../../containers/withBackgroundClass';
 import { pickRelevantMediaFiles } from '../helpers';
 
+// Test
 describe( 'getColorClassByColor', () => {
 	const editorColorPallete = [
 		{

@@ -28,5 +28,8 @@
 				}
 			]
 		}
+	},
+	"dependencies": {
+		"emotion": "^11.0.0"
 	}
 }
