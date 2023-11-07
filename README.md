@@ -1,85 +1,50 @@
-![format & lint](https://github.com/yardinternet/gutenberg-packages/workflows/format%20&%20lint/badge.svg)
-![tests](https://github.com/yardinternet/gutenberg-packages/workflows/tests/badge.svg)
-![auto-changelog](https://github.com/yardinternet/gutenberg-packages/workflows/auto-changelog/badge.svg)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
 # Gutenberg Packages
 
-## Package development
+## Package Development
 
-Copy .npmrc.example to .npmrc.
-Remove the last two lines, these are required by Github Actions
+### Initial Setup
 
-```js
-//npm.fontawesome.com/:_authToken=${FONTAWESOME_TOKEN}
-//npm.pkg.github.com/:_authToken=${NPM_READ_PACKAGES}
-```
+1. Copy `.npmrc.example` to `.npmrc` and add your tokens.
+2. Run `(npx) lerna bootstrap` in the root directory.
 
 ### Developing package in project or theme
 
 1. Run `npm link` inside the gutenberg-package/packages/<package>
 2. Run `npm link <package-json-name>` inside the project or theme
 
-`npm link` creates a symbolic link between the packages.
-Run `npm start` inside theme or project and make changes in the gutenberg-packages project and the code compiles.
+This creates a symbolic link between the packages, allowing you to work on the package while making changes in the project or theme by running `npm start`.
 
-## Unlink
+### Unlink
 
-1. Run `npm unlink --no-save <package>` in your theme first.
+1. To unlink a package from your theme, run `npm unlink --no-save <package>`.
 
-   If you don't include `--no-save` you'll end up removing that package from your package.json file. Of course, if you don't want to include the unlinked package in your package.json file, you can exclude the `--no-save`.
+Note: Omitting `--no-save` will remove the package from your `package.json` file.
 
-2. Run `npm unlink` inside the gutenberg-package/packages/<package>
+2. Run `npm unlink` inside the `gutenberg-package/packages/<package>` directory.
 
 Alternatively, running `npm install` in your theme will also remove the linked version.
 
-### Releasing packages
+## Releasing packages
 
-Run `lerna publish` to publish packages to the Github package registry.
-Lerna will check per package if it contains changes and let you decide what version to upgrade.
-Lerna will push the changes to Github.
+Run `lerna publish` to publish packages to the GitHub Package Registry. Lerna checks each package for changes and lets you decide which version to upgrade. It then pushes the changes to GitHub.
 
-#### Troubleshooting
+As a general rule, only update packages from the master branch. For feature branches or development, you can publish alpha releases.
 
-Make sure you have a personal access token and sufficient package rights to publish packages.
+### How lerna identifies package changes
 
-[Configuring npm for use with GitHub Packages](https://docs.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages)
+Lerna identifies individual package changes, even when the package itself is not modified. For example, if a package called `package-foo` depends on `package-bar`, and you make changes to `package-bar`, Lerna will update the `package.json` file of `package-foo`.
 
-## When to publish
+### Recover from a failed publish
 
-As a rule of thumb, **only update packages from the master branch**
-
-In feature branch or development you can publish alpha releases
-
-### Why lerna finds individual package changes without changing it 
-
-When changes made to a package that another package depends on, lerna will update the package.json file.
-As example: package-foo has a dependency on package-bar. When you make changes to package-bar, it will update the package.json file of package-foo.
-
-## Recover from a failed publish
-
-Lerna uses git tags to keep track of published versions. The tag for the versions are first created and pushed. If a publish fails, you have to remove these tags and the newly created commits and try again.
+Lerna uses git tags to track published versions. If a publish fails, you need to remove these tags and the newly created commits and try again. Here's how to recover:
 
 1. Check which tags were created. Remove them from origin `git push -d origin {tagname}`
 2. Sync your local tags with the tags from origin `git fetch --prune --prune-tags`
 2. Remove the created commits `git reset HEAD~{number-of-commits} --hard`
 3. Push your git history `git push --force-with-lease`
 
-Fix the reason why the publish failed and try publishing again.
+After completing these steps, address the issue that caused the publish to fail and try publishing again.
 
-## Github actions
+## Formatting & Linting
 
-### format & lint
-
-Runs the code trough a formatter and commits the format code if necessary. After formatting, the linter will run.
-
-## Format & lint
-
-This repos has builtin support for eslint and prettier. To enable formatting make sure the following setting is in your user perferences
-
-```JSON
-   "editor.formatOnSave": true
-```
-
-Husky will run on each commit to making sure all files are formatted and linted.
+This repository includes built-in support for ESLint and Prettier. Husky ensures that all files are automatically formatted and linted with each commit. Additionally, a GitHub action runs to verify and enforce code formatting and linting with every commit.
