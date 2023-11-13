@@ -1,7 +1,11 @@
 /**
+ * WordPress dependencies
+ */
+import { useState } from '@wordpress/element';
+
+/**
  * External dependencies
  */
-import React, { useState } from 'react';
 import classnames from 'classnames';
 import styled from '@emotion/styled';
 

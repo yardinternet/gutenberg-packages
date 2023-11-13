@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React from 'react';
+import React from 'react'; // eslint-disable-line
 /**
  * Internal dependencies
  */

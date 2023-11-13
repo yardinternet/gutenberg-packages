@@ -1,7 +1,7 @@
 /**
- * External dependencies
+ * WordPress dependencies
  */
-import { Fragment } from 'react';
+import { Fragment } from '@wordpress/element';
 
 const { SelectControl, PanelBody } = wp.components;
 const { __ } = wp.i18n;

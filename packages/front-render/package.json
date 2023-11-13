@@ -24,5 +24,8 @@
 		}
 	},
 	"author": "Yard Internet",
-	"license": "ISC"
+	"license": "ISC",
+	"dependencies": {
+		"@storybook/addon-a11y": "^7.5.3"
+	}
 }

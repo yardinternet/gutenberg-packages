@@ -13,8 +13,7 @@
 		"test:watch": "jest --watch",
 		"storybook": "start-storybook -p 6006",
 		"packages-update": "wp-scripts packages-update",
-		"tsc": "tsc",
-		"version:release": "HUSKY=0 lerna publish"
+		"tsc": "tsc"
 	},
 	"repository": {
 		"type": "git",
@@ -34,6 +33,9 @@
 			"npm run lint"
 		]
 	},
+	"workspaces": [
+		"packages/*"
+	],
 	"devDependencies": {
 		"@babel/plugin-transform-class-properties": "^7.22.5",
 		"@babel/plugin-transform-runtime": "^7.23.2",
@@ -54,6 +56,7 @@
 		"@wordpress/blocks": "^12.22.0",
 		"@wordpress/components": "^25.11.0",
 		"@wordpress/compose": "^6.22.0",
+		"@wordpress/element": "^5.22.0",
 		"@wordpress/eslint-plugin": "^17.2.0",
 		"@wordpress/icons": "^9.36.0",
 		"@wordpress/jest-preset-default": "^11.16.0",
@@ -63,6 +66,7 @@
 		"@yardinternet/webpack-include-packages": "^1.0.2",
 		"auto-changelog": "^2.4.0",
 		"classnames": "^2.3.2",
+		"emotion": "^11.0.0",
 		"husky": "^6.0.0",
 		"jest": "*",
 		"jest-config": "*",
@@ -89,7 +93,6 @@
 		"@yardinternet/gutenberg-editor-components": "*",
 		"@yardinternet/gutenberg-gemeenten": "*",
 		"@yardinternet/gutenberg-google-maps": "*",
-		"@yardinternet/gutenberg-webpack-loaders": "*",
-		"emotion": "^10.0.27"
+		"@yardinternet/gutenberg-webpack-loaders": "*"
 	}
 }

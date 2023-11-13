@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 export default css`
 	[data-type='yard-block/cards'] {

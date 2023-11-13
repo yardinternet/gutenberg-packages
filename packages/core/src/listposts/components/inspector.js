@@ -3,7 +3,6 @@
  */
 import { map, countBy } from 'lodash';
 import debounce from 'debounce-promise';
-import { useState, useEffect } from 'react';
 import Select, { components } from 'react-select';
 import AsyncSelect from 'react-select/async';
 import {
@@ -16,7 +15,7 @@ import {
  * WordPress dependencies
  */
 import { applyFilters } from '@wordpress/hooks';
-import { Fragment } from '@wordpress/element';
+import { Fragment, useState, useEffect } from '@wordpress/element';
 import { withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 import {

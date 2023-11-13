@@ -1,14 +1,11 @@
 /**
- * External dependencies
- */
-import { useState } from 'react';
-/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { useState } from '@wordpress/element';
 
 /**
- * Internal dependencies
+ * External dependencies
  */
 import { pickRelevantMediaFiles } from '@yardinternet/gutenberg-editor-components';
 

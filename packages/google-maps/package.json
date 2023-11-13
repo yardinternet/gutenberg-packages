@@ -28,7 +28,11 @@
 		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
 	},
 	"dependencies": {
+		"@storybook/addon-a11y": "^7.5.3",
+		"@storybook/addon-actions": "^7.5.3",
 		"@yardinternet/gutenberg-editor-components": "file:../editor-components",
+		"classnames": "^2.3.2",
+		"lodash": "^4.17.21",
 		"react-select": "^4.3.1",
 		"tinycolor2": "^1.4.1"
 	},

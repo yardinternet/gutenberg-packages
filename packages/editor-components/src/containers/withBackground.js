@@ -1,4 +1,6 @@
-import React from 'react'; // eslint-disable-line
+/**
+ * External dependencies
+ */
 import { omitBy, isUndefined, isEqual } from 'lodash';
 /**
  * WordPress dependencies

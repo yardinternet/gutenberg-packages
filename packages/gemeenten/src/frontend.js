@@ -2,8 +2,8 @@
 /**
  * External dependencies
  */
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'; // eslint-disable-line
+import ReactDOM from 'react-dom'; // eslint-disable-line
 /**
  * Internal dependencies
  */

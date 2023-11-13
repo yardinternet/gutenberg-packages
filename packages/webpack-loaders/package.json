@@ -11,5 +11,8 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
+	},
+	"dependencies": {
+		"@yardinternet/webpack-include-packages": "^1.0.2"
 	}
 }

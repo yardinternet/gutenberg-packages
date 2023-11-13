@@ -1,5 +1,6 @@
-import React from 'react'; // eslint-disable-line
-
+/**
+ * External dependencies
+ */
 import {
 	withBackgroundClass,
 	withBackgroundImage,

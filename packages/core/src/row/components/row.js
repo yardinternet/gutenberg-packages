@@ -1,9 +1,7 @@
-import React from 'react'; // eslint-disable-line
+/**
+ * External dependencies
+ */
 import classNames from 'classnames';
-import {
-	withBackgroundClass,
-	withBackgroundImage,
-} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -14,6 +12,10 @@ import { compose } from '@wordpress/compose';
  * Internal dependencies
  */
 import { getClassesByLayoutID } from '../layout';
+import {
+	withBackgroundClass,
+	withBackgroundImage,
+} from '@yardinternet/gutenberg-editor-components';
 
 function Row( {
 	className,

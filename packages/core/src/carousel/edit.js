@@ -12,7 +12,7 @@ import { Toolbar, ToolbarButton } from '@wordpress/components';
 /**
  * External dependencies
  */
-import { useState, useCallback, Fragment } from 'react';
+import { useState, useCallback, Fragment } from '@wordpress/element';
 import { isEmpty } from 'lodash';
 
 /**

@@ -1,8 +1,3 @@
-/**
- * External dependencies
- */
-import React from 'react';
-
 function Greeting( props ) {
 	const { attributes, date = new Date() } = props;
 	const { labelMorning, labelDay, labelNight } = attributes;
