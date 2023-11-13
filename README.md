@@ -1,16 +1,18 @@
 # Gutenberg Packages
 
-## Package Development
+Contains several packages that are used in Yard | Digital Agency WordPress projects.
+
+## 👷‍♀️ Package Development
 
 ### Initial Setup
 
 1. Copy `.npmrc.example` to `.npmrc` and add your tokens.
-2. Run `npm install` in the root directory.
+2. Run `npm install` in the root directory to install all dependencies for all packages.
 
 ### Developing package in project or theme
 
-1. Run `npm link` inside the gutenberg-package/packages/<package>
-2. Run `npm link <package-json-name>` inside the project or theme
+1. Run `npm link` inside the `gutenberg-package/packages/<package>` directory.
+2. Run `npm link <package-json-name>` inside the project or theme directory.
 
 This creates a symbolic link between the packages, allowing you to work on the package while making changes in the project or theme by running `npm start`.
 
@@ -24,7 +26,7 @@ Note: Omitting `--no-save` will remove the package from your `package.json` file
 
 Alternatively, running `npm install` in your theme will also remove the linked version.
 
-## Releasing packages
+## 🚀 Releasing packages
 
 Run `HUSKY=0 lerna publish` to publish packages to the GitHub Package Registry. Lerna checks each package for changes and lets you decide which version to upgrade. It then pushes the changes to GitHub.
 
@@ -45,6 +47,6 @@ Lerna uses git tags to track published versions. If a publish fails, you need to
 
 After completing these steps, address the issue that caused the publish to fail and try publishing again.
 
-## Formatting & Linting
+## 🎨 Formatting & Linting
 
 This repository includes built-in support for ESLint and Prettier. Husky ensures that all files are automatically formatted and linted with each commit. Additionally, a GitHub action runs to verify and enforce code formatting and linting with every commit.
