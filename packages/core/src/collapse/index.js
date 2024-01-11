@@ -35,4 +35,7 @@ export const settings = {
 	save,
 	attributes,
 	deprecated,
+	supports: {
+		align: [ 'full', 'wide' ],
+	},
 };
