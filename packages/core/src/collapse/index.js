@@ -28,6 +28,7 @@ export const settings = {
 	description: __(
 		'Voeg uitklapbare blokken toe om inhoud in en uit te kunnen vouwen.'
 	),
+	keywords: [ __( 'faq' ), __( 'veelgestelde vragen' ) ],
 	icon: {
 		src: Icon,
 	},
