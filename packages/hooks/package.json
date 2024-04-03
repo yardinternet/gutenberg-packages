@@ -1,0 +1,13 @@
+{
+	"name": "@yardinternet/gutenberg-hooks",
+	"version": "1.0.0",
+	"private": true,
+	"description": "",
+	"main": "src/index.js",
+	"author": {
+		"name": "Yard | Digital Agency",
+		"email": "info@yard.nl",
+		"url": "https://www.yard.nl/"
+	},
+	"license": "ISC"
+}
