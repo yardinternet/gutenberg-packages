@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-webpack-loaders",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Several webpack loaders for many use-cases",
 	"main": "src/index.js",
 	"author": "",
