@@ -1,43 +1,31 @@
 # Webpack loaders for Gutenberg
 
-Since all packages directly loaded in themes, theme blocks, plugins we need to support syntax and file types with webpack-loaders.
-When you load `@yardinternet/gutenberg-editor-components` inside your theme it's directly included in your theme webpack build.
-Run `npm start` and you see a lot of errors that certain types are not supported.
-To solve this problem, you need to install all related loaders that `gutenberg-editor-components` contains.
+Helper functions to add packages to the `@wordpress/scripts` configuration.
 
-This package solves that problem by giving you a default webpack loader, so you don't have to write custom code.
-Any new syntax or filetypes must be added inside this package, and all projects will benefit.
+## Background
 
-This package is a wrapper around @wordpress/scripts.
+All packages in the `@yardinternet/gutenberg-packages` **do not** provide a `/build` folder with compiled files. This is because pre-compiling components causes problems within the WordPress ecosystem:
 
-## Schema
+- Dependency management and version conflicts: Pre-building components may lead to version conflicts with other WordPress packages. This will cause unexpected behavior or errors, version lock-in and difficulty in updating dependencies.
+- Maintenance overhead: Maintaining an asset build for each package adds overhead in terms of maintenance and deployment.
+- Customization limitations: Pre-built components limit the flexibility to customize and extend functionality.
 
-![](schema.png)
+So when using a package in your theme or plugin, you will **have to compile @yardinternet/gutenberg-packages in within your theme**, which requires all the related loaders.
 
-## Example webpack.config.js
+Luckily, all related loaders are already in `@wordpress/scripts`. All we need to do, is add the packages to the `@wordpress/scripts` configuration, so that it includes compiling the packages when running `npm start`.
 
-With this setup, you can still modify the config returned by the gutenbergPackagesConfig
+This package provides some helper functions to add the packages to the `@wordpress/scripts` configuration.
+
+## Example `addPackagesToConfig`
 
 ```JS
-const path = require("path");
-const {
-    gutenbergPackagesConfig
-} = require("@yardinternet/gutenberg-webpack-loaders");
-
-const exclude = [
-    "@yardinternet/gutenberg-cards",
-    "@yardinternet/gutenberg-editor-components",
-    "@yardinternet/gutenberg-google-maps"
-];
-
-const config = gutenbergPackagesConfig({ packages: exclude });
+const { addPackagesToConfig } = require("@yardinternet/gutenberg-webpack-loaders");
+const defaultConfig = require( '@wordpress/scripts/config/webpack.config' ); // Original config from the @wordpress/scripts package.
 
 module.exports = {
-    ...config,
-    output: {
-        filename: "blocks.js",
-        path: path.resolve(process.cwd(), "../assets/dist/js")
-    }
+ ...addPackagesToConfig( defaultConfig, [
+  '@yardinternet/gutenberg-components',
+  '@yardinternet/gutenberg-hooks',
+ ] ),
 };
-
 ```
