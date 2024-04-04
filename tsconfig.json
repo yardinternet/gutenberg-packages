@@ -8,5 +8,5 @@
 		"noImplicitAny": false,
 		"typeRoots": [ "./node_modules/@types" ]
 	},
-	"include": [ "./packages/register-blocks/**/*" ]
+	"include": [ "packages/deprecated/register-blocks/**/*" ]
 }

@@ -39,7 +39,8 @@
 		]
 	},
 	"workspaces": [
-		"packages/*"
+		"packages/*",
+		"packages/deprecated/*"
 	],
 	"devDependencies": {
 		"@babel/plugin-transform-class-properties": "^7.22.5",

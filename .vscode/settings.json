@@ -3,5 +3,9 @@
 	"css.validate": false,
 	"scss.validate": false,
 	"prettier.configPath": ".prettierrc.js",
-	"stylelint.validate": ["css", "scss"]
+	"stylelint.validate": [ "css", "scss" ]
+	// Uncomment this line to exclude deprecated files from search results
+	// "search.exclude": {
+	// 	"**/deprecated": true
+	// }
 }
