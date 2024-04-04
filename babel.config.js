@@ -1,3 +1,4 @@
+// Babel needed for jest.config.js
 module.exports = function ( api ) {
 	api.cache( true );
 
