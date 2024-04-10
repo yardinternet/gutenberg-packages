@@ -8,7 +8,7 @@ The `useCurrentPost` hook is a utility that provides a convenient interface for 
 import { useCurrentPost } from '@yardinternet/gutenberg-hooks';
 
 const Edit = ( props ) => {
- const { currentPostType, currentPostMeta, editPostMeta } = useCurrentPost();
+ const { currentPostType } = useCurrentPost();
 
  return (
   ...
