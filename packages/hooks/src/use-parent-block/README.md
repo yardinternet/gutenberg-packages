@@ -5,15 +5,15 @@ The `useParentBlock` hook is a utility that provides a convenient interface for 
 ## Usage
 
 ```js
-import { useParentBlock } from '@hooks';
+import { useParentBlock } from '@yardinternet/gutenberg-hooks';
 
 const Edit = ( props ) => {
-	const { parentBlock, parentAttributes, setParentAttributes, selectParentBlock } = useParentBlock();
+ const { parentBlock, parentAttributes, setParentAttributes, selectParentBlock } = useParentBlock();
 
-	return (
-		<Button variant="secondary" onClick={ selectParentBlock }>
-			{ __( 'Selecteer hoofdblok' ) }
-		</Button>
-	);
+ return (
+  <Button variant="secondary" onClick={ selectParentBlock }>
+   { __( 'Selecteer hoofdblok' ) }
+  </Button>
+ );
 }
 ```
