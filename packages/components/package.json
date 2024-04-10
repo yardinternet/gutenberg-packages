@@ -8,5 +8,8 @@
 		"email": "info@yard.nl",
 		"url": "https://www.yard.nl/"
 	},
-	"license": "ISC"
+	"license": "ISC",
+	"dependencies": {
+		"@yardinternet/gutenberg-hooks": "file:../hooks"
+	}
 }
