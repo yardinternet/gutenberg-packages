@@ -61,6 +61,7 @@ export const FeaturedImageFocalPointPicker = createHigherOrderComponent(
 							url={ media?.source_url }
 							value={ featuredImageFocalPoint }
 							onChange={ setFeaturedImageMeta }
+							onDrag={ setFeaturedImageMeta }
 						/>
 					</div>
 				</>
