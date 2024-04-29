@@ -86,6 +86,7 @@ export const Image = ( props ) => {
 							url={ imageUrl }
 							value={ focalPoint }
 							onChange={ onChangeFocalPoint }
+							onDrag={ onChangeFocalPoint }
 						/>
 					</PanelBody>
 				</InspectorControls>
