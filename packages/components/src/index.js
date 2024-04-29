@@ -6,3 +6,5 @@ export {
 	IconPickerControlInspector,
 	IconPickerControlToolbar,
 } from './icon-picker-control';
+export { Image } from './image';
+export { MediaToolbar } from './media-toolbar';
