@@ -1,0 +1,14 @@
+.yard-component-link {
+	--color-warning: #f00;
+	display: flex;
+
+	.dashicon {
+		text-decoration: none;
+		font-size: 1em;
+		background: transparent;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-warning);
+	}
+}
