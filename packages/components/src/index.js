@@ -7,4 +7,5 @@ export {
 	IconPickerControlToolbar,
 } from './icon-picker-control';
 export { Image } from './image';
+export { Link } from './link';
 export { MediaToolbar } from './media-toolbar';
