@@ -61,9 +61,9 @@ export const Link = ( props ) => {
 				allowedFormats={ [] }
 				aria-label={ __( 'Link tekst' ) }
 				className="yard-component-link__rich-text"
-				onChange={ () => {
+				onChange={ ( value ) => {
 					openPopover();
-					onTextChange();
+					onTextChange( value );
 				} }
 				onClick={ openPopover }
 				placeholder={ placeholder }
