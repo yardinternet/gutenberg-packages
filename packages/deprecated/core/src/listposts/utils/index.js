@@ -10,13 +10,15 @@ import { __ } from '@wordpress/i18n';
 
 export const excludePostTypes = [
 	'attachment',
+	'nav_menu_item',
 	'post',
 	'wp_block',
-	'yard-presets',
-	'wp_template',
-	'wp_template_part',
+	'wp_font_face',
+	'wp_font_family',
 	'wp_navigation',
-	'nav_menu_item',
+	'wp_template_part',
+	'wp_template',
+	'yard-presets',
 ];
 
 export const excludeTaxonomies = [
