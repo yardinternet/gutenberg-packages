@@ -23,8 +23,9 @@ export const excludePostTypes = [
 
 export const excludeTaxonomies = [
 	'category',
-	'tribe_events_cat',
+	'nav_menu',
 	'post_tag',
+	'tribe_events_cat',
 	'yard-presets-taxonomy',
 ];
 
