@@ -20,6 +20,10 @@ export const FeaturedImageFocalPointPicker = createHigherOrderComponent(
 		return ( props ) => {
 			const { media } = props;
 
+			if ( ! media ) {
+				return <PostFeaturedImage { ...props } />;
+			}
+
 			const { currentPostType } = useCurrentPost();
 			const [ featuredImageFocalPoint, setFeaturedImageFocalPoint ] =
 				useCurrentPostMeta( 'featured_image_focal_point' );
