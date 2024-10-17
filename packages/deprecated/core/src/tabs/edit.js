@@ -6,8 +6,9 @@ import {
 	useEffect,
 	useState,
 	Fragment,
+	useCallback,
 } from '@wordpress/element';
-import { withSelect, withDispatch } from '@wordpress/data';
+import { withSelect, withDispatch, useSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 import {
 	BlockControls,
@@ -57,28 +58,48 @@ function Edit( {
 		className: 'yard-blocks-tabs',
 	} );
 
+	const { getClientIdsOfDescendants, getBlockAttributes } = useSelect(
+		( select ) => ( {
+			getClientIdsOfDescendants:
+				select( 'core/block-editor' ).getClientIdsOfDescendants(
+					clientId
+				),
+			getBlockAttributes:
+				select( 'core/block-editor' ).getBlockAttributes,
+		} )
+	);
+
+	const clientIdExist = useCallback(
+		( idToCheck ) => {
+			return getClientIdsOfDescendants?.some( ( _clientId ) => {
+				const { id: _id } = getBlockAttributes( _clientId );
+				return idToCheck === _id;
+			} );
+		},
+		[ getClientIdsOfDescendants, getBlockAttributes ]
+	);
+
 	useEffect( () => {
 		if ( ! defaultTab || defaultTab === 'tab-1' ) {
 			setAttributes( { defaultTab: 'tab-default-' + clientId } );
 		}
-
-		if ( ! innerblocks.length ) {
-			setAttributes( {
-				innerblocks: innerBlocks,
-			} );
-		}
 	}, [] );
 
-	/**
-	 * Set the active tab on first load in the editor
-	 */
 	useEffect( () => {
-		if ( defaultTabEnabled ) {
+		setAttributes( {
+			innerblocks: innerBlocks,
+		} );
+	}, [ innerblocks, innerBlocks ] );
+
+	useEffect( () => {
+		const defaultTabExist = clientIdExist( defaultTab );
+
+		if ( defaultTabEnabled && defaultTabExist ) {
 			setActiveTab( defaultTab );
 		} else if ( innerblocks.length > 0 ) {
 			setActiveTab( innerblocks[ 0 ].attributes.id );
 		}
-	}, [] );
+	}, [ defaultTabEnabled, defaultTab, innerblocks[ 0 ]?.attributes?.id ] );
 
 	const TEMPLATE = [
 		[
@@ -100,7 +121,7 @@ function Edit( {
 		if ( ! defaultTabEnabled && innerblocks.length > 0 ) {
 			setAttributes( { defaultTab: innerblocks[ 0 ].attributes.id } );
 		}
-	}, [ defaultTabEnabled ] );
+	}, [ defaultTabEnabled, innerblocks ] );
 
 	return (
 		<Fragment>
