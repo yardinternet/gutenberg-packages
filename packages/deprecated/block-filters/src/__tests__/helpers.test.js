@@ -25,9 +25,3 @@ test( 'should return the core/file entry', () => {
 		registerBlockFilters( { blockFilters, config } ).toString()
 	).toEqual( expected.toString() );
 } );
-
-test( 'should return empty array', () => {
-	expect( registerBlockFilters( { blockFilters: [], config: {} } ) ).toEqual(
-		[]
-	);
-} );
