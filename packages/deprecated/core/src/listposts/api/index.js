@@ -13,12 +13,12 @@ export const fetchListPosts = ( slug, baseSlug = 'wp/v2/' ) => {
 	return apiFetch( { path: `${ baseSlug }${ slug }?per_page=100` } );
 };
 
-export const searchListPosts = ({
+export const searchListPosts = ( {
 	baseUrl,
 	baseSlug = 'wp/v2/search/',
 	subtype = 'any',
-	search
-}) => {
+	search,
+} ) => {
 	const options = baseUrl
 		? {
 				url: `${ baseUrl }/${ baseSlug }?subtype=${ subtype }&search=${ search }`,
@@ -27,7 +27,7 @@ export const searchListPosts = ({
 				path: `${ baseSlug }?subtype=${ subtype }&search=${ search }`,
 		  };
 
-	return apiFetch(options);
+	return apiFetch( options );
 };
 
 export function fetchCustomViews() {

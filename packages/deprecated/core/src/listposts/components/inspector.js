@@ -378,14 +378,17 @@ function Inspector( props ) {
 
 		const isAttachment = postType === 'attachment';
 
-		const options = applyFilters('yard-blocks.listPostsSearchCustomSelectionOptions',{
-			baseUrl: null,
-			baseSlug: isAttachment ? 'wp/v2/media' : 'wp/v2/search/',
-			subtype: isAttachment ? 'any' : postType,
-			search: inputValue
-		});
+		const options = applyFilters(
+			'yard-blocks.listPostsSearchCustomSelectionOptions',
+			{
+				baseUrl: null,
+				baseSlug: isAttachment ? 'wp/v2/media' : 'wp/v2/search/',
+				subtype: isAttachment ? 'any' : postType,
+				search: inputValue,
+			}
+		);
 
-		const data = await searchListPosts({...options});
+		const data = await searchListPosts( { ...options } );
 
 		if ( ! data ) return callback( [] );
 
