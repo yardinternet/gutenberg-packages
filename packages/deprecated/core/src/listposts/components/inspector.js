@@ -376,14 +376,16 @@ function Inspector( props ) {
 			return callback( [] );
 		}
 
-		const baseSlug =
-			postType !== 'attachment' ? 'wp/v2/search/' : 'wp/v2/media';
+		const isAttachment = postType === 'attachment';
 
-		const data = await searchListPosts(
-			baseSlug,
-			postType !== 'attachment' ? postType : 'any',
-			inputValue
-		);
+		const options = applyFilters('yard-blocks.listPostsSearchCustomSelectionOptions',{
+			baseUrl: null,
+			baseSlug: isAttachment ? 'wp/v2/media' : 'wp/v2/search/',
+			subtype: isAttachment ? 'any' : postType,
+			search: inputValue
+		});
+
+		const data = await searchListPosts({...options});
 
 		if ( ! data ) return callback( [] );
 
