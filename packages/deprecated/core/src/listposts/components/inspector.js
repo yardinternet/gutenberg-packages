@@ -332,6 +332,13 @@ function Inspector( props ) {
 	};
 
 	const shouldRenderCustomSelectionSelect = () => {
+		const shouldOverride = applyFilters(
+			'yard-blocks.listPostsSearchCustomSelectionOverride',
+			false
+		);
+
+		if ( shouldOverride ) return false;
+
 		if ( ! customSelection ) return false;
 		if ( searchCustomSelection && postType !== 'external' ) return false;
 		if ( ! posts.length && ! remotePostsOptions.length ) return false;
@@ -340,6 +347,13 @@ function Inspector( props ) {
 	};
 
 	const shouldRenderSearchCustomSelectionSelect = () => {
+		const shouldOverride = applyFilters(
+			'yard-blocks.listPostsSearchCustomSelectionOverride',
+			false
+		);
+
+		if ( shouldOverride ) return true;
+
 		if ( ! customSelection ) return false;
 		if ( ! posts.length ) return false;
 		if ( postType === 'external' || ! searchCustomSelection ) return false; // Search does not work for external sources.
