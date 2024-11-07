@@ -388,27 +388,41 @@ function Inspector( props ) {
 			}
 		);
 
+		if ( postType !== 'external' ) {
+			options.baseUrl = null; // When not using an external source, clear baseUrl to ensure local posts are searched locally.
+		}
+
 		const data = await searchListPosts( { ...options } );
 
 		if ( ! data ) return callback( [] );
 
-		transformPostsToState( data );
-		callback( createOptions( data ) );
+		transformPostsToState( data, options );
+		callback( createOptions( data, options ) );
 	};
 
-	const transformPostsToState = ( data = [] ) => {
+	const transformPostsToState = ( data = [], options = {} ) => {
 		setStateSearchedItems(
-			data.map( ( item ) => ( {
-				value: item.id,
-				label: item.title.rendered ? item.title.rendered : item.title,
-			} ) )
+			data.map( ( item ) => {
+				return {
+					value: item.id,
+					label: item.title.rendered
+						? item.title.rendered
+						: item.title,
+					baseUrl: options.baseUrl
+						? `${ options.baseUrl }/wp/v2/`
+						: null,
+					subtype: item.subtype,
+				};
+			} )
 		);
 	};
 
-	const createOptions = ( data ) => {
+	const createOptions = ( data, options = {} ) => {
 		return data.map( ( item ) => ( {
 			value: item.id,
 			label: item.title.rendered ? item.title.rendered : item.title,
+			baseUrl: options.baseUrl ? `${ options.baseUrl }/wp/v2/` : null,
+			subtype: item.subtype,
 		} ) );
 	};
 
