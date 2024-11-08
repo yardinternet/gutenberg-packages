@@ -30,7 +30,7 @@ function save( props ) {
 			<button
 				class="yard-blocks-collapse-item__button"
 				type="button"
-				data-anchor-name="${ anchorName }"
+				${ anchorName ? `data-anchor-name="${ anchorName }"` : '' }
 				data-toggle="collapse"
 				data-target="#collapse-${ id }"
 				aria-expanded="${ showOpen ? 'true' : 'false' }"
