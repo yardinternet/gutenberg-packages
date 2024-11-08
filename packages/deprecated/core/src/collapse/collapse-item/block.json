@@ -25,6 +25,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"anchorName": {
+			"type": "string",
+			"default": ""
+		},
 		"structuredData": {
 			"type": "boolean",
 			"default": false

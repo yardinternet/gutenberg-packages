@@ -13,8 +13,14 @@ import { useSelect } from '@wordpress/data';
 
 function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
-	const { id, headerText, showOpen, isAccordion, parentClientId } =
-		attributes;
+	const {
+		id,
+		headerText,
+		showOpen,
+		isAccordion,
+		parentClientId,
+		anchorName,
+	} = attributes;
 
 	const { parentClientIds, parentAttributes } = useSelect( ( select ) => {
 		return {
@@ -59,6 +65,10 @@ function Edit( props ) {
 				isAccordion={ isAccordion }
 				setIsAccordion={ ( value ) =>
 					setAttributes( { isAccordion: value } )
+				}
+				anchorName={ anchorName }
+				setAnchorName={ ( value ) =>
+					setAttributes( { anchorName: value } )
 				}
 			/>
 
