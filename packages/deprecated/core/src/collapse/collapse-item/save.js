@@ -18,6 +18,7 @@ function save( props ) {
 		parentClientId,
 		heading,
 		structuredData,
+		anchorName,
 	} = attributes;
 
 	const blockProps = useBlockProps.save( {
@@ -29,6 +30,7 @@ function save( props ) {
 			<button
 				class="yard-blocks-collapse-item__button"
 				type="button"
+				data-anchor-name="${ anchorName }"
 				data-toggle="collapse"
 				data-target="#collapse-${ id }"
 				aria-expanded="${ showOpen ? 'true' : 'false' }"
