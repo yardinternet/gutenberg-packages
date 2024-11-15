@@ -36,6 +36,7 @@ import * as tab from './tabs/tab';
 import * as tabs from './tabs';
 import * as timeline from './timeline';
 import * as timelineColumn from './timeline/timeline-column';
+import * as tolkie from './tolkie';
 
 export function registerBlocks() {
 	[ collapseList, collapseItem, spacer ].forEach( ( { name, settings } ) => {
@@ -82,4 +83,5 @@ export {
 	tabs,
 	timeline,
 	timelineColumn,
+	tolkie,
 };
