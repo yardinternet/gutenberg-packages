@@ -32,7 +32,7 @@ export const settings = {
 	attributes,
 	save: () => {
 		return (
-			<div className="yard-blocks-tolkie | tolkie-buttons-afterend | tolkie-preferred"></div>
+			<div className="yard-blocks-tolkie | tolkie-buttons-afterbegin | tolkie-preferred"></div>
 		);
 	},
 };
