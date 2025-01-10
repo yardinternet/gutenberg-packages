@@ -7,27 +7,24 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
-import { createTaxObject, buildTaxParamsQueryString } from '../utils';
+import { buildTaxParamsQueryString, createTaxObject } from '../utils';
 
 export const fetchListPosts = ( slug, baseSlug = 'wp/v2/' ) => {
 	return apiFetch( { path: `${ baseSlug }${ slug }?per_page=100` } );
 };
 
-export const searchListPosts = ( {
+export const searchListPosts = async ( {
 	baseUrl,
 	baseSlug = 'wp/v2/search/',
 	subtype = 'any',
 	search,
 } ) => {
-	const options = baseUrl
-		? {
-				url: `${ baseUrl }/${ baseSlug }?subtype=${ subtype }&search=${ search }`,
-		  }
-		: {
-				path: `${ baseSlug }?subtype=${ subtype }&search=${ search }`,
-		  };
+	if (baseUrl) {
+		const response = await fetch(`${ baseUrl }/${ baseSlug }?subtype=${ subtype }&search=${ search }`);
+		return await response.json();
+	}
 
-	return apiFetch( options );
+	return await apiFetch({path: `${baseSlug}?subtype=${subtype}&search=${search}`});
 };
 
 export function fetchCustomViews() {

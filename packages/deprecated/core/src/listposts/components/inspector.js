@@ -341,9 +341,7 @@ function Inspector( props ) {
 
 		if ( ! customSelection ) return false;
 		if ( searchCustomSelection && postType !== 'external' ) return false;
-		if ( ! posts.length && ! remotePostsOptions.length ) return false;
-
-		return true;
+		return !(!posts.length && !remotePostsOptions.length);
 	};
 
 	const shouldRenderSearchCustomSelectionSelect = () => {
@@ -363,9 +361,7 @@ function Inspector( props ) {
 
 	const shouldRenderCustomSelectionSpinner = () => {
 		if ( ! customSelection ) return false;
-		if ( !! posts.length || !! remotePostsOptions.length ) return false;
-
-		return true;
+		return !(!!posts.length || !!remotePostsOptions.length);
 	};
 
 	/**
@@ -398,10 +394,14 @@ function Inspector( props ) {
 
 	const transformPostsToState = ( data = [] ) => {
 		setStateSearchedItems(
-			data.map( ( item ) => ( {
-				value: item.id,
-				label: item.title.rendered ? item.title.rendered : item.title,
-			} ) )
+			data.map( ( item ) => {
+				return {
+					value: item.id,
+					label: item.title.rendered ? item.title.rendered : item.title,
+					remote: 'openagenda',
+					subtype: item.subtype,
+				}
+			})
 		);
 	};
 
