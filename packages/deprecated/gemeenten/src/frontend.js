@@ -7,10 +7,11 @@ import ReactDOM from 'react-dom'; // eslint-disable-line
 /**
  * Internal dependencies
  */
+import * as Greetings from './blocks/greetings/frontend';
 import * as PdcSearch from './blocks/pdc-search/frontend';
 import * as PdcGreeting from './blocks/pdc-greeting/frontend';
 
-const components = [ PdcSearch, PdcGreeting ];
+const components = [ Greetings, PdcSearch, PdcGreeting ];
 
 components.map( ( item ) => {
 	const element = document.getElementById( item.domID );
