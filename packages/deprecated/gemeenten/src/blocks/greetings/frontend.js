@@ -10,7 +10,7 @@ function GreetingsWrapper() {
 	const dataAttributes = useDataAttributes( domID );
 
 	const attr = {
-		greetings: JSON.parse(dataAttributes.greetings),
+		greetings: JSON.parse( dataAttributes.greetings ),
 	};
 
 	return <Greetings attributes={ attr } />;
