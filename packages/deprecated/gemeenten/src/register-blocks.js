@@ -1,6 +1,7 @@
 /**
  * Internal dependencies
  */
+import * as Greetings from './blocks/greetings';
 import * as PdcSearch from './blocks/pdc-search';
 import * as PdcGreeting from './blocks/pdc-greeting';
 import * as PubListPosts from './blocks/pub-listposts';
@@ -14,7 +15,7 @@ import { BLOCK_CATEGORY, ICON_SETTINGS } from './config/settings';
 import { registerBlockType } from '@wordpress/blocks';
 
 export function registerGemeentenBlocks() {
-	[ PdcSearch, PdcGreeting, PubListPosts, PdcServicePoints, PubPoll ].map(
+	[ Greetings, PdcSearch, PdcGreeting, PubListPosts, PdcServicePoints, PubPoll ].map(
 		( { name, settings } ) => {
 			return registerBlockType( name, {
 				...settings,
