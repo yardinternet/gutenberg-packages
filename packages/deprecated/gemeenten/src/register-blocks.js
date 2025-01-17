@@ -15,16 +15,21 @@ import { BLOCK_CATEGORY, ICON_SETTINGS } from './config/settings';
 import { registerBlockType } from '@wordpress/blocks';
 
 export function registerGemeentenBlocks() {
-	[ Greetings, PdcSearch, PdcGreeting, PubListPosts, PdcServicePoints, PubPoll ].map(
-		( { name, settings } ) => {
-			return registerBlockType( name, {
-				...settings,
-				icon: {
-					...settings.icon,
-					...ICON_SETTINGS,
-				},
-				category: BLOCK_CATEGORY,
-			} );
-		}
-	);
+	[
+		Greetings,
+		PdcSearch,
+		PdcGreeting,
+		PubListPosts,
+		PdcServicePoints,
+		PubPoll,
+	].map( ( { name, settings } ) => {
+		return registerBlockType( name, {
+			...settings,
+			icon: {
+				...settings.icon,
+				...ICON_SETTINGS,
+			},
+			category: BLOCK_CATEGORY,
+		} );
+	} );
 }

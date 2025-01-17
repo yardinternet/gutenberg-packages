@@ -14,4 +14,11 @@ export { SEARCH_ENDPOINT } from './config/endpoints';
 export * from './blocks/pdc-search';
 export { registerGemeentenBlocks } from './register-blocks';
 
-export { greetings, pdcGreeting, pdcSearch, pdcServicePoints, pubListPosts, pubPoll };
+export {
+	greetings,
+	pdcGreeting,
+	pdcSearch,
+	pdcServicePoints,
+	pubListPosts,
+	pubPoll,
+};
