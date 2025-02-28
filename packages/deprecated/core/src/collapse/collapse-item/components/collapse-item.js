@@ -8,6 +8,8 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 import Header from './header';
 import Body from './body';
+import InputField from "@wordpress/components/src/input-control/input-field";
+import InputControl from "@wordpress/components/build-types/input-control";
 
 function CollapseItem( {
 	setHeaderText = () => {},
@@ -15,6 +17,9 @@ function CollapseItem( {
 	showOpen = false,
 	id = 0,
 	isAccordion = true,
+    hasSubtitle = false,
+    subtitle= '',
+    setSubtitle = () => {},
 	children = [],
 	accordionId = '',
 } ) {
@@ -28,6 +33,9 @@ function CollapseItem( {
 				id={ id }
 				headerText={ headerText }
 				setHeaderText={ setHeaderText }
+				hasSubtitle={hasSubtitle}
+				subtitle={subtitle}
+				setSubtitle={setSubtitle}
 			/>
 			<Body
 				id={ id }
