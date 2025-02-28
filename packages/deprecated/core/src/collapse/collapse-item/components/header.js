@@ -3,11 +3,15 @@
  */
 import { PlainText } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
+import InputControl from "@wordpress/components/build-types/input-control";
 
-function Header( { headerText = '', setHeaderText = () => {}, id = 0 } ) {
+function Header( { headerText = '', setHeaderText = () => {}, hasSubtitle = false, subtitle = '', setSubtitle = () => {}, id = 0 } ) {
 	return (
 		<div className={ `yard-blocks-collapse-item__header` }>
 			<PlainText value={ headerText } onChange={ setHeaderText } />
+
+			{ hasSubtitle ? <PlainText value={ subtitle } onChange={ setSubtitle } /> : '' }
+
 			<Button
 				className={ `yard-blocks-collapse-item__button` }
 				isPrimary={ true }

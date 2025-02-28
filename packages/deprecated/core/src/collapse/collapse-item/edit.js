@@ -20,6 +20,8 @@ function Edit( props ) {
 		isAccordion,
 		parentClientId,
 		anchorName,
+		hasSubtitle,
+		subtitle
 	} = attributes;
 
 	const { parentClientIds, parentAttributes } = useSelect( ( select ) => {
@@ -70,6 +72,10 @@ function Edit( props ) {
 				setAnchorName={ ( value ) =>
 					setAttributes( { anchorName: value } )
 				}
+				hasSubtitle={ hasSubtitle }
+				setHasSubtitle={ ( value ) =>
+					setAttributes( { hasSubtitle: value } )
+				}
 			/>
 
 			<CollapseItem
@@ -81,6 +87,11 @@ function Edit( props ) {
 				id={ id }
 				isAccordion={ isAccordion }
 				accordionId={ parentClientId }
+				hasSubtitle={ hasSubtitle }
+				subtitle={ subtitle }
+				setSubtitle={ ( value ) =>
+					setAttributes( { subtitle: value } )
+				}
 			>
 				<InnerBlocks templateLock={ false } template={ TEMPLATE } />
 			</CollapseItem>

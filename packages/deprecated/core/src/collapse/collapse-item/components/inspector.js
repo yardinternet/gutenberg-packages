@@ -15,6 +15,8 @@ function Inspector( {
 	showOpen = false,
 	setShowOpen = () => {},
 	isAccordion = true,
+	hasSubtitle = true,
+	setHasSubtitle = () => {},
 	setIsAccordion = () => {},
 	anchorName = '',
 	setAnchorName = () => {},
@@ -46,6 +48,11 @@ function Inspector( {
 					label={ __( 'Sluit na klik op ander item' ) }
 					checked={ isAccordion }
 					onChange={ setIsAccordion }
+				/>
+				<ToggleControl
+					label={ __( 'Heeft subtitel' ) }
+					checked={ hasSubtitle }
+					onChange={ setHasSubtitle }
 				/>
 			</PanelBody>
 			{ showCustomAnchor && (
