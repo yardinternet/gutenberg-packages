@@ -41,8 +41,8 @@ function save( props ) {
 		>
 			{ hasSubtitle ?
 				<>
-					<p className="mb-0 font-weight-bold">{ headerText }</p>
-					<span className="">{ subtitle }</span>
+					<div className="yard-blocks-collapse-item__button-heading">{ headerText }</div>
+					<div className="yard-blocks-collapse-item__button-subheading">{ subtitle }</div>
 				</>
 			: headerText }
 		</button>
