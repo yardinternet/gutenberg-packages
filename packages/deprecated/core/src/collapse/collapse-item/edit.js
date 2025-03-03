@@ -21,7 +21,7 @@ function Edit( props ) {
 		parentClientId,
 		anchorName,
 		hasSubtitle,
-		subtitle
+		subtitle,
 	} = attributes;
 
 	const { parentClientIds, parentAttributes } = useSelect( ( select ) => {

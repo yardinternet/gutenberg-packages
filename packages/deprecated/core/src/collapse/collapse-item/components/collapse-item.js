@@ -15,9 +15,9 @@ function CollapseItem( {
 	showOpen = false,
 	id = 0,
 	isAccordion = true,
-    hasSubtitle = false,
-    subtitle= '',
-    setSubtitle = () => {},
+	hasSubtitle = false,
+	subtitle = '',
+	setSubtitle = () => {},
 	children = [],
 	accordionId = '',
 } ) {
@@ -31,9 +31,9 @@ function CollapseItem( {
 				id={ id }
 				headerText={ headerText }
 				setHeaderText={ setHeaderText }
-				hasSubtitle={hasSubtitle}
-				subtitle={subtitle}
-				setSubtitle={setSubtitle}
+				hasSubtitle={ hasSubtitle }
+				subtitle={ subtitle }
+				setSubtitle={ setSubtitle }
 			/>
 			<Body
 				id={ id }

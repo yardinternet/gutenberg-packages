@@ -13,37 +13,37 @@ const deprecated = [
 	{
 		attributes: {
 			headerText: {
-				type: "string",
-				default: " "
+				type: 'string',
+				default: ' ',
 			},
 			showOpen: {
-				type: "boolean",
-				default: false
+				type: 'boolean',
+				default: false,
 			},
 			isAccordion: {
-				type: "boolean",
-				default: true
+				type: 'boolean',
+				default: true,
 			},
 			id: {
-				type: "string",
-				default: "0"
+				type: 'string',
+				default: '0',
 			},
 			parentClientId: {
-				type: "string",
-				default: "0"
+				type: 'string',
+				default: '0',
 			},
 			heading: {
-				type: "string",
-				default: ""
+				type: 'string',
+				default: '',
 			},
 			anchorName: {
-				type: "string",
-				default: ""
+				type: 'string',
+				default: '',
 			},
 			structuredData: {
-				type: "boolean",
-				default: false
-			}
+				type: 'boolean',
+				default: false,
+			},
 		},
 		save( props ) {
 			const { attributes } = props;
@@ -94,7 +94,9 @@ const deprecated = [
 					{ ...blockProps }
 					itemScope={ structuredData }
 					itemProp={ structuredData ? 'mainEntity' : null }
-					itemType={ structuredData ? 'https://schema.org/Question' : null }
+					itemType={
+						structuredData ? 'https://schema.org/Question' : null
+					}
 				>
 					<div className="yard-blocks-collapse-item__header">
 						{ parse( header() ) }
@@ -103,11 +105,15 @@ const deprecated = [
 						className={ `collapse ${ showOpen ? 'show' : '' }` }
 						id={ `collapse-${ id }` }
 						data-parent={
-							isAccordion ? `#accordion-${ parentClientId }` : null
+							isAccordion
+								? `#accordion-${ parentClientId }`
+								: null
 						}
 						itemScope={ structuredData }
 						itemProp={ structuredData ? 'acceptedAnswer' : null }
-						itemType={ structuredData ? 'https://schema.org/Answer' : null }
+						itemType={
+							structuredData ? 'https://schema.org/Answer' : null
+						}
 					>
 						<div
 							className="yard-blocks-collapse-item__body"
@@ -118,7 +124,7 @@ const deprecated = [
 					</div>
 				</div>
 			);
-		}
+		},
 	},
 	// Since fixing the aria-expanded attribute on the header button
 	{

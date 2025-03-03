@@ -7,7 +7,7 @@ import parse from 'html-react-parser';
  * WordPress dependencies
  */
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
-import {renderToString} from "@wordpress/element";
+import { renderToString } from '@wordpress/element';
 
 function save( props ) {
 	const { attributes } = props;
@@ -21,7 +21,7 @@ function save( props ) {
 		structuredData,
 		anchorName,
 		hasSubtitle,
-		subtitle
+		subtitle,
 	} = attributes;
 
 	const blockProps = useBlockProps.save( {
@@ -32,25 +32,31 @@ function save( props ) {
 		<button
 			className="yard-blocks-collapse-item__button"
 			type="button"
-			data-anchor-name={anchorName}
+			data-anchor-name={ anchorName }
 			data-toggle="collapse"
-			data-target={`#collapse-${ id }`}
+			data-target={ `#collapse-${ id }` }
 			aria-expanded={ showOpen ? 'true' : 'false' }
-			aria-controls={`collapse-${ id }`}
+			aria-controls={ `collapse-${ id }` }
 			itemProp={ structuredData ? 'name' : '' }
 		>
-			{ hasSubtitle ?
+			{ hasSubtitle ? (
 				<>
-					<div className="yard-blocks-collapse-item__button-heading">{ headerText }</div>
-					<div className="yard-blocks-collapse-item__button-subheading">{ subtitle }</div>
+					<div className="yard-blocks-collapse-item__button-heading">
+						{ headerText }
+					</div>
+					<div className="yard-blocks-collapse-item__button-subheading">
+						{ subtitle }
+					</div>
 				</>
-			: headerText }
+			) : (
+				headerText
+			) }
 		</button>
 	);
 
-	const defaultButton  = `
+	const defaultButton = `
 		<${ heading } class="yard-blocks-collapse-item__heading">
-			${ renderToString(button) }
+			${ renderToString( button ) }
 		</${ heading }>
 	`;
 
@@ -62,7 +68,7 @@ function save( props ) {
 			itemType={ structuredData ? 'https://schema.org/Question' : null }
 		>
 			<div className="yard-blocks-collapse-item__header">
-				{ heading  === '' ? button  : parse(defaultButton) }
+				{ heading === '' ? button : parse( defaultButton ) }
 			</div>
 			<div
 				className={ `collapse ${ showOpen ? 'show' : '' }` }
