@@ -26,6 +26,11 @@ function Inspector( {
 		false
 	);
 
+	const showHasSubtitleToggle = applyFilters(
+		'yard-blocks.collapseItem.showHasSubtitleToggle',
+		false
+	);
+
 	const sanatizeAnchorName = ( value ) => {
 		const sanitizedValue = value
 			.toLowerCase()
@@ -49,11 +54,13 @@ function Inspector( {
 					checked={ isAccordion }
 					onChange={ setIsAccordion }
 				/>
-				<ToggleControl
-					label={ __( 'Heeft subtitel' ) }
-					checked={ hasSubtitle }
-					onChange={ setHasSubtitle }
-				/>
+				{ showHasSubtitleToggle && (
+					<ToggleControl
+						label={ __( 'Heeft subtitel' ) }
+						checked={ hasSubtitle }
+						onChange={ setHasSubtitle }
+					/>
+				)}
 			</PanelBody>
 			{ showCustomAnchor && (
 				<PanelBody title={ __( 'HTML Anker' ) }>
