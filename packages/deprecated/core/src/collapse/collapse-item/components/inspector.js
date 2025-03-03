@@ -60,7 +60,7 @@ function Inspector( {
 						checked={ hasSubtitle }
 						onChange={ setHasSubtitle }
 					/>
-				)}
+				) }
 			</PanelBody>
 			{ showCustomAnchor && (
 				<PanelBody title={ __( 'HTML Anker' ) }>
