@@ -3,7 +3,6 @@
  */
 import { PlainText } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
-import InputControl from "@wordpress/components/build-types/input-control";
 
 function Header( { headerText = '', setHeaderText = () => {}, hasSubtitle = false, subtitle = '', setSubtitle = () => {}, id = 0 } ) {
 	return (
