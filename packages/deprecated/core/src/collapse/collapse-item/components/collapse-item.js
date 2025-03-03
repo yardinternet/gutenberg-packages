@@ -8,8 +8,6 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 import Header from './header';
 import Body from './body';
-import InputField from "@wordpress/components/src/input-control/input-field";
-import InputControl from "@wordpress/components/build-types/input-control";
 
 function CollapseItem( {
 	setHeaderText = () => {},
