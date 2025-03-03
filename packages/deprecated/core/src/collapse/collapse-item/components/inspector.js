@@ -15,7 +15,7 @@ function Inspector( {
 	showOpen = false,
 	setShowOpen = () => {},
 	isAccordion = true,
-	hasSubtitle = true,
+	hasSubtitle = false,
 	setHasSubtitle = () => {},
 	setIsAccordion = () => {},
 	anchorName = '',
