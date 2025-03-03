@@ -8,7 +8,7 @@ import { Button } from '@wordpress/components';
 function Header( { headerText = '', setHeaderText = () => {}, hasSubtitle = false, subtitle = '', setSubtitle = () => {}, id = 0 } ) {
 	return (
 		<div className={ `yard-blocks-collapse-item__header` }>
-			<div className="d-flex flex-column w-100">
+			<div className="yard-blocks-collapse-item__header-title-container">
 				<RichText
 					tagName="h3"
 					value={ headerText }
