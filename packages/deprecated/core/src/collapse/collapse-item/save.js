@@ -7,6 +7,7 @@ import parse from 'html-react-parser';
  * WordPress dependencies
  */
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import {renderToString} from "@wordpress/element";
 
 function save( props ) {
 	const { attributes } = props;
@@ -19,38 +20,39 @@ function save( props ) {
 		heading,
 		structuredData,
 		anchorName,
+		hasSubtitle,
+		subtitle
 	} = attributes;
 
 	const blockProps = useBlockProps.save( {
 		className: 'yard-blocks-collapse-item',
 	} );
 
-	const button = () => {
-		return `
-			<button
-				class="yard-blocks-collapse-item__button"
-				type="button"
-				${ anchorName ? `data-anchor-name="${ anchorName }"` : '' }
-				data-toggle="collapse"
-				data-target="#collapse-${ id }"
-				aria-expanded="${ showOpen ? 'true' : 'false' }"
-				aria-controls="collapse-${ id }"
-				${ structuredData ? 'itemprop="name"' : '' }
-			>
-				${ headerText }
-			</button>
-		`;
-	};
+	const button = (
+		<button
+			className="yard-blocks-collapse-item__button"
+			type="button"
+			data-anchor-name={anchorName}
+			data-toggle="collapse"
+			data-target={`#collapse-${ id }`}
+			aria-expanded={ showOpen ? 'true' : 'false' }
+			aria-controls={`collapse-${ id }`}
+			itemProp={ structuredData ? 'name' : '' }
+		>
+			{ hasSubtitle ?
+				<>
+					<p className="mb-0 font-weight-bold">{ headerText }</p>
+					<span className="">{ subtitle }</span>
+				</>
+			: headerText }
+		</button>
+	);
 
-	const header = () => {
-		if ( heading === '' ) return button();
-
-		return `
-			<${ heading } class="yard-blocks-collapse-item__heading">
-				${ button() }
-			</${ heading }>
-		`;
-	};
+	const defaultButton  = `
+		<${ heading } class="yard-blocks-collapse-item__heading">
+			${ renderToString(button) }
+		</${ heading }>
+	`;
 
 	return (
 		<div
@@ -60,7 +62,7 @@ function save( props ) {
 			itemType={ structuredData ? 'https://schema.org/Question' : null }
 		>
 			<div className="yard-blocks-collapse-item__header">
-				{ parse( header() ) }
+				{ heading  === '' ? button  : parse(defaultButton) }
 			</div>
 			<div
 				className={ `collapse ${ showOpen ? 'show' : '' }` }
