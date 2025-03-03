@@ -14,8 +14,7 @@ function Header( { headerText = '', setHeaderText = () => {}, hasSubtitle = fals
 					value={ headerText }
 					onChange={ setHeaderText }
 					placeholder={ __(
-						'Voer een titel in',
-						'waiting-room-block'
+						'Voer een titel in'
 					) }
 				/>
 
@@ -24,8 +23,7 @@ function Header( { headerText = '', setHeaderText = () => {}, hasSubtitle = fals
 						value={ subtitle }
 						onChange={ setSubtitle }
 						placeholder={ __(
-							'Voer een subtitel in',
-							'waiting-room-block'
+							'Voer een subtitel in'
 						) }
 						className="mb-0"
 					/> : '' }
