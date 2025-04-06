@@ -18,8 +18,8 @@ import { store as noticesStore } from '@wordpress/notices';
 /**
  * Internal dependencies
  */
-import DeleteIcon from './components/delete-icon';
-import IconResults from './components/icon-results';
+import DeleteIcon from './components/delete-icon.jsx';
+import IconResults from './components/icon-results.jsx';
 import { getFontAwesomeIcons } from './utils/api';
 import { convertResponseToClassnames } from './utils/helpers';
 import './editor.scss';
