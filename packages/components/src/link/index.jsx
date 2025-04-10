@@ -17,7 +17,7 @@ import { useOnClickOutside } from '@yardinternet/gutenberg-hooks';
 /**
  * Internal dependencies
  */
-import './editor.scss';
+import './editor.css';
 
 export const Link = ( props ) => {
 	const {

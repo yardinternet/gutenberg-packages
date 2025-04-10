@@ -1,0 +1,34 @@
+.pre-publish-checklist-correct,
+.pre-publish-checklist-wrong {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.pre-publish-checklist-correct::before,
+.pre-publish-checklist-wrong::before {
+	width: 8px;
+	height: 8px;
+	display: flex;
+	justify-content: center;
+}
+
+.pre-publish-checklist-correct {
+	color: #46b450;
+}
+
+.pre-publish-checklist-correct::before {
+	content: "✓";
+}
+
+.pre-publish-checklist-wrong {
+	color: #dc3232;
+}
+
+.pre-publish-checklist-wrong::before {
+	content: "×";
+}
+
+/* Hide checkbox "Always show pre-publish checks" */
+.editor-post-publish-panel__footer .components-base-control {
+	display: none;
+}

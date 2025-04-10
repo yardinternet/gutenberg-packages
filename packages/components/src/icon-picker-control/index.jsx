@@ -22,7 +22,7 @@ import DeleteIcon from './components/delete-icon.jsx';
 import IconResults from './components/icon-results.jsx';
 import { getFontAwesomeIcons } from './utils/api';
 import { convertResponseToClassnames } from './utils/helpers';
-import './editor.scss';
+import './editor.css';
 
 export const IconPickerControl = ( {
 	onChange,

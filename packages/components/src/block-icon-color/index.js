@@ -1,8 +1,8 @@
 /**
  * Internal dependencies
  */
-import './editor.scss';
+import './editor.css';
 
 export const BlockIconColor = {
-	foreground: '#00a49e',
+	foreground: '#0000e0',
 };
