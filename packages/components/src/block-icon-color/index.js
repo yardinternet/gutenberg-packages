@@ -4,5 +4,5 @@
 import './editor.css';
 
 export const BlockIconColor = {
-	foreground: '#0000e0',
+	foreground: '#00a49e',
 };
