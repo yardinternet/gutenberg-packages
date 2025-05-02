@@ -176,7 +176,7 @@ const PrePublishCheckList = ( settings, customCheck = [] ) => {
 };
 
 export function registerPrePublishChecklist( settings, customCheck ) {
-	registerPlugin( 'pre-publish-checklist', {
+	registerPlugin( 'yard-pre-publish-checklist', {
 		render: () => PrePublishCheckList( settings, customCheck ),
 	} );
 }
