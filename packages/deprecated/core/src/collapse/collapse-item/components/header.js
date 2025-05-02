@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { RichText } from '@wordpress/block-editor';
+import { PlainText, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 
@@ -15,15 +15,14 @@ function Header( {
 } ) {
 	return (
 		<div className={ `yard-blocks-collapse-item__header` }>
-			<div className="yard-blocks-collapse-item__header-title-container">
-				<RichText
-					tagName="h3"
-					value={ headerText }
-					onChange={ setHeaderText }
-					placeholder={ __( 'Voer een titel in' ) }
-				/>
-
-				{ hasSubtitle ? (
+			{ hasSubtitle ? (
+				<div className="yard-blocks-collapse-item__header-title-container">
+					<RichText
+						tagName="h3"
+						value={ headerText }
+						onChange={ setHeaderText }
+						placeholder={ __( 'Voer een titel in' ) }
+					/>
 					<RichText
 						tagName="p"
 						value={ subtitle }
@@ -31,10 +30,10 @@ function Header( {
 						placeholder={ __( 'Voer een subtitel in' ) }
 						className="mb-0"
 					/>
-				) : (
-					''
-				) }
-			</div>
+				</div>
+			) : (
+				<PlainText value={ headerText } onChange={ setHeaderText } />
+			) }
 
 			<Button
 				className={ `yard-blocks-collapse-item__button` }
