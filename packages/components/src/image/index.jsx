@@ -20,7 +20,7 @@ export const Image = ( props ) => {
 		id,
 		size = 'full',
 		onSelect,
-		focalPoint = { x: 0.5, y: 0.5 },
+		focalPoint,
 		onChangeFocalPoint,
 		labels = {},
 		canEditImage = true,
@@ -62,10 +62,14 @@ export const Image = ( props ) => {
 		media?.media_details?.sizes?.[ size ]?.source_url ?? media?.source_url;
 	const altText = media?.alt_text;
 
-	if ( shouldDisplayFocalPointPicker ) {
+	let objectPosition = focalPoint;
+
+	if ( shouldDisplayFocalPointPicker || focalPoint ) {
+		objectPosition = objectPosition ?? { x: 0.5, y: 0.5 };
+
 		const focalPointStyle = {
 			objectFit: 'cover',
-			objectPosition: `${ focalPoint.x * 100 }% ${ focalPoint.y * 100 }%`,
+			objectPosition: `${ objectPosition.x * 100 }% ${ objectPosition.y * 100 }%`,
 		};
 
 		rest.style = {
@@ -84,7 +88,7 @@ export const Image = ( props ) => {
 								'Kies het focuspunt van de afbeelding'
 							) }
 							url={ imageUrl }
-							value={ focalPoint }
+							value={ objectPosition }
 							onChange={ onChangeFocalPoint }
 							onDrag={ onChangeFocalPoint }
 						/>
