@@ -62,11 +62,9 @@ export const Image = ( props ) => {
 		media?.media_details?.sizes?.[ size ]?.source_url ?? media?.source_url;
 	const altText = media?.alt_text;
 
-	let objectPosition = focalPoint;
+	const objectPosition = focalPoint ?? { x: 0.5, y: 0.5 };
 
 	if ( shouldDisplayFocalPointPicker || focalPoint ) {
-		objectPosition = objectPosition ?? { x: 0.5, y: 0.5 };
-
 		const focalPointStyle = {
 			objectFit: 'cover',
 			objectPosition: `${ objectPosition.x * 100 }% ${ objectPosition.y * 100 }%`,
