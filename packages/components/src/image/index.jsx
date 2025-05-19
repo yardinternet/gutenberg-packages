@@ -67,7 +67,9 @@ export const Image = ( props ) => {
 	if ( shouldDisplayFocalPointPicker || focalPoint ) {
 		const focalPointStyle = {
 			objectFit: 'cover',
-			objectPosition: `${ objectPosition.x * 100 }% ${ objectPosition.y * 100 }%`,
+			objectPosition: `${ objectPosition.x * 100 }% ${
+				objectPosition.y * 100
+			}%`,
 		};
 
 		rest.style = {
