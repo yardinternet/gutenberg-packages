@@ -1,0 +1,19 @@
+{
+	"name": "@yardinternet/block-extensions",
+	"version": "1.0.0",
+	"description": "Block extensions for Gutenberg",
+	"main": "src/index.js",
+	"author": {
+		"name": "Yard | Digital Agency",
+		"email": "info@yard.nl",
+		"url": "https://www.yard.nl/"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
+	},
+	"license": "ISC"
+}
