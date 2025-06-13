@@ -1,1 +1,1 @@
-export { default as BlockLanguageSettings } from './language-settings/BlockLanguageSettings';
+export { default as addLanguageAttribute } from './extensions/shared/add-language-attribute';

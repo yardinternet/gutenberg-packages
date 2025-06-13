@@ -1,4 +1,4 @@
-export default [
+export const languageSelectOptions = [
 	{ label: 'Afrikaans', value: 'af' },
 	{ label: 'አማርኛ', value: 'am' },
 	{ label: 'Aragonés', value: 'arg' },
