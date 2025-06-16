@@ -3,12 +3,11 @@
  */
 import { addFilter } from '@wordpress/hooks';
 import { cloneElement } from '@wordpress/element';
-import { createHigherOrderComponent } from '@wordpress/compose';
 
 /**
  * Internal dependencies
  */
-import Edit from './edit';
+import edit from './edit';
 import { languageSelectOptions } from '../../../util/i18n';
 
 const ADD_LANGUAGE_ATTRIBUTE_NAMESPACE = 'yard.add-language-attribute';
@@ -88,20 +87,7 @@ function registerBlockEdit( block, config ) {
 	addFilter(
 		'editor.BlockEdit',
 		`${ ADD_LANGUAGE_ATTRIBUTE_NAMESPACE }.${ block }`,
-		createHigherOrderComponent( ( BlockEdit ) => {
-			return ( props ) => {
-				if ( props.name !== block ) {
-					return <BlockEdit { ...props } />;
-				}
-
-				return (
-					<>
-						<BlockEdit { ...props } />
-						<Edit { ...props } languages={ config.languages } />
-					</>
-				);
-			};
-		} )
+		edit( block, config )
 	);
 }
 

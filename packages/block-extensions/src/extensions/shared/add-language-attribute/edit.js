@@ -1,11 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls } from '@wordpress/block-editor';
 import { Button, PanelBody, SelectControl } from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { createHigherOrderComponent } from '@wordpress/compose';
 
-export default ( { attributes, setAttributes, languages } ) => {
+const Edit = ( { attributes, setAttributes, languages } ) => {
 	const { lang } = attributes;
 
 	const setLang = ( value ) => {
@@ -40,4 +41,21 @@ export default ( { attributes, setAttributes, languages } ) => {
 			</PanelBody>
 		</InspectorControls>
 	);
+};
+
+export default ( block, config ) => {
+	return createHigherOrderComponent( ( BlockEdit ) => {
+		return ( props ) => {
+			if ( props.name !== block ) {
+				return <BlockEdit { ...props } />;
+			}
+
+			return (
+				<>
+					<BlockEdit { ...props } />
+					<Edit { ...props } languages={ config.languages } />
+				</>
+			);
+		};
+	} );
 };
