@@ -1,4 +1,4 @@
-@import '../base-colors';
+@import "../base-colors";
 
 .yard-blocks-collapse {
 	margin-bottom: 2rem;
@@ -41,6 +41,10 @@
 			background-color: $white;
 		}
 	}
+}
+
+.yard-blocks-collapse-item__header-title-container {
+	width: 100%;
 }
 
 .yard-blocks-collapse-item__arrow {
