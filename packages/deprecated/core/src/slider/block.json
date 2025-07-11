@@ -5,6 +5,26 @@
 		"activeSlide": {
 			"type": "string",
 			"default": null
+		},
+		"slidesPerPageDesktop": {
+			"type": "number",
+			"default": 3,
+			"source": "attribute"
+		},
+		"slidesPerPageLaptop": {
+			"type": "number",
+			"default": 3,
+			"source": "attribute"
+		},
+		"slidesPerPageTablet": {
+			"type": "number",
+			"default": 2,
+			"source": "attribute"
+		},
+		"slidesPerPageMobile": {
+			"type": "number",
+			"default": 1,
+			"source": "attribute"
 		}
 	}
 }
