@@ -3,9 +3,20 @@
  */
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
-const Save = () => {
+const Save = ( { attributes } ) => {
+	const {
+		slidesPerPageDesktop,
+		slidesPerPageLaptop,
+		slidesPerPageTablet,
+		slidesPerPageMobile,
+	} = attributes;
+
 	const blockProps = useBlockProps.save( {
 		className: 'yard-blocks-slider | splide',
+		'data-slides-per-page-desktop': slidesPerPageDesktop,
+		'data-slides-per-page-laptop': slidesPerPageLaptop,
+		'data-slides-per-page-tablet': slidesPerPageTablet,
+		'data-slides-per-page-mobile': slidesPerPageMobile,
 	} );
 
 	return (

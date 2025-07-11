@@ -10,10 +10,11 @@ import { useSelect, useDispatch } from '@wordpress/data';
  * Internal dependencies
  */
 import Track from './track';
+import Inspector from './components/inspector';
 
 const Edit = ( props ) => {
 	const [ currentSlide, setCurrentSlide ] = useState( null );
-	const { setAttributes } = props;
+	const { attributes, setAttributes } = props;
 	const { insertBlock, selectBlock } = useDispatch( 'core/block-editor' );
 
 	const { getBlockOrder, currentSelectedBlock } = useSelect( ( select ) => {
@@ -35,6 +36,10 @@ const Edit = ( props ) => {
 	const ALLOWED_BLOCKS = [ 'yard-blocks/slide' ];
 	const blockProps = useBlockProps( {
 		className: 'yard-blocks-slider',
+		'data-slides-per-page-desktop': attributes.slidesPerPageDesktop,
+		'data-slides-per-page-laptop': attributes.slidesPerPageLaptop,
+		'data-slides-per-page-tablet': attributes.slidesPerPageTablet,
+		'data-slides-per-page-mobile': attributes.slidesPerPageMobile,
 		style: {
 			padding: '1rem',
 		},
@@ -96,29 +101,33 @@ const Edit = ( props ) => {
 	}, [ currentSelectedBlock ] );
 
 	return (
-		<div { ...blockProps }>
-			<Track
-				currentSlide={ currentSlide }
-				innerBlocks={ innerBlocks }
-				selectSlide={ selectSlide }
-				insertSlide={ insertSlide }
+		<>
+			<div { ...blockProps }>
+				<Track
+					currentSlide={ currentSlide }
+					innerBlocks={ innerBlocks }
+					selectSlide={ selectSlide }
+					insertSlide={ insertSlide }
+				/>
+				<InnerBlocks
+					renderAppender={ false }
+					allowedBlocks={ ALLOWED_BLOCKS }
+					defaultBlock={ ALLOWED_BLOCKS }
+					template={ TEMPLATE }
+					templateLock={ false }
+				/>
+				<Track
+					currentSlide={ currentSlide }
+					innerBlocks={ innerBlocks }
+					selectSlide={ selectSlide }
+					insertSlide={ insertSlide }
+				/>
+			</div>
+			<Inspector
+				attributes={ attributes }
+				setAttributes={ setAttributes }
 			/>
-
-			<InnerBlocks
-				renderAppender={ false }
-				allowedBlocks={ ALLOWED_BLOCKS }
-				defaultBlock={ ALLOWED_BLOCKS }
-				template={ TEMPLATE }
-				templateLock={ false }
-			/>
-
-			<Track
-				currentSlide={ currentSlide }
-				innerBlocks={ innerBlocks }
-				selectSlide={ selectSlide }
-				insertSlide={ insertSlide }
-			/>
-		</div>
+		</>
 	);
 };
 
