@@ -8,23 +8,19 @@
 		},
 		"slidesPerPageDesktop": {
 			"type": "number",
-			"default": 3,
-			"source": "attribute"
+			"default": 3
 		},
 		"slidesPerPageLaptop": {
 			"type": "number",
-			"default": 3,
-			"source": "attribute"
+			"default": 3
 		},
 		"slidesPerPageTablet": {
 			"type": "number",
-			"default": 2,
-			"source": "attribute"
+			"default": 2
 		},
 		"slidesPerPageMobile": {
 			"type": "number",
-			"default": 1,
-			"source": "attribute"
+			"default": 1
 		}
 	}
 }
