@@ -25,7 +25,7 @@ const settings = {
 	apiVersion: 2,
 	title: __( 'Iconenlijst item', 'yard-blocks' ),
 	description: __( 'Een enkele iconenlijst item.' ),
-	parent: [ 'yard-blocks/icon-list' ],
+	parent: [ 'yard-blocks/iconlist' ],
 	category: 'yard-blocks',
 	icon: {
 		background: '#0293b0',
