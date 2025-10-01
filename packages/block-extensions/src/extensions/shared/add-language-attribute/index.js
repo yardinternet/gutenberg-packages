@@ -7,7 +7,7 @@ import { cloneElement } from '@wordpress/element';
 /**
  * Internal dependencies
  */
-import edit from './edit';
+import edit from './edit.jsx';
 import { languageSelectOptions } from '../../../util/i18n';
 
 const ADD_LANGUAGE_ATTRIBUTE_NAMESPACE = 'yard.add-language-attribute';
