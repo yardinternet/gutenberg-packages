@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/block-extensions",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Block extensions for Gutenberg",
 	"main": "src/index.js",
 	"author": {
