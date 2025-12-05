@@ -50,3 +50,7 @@ After completing these steps, address the issue that caused the publish to fail 
 ## 🎨 Formatting & Linting
 
 This repository includes built-in support for ESLint and Prettier. Husky ensures that all files are automatically formatted and linted with each commit. Additionally, a GitHub action runs to verify and enforce code formatting and linting with every commit.
+
+## About us
+
+[![banner](https://raw.githubusercontent.com/yardinternet/.github/refs/heads/main/profile/assets/small-banner-github.svg)](https://www.yard.nl/werken-bij/)
