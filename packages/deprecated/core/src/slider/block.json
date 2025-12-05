@@ -21,6 +21,10 @@
 		"slidesPerPageMobile": {
 			"type": "number",
 			"default": 1
+		},
+		"showPagination": {
+			"type": "boolean",
+			"default": true
 		}
 	}
 }

@@ -9,6 +9,7 @@ const Save = ( { attributes } ) => {
 		slidesPerPageLaptop,
 		slidesPerPageTablet,
 		slidesPerPageMobile,
+		showPagination,
 	} = attributes;
 
 	const blockProps = useBlockProps.save( {
@@ -17,6 +18,7 @@ const Save = ( { attributes } ) => {
 		'data-slides-per-page-laptop': slidesPerPageLaptop,
 		'data-slides-per-page-tablet': slidesPerPageTablet,
 		'data-slides-per-page-mobile': slidesPerPageMobile,
+		'data-show-pagination': showPagination,
 	} );
 
 	return (
