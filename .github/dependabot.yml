@@ -10,7 +10,7 @@ updates:
         patterns:
           - "*"
     commit-message:
-      prefix: "(chore)"
+      prefix: "chore(deps): "
 
   - package-ecosystem: 'npm'
     directory: '/'
@@ -27,7 +27,7 @@ updates:
         patterns:
           - "*"
     commit-message:
-      prefix: "(chore)"
+      prefix: "chore(deps): "
     versioning-strategy: lockfile-only
 
 registries:
