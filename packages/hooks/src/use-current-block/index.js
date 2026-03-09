@@ -64,11 +64,30 @@ export const useCurrentBlock = () => {
 		[ currentBlockInnerBlocks, updateBlockAttributes ]
 	);
 
+	/**
+	 * Action to update attributes of inner blocks with specific block names
+	 *
+	 * @param {string|string[]} blockNames - The block name or array of block names to match (e.g. 'core/paragraph' or ['core/paragraph', 'core/image'])
+	 * @param {Object}          attributes - The attributes to update
+	 */
+	const setCurrentBlockInnerBlocksAttributesByName = useCallback(
+		( blockNames, attributes ) => {
+			const namesArray = [].concat( blockNames );
+			currentBlockInnerBlocks.forEach( ( child ) => {
+				if ( namesArray.includes( child.name ) ) {
+					updateBlockAttributes( child.clientId, attributes );
+				}
+			} );
+		},
+		[ currentBlockInnerBlocks, updateBlockAttributes ]
+	);
+
 	return {
 		currentBlock,
 		currentBlockAttributes,
 		currentBlockInnerBlocks,
 		currentBlockHasSelectedInnerBlock,
 		setAllCurrentBlockInnerBlocksAttributes,
+		setCurrentBlockInnerBlocksAttributesByName,
 	};
 };

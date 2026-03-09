@@ -8,14 +8,21 @@ The `useCurrentBlock` hook is a utility that provides a convenient interface for
 import { useCurrentBlock } from '@yardinternet/gutenberg-hooks';
 
 const Edit = ( props ) => {
- const { currentBlock, currentBlockAttributes, currentBlockInnerBlocks, currentBlockHasSelectedInnerBlock, setAllCurrentBlockInnerBlocksAttributes } = useCurrentBlock();
+    const {
+        currentBlock,
+        currentBlockAttributes,
+        currentBlockInnerBlocks,
+        currentBlockHasSelectedInnerBlock,
+        setAllCurrentBlockInnerBlocksAttributes,
+        setCurrentBlockInnerBlocksAttributesByName,
+    } = useCurrentBlock();
 
- const onChangeHeadingLevel = ( value ) => {
-  setAllCurrentBlockInnerBlocksAttributes( { headingLevel: value } );
- };
+    const onChangeHeadingLevel = ( value ) => {
+        setAllCurrentBlockInnerBlocksAttributes( { headingLevel: value } );
+    };
 
- return (
-  ...
- );
+    return (
+        ...
+    );
 }
 ```
