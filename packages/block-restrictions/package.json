@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-block-restrictions",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Block restrictions for Brave",
 	"main": "src/index.js",
 	"author": {
