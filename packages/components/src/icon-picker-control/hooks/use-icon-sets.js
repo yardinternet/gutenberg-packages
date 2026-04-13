@@ -24,25 +24,33 @@ const useIconSets = () => {
 	const [ isLoading, setIsLoading ] = useState( true );
 
 	useEffect( () => {
+		let isMounted = true;
 		const controller = new AbortController();
 
 		getIconSets( controller.signal )
 			.then( ( data ) => {
+				// eslint-disable-next-line no-useless-return
+				if ( ! isMounted ) return;
 				if ( data && Object.keys( data ).length > 0 ) {
 					setSets( data );
 					setIsNewApiAvailable( true );
 				}
 			} )
 			.catch( ( err ) => {
-				if ( err.name !== 'AbortError' ) {
-					// API not available — will fall back to FontAwesome picker silently.
-				}
+				// eslint-disable-next-line no-useless-return
+				if ( ! isMounted || err.name === 'AbortError' ) return;
+				// API not available — will fall back to FontAwesome picker silently.
 			} )
 			.finally( () => {
+				// eslint-disable-next-line no-useless-return
+				if ( ! isMounted ) return;
 				setIsLoading( false );
 			} );
 
-		return () => controller.abort();
+		return () => {
+			isMounted = false;
+			controller.abort();
+		};
 	}, [] );
 
 	return { sets, isNewApiAvailable, isLoading };
