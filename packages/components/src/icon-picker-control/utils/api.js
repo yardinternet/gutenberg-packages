@@ -58,9 +58,9 @@ export const getIconSets = async () => {
 /**
  * Search icons within a set via the wp-icons REST API.
  *
- * @param {string}      set    - The icon set identifier, e.g. "fa-solid".
- * @param {string}      query  - The search query.
- * @param {AbortSignal} signal - AbortController signal to cancel in-flight requests.
+ * @param {string}      set      - The icon set identifier, e.g. "fa-solid".
+ * @param {string}      query    - The search query.
+ * @param {AbortSignal} [signal] - AbortController signal to cancel in-flight requests.
  *
  * @return {Promise<Array>} Array of icon objects: [{ name, set, prefix }, ...]
  */
@@ -87,7 +87,9 @@ export const searchIcons = async ( set, query, signal ) => {
  */
 export const getIconSvg = async ( set, name ) => {
 	const res = await fetch(
-		`/yard/icons/${ encodeURIComponent( set ) }/${ name }`
+		`/yard/icons/${ encodeURIComponent( set ) }/${ encodeURIComponent(
+			name
+		) }`
 	);
 	if ( ! res.ok ) {
 		throw new Error(
