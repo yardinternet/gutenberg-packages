@@ -14,7 +14,8 @@ const svgCache = new Map();
  *
  * @return {string|undefined} Cached SVG string, or undefined if not cached.
  */
-export const getCachedSvg = ( set, name ) => svgCache.get( `${ set }/${ name }` );
+export const getCachedSvg = ( set, name ) =>
+	svgCache.get( `${ set }/${ name }` );
 
 /**
  * Store an SVG string in the cache.
@@ -22,6 +23,8 @@ export const getCachedSvg = ( set, name ) => svgCache.get( `${ set }/${ name }` 
  * @param {string} set  - Icon set identifier.
  * @param {string} name - Icon name.
  * @param {string} svg  - Raw SVG markup.
+ *
+ * @return {void}
  */
 export const setCachedSvg = ( set, name, svg ) =>
 	svgCache.set( `${ set }/${ name }`, svg );
@@ -32,6 +35,15 @@ export const setCachedSvg = ( set, name, svg ) =>
  * @param {string} set  - Icon set identifier.
  * @param {string} name - Icon name.
  *
- * @return {boolean}
+ * @return {boolean} Whether the SVG is cached.
  */
-export const hasCachedSvg = ( set, name ) => svgCache.has( `${ set }/${ name }` );
+export const hasCachedSvg = ( set, name ) =>
+	svgCache.has( `${ set }/${ name }` );
+
+/**
+ * Clear all entries from the cache.
+ * Intended for use in tests only.
+ *
+ * @return {void}
+ */
+export const clearCache = () => svgCache.clear();

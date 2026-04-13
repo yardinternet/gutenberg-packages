@@ -1,12 +1,22 @@
-import { getCachedSvg, setCachedSvg, hasCachedSvg } from './svg-cache';
+/**
+ * Internal dependencies
+ */
+import {
+	getCachedSvg,
+	setCachedSvg,
+	hasCachedSvg,
+	clearCache,
+} from './svg-cache';
 
 describe( 'svg-cache', () => {
+	beforeEach( () => clearCache() );
+
 	test( 'hasCachedSvg returns false for an uncached icon', () => {
-		expect( hasCachedSvg( 'fa-solid', 'missing-icon' ) ).toBe( false );
+		expect( hasCachedSvg( 'fa-solid', 'house' ) ).toBe( false );
 	} );
 
 	test( 'getCachedSvg returns undefined for an uncached icon', () => {
-		expect( getCachedSvg( 'fa-solid', 'missing-icon' ) ).toBeUndefined();
+		expect( getCachedSvg( 'fa-solid', 'house' ) ).toBeUndefined();
 	} );
 
 	test( 'setCachedSvg stores an SVG and hasCachedSvg returns true', () => {
@@ -22,7 +32,11 @@ describe( 'svg-cache', () => {
 	test( 'cache is keyed by set/name, different sets are stored separately', () => {
 		setCachedSvg( 'fa-solid', 'heart', '<svg>solid-heart</svg>' );
 		setCachedSvg( 'fa-brands', 'heart', '<svg>brands-heart</svg>' );
-		expect( getCachedSvg( 'fa-solid', 'heart' ) ).toBe( '<svg>solid-heart</svg>' );
-		expect( getCachedSvg( 'fa-brands', 'heart' ) ).toBe( '<svg>brands-heart</svg>' );
+		expect( getCachedSvg( 'fa-solid', 'heart' ) ).toBe(
+			'<svg>solid-heart</svg>'
+		);
+		expect( getCachedSvg( 'fa-brands', 'heart' ) ).toBe(
+			'<svg>brands-heart</svg>'
+		);
 	} );
 } );
