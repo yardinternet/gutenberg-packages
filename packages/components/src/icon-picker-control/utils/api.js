@@ -45,10 +45,12 @@ export const getFontAwesomeIcons = async ( search ) => {
 /**
  * Fetch all registered icon sets from the wp-icons REST API.
  *
+ * @param {AbortSignal} [signal] - AbortController signal to cancel the request.
+ *
  * @return {Promise<Object>} Map of set name to set metadata, e.g. { "fa-solid": { prefix: "fas" } }
  */
-export const getIconSets = async () => {
-	const res = await fetch( '/yard/icons' );
+export const getIconSets = async ( signal ) => {
+	const res = await fetch( '/yard/icons', { signal } );
 	if ( ! res.ok ) {
 		throw new Error( `Failed to fetch icon sets: ${ res.status }` );
 	}

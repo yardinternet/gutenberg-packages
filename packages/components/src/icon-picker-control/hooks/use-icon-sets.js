@@ -24,19 +24,25 @@ const useIconSets = () => {
 	const [ isLoading, setIsLoading ] = useState( true );
 
 	useEffect( () => {
-		getIconSets()
+		const controller = new AbortController();
+
+		getIconSets( controller.signal )
 			.then( ( data ) => {
 				if ( data && Object.keys( data ).length > 0 ) {
 					setSets( data );
 					setIsNewApiAvailable( true );
 				}
 			} )
-			.catch( () => {
-				// API not available — will fall back to FontAwesome picker silently.
+			.catch( ( err ) => {
+				if ( err.name !== 'AbortError' ) {
+					// API not available — will fall back to FontAwesome picker silently.
+				}
 			} )
 			.finally( () => {
 				setIsLoading( false );
 			} );
+
+		return () => controller.abort();
 	}, [] );
 
 	return { sets, isNewApiAvailable, isLoading };
