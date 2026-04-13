@@ -3,7 +3,7 @@
  */
 import { SelectControl, SearchControl, Popover } from '@wordpress/components';
 import { useDispatch } from '@wordpress/data';
-import { useState, useRef } from '@wordpress/element';
+import { useState, useRef, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { store as noticesStore } from '@wordpress/notices';
 
@@ -14,6 +14,7 @@ import DeleteIcon from './delete-icon.jsx';
 import SvgIconResults from './svg-icon-results.jsx';
 import { searchIcons, getIconSvg } from '../utils/api';
 import { getCachedSvg, setCachedSvg, hasCachedSvg } from '../utils/svg-cache';
+import sanitizeSvg from '../utils/sanitize-svg';
 
 const SEARCH_MIN_LENGTH = 3;
 const SEARCH_DEBOUNCE_MS = 300;
@@ -43,8 +44,20 @@ const SvgIconPicker = ( {
 
 	const abortControllerRef = useRef( null );
 	const debounceTimerRef = useRef( null );
+	const searchGenerationRef = useRef( 0 );
 
 	const { createNotice } = useDispatch( noticesStore );
+
+	useEffect( () => {
+		return () => {
+			if ( debounceTimerRef.current ) {
+				clearTimeout( debounceTimerRef.current );
+			}
+			if ( abortControllerRef.current ) {
+				abortControllerRef.current.abort();
+			}
+		};
+	}, [] );
 
 	const showErrorNotice = () => {
 		createNotice(
@@ -86,8 +99,10 @@ const SvgIconPicker = ( {
 	};
 
 	const performSearch = async ( set, query, signal ) => {
+		const generation = ++searchGenerationRef.current;
 		try {
 			const iconList = await searchIcons( set, query, signal );
+			if ( generation !== searchGenerationRef.current ) return;
 			const limited = iconList.slice( 0, MAX_RESULTS );
 
 			// Render immediately with skeleton placeholders.
@@ -96,6 +111,7 @@ const SvgIconPicker = ( {
 
 			// Then resolve SVGs and update.
 			const withSvgs = await fetchSvgsForResults( limited );
+			if ( generation !== searchGenerationRef.current ) return;
 			setResults( withSvgs );
 		} catch ( err ) {
 			if ( err.name === 'AbortError' ) return;
@@ -130,6 +146,13 @@ const SvgIconPicker = ( {
 	};
 
 	const handleSetChange = ( value ) => {
+		if ( debounceTimerRef.current ) {
+			clearTimeout( debounceTimerRef.current );
+		}
+		if ( abortControllerRef.current ) {
+			abortControllerRef.current.abort();
+			abortControllerRef.current = null;
+		}
 		setSelectedSet( value );
 		setSearchInput( '' );
 		setResults( [] );
@@ -148,7 +171,9 @@ const SvgIconPicker = ( {
 			{ displayIconPreview && iconSVG && (
 				<span
 					className="icon-picker-control-preview-icon"
-					dangerouslySetInnerHTML={ { __html: iconSVG } }
+					dangerouslySetInnerHTML={ {
+						__html: sanitizeSvg( iconSVG ),
+					} }
 				/>
 			) }
 
