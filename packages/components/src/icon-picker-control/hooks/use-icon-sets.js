@@ -26,10 +26,10 @@ const useIconSets = () => {
 	useEffect( () => {
 		let isMounted = true;
 		const controller = new AbortController();
+		const timeoutId = setTimeout( () => controller.abort(), 5000 );
 
 		getIconSets( controller.signal )
 			.then( ( data ) => {
-				// eslint-disable-next-line no-useless-return
 				if ( ! isMounted ) return;
 				if ( data && Object.keys( data ).length > 0 ) {
 					setSets( data );
@@ -37,17 +37,17 @@ const useIconSets = () => {
 				}
 			} )
 			.catch( ( err ) => {
-				// eslint-disable-next-line no-useless-return
-				if ( ! isMounted || err.name === 'AbortError' ) return;
-				// API not available — will fall back to FontAwesome picker silently.
+				if ( isMounted && err.name !== 'AbortError' ) {
+					// API not available — will fall back to FontAwesome picker silently.
+				}
 			} )
 			.finally( () => {
-				// eslint-disable-next-line no-useless-return
 				if ( ! isMounted ) return;
 				setIsLoading( false );
 			} );
 
 		return () => {
+			clearTimeout( timeoutId );
 			isMounted = false;
 			controller.abort();
 		};

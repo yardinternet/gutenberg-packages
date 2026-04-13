@@ -153,6 +153,7 @@ const SvgIconPicker = ( {
 			abortControllerRef.current.abort();
 			abortControllerRef.current = null;
 		}
+		searchGenerationRef.current++;
 		setSelectedSet( value );
 		setSearchInput( '' );
 		setResults( [] );
