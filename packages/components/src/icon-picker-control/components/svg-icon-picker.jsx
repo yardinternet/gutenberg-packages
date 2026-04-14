@@ -16,9 +16,9 @@ import { searchIcons, getIconSvg } from '../utils/api';
 import { getCachedSvg, setCachedSvg, hasCachedSvg } from '../utils/svg-cache';
 import sanitizeSvg from '../utils/sanitize-svg';
 
-const SEARCH_MIN_LENGTH = 3;
-const SEARCH_DEBOUNCE_MS = 300;
-const MAX_RESULTS = 10;
+const SEARCH_MIN_LENGTH = 2;
+const SEARCH_DEBOUNCE_MS = 100;
+const MAX_RESULTS = 50;
 
 const SvgIconPicker = ( {
 	sets,
