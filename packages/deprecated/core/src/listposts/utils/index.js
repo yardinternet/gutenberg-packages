@@ -325,7 +325,7 @@ export function hasPostypeTaxonomy(
 	taxonomy = {},
 	postType = ''
 ) {
-	if ( postType === 'any' ) {
+	if ( postType === 'any' || postType === 'external' ) {
 		return true;
 	}
 
