@@ -359,6 +359,12 @@ describe( 'hasPostTypeTaxonomy', () => {
 		).toEqual( true );
 	} );
 
+	test( 'posttype `external ` has taxonomies, should return true', () => {
+		expect(
+			hasPostypeTaxonomy( taxonomies, currentTaxonomy, 'external' )
+		).toEqual( true );
+	} );
+
 	test( 'posttype `faq` has no taxonomies, should return false', () => {
 		expect(
 			hasPostypeTaxonomy( taxonomies, currentTaxonomy, 'faq' )
