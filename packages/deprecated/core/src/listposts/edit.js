@@ -72,29 +72,29 @@ class ListPostsEdit extends Component {
 
 	componentDidUpdate( prevProps ) {
 		const { isMultipleSourcesEnabled } = this.props.attributes;
-		let state = null;
 
 		if (
 			prevProps.attributes.isMultipleSourcesEnabled !==
 			isMultipleSourcesEnabled
 		) {
 			this.removeAdditionalPostTypes();
+
 			if ( ! isMultipleSourcesEnabled ) {
-        state = { externalTaxonomies: [], externalTaxonomiesResolved: false };
-      }
+				this.setState( {
+					externalTaxonomies: [],
+					externalTaxonomiesResolved: false,
+				} );
+
+				return;
+			}
 		}
 
 		if (
 			isMultipleSourcesEnabled &&
-			! this.state.externalTaxonomies.length &&
-			! this.state.externalTaxonomiesResolved
+			! this.state.externalTaxonomies.length
 		) {
 			this.getExternalTaxonomies();
-			state = { externalTaxonomiesResolved: true }
 		}
-		if ( state ) {
-      this.setState( state );
-    }
 	}
 
 	removeAdditionalPostTypes = () => {
