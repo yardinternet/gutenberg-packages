@@ -11,7 +11,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
-import './assets/scss/all.min.scss';
+import './assets/scss/all.min.css';
 
 const IconPickerControl = ( { onChange, icon } ) => {
 	const [ isOpen, setOpen ] = useState( false );
@@ -34,7 +34,7 @@ const IconPickerControl = ( { onChange, icon } ) => {
 		if ( ! response ) return;
 		if ( response.errors ) return showErrorNotice();
 
-		const result = response.data.search.reduce(
+		const result = response.data.searchPaginated.icons.reduce(
 			( iconResults, iconData ) => {
 				convertResponseToClassnames( iconData ).forEach( ( value ) => {
 					iconResults.push( value );
@@ -51,7 +51,23 @@ const IconPickerControl = ( { onChange, icon } ) => {
 	};
 
 	const getFontAwesomeIcons = ( search ) => {
-		const query = `{ search(version: "6.x", first: 100, query: "${ search }") { id styles } }`;
+		const query = `{ searchPaginated(version: "7.x", pageSize: 50, query: "${ search }") 
+			{ 
+				icons { 
+					id 
+					familyStylesByLicense { 
+						free { 
+							family
+							style 
+						} 
+						pro { 
+							family
+							style 
+						} 
+					} 
+				} 
+			}
+		}`;
 
 		return fetch( 'https://api.fontawesome.com', {
 			method: 'POST',
@@ -66,9 +82,35 @@ const IconPickerControl = ( { onChange, icon } ) => {
 	};
 
 	const convertResponseToClassnames = ( response ) => {
-		return response.styles
-			.filter( ( style ) => allowedStyles.includes( style ) ?? false )
-			.map( ( style ) => `fa-${ style } fa-${ response.id }` );
+		const { free, pro } = response.familyStylesByLicense;
+		const seen = new Set();
+		const familyStyles = [ ...free, ...pro ].filter( ( style ) => {
+			const key = `${ style.family }:${ style.style }`;
+			if ( seen.has( key ) ) return false;
+			seen.add( key );
+			return true;
+		} );
+
+		// Convert allowed styles to the same format as the API response
+		const mappedAllowedStyles = allowedStyles.map( ( style ) => {
+			if ( style === 'duotone' ) {
+				return { family: 'duotone', style: 'solid' };
+			}
+			return { family: 'classic', style };
+		} );
+
+		return familyStyles
+			.filter( ( style ) =>
+				mappedAllowedStyles.some(
+					( allowedStyle ) =>
+						allowedStyle.family === style.family &&
+						allowedStyle.style === style.style
+				)
+			)
+			.map(
+				( style ) =>
+					`fa-${ style.family } fa-${ style.style } fa-${ response.id }`
+			);
 	};
 
 	const showErrorNotice = () => {
