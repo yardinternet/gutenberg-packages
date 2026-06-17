@@ -3,23 +3,25 @@
  *
  * @param {string} search - The value to search for icons.
  *
- * @see https://fontawesome.com/docs/apis/graphql/query-fields#search-icon
+ * @see https://fontawesome.com/docs/apis/graphql/query-fields#searchpaginated
  * @see https://fontawesome.com/docs/apis/graphql/objects#icon
  * @see https://fontawesome.com/docs/apis/graphql/objects#familystylesbylicense
  * @see https://fontawesome.com/docs/apis/graphql/objects#familystyle
  */
 export const getFontAwesomeIcons = async ( search ) => {
-	const query = `{ search(version: "6.x", first: 100, query: "${ search }")
+	const query = `{ searchPaginated(version: "7.x", query: "${ search }", pageSize: 50)
 		{
-			id
-			familyStylesByLicense {
-				free {
-					family
-					style
-				}
-				pro {
-					family
-					style
+			icons {
+				id
+				familyStylesByLicense {
+					free {
+						family
+						style
+					}
+					pro {
+						family
+						style
+					}
 				}
 			}
 		}

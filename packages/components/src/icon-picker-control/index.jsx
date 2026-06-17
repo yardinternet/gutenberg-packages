@@ -60,7 +60,7 @@ export const IconPickerControl = ( {
 			const response = await getFontAwesomeIcons( searchValue );
 			if ( ! response ) return;
 
-			const result = response?.data?.search.reduce(
+			const result = response?.data?.searchPaginated?.icons?.reduce(
 				( iconResults, iconData ) => {
 					convertResponseToClassnames(
 						iconData,
@@ -117,6 +117,7 @@ export const IconPickerControl = ( {
 					searchFontAwesomeIcons( searchValue );
 				} }
 				ref={ setPopoverAnchor }
+				__nextHasNoMarginBottom
 			/>
 
 			{ displayAsPopover && searchInput && isOpen && (
