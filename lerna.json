@@ -1,6 +1,7 @@
 {
 	"packages": [ "packages/*", "packages/deprecated/*" ],
 	"version": "independent",
+	"npmClient": "pnpm",
 	"command": {
 		"publish": {
 			"ignoreChanges": [
