@@ -38,10 +38,6 @@
 			"npm run lint"
 		]
 	},
-	"workspaces": [
-		"packages/*",
-		"packages/deprecated/*"
-	],
 	"devDependencies": {
 		"@babel/plugin-transform-class-properties": "^7.22.5",
 		"@babel/plugin-transform-runtime": "^7.23.2",
@@ -78,8 +74,8 @@
 		"classnames": "^2.3.2",
 		"emotion": "^11.0.0",
 		"husky": "^6.0.0",
-		"jest": "*",
-		"jest-config": "*",
+		"jest": "^29.7.0",
+		"jest-config": "^29.7.0",
 		"lerna": "^7.4.2",
 		"lint-staged": "^10.5.4",
 		"lodash": "^4.17.21",
@@ -106,5 +102,6 @@
 		"@yardinternet/gutenberg-google-maps": "*",
 		"@yardinternet/gutenberg-hooks": "*",
 		"@yardinternet/gutenberg-webpack-loaders": "*"
-	}
+	},
+	"packageManager": "pnpm@10.17.1+sha512.17c560fca4867ae9473a3899ad84a88334914f379be46d455cbf92e5cf4b39d34985d452d2583baf19967fa76cb5c17bc9e245529d0b98745721aa7200ecaf7a"
 }
