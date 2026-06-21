@@ -16,25 +16,29 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v7
+            - uses: pnpm/action-setup@v6
             - uses: actions/setup-node@v6
               with:
-                  node-version: '18.16.0'
+                  node-version-file: '.nvmrc'
+                  cache: 'pnpm'
             - run: mv .npmrc.example .npmrc
-            - run: npm ci
-            - run: npm run lint
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm run lint
     format:
         name: 'format'
         needs: lint
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v7
+            - uses: pnpm/action-setup@v6
             - uses: actions/setup-node@v6
               with:
-                  node-version: '18.16.0'
+                  node-version-file: '.nvmrc'
+                  cache: 'pnpm'
             - run: mv .npmrc.example .npmrc
-            - run: npm ci
+            - run: pnpm install --frozen-lockfile
             - run: mv .npmrc .npmrc.example
-            - run: npm run format
+            - run: pnpm run format
             - uses: stefanzweifel/git-auto-commit-action@v7.1.0
               with:
                   commit_message: Apply formatting
