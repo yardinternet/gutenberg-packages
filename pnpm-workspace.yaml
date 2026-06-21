@@ -1,0 +1,11 @@
+packages:
+  - 'packages/*'
+  - 'packages/deprecated/*'
+
+linkWorkspacePackages: true
+
+nodeLinker: hoisted
+
+minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+  - '@yardinternet/*'
