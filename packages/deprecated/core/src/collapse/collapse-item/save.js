@@ -68,7 +68,9 @@ function save( props ) {
 			itemType={ structuredData ? 'https://schema.org/Question' : null }
 		>
 			<div className="yard-blocks-collapse-item__header">
-				{ heading === '' ? button : parse( defaultButton ) }
+				{ heading === '' || heading === null || heading === undefined
+					? button
+					: parse( defaultButton ) }
 			</div>
 			<div
 				className={ `collapse ${ showOpen ? 'show' : '' }` }

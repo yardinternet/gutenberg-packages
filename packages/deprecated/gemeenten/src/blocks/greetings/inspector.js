@@ -102,7 +102,7 @@ function Inspector( props ) {
 					label={ __( 'Label' ) }
 					value={ newRange.value }
 					onChange={ ( value ) =>
-						setNewRange( { ...newRange, value: value } )
+						setNewRange( { ...newRange, value } )
 					}
 				/>
 				<Button isPrimary onClick={ addRange }>
