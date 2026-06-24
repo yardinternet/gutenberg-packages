@@ -9,7 +9,7 @@ module.exports = {
 	],
 	moduleNameMapper: {
 		'^@yardinternet/gutenberg-editor-components$':
-			'<rootDir>/packages/editor-components/src/index.js',
+			'<rootDir>/packages/deprecated/editor-components/src/index.js',
 	},
 	globals: {
 		yardBlocks: {
