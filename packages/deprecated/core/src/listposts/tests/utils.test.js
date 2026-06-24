@@ -359,10 +359,10 @@ describe( 'hasPostTypeTaxonomy', () => {
 		).toEqual( true );
 	} );
 
-	test( 'posttype `external ` has taxonomies, should return true', () => {
+	test( 'posttype `external` is handled by its own panel, should return false', () => {
 		expect(
 			hasPostypeTaxonomy( taxonomies, currentTaxonomy, 'external' )
-		).toEqual( true );
+		).toEqual( false );
 	} );
 
 	test( 'posttype `faq` has no taxonomies, should return false', () => {
