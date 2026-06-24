@@ -1,9 +1,5 @@
 name: format & lint
 
-env:
-    FONTAWESOME_TOKEN: ${{ secrets.FONTAWESOME_TOKEN }}
-    NPM_READ_PACKAGES: ${{ secrets.NPM_READ_PACKAGES }}
-
 on:
     pull_request:
     push:
@@ -21,8 +17,11 @@ jobs:
               with:
                   node-version-file: '.nvmrc'
                   cache: 'pnpm'
-            - run: mv .npmrc.example .npmrc
-            - run: pnpm install --frozen-lockfile
+                  registry-url: 'https://npm.pkg.github.com'
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
             - run: pnpm run lint
     format:
         name: 'format'
@@ -35,9 +34,11 @@ jobs:
               with:
                   node-version-file: '.nvmrc'
                   cache: 'pnpm'
-            - run: mv .npmrc.example .npmrc
-            - run: pnpm install --frozen-lockfile
-            - run: mv .npmrc .npmrc.example
+                  registry-url: 'https://npm.pkg.github.com'
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
             - run: pnpm run format
             - uses: stefanzweifel/git-auto-commit-action@v7.1.0
               with:
