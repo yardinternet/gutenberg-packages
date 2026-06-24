@@ -700,7 +700,8 @@ function Inspector( props ) {
 				</PanelBody>
 			) }
 
-			{ 'external' === postType && !! allExternalTaxonomyTerms.length &&
+			{ 'external' === postType &&
+				!! allExternalTaxonomyTerms.length &&
 				map( allExternalTaxonomyTerms, ( taxonomy ) => {
 					if ( ! taxInSelectedSource( selectedSources, taxonomy ) ) {
 						return null;
