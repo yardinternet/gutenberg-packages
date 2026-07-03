@@ -40,7 +40,7 @@ jobs:
               env:
                   NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
             - run: pnpm run format
-            - uses: stefanzweifel/git-auto-commit-action@v7.1.0
+            - uses: stefanzweifel/git-auto-commit-action@v7.2.0
               with:
                   commit_message: Apply formatting
                   branch: ${{ github.head_ref }}
