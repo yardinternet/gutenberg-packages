@@ -3,6 +3,7 @@
  */
 import Inspector from './components/inspector';
 import CollapseItem from './components/collapse-item';
+import useCollapseItemState from '../hooks/useCollapseItemState';
 
 /**
  * WordPress dependencies
@@ -18,11 +19,16 @@ function Edit( props ) {
 		headerText,
 		showOpen,
 		isAccordion,
-		parentClientId,
 		anchorName,
 		hasSubtitle,
 		subtitle,
 	} = attributes;
+
+	const [ isOpen, toggle ] = useCollapseItemState( {
+		clientId,
+		showOpen,
+		isAccordion,
+	} );
 
 	const { parentClientIds, parentAttributes } = useSelect( ( select ) => {
 		return {
@@ -83,10 +89,9 @@ function Edit( props ) {
 				setHeaderText={ ( value ) =>
 					setAttributes( { headerText: value } )
 				}
-				showOpen={ showOpen }
 				id={ id }
-				isAccordion={ isAccordion }
-				accordionId={ parentClientId }
+				isOpen={ isOpen }
+				onToggle={ toggle }
 				hasSubtitle={ hasSubtitle }
 				subtitle={ subtitle }
 				setSubtitle={ ( value ) =>
