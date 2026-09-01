@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps } from '@wordpress/block-editor';
+import { useEffect, useState } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -21,9 +22,17 @@ function CollapseItem( {
 	children = [],
 	accordionId = '',
 } ) {
+	const [ isOpen, setIsOpen ] = useState( showOpen, showOpen || false );
+
 	const blockProps = useBlockProps( {
 		className: 'yard-blocks-collapse-item',
 	} );
+
+	useEffect( () => {
+		if ( showOpen !== isOpen ) {
+			setIsOpen( showOpen );
+		}
+	}, [ showOpen ] );
 
 	return (
 		<div { ...blockProps } key={ id }>
@@ -34,12 +43,14 @@ function CollapseItem( {
 				hasSubtitle={ hasSubtitle }
 				subtitle={ subtitle }
 				setSubtitle={ setSubtitle }
+				isOpen={ isOpen }
+				setIsOpen={ setIsOpen }
 			/>
 			<Body
 				id={ id }
-				showOpen={ showOpen }
 				isAccordion={ isAccordion }
 				accordionId={ accordionId }
+				isOpen={ isOpen }
 			>
 				{ children }
 			</Body>
