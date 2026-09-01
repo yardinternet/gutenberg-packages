@@ -12,6 +12,8 @@ function Header( {
 	subtitle = '',
 	setSubtitle = () => {},
 	id = 0,
+	isOpen = false,
+	setIsOpen = () => {},
 } ) {
 	return (
 		<div className={ `yard-blocks-collapse-item__header` }>
@@ -38,10 +40,9 @@ function Header( {
 			<Button
 				className={ `yard-blocks-collapse-item__button` }
 				isPrimary={ true }
-				data-toggle={ `collapse` }
-				data-target={ `#collapse-${ id }` }
 				aria-expanded="false"
 				aria-controls={ `collapse-${ id }` }
+				onClick={ () => setIsOpen( ! isOpen ) }
 			>
 				<i
 					className={ `yard-blocks-collapse-item__arrow far fa-chevron-down` }
