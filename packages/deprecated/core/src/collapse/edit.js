@@ -8,6 +8,7 @@ import { useEffect } from '@wordpress/element';
  * Internal dependencies
  */
 import Inspector from './components/inspector';
+import { CollapseProvider } from './context';
 
 function Edit( { clientId, attributes, setAttributes } ) {
 	const { accordionId, heading, structuredData } = attributes;
@@ -31,15 +32,19 @@ function Edit( { clientId, attributes, setAttributes } ) {
 				setAttributes={ setAttributes }
 				clientId={ clientId }
 			/>
-			<div { ...blockProps } id={ `accordion-${ accordionId }` }>
-				<InnerBlocks
-					renderAppender={ () => <InnerBlocks.ButtonBlockAppender /> }
-					allowedBlocks={ ALLOWED_BLOCKS }
-					defaultBlock={ ALLOWED_BLOCKS }
-					template={ TEMPLATE }
-					templateLock={ false }
-				/>
-			</div>
+			<CollapseProvider>
+				<div { ...blockProps } id={ `accordion-${ accordionId }` }>
+					<InnerBlocks
+						renderAppender={ () => (
+							<InnerBlocks.ButtonBlockAppender />
+						) }
+						allowedBlocks={ ALLOWED_BLOCKS }
+						defaultBlock={ ALLOWED_BLOCKS }
+						template={ TEMPLATE }
+						templateLock={ false }
+					/>
+				</div>
+			</CollapseProvider>
 		</>
 	);
 }

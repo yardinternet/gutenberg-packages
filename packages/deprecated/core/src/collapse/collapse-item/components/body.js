@@ -1,10 +1,4 @@
-function Body( {
-	id = 0,
-	isAccordion = true,
-	children = [],
-  accordionId = '',
-	isOpen = false,
-} ) {
+function Body( { id = 0, children = [], isOpen = false } ) {
 	return (
 		<div
 			className={ `collapse ${ isOpen ? 'show' : '' }` }
