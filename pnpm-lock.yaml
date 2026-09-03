@@ -332,11 +332,7 @@ importers:
 
     packages/pre-publish-checklist: {}
 
-    packages/webpack-loaders:
-        dependencies:
-            '@yardinternet/webpack-include-packages':
-                specifier: ^1.0.2
-                version: 1.0.2
+    packages/webpack-loaders: {}
 
 packages:
     '@ariakit/core@0.3.11':
