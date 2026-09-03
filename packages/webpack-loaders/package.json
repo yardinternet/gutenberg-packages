@@ -1,6 +1,6 @@
 {
 	"name": "@yardinternet/gutenberg-webpack-loaders",
-	"version": "0.1.2",
+	"version": "0.2.0",
 	"description": "Several webpack loaders for many use-cases",
 	"main": "src/index.js",
 	"author": "",
@@ -11,8 +11,5 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
-	},
-	"dependencies": {
-		"@yardinternet/webpack-include-packages": "^1.0.2"
 	}
 }

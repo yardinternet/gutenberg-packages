@@ -2,26 +2,22 @@
  * Internal dependencies
  */
 const gutenbergPackagesConfig = require( './deprecated' );
+const packageExclude = require( './packageExclude' );
+const scriptRule = require( './scriptRule' );
 
 /**
- * External dependencies
- */
-const includePackages = require( '@yardinternet/webpack-include-packages' );
-
-const isProduction = process.env.NODE_ENV === 'production';
-
-/**
- * Add @yardinternet/gutenberg-* packages to the webpack @wordpress/scripts config.
+ * Transpile @yardinternet/gutenberg-* packages, which ship unbuilt JSX.
  *
- * @param {Object} config   - defaultConfig of @wordpress/scripts
- * @param {Array}  packages - array of packages to include
+ * @param {Object}   config   - defaultConfig of @wordpress/scripts
+ * @param {string[]} packages
+ * @return {Object} config
  */
 const addPackagesToConfig = ( config, packages = [] ) => {
-	config.module.rules[ isProduction ? 0 : 1 ].exclude =
-		includePackages( packages );
-	return {
-		...config,
-	};
+	if ( packages.length > 0 ) {
+		scriptRule( config ).exclude = packageExclude( packages );
+	}
+
+	return { ...config };
 };
 
 module.exports = {

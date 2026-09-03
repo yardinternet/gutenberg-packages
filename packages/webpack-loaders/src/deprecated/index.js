@@ -4,11 +4,10 @@
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 
 /**
- * External dependencies
+ * Internal dependencies
  */
-const includePackages = require( '@yardinternet/webpack-include-packages' );
-
-const isProduction = process.env.NODE_ENV === 'production';
+const packageExclude = require( '../packageExclude' );
+const scriptRule = require( '../scriptRule' );
 
 /**
  * Webpack loader that extends defaultConfig of @wordpress/scripts
@@ -18,8 +17,9 @@ const isProduction = process.env.NODE_ENV === 'production';
  * @return {Object} config
  */
 const gutenbergPackagesConfig = ( { packages = [] } ) => {
-	defaultConfig.module.rules[ isProduction ? 0 : 1 ].exclude =
-		includePackages( packages );
+	if ( packages.length > 0 ) {
+		scriptRule( defaultConfig ).exclude = packageExclude( packages );
+	}
 	return {
 		...defaultConfig,
 		module: {
