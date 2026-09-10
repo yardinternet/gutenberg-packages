@@ -1,29 +1,36 @@
 /**
  * WordPress dependencies
  */
-import {
-	Dropdown,
-	Popover,
-	SearchControl,
-	ToolbarButton,
-	ToolbarGroup,
-} from '@wordpress/components';
+import { Dropdown, ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { BlockControls } from '@wordpress/block-editor';
-import { useDispatch } from '@wordpress/data';
-import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { applyFilters } from '@wordpress/hooks';
-import { store as noticesStore } from '@wordpress/notices';
 
 /**
  * Internal dependencies
  */
-import DeleteIcon from './components/delete-icon.jsx';
-import IconResults from './components/icon-results.jsx';
-import { getFontAwesomeIcons } from './utils/api';
-import { convertResponseToClassnames } from './utils/helpers';
+import FontAwesomeIconPicker from './components/font-awesome-icon-picker.jsx';
+import SvgIconPicker from './components/svg-icon-picker.jsx';
+import useIconSets from './hooks/use-icon-sets.js';
 import './editor.css';
 
+/**
+ * Core icon picker control. Automatically selects between the FontAwesome
+ * picker and the new SVG-based picker depending on:
+ *   1. Whether /yard/icons is reachable (detected on mount).
+ *   2. Whether the consumer has provided an `onChangeSVG` callback.
+ *
+ * If either condition is false, the FontAwesome picker is rendered.
+ *
+ * @param {Object}   props
+ * @param {Function} props.onChange           Called with FA class string when FA picker is used.
+ * @param {string}   props.icon               Current FA class string (for legacy preview).
+ * @param {boolean}  props.displayIconPreview Show icon preview above search. Default true.
+ * @param {boolean}  props.displayAsPopover   Show results in a popover. Default true.
+ * @param {boolean}  props.displayDeleteIcon  Show delete button. Default false.
+ * @param {Function} props.handleRemove       Called when delete button is clicked.
+ * @param {Function} props.onChangeSVG        Called with raw SVG string when SVG picker is used.
+ * @param {string}   props.iconSVG            Current SVG markup (for SVG preview).
+ */
 export const IconPickerControl = ( {
 	onChange,
 	icon,
@@ -31,119 +38,38 @@ export const IconPickerControl = ( {
 	displayAsPopover = true,
 	displayDeleteIcon = false,
 	handleRemove,
+	onChangeSVG,
+	iconSVG,
 } ) => {
-	const [ isOpen, setOpen ] = useState( false );
-	const [ searchInput, setSearchInput ] = useState( '' );
-	const [ searchResults, setSearchResults ] = useState( [] );
-	const [ popoverAnchor, setPopoverAnchor ] = useState();
+	const { sets, isNewApiAvailable, isLoading } = useIconSets();
 
-	const { createNotice } = useDispatch( noticesStore );
+	if ( isLoading ) {
+		return null;
+	}
 
-	const allowedFamilyStyles = applyFilters(
-		'yard.fontawesome-family-styles',
-		[
-			{ family: 'classic', style: 'solid' },
-			{ family: 'classic', style: 'regular' },
-			{ family: 'classic', style: 'light' },
-			{ family: 'classic', style: 'thin' },
-			{ family: 'classic', style: 'brands' },
-			{ family: 'duotone', style: 'solid' },
-			{ family: 'sharp', style: 'solid' },
-			{ family: 'sharp', style: 'regular' },
-			{ family: 'sharp', style: 'light' },
-			{ family: 'sharp', style: 'thin' },
-		]
-	);
-
-	const searchFontAwesomeIcons = async ( searchValue ) => {
-		try {
-			const response = await getFontAwesomeIcons( searchValue );
-			if ( ! response ) return;
-
-			const result = response?.data?.search.reduce(
-				( iconResults, iconData ) => {
-					convertResponseToClassnames(
-						iconData,
-						allowedFamilyStyles
-					).forEach( ( value ) => {
-						iconResults.push( value );
-					} );
-
-					return iconResults;
-				},
-				[]
-			);
-			if ( ! result ) return;
-
-			setSearchResults( result );
-			setOpen( true );
-		} catch ( err ) {
-			return showErrorNotice();
-		}
-	};
-
-	const showErrorNotice = () => {
-		createNotice(
-			'error',
-			__(
-				'Momenteel kunnen er geen iconen worden opgehaald, probeer het later nog een keer.'
-			),
-			{
-				isDismissible: true,
-				type: 'snackbar',
-				id: 'icon-picker-control-error',
-			}
+	if ( isNewApiAvailable && onChangeSVG ) {
+		return (
+			<SvgIconPicker
+				sets={ sets }
+				onChangeSVG={ onChangeSVG }
+				iconSVG={ iconSVG }
+				displayIconPreview={ displayIconPreview }
+				displayAsPopover={ displayAsPopover }
+				displayDeleteIcon={ displayDeleteIcon }
+				handleRemove={ handleRemove }
+			/>
 		);
-	};
-
-	const handleIconClick = ( clickedIcon ) => {
-		onChange( clickedIcon );
-		setSearchInput( () => '' );
-		setOpen( () => false );
-	};
+	}
 
 	return (
-		<>
-			{ displayIconPreview && icon && (
-				<i className={ icon + ' icon-picker-control-preview-icon' }></i>
-			) }
-
-			<SearchControl
-				placeholder={ __( 'Zoek een icoon' ) }
-				value={ searchInput }
-				help={ __( 'Gebruik Engelse termen om een icoon te zoeken.' ) }
-				onChange={ ( searchValue ) => {
-					setSearchInput( searchValue );
-					searchFontAwesomeIcons( searchValue );
-				} }
-				ref={ setPopoverAnchor }
-			/>
-
-			{ displayAsPopover && searchInput && isOpen && (
-				<Popover
-					anchor={ popoverAnchor }
-					title={ __( 'Kies een icoon' ) }
-					onClose={ () => setOpen( false ) }
-					focusOnMount={ false }
-				>
-					<IconResults
-						searchResults={ searchResults }
-						handleIconClick={ handleIconClick }
-					/>
-				</Popover>
-			) }
-
-			{ ! displayAsPopover && searchInput && (
-				<IconResults
-					searchResults={ searchResults }
-					handleIconClick={ handleIconClick }
-				/>
-			) }
-
-			{ displayDeleteIcon && icon && (
-				<DeleteIcon handleRemove={ handleRemove } />
-			) }
-		</>
+		<FontAwesomeIconPicker
+			onChange={ onChange }
+			icon={ icon }
+			displayIconPreview={ displayIconPreview }
+			displayAsPopover={ displayAsPopover }
+			displayDeleteIcon={ displayDeleteIcon }
+			handleRemove={ handleRemove }
+		/>
 	);
 };
 
@@ -152,6 +78,8 @@ export const IconPickerControlInspector = ( {
 	onChange,
 	displayDeleteIcon = false,
 	handleRemove,
+	onChangeSVG,
+	iconSVG,
 } ) => {
 	return (
 		<IconPickerControl
@@ -161,11 +89,18 @@ export const IconPickerControlInspector = ( {
 			displayAsPopover={ true }
 			displayDeleteIcon={ displayDeleteIcon }
 			handleRemove={ handleRemove }
+			onChangeSVG={ onChangeSVG }
+			iconSVG={ iconSVG }
 		/>
 	);
 };
 
-export const IconPickerControlToolbar = ( { icon, onChange } ) => {
+export const IconPickerControlToolbar = ( {
+	icon,
+	onChange,
+	onChangeSVG,
+	iconSVG,
+} ) => {
 	return (
 		<BlockControls>
 			<Dropdown
@@ -186,6 +121,8 @@ export const IconPickerControlToolbar = ( { icon, onChange } ) => {
 						onChange={ onChange }
 						displayIconPreview={ false }
 						displayAsPopover={ false }
+						onChangeSVG={ onChangeSVG }
+						iconSVG={ iconSVG }
 					/>
 				) }
 			/>
