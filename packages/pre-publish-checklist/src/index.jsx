@@ -26,7 +26,9 @@ const PrePublishCheckList = ( settings, customCheck = [] ) => {
 	const [ taxonomiesStatus, setTaxonomiesStatus ] = useState( {} );
 
 	const updateErrorLogs = ( { type, value } ) => {
-		if ( lockPost ) setLockPost( ( prev ) => ! prev );
+		if ( lockPost ) {
+			setLockPost( ( prev ) => ! prev );
+		}
 		setErrorLogs( ( currentState ) => ( {
 			...currentState,
 			[ type ]: { hasError: value.hasError, message: value.message },
@@ -104,12 +106,16 @@ const PrePublishCheckList = ( settings, customCheck = [] ) => {
 
 		// Check errors in errorLogs
 		for ( const value of Object.values( errorLogs ) ) {
-			if ( value.hasError ) errorFound = true;
+			if ( value.hasError ) {
+				errorFound = true;
+			}
 		}
 
 		// Check taxonomies errors
 		for ( const value of Object.values( taxonomiesStatus ) ) {
-			if ( value.hasError ) errorFound = true;
+			if ( value.hasError ) {
+				errorFound = true;
+			}
 		}
 
 		// Check errors in custom check
@@ -119,11 +125,15 @@ const PrePublishCheckList = ( settings, customCheck = [] ) => {
 			}
 		} );
 
-		if ( errorFound ) return setLockPost( true );
+		if ( errorFound ) {
+			return setLockPost( true );
+		}
 		setLockPost( false );
 	}, [ errorLogs, customCheck ] );
 
-	if ( ! currentSettings.postType ) return null;
+	if ( ! currentSettings.postType ) {
+		return null;
+	}
 
 	return (
 		<PluginPrePublishPanel
