@@ -89,10 +89,13 @@ class ListPostsEdit extends Component {
 			}
 		}
 
+		// Guard on the flag, not on externalTaxonomies.length: an empty fetch result
+		// would otherwise re-trigger this on every update and freeze the editor.
 		if (
 			isMultipleSourcesEnabled &&
-			! this.state.externalTaxonomies.length
+			! this.state.externalTaxonomiesResolved
 		) {
+			this.setState( { externalTaxonomiesResolved: true } );
 			this.getExternalTaxonomies();
 		}
 	}
