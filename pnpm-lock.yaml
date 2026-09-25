@@ -4919,6 +4919,7 @@ packages:
                 integrity: sha512-7LA0ZS5t0Thn7xrdwPL3hLgjB9LKloneGhMwnnDUTgJP330lyfdDfJ+O6Lnz3iL+bg68mkA3AzrT9Fs9f3WKww==,
             }
         engines: { node: '>=14' }
+        deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
         peerDependencies:
             '@babel/core': '>=7'
             jest: '>=29'
