@@ -79,9 +79,6 @@ importers:
       '@wordpress/element':
         specifier: ^6.46.0
         version: 6.46.0
-      '@wordpress/eslint-plugin':
-        specifier: ^26.0.0
-        version: 26.0.0(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@typescript-eslint/eslint-plugin@8.70.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(typescript@6.0.3))(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(jest@30.5.1(@types/node@26.6.1)(babel-plugin-macros@3.1.0))(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@17.15.0(typescript@6.0.3))(typescript@6.0.3)(wp-prettier@3.9.6)
       '@wordpress/hooks':
         specifier: ^4.55.0
         version: 4.55.0
@@ -106,6 +103,9 @@ importers:
       '@wordpress/server-side-render':
         specifier: ^6.31.0
         version: 6.31.0(@date-fns/tz@1.5.0)(@emotion/is-prop-valid@1.4.0)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@17.15.0(typescript@6.0.3))
+      '@yardinternet/eslint-config':
+        specifier: ^1.3.2
+        version: 1.3.2(@babel/core@7.29.7)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@typescript-eslint/eslint-plugin@8.70.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(typescript@6.0.3))(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint-plugin-import@2.32.0)(eslint@10.10.0)(jest@30.5.1(@types/node@26.6.1)(babel-plugin-macros@3.1.0))(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@17.15.0(typescript@6.0.3))(typescript@6.0.3)(wp-prettier@3.9.6)
       auto-changelog:
         specifier: ^2.6.1
         version: 2.6.1
@@ -115,9 +115,6 @@ importers:
       emotion:
         specifier: ^11.0.0
         version: 11.0.0
-      globals:
-        specifier: ^17.12.0
-        version: 17.12.0
       jest:
         specifier: ^30.5.1
         version: 30.5.1(@types/node@26.6.1)(babel-plugin-macros@3.1.0)
@@ -322,6 +319,13 @@ packages:
   '@babel/core@7.29.7':
     resolution: {integrity: sha512-RgHBCvtjbOK2gXSNBNIkNoEc9qoVEtau3hj8gEqKQuL3HZAibKarWFEI3Lfm6EYKkLalOh8eSrj9b+ch9H/VBA==}
     engines: {node: '>=6.9.0'}
+
+  '@babel/eslint-parser@7.29.9':
+    resolution: {integrity: sha512-GmrJTAtiRbNip+eKFqeuSvoHMJhKlH36j8U0yE3Gqn45B+SIO7NvsEiHtsmzkBqV1hLSMqYr41dI1aZLTkJ37g==}
+    engines: {node: ^10.13.0 || ^12.13.0 || >=14.0.0}
+    peerDependencies:
+      '@babel/core': ^7.11.0
+      eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
 
   '@babel/generator@7.29.8':
     resolution: {integrity: sha512-gZbepsdh3WDtgZKWL+vTPh71LSBrm/Y4/QDZBVCcYfmeTEEuoOYwlSy+G1StfJg+/Zy550u/3TATbm7qDbbMtg==}
@@ -1734,6 +1738,9 @@ packages:
     peerDependencies:
       '@emnapi/core': ^1.7.1 || ^2.0.0-alpha.4
       '@emnapi/runtime': ^1.7.1 || ^2.0.0-alpha.4
+
+  '@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1':
+    resolution: {integrity: sha512-54/JRvkLIzzDWshCWfuhadfrfZVPiElY8Fcgmg1HroEly/EDSszzhBAsarCux+D/kOslTRquNzuyGSmUSTTHGg==}
 
   '@noble/hashes@1.4.0':
     resolution: {integrity: sha512-V1JJ1WTRUqHHrOSh597hURcMqVKVGL/ea3kv0gSnEdsEZ0/+VyPghM1lMNGc00z7CIQorSvbKpuJkxvuHbvdbg==}
@@ -3261,6 +3268,20 @@ packages:
     resolution: {integrity: sha512-/KuueukNLGHzQrTcXXqwRSZ0qPMD0AKheYXadDZFJBr3BGmdUBR7Z7rCoW7l9VfUFWfMmBj4ltyNAEZtrg0oBA==}
     engines: {node: '>=18.12.0', npm: '>=8.19.2'}
 
+  '@wordpress/eslint-plugin@25.10.0':
+    resolution: {integrity: sha512-Lx3LVVVQuhCOfwVQDUL7Mh8c++y/JKHh+GozJmYNEyOosEZGW+LFTWS6GQiqoR3d4qIRJTZ3lRlmRf0Md568aQ==}
+    engines: {node: '>=18.12.0', npm: '>=8.19.2'}
+    peerDependencies:
+      '@babel/core': '>=7'
+      eslint: ^9.0.0 || ^10.0.0
+      prettier: '>=3'
+      typescript: '>=5'
+    peerDependenciesMeta:
+      prettier:
+        optional: true
+      typescript:
+        optional: true
+
   '@wordpress/eslint-plugin@26.0.0':
     resolution: {integrity: sha512-bkTUJPIBeYD/pEAqxzkp2vjHL96o1rPTFwarDTu0bO4aG5DWhgc5mALbFz6keGJZwIcS6rN6PNpmZb5erkzxOg==}
     engines: {node: '>=18.12.0', npm: '>=8.19.2'}
@@ -3668,6 +3689,9 @@ packages:
 
   '@xtuc/long@4.2.2':
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
+
+  '@yardinternet/eslint-config@1.3.2':
+    resolution: {integrity: sha512-X2EdIZ/By+XXQu/Sk9fQVO6FKqFl2ks4iWb8W4NcVe7MlYKHaZl0/TKjzaclYj/Du1l7V7fVf5QUwFxjLbgK4Q==, tarball: https://npm.pkg.github.com/download/@yardinternet/eslint-config/1.3.2/a583ac94b52d7fb58ee0e101d636307253eff965}
 
   '@yarnpkg/lockfile@1.1.0':
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
@@ -4935,6 +4959,12 @@ packages:
       unrs-resolver:
         optional: true
 
+  eslint-import-resolver-alias@1.1.2:
+    resolution: {integrity: sha512-WdviM1Eu834zsfjHtcGHtGfcu+F30Od3V7I9Fi57uhBEwPkjDcii7/yW8jAT+gOhn4P/vOxxNAXbFAKsrrc15w==}
+    engines: {node: '>= 4'}
+    peerDependencies:
+      eslint-plugin-import: '>=1.4.0'
+
   eslint-import-resolver-node@0.3.10:
     resolution: {integrity: sha512-tRrKqFyCaKict5hOd244sL6EQFNycnMQnBe+j8uqGNXYzsImGbGUU4ibtoaBmv5FLwJwcFJNeg1GeVjQfbMrDQ==}
 
@@ -5042,9 +5072,17 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
 
+  eslint-scope@5.1.1:
+    resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==}
+    engines: {node: '>=8.0.0'}
+
   eslint-scope@9.1.2:
     resolution: {integrity: sha512-xS90H51cKw0jltxmvmHy2Iai1LIqrfbw57b79w/J7MfvDfkIkFZ+kj6zC3BjtUwh150HsSSdxXZcsuv72miDFQ==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+
+  eslint-visitor-keys@2.1.0:
+    resolution: {integrity: sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==}
+    engines: {node: '>=10'}
 
   eslint-visitor-keys@3.4.3:
     resolution: {integrity: sha512-wpc+LXeiyiisxPlEkUzU6svyS1frIO3Mgxj1fdy7Pm8Ygzguax2N3Fa/D/ag1WqbOprdI+uY6wMUl8/a2G+iag==}
@@ -5087,6 +5125,10 @@ packages:
 
   esrecurse@4.3.0:
     resolution: {integrity: sha512-KmfKL3b6G+RXvP8N1vr3Tq1kL/oCFgn2NYXEtqP8/L3pKapUA4G8cFVaoF3SU323CD4XypR/ffioHmkti6/Tag==}
+    engines: {node: '>=4.0'}
+
+  estraverse@4.3.0:
+    resolution: {integrity: sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==}
     engines: {node: '>=4.0'}
 
   estraverse@5.3.0:
@@ -9144,6 +9186,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@babel/eslint-parser@7.29.9(@babel/core@7.29.7)(eslint@10.10.0)':
+    dependencies:
+      '@babel/core': 7.29.7
+      '@nicolo-ribaudo/eslint-scope-5-internals': 5.1.1-v1
+      eslint: 10.10.0
+      eslint-visitor-keys: 2.1.0
+      semver: 6.3.1
+
   '@babel/generator@7.29.8':
     dependencies:
       '@babel/parser': 7.29.8
@@ -10856,6 +10906,10 @@ snapshots:
       '@tybys/wasm-util': 0.10.4
     optional: true
 
+  '@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1':
+    dependencies:
+      eslint-scope: 5.1.1
+
   '@noble/hashes@1.4.0': {}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -12036,7 +12090,7 @@ snapshots:
       '@typescript-eslint/utils': 8.70.0(eslint@10.10.0)(typescript@6.0.3)
       '@typescript-eslint/visitor-keys': 8.70.0
       eslint: 10.10.0
-      ignore: 7.0.5
+      ignore: 7.0.9
       natural-compare: 1.4.0
       ts-api-utils: 2.5.0(typescript@6.0.3)
       typescript: 6.0.3
@@ -12921,6 +12975,51 @@ snapshots:
 
   '@wordpress/escape-html@3.55.0': {}
 
+  '@wordpress/eslint-plugin@25.10.0(@babel/core@7.29.7)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@typescript-eslint/eslint-plugin@8.70.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(typescript@6.0.3))(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(jest@30.5.1(@types/node@26.6.1)(babel-plugin-macros@3.1.0))(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@17.15.0(typescript@6.0.3))(typescript@6.0.3)(wp-prettier@3.9.6)':
+    dependencies:
+      '@babel/core': 7.29.7
+      '@babel/eslint-parser': 7.29.9(@babel/core@7.29.7)(eslint@10.10.0)
+      '@eslint-community/eslint-plugin-eslint-comments': 4.8.1(eslint@10.10.0)
+      '@eslint/compat': 2.1.1(eslint@10.10.0)
+      '@wordpress/babel-preset-default': 8.55.0
+      '@wordpress/prettier-config': 4.55.0(wp-prettier@3.9.6)
+      '@wordpress/theme': 2.1.0(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@17.15.0(typescript@6.0.3))
+      cosmiconfig: 7.1.0
+      eslint: 10.10.0
+      eslint-config-prettier: 10.1.8(eslint@10.10.0)
+      eslint-import-resolver-typescript: 4.4.5(eslint-plugin-import@2.32.0)(eslint@10.10.0)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint-import-resolver-typescript@4.4.5)(eslint@10.10.0)
+      eslint-plugin-jest: 29.16.6(@typescript-eslint/eslint-plugin@8.70.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(jest@30.5.1(@types/node@26.6.1)(babel-plugin-macros@3.1.0))(typescript@6.0.3)
+      eslint-plugin-jsdoc: 50.8.0(eslint@10.10.0)
+      eslint-plugin-jsx-a11y: 6.10.2(eslint@10.10.0)
+      eslint-plugin-playwright: 2.12.0(eslint@10.10.0)
+      eslint-plugin-prettier: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.10.0))(eslint@10.10.0)(wp-prettier@3.9.6)
+      eslint-plugin-react: 7.37.5(eslint@10.10.0)
+      eslint-plugin-react-hooks: 7.1.1(eslint@10.10.0)
+      globals: 16.5.0
+      requireindex: 1.2.0
+      typescript-eslint: 8.70.0(eslint@10.10.0)(typescript@6.0.3)
+    optionalDependencies:
+      prettier: wp-prettier@3.9.6
+      typescript: 6.0.3
+    transitivePeerDependencies:
+      - '@types/eslint'
+      - '@types/react'
+      - '@types/react-dom'
+      - '@typescript-eslint/eslint-plugin'
+      - '@typescript-eslint/parser'
+      - esbuild
+      - eslint-import-resolver-webpack
+      - eslint-plugin-import-x
+      - jest
+      - lightningcss
+      - postcss
+      - react
+      - react-dom
+      - stylelint
+      - supports-color
+      - vite
+
   '@wordpress/eslint-plugin@26.0.0(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@typescript-eslint/eslint-plugin@8.70.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(typescript@6.0.3))(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(jest@30.5.1(@types/node@26.6.1)(babel-plugin-macros@3.1.0))(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@17.15.0(typescript@6.0.3))(typescript@6.0.3)(wp-prettier@3.9.6)':
     dependencies:
       '@eslint-community/eslint-plugin-eslint-comments': 4.8.1(eslint@10.10.0)
@@ -13581,6 +13680,35 @@ snapshots:
   '@xtuc/ieee754@1.2.0': {}
 
   '@xtuc/long@4.2.2': {}
+
+  '@yardinternet/eslint-config@1.3.2(@babel/core@7.29.7)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@typescript-eslint/eslint-plugin@8.70.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(typescript@6.0.3))(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint-plugin-import@2.32.0)(eslint@10.10.0)(jest@30.5.1(@types/node@26.6.1)(babel-plugin-macros@3.1.0))(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@17.15.0(typescript@6.0.3))(typescript@6.0.3)(wp-prettier@3.9.6)':
+    dependencies:
+      '@wordpress/eslint-plugin': 25.10.0(@babel/core@7.29.7)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(@typescript-eslint/eslint-plugin@8.70.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(typescript@6.0.3))(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint@10.10.0)(jest@30.5.1(@types/node@26.6.1)(babel-plugin-macros@3.1.0))(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@17.15.0(typescript@6.0.3))(typescript@6.0.3)(wp-prettier@3.9.6)
+      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.32.0)
+      globals: 17.12.0
+      typescript-eslint: 8.70.0(eslint@10.10.0)(typescript@6.0.3)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@types/eslint'
+      - '@types/react'
+      - '@types/react-dom'
+      - '@typescript-eslint/eslint-plugin'
+      - '@typescript-eslint/parser'
+      - esbuild
+      - eslint
+      - eslint-import-resolver-webpack
+      - eslint-plugin-import
+      - eslint-plugin-import-x
+      - jest
+      - lightningcss
+      - postcss
+      - prettier
+      - react
+      - react-dom
+      - stylelint
+      - supports-color
+      - typescript
+      - vite
 
   '@yarnpkg/lockfile@1.1.0': {}
 
@@ -14998,6 +15126,10 @@ snapshots:
     optionalDependencies:
       unrs-resolver: 1.12.2
 
+  eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.32.0):
+    dependencies:
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint-import-resolver-typescript@4.4.5)(eslint@10.10.0)
+
   eslint-import-resolver-node@0.3.10:
     dependencies:
       debug: 3.2.7
@@ -15021,7 +15153,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.14.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@4.4.5)(eslint@10.10.0):
+  eslint-module-utils@2.14.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@4.4.5(eslint-plugin-import@2.32.0)(eslint@10.10.0))(eslint@10.10.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -15043,7 +15175,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 10.10.0
       eslint-import-resolver-node: 0.3.10
-      eslint-module-utils: 2.14.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@4.4.5)(eslint@10.10.0)
+      eslint-module-utils: 2.14.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0)(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@4.4.5(eslint-plugin-import@2.32.0)(eslint@10.10.0))(eslint@10.10.0)
       hasown: 2.0.4
       is-core-module: 2.17.0
       is-glob: 4.0.3
@@ -15154,12 +15286,19 @@ snapshots:
       string.prototype.matchall: 4.1.0
       string.prototype.repeat: 1.0.0
 
+  eslint-scope@5.1.1:
+    dependencies:
+      esrecurse: 4.3.0
+      estraverse: 4.3.0
+
   eslint-scope@9.1.2:
     dependencies:
       '@types/esrecurse': 4.3.1
       '@types/estree': 1.0.9
       esrecurse: 4.3.0
       estraverse: 5.3.0
+
+  eslint-visitor-keys@2.1.0: {}
 
   eslint-visitor-keys@3.4.3: {}
 
@@ -15223,6 +15362,8 @@ snapshots:
   esrecurse@4.3.0:
     dependencies:
       estraverse: 5.3.0
+
+  estraverse@4.3.0: {}
 
   estraverse@5.3.0: {}
 

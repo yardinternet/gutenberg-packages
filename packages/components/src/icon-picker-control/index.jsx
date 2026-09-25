@@ -58,7 +58,9 @@ export const IconPickerControl = ( {
 	const searchFontAwesomeIcons = async ( searchValue ) => {
 		try {
 			const response = await getFontAwesomeIcons( searchValue );
-			if ( ! response ) return;
+			if ( ! response ) {
+				return;
+			}
 
 			const result = response?.data?.search.reduce(
 				( iconResults, iconData ) => {
@@ -73,7 +75,9 @@ export const IconPickerControl = ( {
 				},
 				[]
 			);
-			if ( ! result ) return;
+			if ( ! result ) {
+				return;
+			}
 
 			setSearchResults( result );
 			setOpen( true );
