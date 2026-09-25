@@ -120,7 +120,7 @@ export function mapEvents( eventObj = {} ) {
 		? eventObj.events.map( ( event ) => ( {
 				label: event.title,
 				value: event.id,
-		  } ) )
+			} ) )
 		: [];
 }
 
@@ -223,7 +223,9 @@ export function filterRemovedTerms( allTerms = [], selectedTerms = {} ) {
 	const filteredTerms = {};
 
 	map( allTerms, ( taxonomy ) => {
-		if ( ! taxonomy.data ) return;
+		if ( ! taxonomy.data ) {
+			return;
+		}
 		if ( !! taxonomy.data.length ) {
 			const filtered = filter(
 				selectedTerms[ taxonomy.slug ],
@@ -339,7 +341,9 @@ export function hasPostypeTaxonomy(
  * @return {Array} array with urls and slugs
  */
 export function parseToAttributes( options = [] ) {
-	if ( options === null ) return [];
+	if ( options === null ) {
+		return [];
+	}
 
 	const parseOptions = options.map( ( item ) => JSON.parse( item.value ) );
 	const mergeObj = {};

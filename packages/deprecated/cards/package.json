@@ -32,8 +32,8 @@
 		"url": "https://github.com/yardinternet/gutenberg-packages/issues"
 	},
 	"dependencies": {
-		"@emotion/react": "^11.11.1",
+		"@emotion/react": "^11.14.0",
 		"@yardinternet/gutenberg-editor-components": "file:../editor-components",
-		"classnames": "^2.2.6"
+		"classnames": "^2.5.1"
 	}
 }

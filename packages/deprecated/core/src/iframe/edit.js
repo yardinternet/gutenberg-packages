@@ -81,7 +81,7 @@ function Edit( props ) {
 									? __( 'URL is gevalideerd.' )
 									: __(
 											'URL is niet gevalideerd. Voorbeeld: "https://www.domein.nl"'
-									  )
+										)
 							}
 						/>
 						<Button

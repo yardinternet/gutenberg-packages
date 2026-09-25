@@ -80,7 +80,9 @@ const deprecated = [
 			};
 
 			const header = () => {
-				if ( heading === '' ) return button();
+				if ( heading === '' ) {
+					return button();
+				}
 
 				return `
 			<${ heading } class="yard-blocks-collapse-item__heading">
@@ -191,7 +193,9 @@ const deprecated = [
 			};
 
 			const header = () => {
-				if ( heading === '' ) return button();
+				if ( heading === '' ) {
+					return button();
+				}
 
 				return `
 					<${ heading } class="yard-blocks-collapse-item__heading">
@@ -298,7 +302,9 @@ const deprecated = [
 			};
 
 			const header = () => {
-				if ( heading === '' ) return button();
+				if ( heading === '' ) {
+					return button();
+				}
 
 				return `
 					<${ heading } class="yard-blocks-collapse-item__heading">
@@ -399,7 +405,9 @@ const deprecated = [
 			};
 
 			const header = () => {
-				if ( heading === '' ) return button();
+				if ( heading === '' ) {
+					return button();
+				}
 
 				return `
 					<${ heading } class="yard-blocks-collapse-item__heading">
@@ -484,7 +492,9 @@ const deprecated = [
 			};
 
 			const header = () => {
-				if ( heading === '' ) return button();
+				if ( heading === '' ) {
+					return button();
+				}
 
 				return `
 					<${ heading } class="yard-blocks-collapse-item__heading">

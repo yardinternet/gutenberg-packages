@@ -63,7 +63,7 @@ const PrePublishCheckList = ( settings, customCheck = [] ) => {
 							selected: select(
 								'core/editor'
 							).getEditedPostAttribute( taxonomy.key ),
-					  } ) )
+						} ) )
 					: '',
 			};
 		},

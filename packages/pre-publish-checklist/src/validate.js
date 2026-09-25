@@ -11,8 +11,12 @@ import { getWordCountMessage, getTaxonomyMessage } from './messages';
 
 export const checkTitle = ( currentSettings, title, updateErrorLogs ) => {
 	let hasError = false;
-	if ( ! currentSettings?.title?.required ) return;
-	if ( ! title.length ) hasError = true;
+	if ( ! currentSettings?.title?.required ) {
+		return;
+	}
+	if ( ! title.length ) {
+		hasError = true;
+	}
 
 	updateErrorLogs( {
 		type: 'title',
@@ -26,7 +30,9 @@ export const checkWordCount = ( currentSettings, blocks, updateErrorLogs ) => {
 	let hasError = false;
 	const settingWordCount = currentSettings?.wordCount;
 
-	if ( ! settingWordCount?.required ) return;
+	if ( ! settingWordCount?.required ) {
+		return;
+	}
 
 	const wordCount = count( serialize( blocks ), 'words' );
 	if (
@@ -51,8 +57,12 @@ export const checkFeaturedImage = (
 	updateErrorLogs
 ) => {
 	let hasError = false;
-	if ( ! currentSettings?.featuredImage?.required ) return;
-	if ( ! featuredImageID ) hasError = true;
+	if ( ! currentSettings?.featuredImage?.required ) {
+		return;
+	}
+	if ( ! featuredImageID ) {
+		hasError = true;
+	}
 
 	updateErrorLogs( {
 		type: 'featuredImage',
@@ -64,8 +74,12 @@ export const checkFeaturedImage = (
 
 export const checkExcerpt = ( currentSettings, excerpt, updateErrorLogs ) => {
 	let hasError = false;
-	if ( ! currentSettings?.excerpt?.required ) return;
-	if ( ! excerpt.length ) hasError = true;
+	if ( ! currentSettings?.excerpt?.required ) {
+		return;
+	}
+	if ( ! excerpt.length ) {
+		hasError = true;
+	}
 
 	updateErrorLogs( {
 		type: 'excerpt',
@@ -80,11 +94,15 @@ export const checkTaxonomies = (
 	setLockPost,
 	setTaxonomiesStatus
 ) => {
-	if ( ! taxonomies.length ) return;
+	if ( ! taxonomies.length ) {
+		return;
+	}
 	const newTaxonomiesStatus = {};
 
 	taxonomies.map( ( taxonomy ) => {
-		if ( ! taxonomy.selected ) return null;
+		if ( ! taxonomy.selected ) {
+			return null;
+		}
 		let hasError = false;
 		const msg = getTaxonomyMessage( taxonomy );
 

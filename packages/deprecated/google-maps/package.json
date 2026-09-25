@@ -4,9 +4,7 @@
 	"description": "Display google maps with marker or other shapes",
 	"main": "src/index.js",
 	"scripts": {
-		"test": "jest",
-		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook"
+		"test": "jest"
 	},
 	"jest": {
 		"transform": {
@@ -28,13 +26,11 @@
 		"url": "git+https://github.com/yardinternet/gutenberg-packages.git"
 	},
 	"dependencies": {
-		"@storybook/addon-a11y": "^7.5.3",
-		"@storybook/addon-actions": "^7.5.3",
 		"@yardinternet/gutenberg-editor-components": "file:../editor-components",
-		"classnames": "^2.3.2",
-		"lodash": "^4.17.21",
+		"classnames": "^2.5.1",
+		"lodash": "^4.18.1",
 		"react-select": "^4.3.1",
-		"tinycolor2": "^1.4.1"
+		"tinycolor2": "^1.6.0"
 	},
 	"gitHead": "bc7cae6a458f1908db656e41870079d03cd58456"
 }

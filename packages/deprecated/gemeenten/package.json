@@ -15,8 +15,7 @@
 	"scripts": {
 		"start": "wp-scripts start",
 		"test": "jest",
-		"test:watch": "jest --watch",
-		"storybook": "start-storybook"
+		"test:watch": "jest --watch"
 	},
 	"jest": {
 		"transform": {
@@ -32,11 +31,10 @@
 		"url": "https://github.com/yardinternet/gutenberg-packages/issues"
 	},
 	"dependencies": {
-		"@emotion/styled": "^11.11.0",
-		"@storybook/addon-knobs": "^7.0.2",
+		"@emotion/styled": "^11.14.1",
 		"@yardinternet/gutenberg-editor-components": "file:../editor-components",
-		"classnames": "^2.3.2",
-		"lodash": "^4.17.21",
+		"classnames": "^2.5.1",
+		"lodash": "^4.18.1",
 		"react-select": "^4.3.1"
 	}
 }

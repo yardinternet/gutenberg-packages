@@ -28,7 +28,7 @@ export function findPost( id = 0, allPosts = [] ) {
 		? {
 				value: foundPost.id,
 				label: foundPost.title.rendered ?? foundPost.title,
-		  }
+			}
 		: false;
 }
 
