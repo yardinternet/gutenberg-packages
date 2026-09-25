@@ -17,7 +17,7 @@ function MarkerGroups( {
 							? {
 									...item,
 									markers: action.payload.markers,
-							  }
+								}
 							: item
 					)
 				);
@@ -36,7 +36,7 @@ function MarkerGroups( {
 									...item,
 									[ action.payload.name ]:
 										action.payload.value,
-							  }
+								}
 							: item
 					)
 				);

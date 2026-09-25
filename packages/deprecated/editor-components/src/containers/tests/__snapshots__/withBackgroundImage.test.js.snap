@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`withBackgroundImage withBackgroundImage, bgPosition should be omitted 1`] = `
 <div

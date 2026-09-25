@@ -27,6 +27,6 @@
 	"license": "ISC",
 	"dependencies": {
 		"@yardinternet/gutenberg-editor-components": "^1.5.4",
-		"filesize": "^6.1.0"
+		"filesize": "^6.4.0"
 	}
 }

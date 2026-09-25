@@ -30,7 +30,7 @@ export function registerBlocks( blocks = [], options = defaultOptions ) {
 		const { name, icon, settings } = block;
 
 		const blockSettings = applyFilters(
-			'yard-blocks.blockSettings', // eslint-disable-line
+			'yard-blocks.blockSettings',
 			settings,
 			name
 		);

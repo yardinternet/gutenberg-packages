@@ -61,8 +61,9 @@ const Edit = ( props ) => {
 			getOptionKeywords: ( option ) => [ option.name ],
 			isDebounced: true,
 			getOptionCompletion: ( option ) => (
-				setAttributes( { style: option.type } ), option.name
-			),
+				setAttributes( { style: option.type } ),
+				option.name
+			 ),
 		},
 	];
 

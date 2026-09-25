@@ -3,10 +3,11 @@ module.exports = {
 	preset: '@wordpress/jest-preset-default',
 	collectCoverageFrom: [
 		'packages/**/src/**/*.js',
-		'!**/stories/**',
 		'!**/node_modules/**',
 		'!**/vendor/**',
 	],
+	// ESM-only deps of @wordpress/*.
+	transformIgnorePatterns: [ '/node_modules/(?!(uuid|marked)/)' ],
 	moduleNameMapper: {
 		'^@yardinternet/gutenberg-editor-components$':
 			'<rootDir>/packages/deprecated/editor-components/src/index.js',

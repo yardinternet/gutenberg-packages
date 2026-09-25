@@ -55,7 +55,9 @@ function Edit( props ) {
 	}, [ parentClientIds ] );
 
 	useEffect( () => {
-		if ( ! parentAttributes ) return;
+		if ( ! parentAttributes ) {
+			return;
+		}
 
 		setAttributes( {
 			heading: parentAttributes?.heading,

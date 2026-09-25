@@ -102,7 +102,9 @@ export default function SourceTypeControl( props ) {
 		const options = [];
 		values.map( ( item ) => {
 			const source = findSourceByBaseUrl( sources, item.baseUrl );
-			if ( ! source ) return [];
+			if ( ! source ) {
+				return [];
+			}
 			return item.slugs.map( ( slug ) => {
 				const type = findTypeBySlug( source.types, slug );
 				return options.push( formatOption( source, type ) );

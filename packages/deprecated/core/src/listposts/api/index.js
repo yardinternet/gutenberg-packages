@@ -117,7 +117,9 @@ export async function fetchSources( urlObjects = [], taxonomyTerms = [] ) {
 
 				// Validate if the posts are in a nested object.
 				remoteSourcesKeys.forEach( ( key ) => {
-					if ( json[ key ] ) filterJSON = json[ key ];
+					if ( json[ key ] ) {
+						filterJSON = json[ key ];
+					}
 				} );
 
 				const mapData = filterJSON.length > 0 ? filterJSON : json;
@@ -139,8 +141,8 @@ export async function fetchSources( urlObjects = [], taxonomyTerms = [] ) {
 										postId: item.id,
 										title:
 											item.title instanceof Object
-												? item.title.rendered ?? ''
-												: item.title ?? '',
+												? ( item.title.rendered ?? '' )
+												: ( item.title ?? '' ),
 										url: urlObject.url,
 										baseUrl: urlObject.baseUrl,
 										slug: urlObject.slug,

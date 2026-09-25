@@ -134,8 +134,9 @@ class ListPostsEdit extends Component {
 			} );
 		}
 
-		if ( postType === 'any' || postType === 'external' )
+		if ( postType === 'any' || postType === 'external' ) {
 			setAttributes( { postType: '' } );
+		}
 
 		this.setState( {
 			postTypes,

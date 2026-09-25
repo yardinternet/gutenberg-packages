@@ -9,7 +9,7 @@ import {
 	SortableContainer,
 	SortableElement,
 	SortableHandle,
-} from 'react-sortable-hoc'; // eslint-disable-line import/no-unresolved
+} from 'react-sortable-hoc';
 
 /**
  * WordPress dependencies
@@ -292,7 +292,9 @@ function Inspector( props ) {
 	};
 
 	useEffect( () => {
-		if ( ! sources.length ) return;
+		if ( ! sources.length ) {
+			return;
+		}
 		formatRemotePostsKeyValues();
 	}, [ selectedSources, externalTaxonomyTerms ] );
 
@@ -337,11 +339,19 @@ function Inspector( props ) {
 			false
 		);
 
-		if ( shouldOverride ) return false;
+		if ( shouldOverride ) {
+			return false;
+		}
 
-		if ( ! customSelection ) return false;
-		if ( searchCustomSelection && postType !== 'external' ) return false;
-		if ( ! posts.length && ! remotePostsOptions.length ) return false;
+		if ( ! customSelection ) {
+			return false;
+		}
+		if ( searchCustomSelection && postType !== 'external' ) {
+			return false;
+		}
+		if ( ! posts.length && ! remotePostsOptions.length ) {
+			return false;
+		}
 
 		return true;
 	};
@@ -352,18 +362,30 @@ function Inspector( props ) {
 			false
 		);
 
-		if ( shouldOverride ) return true;
+		if ( shouldOverride ) {
+			return true;
+		}
 
-		if ( ! customSelection ) return false;
-		if ( ! posts.length ) return false;
-		if ( postType === 'external' || ! searchCustomSelection ) return false; // Search does not work for external sources.
+		if ( ! customSelection ) {
+			return false;
+		}
+		if ( ! posts.length ) {
+			return false;
+		}
+		if ( postType === 'external' || ! searchCustomSelection ) {
+			return false;
+		} // Search does not work for external sources.
 
 		return true;
 	};
 
 	const shouldRenderCustomSelectionSpinner = () => {
-		if ( ! customSelection ) return false;
-		if ( !! posts.length || !! remotePostsOptions.length ) return false;
+		if ( ! customSelection ) {
+			return false;
+		}
+		if ( !! posts.length || !! remotePostsOptions.length ) {
+			return false;
+		}
 
 		return true;
 	};
@@ -394,7 +416,9 @@ function Inspector( props ) {
 
 		const data = await searchListPosts( { ...options } );
 
-		if ( ! data ) return callback( [] );
+		if ( ! data ) {
+			return callback( [] );
+		}
 
 		transformPostsToState( data, options );
 		callback( createOptions( data, options ) );

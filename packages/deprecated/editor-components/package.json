@@ -16,8 +16,7 @@
 	"scripts": {
 		"start": "wp-scripts start",
 		"test": "jest",
-		"test:watch": "jest --watch",
-		"storybook": "start-storybook"
+		"test:watch": "jest --watch"
 	},
 	"jest": {
 		"transform": {
@@ -30,8 +29,8 @@
 		}
 	},
 	"dependencies": {
-		"classnames": "^2.3.2",
+		"classnames": "^2.5.1",
 		"emotion": "^10.0.27",
-		"lodash": "^4.17.21"
+		"lodash": "^4.18.1"
 	}
 }

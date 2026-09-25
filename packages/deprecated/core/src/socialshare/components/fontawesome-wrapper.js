@@ -44,12 +44,12 @@ const FontAwesomeWrapper = ( {
 			{ view === 'edit' && icon === 'print' ? (
 				renderPrintButton()
 			) : (
-				<a // eslint-disable-line
+				<a
 					style={ styles }
 					className="yard-blocks-socialshare__link"
 					href={ url }
-					rel={ externalLink ? 'noopener noreferrer' : undefined } // eslint-disable-line
-					target={ externalLink ? '_blank' : undefined } // eslint-disable-line
+					rel={ externalLink ? 'noopener noreferrer' : undefined }
+					target={ externalLink ? '_blank' : undefined }
 					aria-label={ ariaLabel }
 				>
 					<FontAwesomeIconStacked
