@@ -67,6 +67,26 @@ describe( 'getConditionalAllowedBlocks', () => {
 			)
 		).toEqual( [ 'theme/card', 'yard/query' ] );
 	} );
+
+	it( 'falls back to the rule next to `when`', () => {
+		const withFallback = { ...rule, add: [ 'core/image' ] };
+
+		expect(
+			getConditionalAllowedBlocks(
+				withFallback,
+				{ classNames: [], postType: 'post' },
+				blockSets,
+				[ 'core/paragraph' ]
+			)
+		).toEqual( [ 'core/paragraph', 'core/image' ] );
+		expect(
+			getConditionalAllowedBlocks(
+				rule,
+				{ classNames: [], postType: 'post' },
+				blockSets
+			)
+		).toBeUndefined();
+	} );
 } );
 
 describe( 'registerBlockRestrictions', () => {
@@ -99,9 +119,11 @@ describe( 'registerBlockRestrictions', () => {
 		expect( hasBlockEditFilter() ).toBe( false );
 	} );
 
-	it( 'does not restrict a block type that only has conditions', () => {
+	it( 'leaves block types with conditions to the instance filter', () => {
 		registerBlockRestrictions( {
-			innerBlockRestrictions: { 'core/group': rule },
+			innerBlockRestrictions: {
+				'core/group': { ...rule, add: [ 'theme/card' ] },
+			},
 			blockSets,
 		} );
 
