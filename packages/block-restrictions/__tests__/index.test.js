@@ -1,8 +1,5 @@
 import { addFilter } from '@wordpress/hooks';
-import {
-	getConditionalAllowedBlocks,
-	registerBlockRestrictions,
-} from '../src';
+import { getConditionalAllowedBlocks, registerBlockRestrictions } from '../src';
 
 jest.mock( '@wordpress/hooks' );
 
@@ -81,17 +78,23 @@ describe( 'registerBlockRestrictions', () => {
 		)[ 2 ];
 
 	const hasBlockEditFilter = () =>
-		addFilter.mock.calls.some( ( [ hook ] ) => 'editor.BlockEdit' === hook );
+		addFilter.mock.calls.some(
+			( [ hook ] ) => 'editor.BlockEdit' === hook
+		);
 
 	it( 'keeps type-level rules unchanged and skips the BlockEdit filter', () => {
 		registerBlockRestrictions( {
-			innerBlockRestrictions: { 'core/media-text': { blockSet: 'minimal' } },
+			innerBlockRestrictions: {
+				'core/media-text': { blockSet: 'minimal' },
+			},
 			blockSets,
 		} );
 
 		expect(
-			getTypeFilter()( { allowedBlocks: [ 'core/image' ] }, 'core/media-text' )
-				.allowedBlocks
+			getTypeFilter()(
+				{ allowedBlocks: [ 'core/image' ] },
+				'core/media-text'
+			).allowedBlocks
 		).toEqual( [ 'core/image', 'core/paragraph', 'core/heading' ] );
 		expect( hasBlockEditFilter() ).toBe( false );
 	} );
