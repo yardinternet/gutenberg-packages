@@ -127,9 +127,25 @@ describe( 'registerBlockRestrictions', () => {
 			blockSets,
 		} );
 
-		const settings = { title: 'Group' };
+		const settings = { title: 'Group', supports: { allowedBlocks: true } };
 
 		expect( getTypeFilter()( settings, 'core/group' ) ).toBe( settings );
 		expect( hasBlockEditFilter() ).toBe( true );
+	} );
+
+	it( 'warns when a block with conditions does not support allowedBlocks', () => {
+		const warn = jest.spyOn( console, 'warn' ).mockImplementation();
+
+		registerBlockRestrictions( {
+			innerBlockRestrictions: { 'theme/card': rule, 'core/group': rule },
+			blockSets,
+		} );
+
+		getTypeFilter()( {}, 'theme/card' );
+		getTypeFilter()( { supports: { allowedBlocks: true } }, 'core/group' );
+
+		expect( warn ).toHaveBeenCalledTimes( 1 );
+		expect( warn.mock.calls[ 0 ][ 0 ] ).toContain( 'theme/card' );
+		warn.mockRestore();
 	} );
 } );

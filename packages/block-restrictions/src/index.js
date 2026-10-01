@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { addFilter } from '@wordpress/hooks';
-import { store as blocksStore } from '@wordpress/blocks';
+import { store as blocksStore, hasBlockSupport } from '@wordpress/blocks';
 import { select } from '@wordpress/data';
 import { createElement } from '@wordpress/element';
 import { createHigherOrderComponent } from '@wordpress/compose';
@@ -32,6 +32,13 @@ export const registerBlockRestrictions = ( config = {} ) => {
 			}
 
 			if ( rule.when ) {
+				if ( ! hasBlockSupport( settings, 'allowedBlocks' ) ) {
+					// eslint-disable-next-line no-console
+					console.warn(
+						`[@yardinternet/gutenberg-block-restrictions] "${ name }" does not support allowedBlocks, its \`when\` rules are ignored`
+					);
+				}
+
 				return settings;
 			}
 
