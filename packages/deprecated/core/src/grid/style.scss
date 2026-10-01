@@ -10,7 +10,7 @@
 		padding-left: 0;
 	}
 
-	&.has-parallax
+	&.has-parallax,
 	> .has-parallax {
 		background-attachment: fixed;
 	}
