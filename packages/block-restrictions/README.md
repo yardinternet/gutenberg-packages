@@ -113,3 +113,4 @@ Restrict inner blocks per block instance instead:
 - Matchers: `className`, `postType`, `parentVariation`. String or array (any-of).
 - All matchers must match. First match wins and replaces the rule next to `when`.
 - No match: rule next to `when` applies.
+- Child blocks: use `ancestor`, not `parent`. Gutenberg lets `parent` bypass `allowedBlocks`.

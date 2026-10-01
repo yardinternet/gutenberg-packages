@@ -31,8 +31,7 @@ export const registerBlockRestrictions = ( config = {} ) => {
 				return settings;
 			}
 
-			// A rule with only `when` would otherwise resolve to [] and allow nothing
-			if ( rule.when && ! hasTypeLevelRule( rule ) ) {
+			if ( rule.when ) {
 				return settings;
 			}
 
@@ -74,7 +73,8 @@ const withConditionalAllowedBlocks = ( innerBlockRestrictions, blockSets ) =>
 			const allowedBlocks = getConditionalAllowedBlocks(
 				rule,
 				getConditionContext( rule, props ),
-				blockSets
+				blockSets,
+				select( blocksStore ).getBlockType( props.name )?.allowedBlocks
 			);
 
 			if ( ! allowedBlocks ) {
@@ -101,7 +101,8 @@ const getConditionContext = ( rule, { name, attributes = {} } ) => ( {
 } );
 
 /**
- * Resolve allowed blocks for the first `when` condition matching the context
+ * Resolve allowed blocks for the first `when` condition matching the context,
+ * falling back to the rule itself
  *
  * @param {Object}   rule
  * @param {Object}   context
@@ -109,20 +110,26 @@ const getConditionContext = ( rule, { name, attributes = {} } ) => ( {
  * @param {string}   context.postType
  * @param {string}   context.parentVariation
  * @param {Object}   blockSets
+ * @param {Array}    defaultAllowedBlocks
  *
- * @return {Array|undefined} Allowed block names, undefined when no condition matches
+ * @return {Array|undefined} Allowed block names, undefined when unrestricted
  */
 export const getConditionalAllowedBlocks = (
 	rule = {},
 	context = {},
-	blockSets = {}
+	blockSets = {},
+	defaultAllowedBlocks = []
 ) => {
 	const condition = ( rule.when || [] ).find( ( when ) =>
 		matchesCondition( when, context )
 	);
 
-	return condition
-		? resolveAllowedBlocks( condition, [], blockSets )
+	if ( condition ) {
+		return resolveAllowedBlocks( condition, [], blockSets );
+	}
+
+	return hasFallbackRule( rule )
+		? resolveAllowedBlocks( rule, defaultAllowedBlocks, blockSets )
 		: undefined;
 };
 
@@ -137,7 +144,7 @@ const matchesCondition = (
 const matches = ( expected, test ) =>
 	undefined === expected || [].concat( expected ).some( test );
 
-const hasTypeLevelRule = ( rule ) =>
+const hasFallbackRule = ( rule ) =>
 	[ 'blockSet', 'add', 'remove' ].some( ( key ) => key in rule );
 
 /**
