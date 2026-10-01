@@ -92,7 +92,9 @@ const withConditionalAllowedBlocks = ( innerBlockRestrictions, blockSets ) =>
 const getConditionContext = ( rule, { name, attributes = {} } ) => ( {
 	classNames: ( attributes.className || '' ).split( /\s+/ ),
 	postType: select( 'core/editor' )?.getCurrentPostType?.(),
-	parentVariation: rule.when.some( ( { parentVariation } ) => parentVariation )
+	parentVariation: rule.when.some(
+		( { parentVariation } ) => parentVariation
+	)
 		? select( blocksStore ).getActiveBlockVariation( name, attributes )
 				?.name
 		: undefined,
