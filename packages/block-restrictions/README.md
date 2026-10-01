@@ -78,3 +78,38 @@ registerBlockRestrictions( {
 -   `blockSet`: name of a set from `blockSets`
 -   `add`: optional extra blocks to include
 -   `remove`: optional blocks to exclude from the final list
+
+## Conditional rules (`when`)
+
+Restrict inner blocks per block instance instead:
+
+```php
+'innerBlockRestrictions' => [
+		'core/group' => [
+			'add' => [
+				'theme/card',
+			],
+			'when' => [
+				[
+					'className' => 'pattern-grid-identity-login',
+					'add' => ['theme/identity-login'],
+				],
+				[
+					'className' => 'pattern-grid-cards',
+					'add' => ['theme/card'],
+				],
+				[
+					'postType' => 'pdc-item',
+					'add' => [
+						'theme/card',
+						'yard/query',
+					],
+				],
+			],
+		],
+],
+```
+
+- Matchers: `className`, `postType`, `parentVariation`. String or array (any-of).
+- All matchers must match. First match wins and replaces the rule next to `when`.
+- No match: rule next to `when` applies.
