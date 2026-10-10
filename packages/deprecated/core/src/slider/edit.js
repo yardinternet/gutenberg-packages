@@ -40,6 +40,7 @@ const Edit = ( props ) => {
 		'data-slides-per-page-laptop': attributes.slidesPerPageLaptop,
 		'data-slides-per-page-tablet': attributes.slidesPerPageTablet,
 		'data-slides-per-page-mobile': attributes.slidesPerPageMobile,
+		'data-show-pagination': attributes.showPagination,
 		style: {
 			padding: '1rem',
 		},
