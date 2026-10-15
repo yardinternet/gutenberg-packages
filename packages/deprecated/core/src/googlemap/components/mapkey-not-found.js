@@ -1,6 +1,9 @@
-const { Fragment } = wp.element;
-const { Placeholder } = wp.components;
-const { __ } = wp.i18n;
+/**
+ * WordPress dependencies
+ */
+import { Fragment } from '@wordpress/element';
+import { Placeholder } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 const mapKeyNotFound = () => {
 	return (

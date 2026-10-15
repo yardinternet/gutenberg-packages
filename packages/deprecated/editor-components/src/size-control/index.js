@@ -52,7 +52,10 @@ function SizeControl( { label, value, onChange } ) {
 				max={ setMax( unit ) }
 			/>
 			{ value > 0 && (
-				<Button isSecondary onClick={ () => onChangeValue( 0, unit ) }>
+				<Button
+					variant="secondary"
+					onClick={ () => onChangeValue( 0, unit ) }
+				>
 					Reset
 				</Button>
 			) }

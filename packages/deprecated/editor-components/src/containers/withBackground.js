@@ -1,11 +1,12 @@
 /**
- * External dependencies
- */
-import { omitBy, isUndefined, isEqual } from 'lodash';
-/**
  * WordPress dependencies
  */
 import { createHigherOrderComponent } from '@wordpress/compose';
+
+/**
+ * Internal dependencies
+ */
+import { omitUndefined } from '../utils-yard-blocks/omit-undefined';
 
 /**
  * Higher order component for injecting background css properties
@@ -45,7 +46,7 @@ export const withBackground = () =>
 					{ ...props }
 					styles={ {
 						...styles,
-						...omitBy( backgroundStyles, isUndefined ),
+						...omitUndefined( backgroundStyles ),
 					} }
 					dimRatioClass={ dimRatioClass }
 					backgroundFixedClass={ backgroundFixedClass }
@@ -75,7 +76,12 @@ const setBgColor = ( bgColor, bgImgUrl, dimRatio ) => {
  * @return {null|Object} object
  */
 export const getBackgroundPosition = ( focalPoint ) => {
-	if ( ! focalPoint || isEqual( focalPoint, { x: 0, y: 0 } ) ) {
+	if (
+		! focalPoint ||
+		( Object.keys( focalPoint ).length === 2 &&
+			focalPoint.x === 0 &&
+			focalPoint.y === 0 )
+	) {
 		return null;
 	}
 

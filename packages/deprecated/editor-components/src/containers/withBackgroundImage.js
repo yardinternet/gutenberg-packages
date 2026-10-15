@@ -1,11 +1,12 @@
 /**
- * External dependencies
- */
-import { omitBy, isUndefined } from 'lodash';
-/**
  * WordPress dependencies
  */
 import { createHigherOrderComponent } from '@wordpress/compose';
+
+/**
+ * Internal dependencies
+ */
+import { omitUndefined } from '../utils-yard-blocks/omit-undefined';
 
 /**
  * Higher order component for injecting background css properties
@@ -32,7 +33,7 @@ export const withBackgroundImage = () =>
 					{ ...props }
 					styles={ {
 						...styles,
-						...omitBy( backgroundStyles, isUndefined ),
+						...omitUndefined( backgroundStyles ),
 					} }
 				/>
 			);

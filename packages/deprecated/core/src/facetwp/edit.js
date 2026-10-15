@@ -16,7 +16,6 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import FacetSelects from './components/facet-selects';
 import Inspector from './components/inspector';
 
 class Edit extends Component {
@@ -89,16 +88,10 @@ class Edit extends Component {
 							/>
 						}
 						label={ __( 'Filtering' ) }
-					>
-						<FacetSelects
-							{ ...{
-								templateOnChange,
-								facets,
-								templates,
-								...this.props,
-							} }
-						/>
-					</Placeholder>
+						instructions={ __(
+							'Kies de filters en het sjabloon bij de blokinstellingen in de zijbalk.'
+						) }
+					/>
 				) : (
 					<ServerSideRender
 						block="yard-blocks/facet-wp"

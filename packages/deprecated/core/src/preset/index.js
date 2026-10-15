@@ -1,7 +1,10 @@
 /**
  * External dependencies
  */
-import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+import {
+	BlockIcon,
+	withBlockWrapper,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -20,6 +23,7 @@ const { name } = metadata;
 const icon = 'fal fa-hammer';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Patroon (sjabloon)' ),
 	description: __(
 		'Voeg een voorgedefinieerde layout toe en pas de inhoud aan.'
@@ -28,7 +32,7 @@ const settings = {
 		html: false,
 		reusable: false,
 	},
-	edit,
+	edit: withBlockWrapper( edit ),
 	save: () => null,
 };
 

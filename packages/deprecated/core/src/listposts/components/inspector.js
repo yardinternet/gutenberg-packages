@@ -1,15 +1,9 @@
 /**
  * External dependencies
  */
-import { map, countBy } from 'lodash';
 import debounce from 'debounce-promise';
-import Select, { components } from 'react-select';
+import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
-import {
-	SortableContainer,
-	SortableElement,
-	SortableHandle,
-} from 'react-sortable-hoc';
 
 /**
  * WordPress dependencies
@@ -34,6 +28,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
+import SelectedPosts from './selected-posts';
 import {
 	populateTaxonomyValues,
 	populateExternalTaxonomyValues,
@@ -79,15 +74,6 @@ const remoteNonWpSources = applyFilters(
 );
 
 const errorFetchRemoteSources = __( 'data kan niet worden opgehaald' );
-
-const SortableMultiValue = SortableElement( ( props ) => (
-	<components.MultiValue { ...props } />
-) );
-const SortableMultiValueLabel = SortableHandle( ( props ) => (
-	<components.MultiValueLabel { ...props } />
-) );
-const SortableSelect = SortableContainer( Select );
-const AsyncSortableSelect = SortableContainer( AsyncSelect );
 
 function Inspector( props ) {
 	const {
@@ -178,8 +164,7 @@ function Inspector( props ) {
 
 	useEffect( () => {
 		if ( externalTaxonomies.length ) {
-			const mappedExternalTaxonomyTerms = map(
-				externalTaxonomies,
+			const mappedExternalTaxonomyTerms = externalTaxonomies.map(
 				( taxonomy ) => {
 					return {
 						name: taxonomy.panelName,
@@ -198,19 +183,15 @@ function Inspector( props ) {
 	 */
 	useEffect( () => {
 		if ( allTaxonomyTerms.length ) {
-			const resolving = countBy(
-				allTaxonomyTerms,
-				( taxonomy ) => taxonomy.resolving
-			);
+			const resolvedCount = allTaxonomyTerms.filter(
+				( taxonomy ) => taxonomy.resolving === true
+			).length;
 
 			/**
 			 * All taxonomies are retrieved by getEntityRecords these actions happens async
 			 * wait untill all term requests are resolved
 			 */
-			if (
-				! taxoResolved &&
-				resolving.true === allTaxonomyTerms.length
-			) {
+			if ( ! taxoResolved && resolvedCount === allTaxonomyTerms.length ) {
 				setTaxoResolved( true );
 			}
 		}
@@ -450,33 +431,9 @@ function Inspector( props ) {
 		} ) );
 	};
 
-	/**
-	 * Helper function to change the position of the posts that is moved in the sortable select
-	 */
-	const arrayMove = ( array, from, to ) => {
-		const slicedArray = array.slice();
-		slicedArray.splice(
-			to < 0 ? array.length + to : to,
-			0,
-			slicedArray.splice( from, 1 )[ 0 ]
-		);
-		return slicedArray;
-	};
-
 	const onChangeSortableSelect = ( value ) => {
 		setAttributes( {
 			selectedPosts: value ? value : [],
-		} );
-	};
-
-	/**
-	 * Function is called when an user change the order in the sortable select
-	 */
-	const onSortEndSortableSelect = ( { oldIndex, newIndex } ) => {
-		const newValue = arrayMove( selectedPosts, oldIndex, newIndex );
-
-		setAttributes( {
-			selectedPosts: newValue,
 		} );
 	};
 
@@ -726,7 +683,7 @@ function Inspector( props ) {
 
 			{ 'external' === postType &&
 				!! allExternalTaxonomyTerms.length &&
-				map( allExternalTaxonomyTerms, ( taxonomy ) => {
+				allExternalTaxonomyTerms.map( ( taxonomy ) => {
 					if ( ! taxInSelectedSource( selectedSources, taxonomy ) ) {
 						return null;
 					}
@@ -765,7 +722,7 @@ function Inspector( props ) {
 				} ) }
 
 			{ taxoResolved &&
-				map( allTaxonomyTerms, ( taxonomy ) => {
+				( allTaxonomyTerms || [] ).map( ( taxonomy ) => {
 					if (
 						! hasPostypeTaxonomy( taxonomies, taxonomy, postType )
 					) {
@@ -821,21 +778,22 @@ function Inspector( props ) {
 					/>
 					{ shouldRenderCustomSelectionSelect() && (
 						<div style={ { marginBottom: 20 } }>
-							<SortableSelect
-								axis="xy"
+							<Select
 								closeMenuOnSelect={ false }
-								components={ {
-									MultiValue: SortableMultiValue,
-									MultiValueLabel: SortableMultiValueLabel,
-								} }
+								controlShouldRenderValue={
+									! keepCustomSelectionOrder
+								}
+								isClearable={ false }
+								backspaceRemovesValue={
+									! keepCustomSelectionOrder
+								}
+								placeholder={ __( 'Zoek en kies berichten…' ) }
 								isMulti
 								isOptionDisabled={ () =>
 									selectedPosts.length >= postsToShow
 								}
 								onChange={ onChangeSortableSelect }
-								onSortEnd={ onSortEndSortableSelect }
 								options={ posts.concat( remotePostsOptions ) }
-								useDragHandle
 								value={ selectedPosts }
 							/>
 						</div>
@@ -847,14 +805,17 @@ function Inspector( props ) {
 									'Vul je zoekterm in. Zoekt op hele woorden.'
 								) }
 							</p>
-							<AsyncSortableSelect
-								axis="xy"
+							<AsyncSelect
 								cacheOptions={ false }
 								closeMenuOnSelect={ false }
-								components={ {
-									MultiValue: SortableMultiValue,
-									MultiValueLabel: SortableMultiValueLabel,
-								} }
+								controlShouldRenderValue={
+									! keepCustomSelectionOrder
+								}
+								isClearable={ false }
+								backspaceRemovesValue={
+									! keepCustomSelectionOrder
+								}
+								placeholder={ __( 'Zoek en kies berichten…' ) }
 								defaultOptions={ stateSearchedItems }
 								isMulti
 								isOptionDisabled={ () =>
@@ -862,9 +823,7 @@ function Inspector( props ) {
 								}
 								loadOptions={ debounce( loadOptions, 500 ) }
 								onChange={ onChangeSortableSelect }
-								onSortEnd={ onSortEndSortableSelect }
 								options={ posts.concat( remotePostsOptions ) }
-								useDragHandle
 								value={ selectedPosts }
 							/>
 						</div>
@@ -880,10 +839,18 @@ function Inspector( props ) {
 								} )
 							}
 							help={ __(
-								'Versleep de labels om de volgorde van de berichten te veranderen.'
+								'Bepaal zelf de volgorde met de pijltjes in de lijst hieronder.'
 							) }
 						/>
 					) }
+					{ keepCustomSelectionOrder &&
+						( shouldRenderCustomSelectionSelect() ||
+							shouldRenderSearchCustomSelectionSelect() ) && (
+							<SelectedPosts
+								posts={ selectedPosts }
+								onChange={ onChangeSortableSelect }
+							/>
+						) }
 					{ shouldRenderCustomSelectionSpinner() && (
 						<div>
 							<Spinner />
@@ -975,18 +942,24 @@ export default compose(
 		const query = { per_page: -1 };
 
 		if ( taxonomies ) {
-			allTaxonomyTerms = map( taxonomies, ( taxonomy ) => {
-				return {
-					name: taxonomy.name,
-					slug: taxonomy.slug,
-					data: getEntityRecords( 'taxonomy', taxonomy.slug, query ),
-					resolving: hasFinishedResolution(
-						'core',
-						'getEntityRecords',
-						[ 'taxonomy', taxonomy.slug, query ]
-					),
-				};
-			} );
+			allTaxonomyTerms = Object.values( taxonomies ).map(
+				( taxonomy ) => {
+					return {
+						name: taxonomy.name,
+						slug: taxonomy.slug,
+						data: getEntityRecords(
+							'taxonomy',
+							taxonomy.slug,
+							query
+						),
+						resolving: hasFinishedResolution(
+							'core',
+							'getEntityRecords',
+							[ 'taxonomy', taxonomy.slug, query ]
+						),
+					};
+				}
+			);
 		}
 
 		return {

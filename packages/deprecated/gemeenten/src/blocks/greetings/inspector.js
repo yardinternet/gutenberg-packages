@@ -105,7 +105,7 @@ function Inspector( props ) {
 						setNewRange( { ...newRange, value } )
 					}
 				/>
-				<Button isPrimary onClick={ addRange }>
+				<Button variant="primary" onClick={ addRange }>
 					{ __( 'Periode toevoegen' ) }
 				</Button>
 			</PanelBody>

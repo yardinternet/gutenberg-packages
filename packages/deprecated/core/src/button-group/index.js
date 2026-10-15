@@ -1,4 +1,12 @@
 /**
+ * External dependencies
+ */
+import {
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
+
+/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -14,14 +22,15 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-rectangle-wide';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Knoppengroep', 'yard-blocks' ),
 	description: __( 'Groepeer knoppen.' ),
 	category: 'yard-blocks',
 	keywords: [ __( 'url', 'yard-blocks' ), __( 'link', 'yard-blocks' ) ],
 	supports: {},
-	edit,
+	edit: withBlockWrapper( edit ),
 	attributes,
-	save,
+	save: withV1Save( save ),
 };
 
 export { icon, name, settings };

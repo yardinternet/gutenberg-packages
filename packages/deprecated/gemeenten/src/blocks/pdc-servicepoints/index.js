@@ -1,7 +1,10 @@
 /**
  * External dependencies
  */
-import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+import {
+	BlockIcon,
+	withBlockWrapper,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -20,13 +23,14 @@ export const Icon = <BlockIcon faClasses="fas fa-location-arrow" />;
 const { name, attributes } = metadata;
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Servicepunten', NAMESPACE ),
 	description: __( 'Haal servicepunten op uit de OpenPDC.', NAMESPACE ),
 	icon: {
 		src: Icon,
 	},
 	attributes,
-	edit,
+	edit: withBlockWrapper( edit ),
 	save: () => () => null,
 };
 

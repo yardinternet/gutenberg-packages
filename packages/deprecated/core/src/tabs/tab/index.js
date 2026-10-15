@@ -1,4 +1,12 @@
 /**
+ * External dependencies
+ */
+import {
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
+
+/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -15,6 +23,7 @@ const name = 'yard-blocks/tabs-tab';
 const parent = 'yard-blocks/tabs';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Tabblad' ),
 	parent: [ parent ],
 	attributes: {
@@ -33,8 +42,8 @@ const settings = {
 		html: false,
 		reusable: false,
 	},
-	edit,
-	save,
+	edit: withBlockWrapper( edit ),
+	save: withV1Save( save ),
 };
 
 export { icon, name, settings };

@@ -34,7 +34,7 @@ const WidthButtons = ( { setAttributes } ) => {
 				return (
 					<Button
 						key={ widthValue }
-						isSmall
+						size="small"
 						onClick={ () => handleClick( widthValue ) }
 					>
 						{ widthValue }%

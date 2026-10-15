@@ -1,7 +1,10 @@
 /**
  * External dependencies
  */
-import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+import {
+	BlockIcon,
+	withBlockWrapper,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -20,13 +23,14 @@ export const Icon = <BlockIcon faClasses="fal fa-list-alt" />;
 const { name, attributes } = metadata;
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Berichtenlijst OpenPub', NAMESPACE ),
 	description: __( 'Haal berichten op uit OpenPub.' ),
 	icon: {
 		src: Icon,
 	},
 	attributes,
-	edit,
+	edit: withBlockWrapper( edit ),
 	save: () => () => null,
 };
 

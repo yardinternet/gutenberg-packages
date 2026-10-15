@@ -12,7 +12,7 @@ import { compose } from '@wordpress/compose';
  */
 import { withBackgroundClass } from '@yardinternet/gutenberg-editor-components';
 
-const { Fragment } = wp.element;
+import { Fragment } from '@wordpress/element';
 
 function Card( {
 	className,

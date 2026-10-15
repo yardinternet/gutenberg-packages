@@ -94,9 +94,7 @@ export default class Inspector extends Component {
 		 * Dynamic height is based on its content
 		 */
 		const setDynamicHeight = () => {
-			jQuery( resizablebox.current.resizable ).css( {
-				height: rowMinHeight,
-			} );
+			resizablebox.current.resizable.style.height = `${ rowMinHeight }px`;
 
 			setAttributes( {
 				rowStyles: {

@@ -6,11 +6,6 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import { Fragment, Component, createRef } from '@wordpress/element';
 
 /**
- * External dependencies
- */
-import times from 'lodash/times';
-
-/**
  * Internal dependencies
  */
 import Inspector from './components/inspector';
@@ -47,7 +42,7 @@ class RowEdit extends Component {
 		const renderColumnsTemplate = () => {
 			const desktopDetails = findLayoutByID( layoutDesktop );
 
-			return times( desktopDetails.col, ( n ) => [
+			return Array.from( { length: desktopDetails.col }, ( _, n ) => [
 				'yard-blocks/column',
 				{ id: n + 1 },
 			] );

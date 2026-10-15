@@ -19,7 +19,7 @@ function MarkerModalOptions( {
 		<Modal title={ modalTitle } onRequestClose={ onRequestClose }>
 			<PanelRow>
 				<Button
-					isPrimary
+					variant="primary"
 					onClick={ () => setShowAddMarkerModalCPT( true ) }
 					type="submit"
 				>

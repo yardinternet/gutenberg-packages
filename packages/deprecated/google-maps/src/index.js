@@ -1,7 +1,11 @@
 /**
  * External dependencies
  */
-import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+import {
+	BlockIcon,
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
 /**
  * WordPress dependencies
  */
@@ -18,6 +22,7 @@ import save from './save';
 const { name, attributes } = metadata;
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Google map uitgebreid', 'yardinternet/google-maps-advanced' ),
 	description: __(
 		'Toont een Google maps kaart met markergroepen, diverse shapes en filter mogelijkheden.'
@@ -26,9 +31,9 @@ const settings = {
 		multiple: false,
 		reusable: true,
 	},
-	edit,
+	edit: withBlockWrapper( edit ),
 	attributes,
-	save,
+	save: withV1Save( save ),
 };
 
 export function registerGoogleMaps() {

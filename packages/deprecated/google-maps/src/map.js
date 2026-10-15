@@ -13,6 +13,7 @@ import {
 	loadScript,
 } from './helpers';
 import { createInfowindowPolygon, createInfowindowMarker } from './infowindow';
+import { getGoogle, getMapWindow, setMapWindow } from './map-window';
 import AddPolygonModal from './components/add-polygon-modal';
 import Legend from './components/legend';
 import MapFilters from './components/map/map-filters';
@@ -86,6 +87,8 @@ function Map( {
 	 * Initiate map
 	 */
 	useEffect( () => {
+		setMapWindow( ref.current.ownerDocument.defaultView );
+
 		try {
 			initMap();
 		} catch ( error ) {
@@ -140,7 +143,7 @@ function Map( {
 				} );
 
 				return () => {
-					google.maps.event.clearListeners( map, 'click' );
+					getGoogle().maps.event.clearListeners( map, 'click' );
 				};
 			}
 		}
@@ -161,7 +164,7 @@ function Map( {
 			} );
 
 			return () => {
-				google.maps.event.clearListeners( map, 'dragend' );
+				getGoogle().maps.event.clearListeners( map, 'dragend' );
 			};
 		}
 	} );
@@ -206,17 +209,17 @@ function Map( {
 						? JSON.parse( item.coords )
 						: [];
 
-				const bounds = new google.maps.LatLngBounds();
+				const bounds = new ( getGoogle().maps.LatLngBounds )();
 
 				// get center of polygon
 				coords.map( function ( coord ) {
 					return bounds.extend(
-						new google.maps.LatLng( coord.lat, coord.lng )
+						new ( getGoogle().maps.LatLng )( coord.lat, coord.lng )
 					);
 				} );
 
 				const polygon = {
-					polygon: new google.maps.Polygon( {
+					polygon: new ( getGoogle().maps.Polygon )( {
 						id: item.id,
 						infowindow: item.infowindow,
 						infowindowPharos: item.infowindowPharos,
@@ -247,7 +250,7 @@ function Map( {
 				 */
 
 				if ( editMode ) {
-					google.maps.event.addListener(
+					getGoogle().maps.event.addListener(
 						polygon.polygon,
 						'click',
 						( p, poly = polygon.polygon ) => {
@@ -272,7 +275,7 @@ function Map( {
 	 * @param {Object} event
 	 */
 	const addGoogleObjectsToMap = ( event ) => {
-		const poly = new google.maps.Polyline( {
+		const poly = new ( getGoogle().maps.Polyline )( {
 			path: testPath.current,
 			...polygonStyles,
 		} );
@@ -290,12 +293,12 @@ function Map( {
 		} );
 
 		// Add a new marker at the new plotted point on the polyline.
-		const marker = new google.maps.Marker( {
+		const marker = new ( getGoogle().maps.Marker )( {
 			position: event.latLng,
 			title: '#' + path.getLength(),
 			map,
 			icon: {
-				path: google.maps.SymbolPath.CIRCLE,
+				path: getGoogle().maps.SymbolPath.CIRCLE,
 				scale: 3,
 			},
 		} );
@@ -308,7 +311,7 @@ function Map( {
 	 * Init google map
 	 */
 	const initMap = () => {
-		setMap( new google.maps.Map( ref.current, mapOptions ) );
+		setMap( new ( getGoogle().maps.Map )( ref.current, mapOptions ) );
 	};
 
 	/**
@@ -335,11 +338,15 @@ function Map( {
 			);
 
 			markerClusterMarkers.map( function ( item ) {
-				const MarkerCluster = new MarkerClusterer( map, item, {
-					imagePath: mapOptions.markerClustererImagePath
-						? `${ window.location.protocol }//${ window.location.host }/${ mapOptions.markerClustererImagePath }/m`
-						: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
-				} );
+				const MarkerCluster = new ( getMapWindow().MarkerClusterer )(
+					map,
+					item,
+					{
+						imagePath: mapOptions.markerClustererImagePath
+							? `${ window.location.protocol }//${ window.location.host }/${ mapOptions.markerClustererImagePath }/m`
+							: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+					}
+				);
 
 				return markerClusters.push( MarkerCluster );
 			} );
@@ -392,17 +399,29 @@ function Map( {
 
 			// add listeners to polygon
 			polygonPaths.forEach( function ( path ) {
-				google.maps.event.addListener( path, 'set_at', function () {
-					updatePolygon( polygon.polygon, path );
-				} );
+				getGoogle().maps.event.addListener(
+					path,
+					'set_at',
+					function () {
+						updatePolygon( polygon.polygon, path );
+					}
+				);
 
-				google.maps.event.addListener( path, 'remove_at', function () {
-					updatePolygon( polygon.polygon, path );
-				} );
+				getGoogle().maps.event.addListener(
+					path,
+					'remove_at',
+					function () {
+						updatePolygon( polygon.polygon, path );
+					}
+				);
 
-				google.maps.event.addListener( path, 'insert_at', function () {
-					updatePolygon( polygon.polygon, path );
-				} );
+				getGoogle().maps.event.addListener(
+					path,
+					'insert_at',
+					function () {
+						updatePolygon( polygon.polygon, path );
+					}
+				);
 			} );
 
 			/**
@@ -472,7 +491,7 @@ function Map( {
 		infowindowAddress,
 		icon,
 	} ) => {
-		let marker = new google.maps.Marker( {
+		let marker = new ( getGoogle().maps.Marker )( {
 			position: latLng,
 			icon,
 		} );
@@ -507,7 +526,7 @@ function Map( {
 	 */
 	const addPolygonDrawing = () => {
 		const shape = {
-			polygon: new google.maps.Polygon( {
+			polygon: new ( getGoogle().maps.Polygon )( {
 				paths: testPath.current,
 				...{ polygonStyles },
 			} ),
@@ -559,7 +578,7 @@ function Map( {
 	const addPolygonToAttributes = ( name, coordinates ) => {
 		const randomID = Math.floor( Math.random() * 100 ) + 1;
 		const polygonObject = {
-			polygon: new google.maps.Polygon( {
+			polygon: new ( getGoogle().maps.Polygon )( {
 				id: randomID.toString(),
 				paths: coordinates,
 				...polygonStyles,

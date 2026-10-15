@@ -1,13 +1,12 @@
 /**
- * External dependencies
- */
-import uniqueId from 'lodash/uniqueId';
-/**
  * Internal dependencies
  */
 import { findLayoutByID, getPreset } from '../layout';
 
-const { __ } = wp.i18n;
+/**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
 
 const SelectLayout = ( props ) => {
 	const preset = getPreset();
@@ -30,7 +29,7 @@ const SelectLayout = ( props ) => {
 			{ Object.keys( preset ).map( ( item ) =>
 				preset[ item ].layouts.desktop.map( ( layout ) => (
 					<button
-						key={ uniqueId() }
+						key={ `${ item }-${ layout.id }` }
 						onClick={ layoutSelectOnClick }
 						data-layout-id={ layout.id }
 						className="select-layout__button"

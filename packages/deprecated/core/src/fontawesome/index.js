@@ -1,4 +1,12 @@
 /**
+ * External dependencies
+ */
+import {
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
+
+/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -15,13 +23,14 @@ const { name, attributes } = metadata;
 const icon = 'fab fa-font-awesome';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Icoon' ),
 	description: __(
 		'Plaats een FontAwesome icoon op de pagina. Wijzig de kleur en grootte.'
 	),
 	attributes,
-	edit,
-	save,
+	edit: withBlockWrapper( edit ),
+	save: withV1Save( save ),
 	deprecated,
 };
 

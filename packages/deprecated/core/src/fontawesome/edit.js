@@ -87,8 +87,7 @@ const Edit = ( props ) => {
 								setAttributes( { content: newContent } )
 							}
 							autocompleters={ completer }
-							allowedFormats="array"
-							formattingControls={ [] }
+							allowedFormats={ [] }
 						/>
 						{ content && (
 							<div className="yard-blocks-fontawesome__icon-preview">

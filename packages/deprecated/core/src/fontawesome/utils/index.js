@@ -1,8 +1,3 @@
-/**
- * External dependencies
- */
-import { flattenDeep } from 'lodash';
-
 export function createIconsArray( icons ) {
 	const iconArray = Object.keys( icons ).map( ( typeOf ) =>
 		icons[ typeOf ].map( ( val ) => ( {
@@ -12,5 +7,5 @@ export function createIconsArray( icons ) {
 		} ) )
 	);
 
-	return flattenDeep( iconArray );
+	return iconArray.flat( Infinity );
 }

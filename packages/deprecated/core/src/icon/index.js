@@ -21,7 +21,7 @@ const { name, attributes } = metadata;
 const icon = 'fal fa-icons';
 
 const settings = {
-	apiVersion: 2,
+	apiVersion: 3,
 	title: __( 'Icoon', 'yard-blocks' ),
 	description: __( 'Voeg een icoon toe' ),
 	category: 'yard-blocks',

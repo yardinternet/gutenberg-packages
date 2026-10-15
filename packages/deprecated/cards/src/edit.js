@@ -1,9 +1,4 @@
 /**
- * External dependencies
- */
-import { Global } from '@emotion/react';
-
-/**
  * WordPress dependencies
  */
 import { InnerBlocks } from '@wordpress/block-editor';
@@ -17,7 +12,7 @@ import Inspector from './inspector';
 import Cards from './components/cards';
 import BasicBlockAppender from './components/block-appender';
 import cardMetaData from './card/block.json';
-import editorStyles from './editor-styles';
+import '../editor.scss';
 
 function Edit( props ) {
 	const { clientId, attributes } = props;
@@ -53,7 +48,6 @@ function Edit( props ) {
 
 	return (
 		<>
-			<Global styles={ editorStyles } />
 			<Inspector { ...{ clientId, ...props } } />
 			<Cards { ...props }>
 				<InnerBlocks

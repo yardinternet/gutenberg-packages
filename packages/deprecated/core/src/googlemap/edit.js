@@ -111,6 +111,7 @@ class GoogleMapEdit extends Component {
 						{ popoverVisible && (
 							<QueryPopOver
 								addPoint={ this.addPoint }
+								google={ this.mapID.current?.google }
 								togglePopover={ this.togglePopover }
 							/>
 						) }

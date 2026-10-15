@@ -29,7 +29,7 @@ class QueryPopover extends Component {
 	 */
 	geocodeAdress() {
 		return new Promise( ( resolve, reject ) => {
-			new google.maps.Geocoder().geocode(
+			new this.props.google.maps.Geocoder().geocode(
 				{ address: this.state.query },
 				( results, status ) => {
 					if ( status === 'OK' ) {
@@ -98,9 +98,8 @@ class QueryPopover extends Component {
 						onChange={ ( newQuery ) =>
 							this.setState( { query: newQuery } )
 						}
-						multiline={ false }
 						autocompleters={ completer }
-						formattingControls={ [] }
+						allowedFormats={ [] }
 					/>
 				</Popover>
 			</Fragment>

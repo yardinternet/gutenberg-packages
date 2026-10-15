@@ -1,7 +1,6 @@
 /**
  * External dependencies
  */
-import { find } from 'lodash';
 import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
 
 /**
@@ -218,7 +217,9 @@ class ListPostsEdit extends Component {
 		const { setAttributes } = this.props;
 		let posts = [];
 
-		const postTypeObj = find( postTypes, [ 'slug', postType ] );
+		const postTypeObj = ( postTypes || [] ).find(
+			( type ) => type.slug === postType
+		);
 
 		if (
 			typeof postTypeObj !== 'object' ||
