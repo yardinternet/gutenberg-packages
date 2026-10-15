@@ -7,7 +7,11 @@ import { __ } from '@wordpress/i18n';
 /**
  * External dependencies
  */
-import { backgroundAttributes } from '@yardinternet/gutenberg-editor-components';
+import {
+	backgroundAttributes,
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * Internal dependencies
@@ -20,6 +24,7 @@ import deprecated from './deprecated';
 const icon = 'fas fa-columns';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Rijkolom' ),
 	parent: [ 'yard-blocks/row' ],
 	description: __( 'Een enkele kolom binnen een rij.' ),
@@ -28,7 +33,7 @@ const settings = {
 	},
 	attributes: { ...attributes, ...backgroundAttributes },
 
-	edit: ( props ) => {
+	edit: withBlockWrapper( ( props ) => {
 		const { setAttributes } = props;
 
 		return (
@@ -37,13 +42,13 @@ const settings = {
 				<InnerBlocks templateLock={ false } />
 			</Column>
 		);
-	},
+	} ),
 
-	save: ( props ) => (
+	save: withV1Save( ( props ) => (
 		<Column { ...props }>
 			<InnerBlocks.Content />
 		</Column>
-	),
+	) ),
 	deprecated,
 };
 

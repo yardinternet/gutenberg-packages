@@ -1,11 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 function save() {
 	return (
-		<ul className="yard-blocks-iconlist">
+		<ul { ...useBlockProps.save( { className: 'yard-blocks-iconlist' } ) }>
 			<InnerBlocks.Content />
 		</ul>
 	);

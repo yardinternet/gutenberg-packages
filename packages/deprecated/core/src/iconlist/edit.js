@@ -1,27 +1,16 @@
 /**
- * External dependencies
- */
-import classnames from 'classnames';
-
-/**
  * WordPress dependencies
  */
-import { InnerBlocks } from '@wordpress/block-editor';
-import { css, cx } from 'emotion';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
-function edit( props ) {
-	const { className } = props;
+function Edit( props ) {
 	const TEMPLATE = [ [ 'yard-blocks/iconlist-item', { props } ] ];
 	const ALLOWED_BLOCKS = [ 'yard-blocks/iconlist-item' ];
 
-	const classname = classnames( 'yard-blocks-iconlist', className );
-	const styles = css`
-		padding-left: 0;
-		list-style: none;
-	`;
+	const blockProps = useBlockProps( { className: 'yard-blocks-iconlist' } );
 
 	return (
-		<ul className={ cx( classname, styles ) }>
+		<ul { ...blockProps }>
 			<InnerBlocks
 				renderAppender={ () => <InnerBlocks.ButtonBlockAppender /> }
 				allowedBlocks={ ALLOWED_BLOCKS }
@@ -33,4 +22,4 @@ function edit( props ) {
 	);
 }
 
-export default edit;
+export default Edit;

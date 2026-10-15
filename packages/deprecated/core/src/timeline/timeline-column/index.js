@@ -5,6 +5,8 @@ import {
 	getMarginAttributes,
 	getPaddingAttributes,
 	backgroundAttributes,
+	withBlockWrapper,
+	withV1Save,
 } from '@yardinternet/gutenberg-editor-components';
 
 /**
@@ -23,6 +25,7 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-columns';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Tijdlijn kolom' ),
 	description: __( 'Tijdlijn kolom content' ),
 	parent: [ 'yard-blocks/timeline' ],
@@ -43,8 +46,8 @@ const settings = {
 			className: `wp-block editor-block-list__block block-editor-block-list__block yard-blocks-grid-column-container col-md-${ colClass } ${ isSelected }`,
 		};
 	},
-	edit,
-	save,
+	edit: withBlockWrapper( edit ),
+	save: withV1Save( save ),
 };
 
 export { icon, name, settings };

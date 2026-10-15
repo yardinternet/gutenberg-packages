@@ -1,7 +1,11 @@
 /**
  * External dependencies
  */
-import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+import {
+	BlockIcon,
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -22,14 +26,15 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-th';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Begroetingen', NAMESPACE ),
 	description: __( 'Stel een tijd afhankelijke begroeting in.' ),
 	icon: {
 		src: Icon,
 	},
-	edit,
+	edit: withBlockWrapper( edit ),
 	attributes,
-	save,
+	save: withV1Save( save ),
 };
 
 export { icon, name, settings };

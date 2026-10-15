@@ -7,6 +7,8 @@ import {
 	getMarginAttributes,
 	getPaddingAttributes,
 	backgroundAttributes,
+	withBlockWrapper,
+	withV1Save,
 } from '@yardinternet/gutenberg-editor-components';
 /**
  * WordPress dependencies
@@ -26,6 +28,7 @@ const { name, attributes } = metadata;
 const Icon = <BlockIcon faClasses="fas fa-columns" />;
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Rasterkolom' ),
 	description: __( 'Een enkele kolom binnen het raster.' ),
 	category: 'yard-blocks',
@@ -64,8 +67,8 @@ const settings = {
 		};
 	},
 	deprecated,
-	edit,
-	save,
+	edit: withBlockWrapper( edit ),
+	save: withV1Save( save ),
 };
 
 export { name, settings };

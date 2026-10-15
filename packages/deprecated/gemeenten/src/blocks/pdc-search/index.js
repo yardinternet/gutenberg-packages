@@ -1,7 +1,11 @@
 /**
  * External dependencies
  */
-import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+import {
+	BlockIcon,
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -21,6 +25,7 @@ const Icon = <BlockIcon faClasses="fal fa-search" />;
 const { name, attributes } = metadata;
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Zoeken', NAMESPACE ),
 	description: __(
 		'Doorzoek de gehele website, inclusief OpenPub artikelen en OpenPDC items.'
@@ -32,9 +37,9 @@ const settings = {
 		multiple: false,
 		reusable: false,
 	},
-	edit,
+	edit: withBlockWrapper( edit ),
 	attributes,
-	save,
+	save: withV1Save( save ),
 };
 
 export { name, settings };

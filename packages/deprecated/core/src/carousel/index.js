@@ -1,7 +1,10 @@
 /**
  * External dependencies
  */
-import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+import {
+	BlockIcon,
+	withBlockWrapper,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -20,6 +23,7 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-images';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Fotocarrousel' ),
 	description: __( 'Toont afbeeldingen in een slideshow.' ),
 	category: 'yard-blocks',
@@ -28,7 +32,7 @@ const settings = {
 		{ name: 'dots', label: __( 'Rond' ) },
 		{ name: 'squared', label: __( 'Vierkant' ) },
 	],
-	edit,
+	edit: withBlockWrapper( edit ),
 	attributes,
 	save: () => () => null,
 };

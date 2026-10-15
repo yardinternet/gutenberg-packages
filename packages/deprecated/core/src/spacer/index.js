@@ -1,7 +1,11 @@
 /**
  * External dependencies
  */
-import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+import {
+	BlockIcon,
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -22,13 +26,14 @@ const { name, attributes } = metadata;
 export { metadata, name };
 
 export const settings = {
+	apiVersion: 3,
 	title: __( 'Witruimte' ),
 	category: 'yard-blocks',
 	description: __( 'Creëer ruimte tussen blokken en pas de hoogte aan.' ),
 	icon: {
 		src: Icon,
 	},
-	edit,
-	save,
+	edit: withBlockWrapper( edit ),
+	save: withV1Save( save ),
 	attributes,
 };

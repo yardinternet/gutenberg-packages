@@ -18,5 +18,6 @@ export { withBackground } from './containers/withBackground';
 export { withBackgroundClass } from './containers/withBackgroundClass';
 export { withBackgroundImage } from './containers/withBackgroundImage';
 export { withSpacing } from './containers/withSpacing';
+export { withBlockWrapper, withV1Save } from './api-version-3';
 export * from './utils-yard-blocks/helpers';
 export { default as icons } from './utils-yard-blocks/icons';

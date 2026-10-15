@@ -21,7 +21,7 @@ const { name, attributes } = metadata;
 const icon = 'far fa-film';
 
 const settings = {
-	apiVersion: 2,
+	apiVersion: 3,
 	title: __( 'Slide', 'yard-blocks' ),
 	description: __( 'Een enkele slide binnen een slider blok.' ),
 	category: 'yard-blocks',

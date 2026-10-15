@@ -1,7 +1,11 @@
 /**
  * External dependencies
  */
-import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+import {
+	BlockIcon,
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -20,6 +24,7 @@ import save from './save';
 const { name } = metadata;
 
 export const settings = {
+	apiVersion: 3,
 	title: __( 'Kaart' ),
 	description: __( 'Plaats een kaart binnen het kaarten blok.' ),
 	parent: [ 'yard-blocks/card' ],
@@ -34,8 +39,8 @@ export const settings = {
 	supports: {
 		reusable: false,
 	},
-	edit,
-	save,
+	edit: withBlockWrapper( edit ),
+	save: withV1Save( save ),
 };
 
 registerBlockType( name, {

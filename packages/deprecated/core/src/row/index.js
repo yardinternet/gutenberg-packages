@@ -6,7 +6,11 @@ import { __ } from '@wordpress/i18n';
 /**
  * External dependencies
  */
-import { backgroundAttributes } from '@yardinternet/gutenberg-editor-components';
+import {
+	backgroundAttributes,
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * Internal dependencies
@@ -19,6 +23,7 @@ import save from './save';
 const icon = 'fal fa-grip-lines';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Rij' ),
 	description: __(
 		'Een strook in de pagina die bestaat uit verschillende kolommen. Rijen kunnen worden gezien als het raamwerk van de pagina.'
@@ -27,11 +32,11 @@ const settings = {
 		align: [ 'wide', 'full' ],
 	},
 
-	edit,
+	edit: withBlockWrapper( edit ),
 
 	attributes: { ...attributes, ...backgroundAttributes },
 
-	save,
+	save: withV1Save( save ),
 };
 
 export { icon, name, settings };
