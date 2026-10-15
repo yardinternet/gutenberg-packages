@@ -1,12 +1,11 @@
 /**
  * External dependencies
  */
-import classnames from 'classnames';
-import { orderBy } from 'lodash';
 /**
  * Internal dependencies
  */
 import { config } from './config';
+import { orderBy } from './order-by';
 import ListControl from './inspector/list-control/list-control';
 import AddMarkerGroupModal from './inspector/marker-group/add-marker-group-modal';
 import MarkerGroups from './inspector/marker-group/marker-groups';
@@ -24,14 +23,13 @@ import { useState } from '@wordpress/element';
 import {
 	PanelBody,
 	PanelRow,
-	Toolbar,
-	IconButton,
+	ToolbarGroup,
+	ToolbarButton,
 	Dashicon,
 	TextareaControl,
 	TextControl,
 	ToggleControl,
 	Button,
-	Tooltip,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -111,29 +109,23 @@ function Inspector( props ) {
 				/>
 			) }
 			<BlockControls>
-				<Toolbar>
-					<IconButton
+				<ToolbarGroup>
+					<ToolbarButton
 						icon={ <Dashicon icon="sticky" /> }
 						label={ __( 'Voeg markergroep toe' ) }
 						onClick={ () => setShowAddMarkerGroupModal( true ) }
 					/>
-					<Tooltip text={ __( 'Baken een gebied af' ) }>
-						<Button
-							className={ classnames(
-								'components-icon-button',
-								'components-toolbar__control',
-								{ 'is-active': drawerModusActive }
-							) }
-							onClick={ () =>
-								setDrawerModusActive( ! drawerModusActive )
-							}
-						>
-							<Dashicon icon="edit" />
-						</Button>
-					</Tooltip>
+					<ToolbarButton
+						icon={ <Dashicon icon="edit" /> }
+						label={ __( 'Baken een gebied af' ) }
+						isPressed={ drawerModusActive }
+						onClick={ () =>
+							setDrawerModusActive( ! drawerModusActive )
+						}
+					/>
 					{ drawerModusActive && triggerMarker && (
 						<>
-							<IconButton
+							<ToolbarButton
 								icon={ <Dashicon icon="yes" /> }
 								label={ __( 'Voltooi een gebied' ) }
 								onClick={ () => {
@@ -141,28 +133,20 @@ function Inspector( props ) {
 									setDrawerModusActive( false );
 								} }
 							/>
-							<IconButton
+							<ToolbarButton
 								icon={ <Dashicon icon="undo" /> }
 								label={ __( 'Reset' ) }
 								onClick={ () => setUndo( true ) }
 							/>
 						</>
 					) }
-					<Tooltip text={ __( 'Centreer map' ) }>
-						<Button
-							className={ classnames(
-								'components-icon-button',
-								'components-toolbar__control',
-								{ 'is-active': editMapCenter }
-							) }
-							onClick={ () => {
-								setEditMapCenter( ! editMapCenter );
-							} }
-						>
-							<Dashicon icon="move" />
-						</Button>
-					</Tooltip>
-				</Toolbar>
+					<ToolbarButton
+						icon={ <Dashicon icon="move" /> }
+						label={ __( 'Centreer map' ) }
+						isPressed={ editMapCenter }
+						onClick={ () => setEditMapCenter( ! editMapCenter ) }
+					/>
+				</ToolbarGroup>
 			</BlockControls>
 			<InspectorControls>
 				<MarkerGroups
@@ -441,8 +425,8 @@ function Inspector( props ) {
 							/>
 						) }
 						<Button
-							isSmall
-							isPrimary
+							size="small"
+							variant="primary"
 							onClick={ () =>
 								setShowImportShapeCoordinates( true )
 							}
@@ -450,8 +434,8 @@ function Inspector( props ) {
 							Importeer gebied
 						</Button>
 						<Button
-							isSmall
-							isSecondary
+							size="small"
+							variant="secondary"
 							onClick={ () =>
 								setShowExportShapeCoordinates( true )
 							}
@@ -494,8 +478,8 @@ function Inspector( props ) {
 				>
 					<>
 						<Button
-							isSmall
-							isPrimary
+							size="small"
+							variant="primary"
 							onClick={ () => setShowImportMarkers( true ) }
 						>
 							Importeer gebieden
@@ -516,8 +500,8 @@ function Inspector( props ) {
 				>
 					<>
 						<Button
-							isSmall
-							isPrimary
+							size="small"
+							variant="primary"
 							onClick={ () => setShowImportAreas( true ) }
 						>
 							Importeer gebieden

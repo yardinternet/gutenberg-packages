@@ -1,7 +1,6 @@
 /**
  * External dependencies
  */
-import { orderBy } from 'lodash';
 
 /**
  * WordPress dependencies
@@ -20,6 +19,7 @@ import { MediaPlaceholder } from '@wordpress/block-editor';
  * Internal dependencies
  */
 import { supportCptLatLng } from '../../hooks';
+import { orderBy } from '../../order-by';
 import MarkerModal from './marker-modal';
 import MarkerModalCPT from './marker-modal-cpt';
 import MarkerModalOptions from './marker-modal-options';
@@ -156,7 +156,10 @@ function Markergroup( {
 				/>
 			</PanelRow>
 			<div>
-				<Button isLink onClick={ () => setRemoveGroupModal( true ) }>
+				<Button
+					variant="link"
+					onClick={ () => setRemoveGroupModal( true ) }
+				>
 					Groep verwijderen
 				</Button>
 			</div>
@@ -185,7 +188,7 @@ function Markergroup( {
 			<div>
 				{ markerImage.url && Object.keys( markerImage.url ).length && (
 					<Button
-						isLink
+						variant="link"
 						onClick={ () =>
 							parentDispatch( {
 								type: 'updateGroup',
@@ -251,7 +254,7 @@ function Markergroup( {
 									payload: index,
 								} );
 							} }
-							isPrimary
+							variant="primary"
 							style={ {
 								background: 'red',
 								borderColor: 'red',
@@ -299,7 +302,7 @@ function Markergroup( {
 			<PanelRow>
 				{ supportCptLatLng.length ? (
 					<Button
-						isPrimary
+						variant="primary"
 						onClick={ () => setShowAddMarkerModalOptions( true ) }
 						type="submit"
 					>
@@ -307,7 +310,7 @@ function Markergroup( {
 					</Button>
 				) : (
 					<Button
-						isPrimary
+						variant="primary"
 						onClick={ () => setShowAddMarkerModal( true ) }
 						type="submit"
 					>
@@ -388,7 +391,7 @@ function withMarkersIndexVal( markersWithoutIndex = [] ) {
 }
 
 function orderByInfoTitle( data ) {
-	return orderBy( data, [ 'infowindowTitle' ], [ 'asc' ] );
+	return orderBy( data, [ 'infowindowTitle' ] );
 }
 
 export default Markergroup;

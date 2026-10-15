@@ -13,7 +13,6 @@ import { Toolbar, ToolbarButton } from '@wordpress/components';
  * External dependencies
  */
 import { useState, useCallback, Fragment } from '@wordpress/element';
-import { isEmpty } from 'lodash';
 
 /**
  * Internal dependencies
@@ -42,7 +41,7 @@ function Edit( props ) {
 
 	// Set default anchor otherwise the carousel wouldn't work
 	// TODO: Provide a way to check for multiple carousel on the same page
-	if ( isEmpty( anchor ) ) {
+	if ( ! anchor ) {
 		setAttributes( {
 			anchor: 'carousel-1',
 		} );

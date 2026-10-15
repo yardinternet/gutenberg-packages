@@ -16,7 +16,6 @@ import TextControlFocusOutside from './textcontrol-focus-outside';
 /**
  * External dependencies
  */
-import { isEmpty } from 'lodash';
 
 function MarkerModal( {
 	title = 'Marker toevoegen',
@@ -70,7 +69,7 @@ function MarkerModal( {
 							} }
 						/>
 					</PanelRow>
-					{ ! isEmpty( marker.name ) && (
+					{ !! marker.name && (
 						<>
 							<PanelRow>
 								<TextControlFocusOutside
@@ -179,8 +178,8 @@ function MarkerModal( {
 							</PanelRow>
 							<PanelRow>
 								<Button
-									isPrimary
-									disabled={ isEmpty( marker.name ) }
+									variant="primary"
+									disabled={ ! marker.name }
 									onClick={ () => onClick() }
 								>
 									Opslaan

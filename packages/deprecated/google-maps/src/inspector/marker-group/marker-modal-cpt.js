@@ -22,7 +22,6 @@ import TextControlFocusOutside from './textcontrol-focus-outside';
  * External dependencies
  */
 import Select from 'react-select';
-import { isEmpty } from 'lodash';
 
 function MarkerModalCPT( {
 	modalTitle = __( 'CPT Marker toevoegen', config.textDomain ),
@@ -66,7 +65,7 @@ function MarkerModalCPT( {
 			( { title } ) => title.rendered === valuesFromSelect.value
 		);
 
-		if ( isEmpty( correnspondingPost ) ) {
+		if ( ! correnspondingPost ) {
 			setError( true );
 			return false;
 		}
@@ -117,7 +116,7 @@ function MarkerModalCPT( {
 						</div>
 					) }
 				</PanelRow>
-				{ ! isEmpty( marker.name ) && (
+				{ !! marker.name && (
 					<>
 						<PanelRow>
 							<TextControlFocusOutside
@@ -162,11 +161,9 @@ function MarkerModalCPT( {
 						</PanelRow>
 						<PanelRow>
 							<Button
-								isPrimary
+								variant="primary"
 								disabled={
-									error ||
-									loadingPosts ||
-									isEmpty( marker.name )
+									error || loadingPosts || ! marker.name
 								}
 								onClick={ () => onClick() }
 							>

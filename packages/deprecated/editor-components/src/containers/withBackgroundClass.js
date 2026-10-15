@@ -1,11 +1,12 @@
 /**
- * External dependencies
- */
-import { find, get, omitBy, isUndefined, isEmpty } from 'lodash';
-/**
  * WordPress dependencies
  */
 import { createHigherOrderComponent } from '@wordpress/compose';
+
+/**
+ * Internal dependencies
+ */
+import { omitUndefined } from '../utils-yard-blocks/omit-undefined';
 
 /**
  * Higher order component for injecting backgroundClass from color palette
@@ -23,8 +24,7 @@ export const withBackgroundClass = ( backgroundColorProperty = 'bgColor' ) =>
 			);
 			const styles = {
 				backgroundColor:
-					isUndefined( backgroundColorClass ) &&
-					! isEmpty( backgroundColor )
+					backgroundColorClass === undefined && !! backgroundColor
 						? backgroundColor
 						: undefined,
 			};
@@ -33,7 +33,7 @@ export const withBackgroundClass = ( backgroundColorProperty = 'bgColor' ) =>
 				<OriginalComponent
 					{ ...props }
 					backgroundColorClass={ backgroundColorClass }
-					styles={ omitBy( styles, isUndefined ) }
+					styles={ omitUndefined( styles ) }
 				/>
 			);
 		},
@@ -48,7 +48,9 @@ export const withBackgroundClass = ( backgroundColorProperty = 'bgColor' ) =>
  * @return {string} - primary
  */
 export function getColorClassByColor( colors, color ) {
-	return get( find( colors, { color } ), 'slug' );
+	return Object.values( colors || {} ).find(
+		( item ) => item?.color === color
+	)?.slug;
 }
 
 /**

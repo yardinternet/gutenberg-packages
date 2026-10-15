@@ -1,12 +1,20 @@
 /**
- * External dependencies
- */
-import { startCase, sortBy, find, map, filter } from 'lodash';
-/**
  * WordPress dependencies
  */
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
+
+// Same word splitting as lodash startCase for the keys used here: 'news-overview' -> 'News Overview'.
+const startCase = ( string ) =>
+	string
+		.replace(
+			/[a-z\d](?=[A-Z])|[A-Z](?=[A-Z][a-z])|[a-zA-Z](?=\d)|\d(?=[a-zA-Z])/g,
+			'$& '
+		)
+		.split( /[^a-zA-Z\d]+/ )
+		.filter( Boolean )
+		.map( ( word ) => word.charAt( 0 ).toUpperCase() + word.slice( 1 ) )
+		.join( ' ' );
 
 export const excludePostTypes = [
 	'attachment',
@@ -71,13 +79,12 @@ export function filterTaxonomies( taxonomies = {} ) {
  * @return {Array} - []
  */
 export function mapPostTypes( postTypes = [] ) {
-	return sortBy(
-		postTypes.map( ( postType ) => ( {
+	return postTypes
+		.map( ( postType ) => ( {
 			label: postType.name.replace( '&#39;', "'" ),
 			value: postType.slug,
-		} ) ),
-		'label'
-	);
+		} ) )
+		.sort( ( a, b ) => ( a.label > b.label ) - ( a.label < b.label ) );
 }
 
 /**
@@ -169,7 +176,9 @@ export function populateExternalTaxonomyValues(
 ) {
 	const values = [];
 	selectedTerms.map( ( term ) => {
-		const taxonomy = find( taxonomies, [ 'slug', term ] );
+		const taxonomy = ( taxonomies || [] ).find(
+			( item ) => item.slug === term
+		);
 
 		if ( taxonomy ) {
 			values.push( {
@@ -195,7 +204,9 @@ export function populateTaxonomyValues( taxonomies = [], selectedTerms = [] ) {
 	const values = [];
 
 	selectedTerms.map( ( term ) => {
-		const taxonomy = find( taxonomies, [ 'slug', term ] );
+		const taxonomy = ( taxonomies || [] ).find(
+			( item ) => item.slug === term
+		);
 
 		if ( taxonomy ) {
 			values.push( {
@@ -222,15 +233,16 @@ export function populateTaxonomyValues( taxonomies = [], selectedTerms = [] ) {
 export function filterRemovedTerms( allTerms = [], selectedTerms = {} ) {
 	const filteredTerms = {};
 
-	map( allTerms, ( taxonomy ) => {
+	Object.values( allTerms || {} ).forEach( ( taxonomy ) => {
 		if ( ! taxonomy.data ) {
 			return;
 		}
 		if ( !! taxonomy.data.length ) {
-			const filtered = filter(
-				selectedTerms[ taxonomy.slug ],
+			const filtered = ( selectedTerms[ taxonomy.slug ] || [] ).filter(
 				( selectedTaxonomy ) =>
-					find( taxonomy.data, [ 'slug', selectedTaxonomy ] )
+					taxonomy.data.some(
+						( item ) => item.slug === selectedTaxonomy
+					)
 			);
 
 			return !! filtered.length
