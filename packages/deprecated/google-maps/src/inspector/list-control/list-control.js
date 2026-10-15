@@ -1,7 +1,6 @@
 /**
  * External dependencies
  */
-import { omit } from 'lodash';
 
 /**
  * WordPress dependencies
@@ -44,9 +43,7 @@ export function ListControl( {
 	}, [ data ] );
 
 	const updateStore = ( newStore ) => {
-		const storeOmitIndex = newStore.map( ( item ) =>
-			omit( item, [ 'index' ] )
-		);
+		const storeOmitIndex = newStore.map( ( { index, ...item } ) => item );
 
 		setStore( storeOmitIndex );
 		callback( storeOmitIndex );
@@ -139,7 +136,7 @@ export function ListControl( {
 			{ showAddModalButton && (
 				<PanelRow>
 					<Button
-						isPrimary
+						variant="primary"
 						onClick={ () => setAddModalVisible( true ) }
 					>
 						{ `${ entityLabel } ${ __(

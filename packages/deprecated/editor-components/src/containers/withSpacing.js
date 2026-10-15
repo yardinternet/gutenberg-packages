@@ -5,7 +5,6 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import { map } from 'lodash';
 /**
  * WordPress dependencies
  */
@@ -31,7 +30,8 @@ export const withSpacing = () =>
 				paddingLeft,
 			} = attributes;
 
-			const mapClasses = ( attr ) => map( attr, ( item ) => item );
+			const mapClasses = ( attr ) =>
+				attr ? Object.values( attr ) : [];
 
 			return (
 				<OriginalComponent

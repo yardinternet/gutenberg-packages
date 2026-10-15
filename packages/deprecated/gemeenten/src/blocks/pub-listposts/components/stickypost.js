@@ -2,12 +2,12 @@
  * WordPress dependencies
  */
 import { useState, useEffect } from '@wordpress/element';
+import { debounce } from '@wordpress/compose';
 /**
  * External dependencies
  */
 import AsyncSelect from 'react-select/async';
 import { __ } from '@wordpress/i18n';
-import { debounce } from 'lodash';
 /**
  * Internal dependencies
  */

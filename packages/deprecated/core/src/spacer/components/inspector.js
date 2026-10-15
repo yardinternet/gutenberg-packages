@@ -1,7 +1,4 @@
 /**
- * External dependencies
- */
-/**
  * WordPress dependencies
  */
 import { InspectorControls, ColorPalette } from '@wordpress/block-editor';
