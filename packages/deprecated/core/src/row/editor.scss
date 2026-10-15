@@ -1,4 +1,4 @@
-.edit-post-visual-editor {
+.editor-styles-wrapper {
 	[data-type='yard-blocks/row'] {
 		@extend .container !optional;
 		min-width: 100%;
@@ -80,11 +80,6 @@
 
 	.col-2-desktop-equal-width {
 		.yard-blocks-column {
-			.editor-block-list__block {
-				padding-right: 50px;
-				padding-left: 50px;
-			}
-
 			.col-1-desktop-full-width {
 				[data-type='yard-blocks/column'] {
 					width: 100%;

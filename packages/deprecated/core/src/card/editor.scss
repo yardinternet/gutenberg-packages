@@ -2,12 +2,6 @@
 
 $block: "yard-blocks-card";
 
-.#{$block } {
-	> .editor-inner-blocks > .editor-block-list__layout {
-		flex-direction: column;
-	}
-}
-
 .columns-equal-height {
 	.card {
 		height: 100%;
