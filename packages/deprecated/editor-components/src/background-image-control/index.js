@@ -15,7 +15,7 @@ const BackgroundImageControl = ( props ) => {
 			<p className="yard-label">{ __( 'Achtergrond afbeelding' ) }</p>
 			<MediaUpload
 				onSelect={ ( img ) => setAttributes( { bgImgUrl: img.url } ) }
-				type="image"
+				allowedTypes={ [ 'image' ] }
 				value={ bgImgUrl }
 				render={ ( { open } ) => (
 					<Fragment>

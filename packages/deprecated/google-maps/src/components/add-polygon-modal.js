@@ -25,7 +25,7 @@ function AddPolygonModal( props ) {
 			/>
 			<Button
 				onClick={ () => onSubmit( polygonName, coordinates ) }
-				isSecondary
+				variant="secondary"
 			>
 				{ __( 'Opslaan', config.textDomain ) }
 			</Button>

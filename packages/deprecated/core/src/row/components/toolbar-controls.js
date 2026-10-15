@@ -27,7 +27,7 @@ const ToolbarControls = ( props ) => {
 					onSelect={ ( img ) =>
 						setAttributes( { bgImgUrl: img.url } )
 					}
-					type="image"
+					allowedTypes={ [ 'image' ] }
 					value={ null }
 					render={ ( { open } ) => (
 						<ToolbarButton

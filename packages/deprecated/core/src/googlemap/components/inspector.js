@@ -38,7 +38,7 @@ class Inspector extends Component {
 				>
 					<Button
 						id={ point.id }
-						isTertiary
+						variant="tertiary"
 						className={ 'd-flex align-items-center' }
 						onClick={ () => removePoint( point.id ) }
 					>

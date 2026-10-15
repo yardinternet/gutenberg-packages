@@ -39,8 +39,9 @@ function Inspector( { attributes, setAttributes } ) {
 						<Button
 							onClick={ () => setAttributes( { btnWidth: key } ) }
 							key={ key }
-							isSecondary={ key !== btnWidth }
-							isPrimary={ key === btnWidth }
+							variant={
+								key === btnWidth ? 'primary' : 'secondary'
+							}
 						>
 							{ value }
 						</Button>

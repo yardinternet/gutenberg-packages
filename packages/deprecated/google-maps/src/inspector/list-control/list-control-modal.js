@@ -114,7 +114,7 @@ function ListControlModal( {
 						value={ hasFormData.index }
 					/>
 				) }
-				<Button isPrimary type="submit">
+				<Button variant="primary" type="submit">
 					{ entityLabel }
 				</Button>
 			</form>

@@ -52,13 +52,13 @@ export default function TabGeneral( {
 						bgImgUrl: img.url,
 					} )
 				}
-				type="image"
+				allowedTypes={ [ 'image' ] }
 				value={ bgImgUrl }
 				render={ ( { open } ) => (
 					<div className="yard-sub-control">
 						{ ! bgImgUrl && (
 							<Button
-								isSecondary
+								variant="secondary"
 								className={ 'yard-btn' }
 								onClick={ open }
 							>
@@ -70,7 +70,7 @@ export default function TabGeneral( {
 							<div style={ { position: 'relative' } }>
 								<img src={ bgImgUrl } alt="" />
 								<Button
-									isPrimary
+									variant="primary"
 									style={ {
 										position: 'absolute',
 										top: '10px',
@@ -87,7 +87,7 @@ export default function TabGeneral( {
 										top: '10px',
 										right: '10px',
 									} }
-									isPrimary
+									variant="primary"
 									className={ 'yard-btn' }
 									onClick={ () =>
 										setAttributes( {

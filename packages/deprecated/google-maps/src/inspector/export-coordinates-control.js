@@ -2,7 +2,8 @@
  * WordPress dependencies
  */
 import { useState } from '@wordpress/element';
-import { SelectControl, Modal, ClipboardButton } from '@wordpress/components';
+import { SelectControl, Modal, Button } from '@wordpress/components';
+import { useCopyToClipboard } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -12,6 +13,10 @@ import { __ } from '@wordpress/i18n';
 function ExportCoordinatesControl( { polygons = [], setModal = () => {} } ) {
 	const [ coordinates, setCoordinates ] = useState( '' );
 	const [ hasCopied, setHasCopied ] = useState( false );
+	const copyRef = useCopyToClipboard( coordinates, () => {
+		setHasCopied( true );
+		setTimeout( () => setHasCopied( false ), 4000 );
+	} );
 
 	const onClose = () => {
 		setModal( false );
@@ -35,16 +40,11 @@ function ExportCoordinatesControl( { polygons = [], setModal = () => {} } ) {
 				onChange={ ( value ) => setCoordinates( value ) }
 			/>
 			{ !! coordinates.length && (
-				<ClipboardButton
-					isPrimary
-					text={ coordinates }
-					onCopy={ () => setHasCopied( true ) }
-					onFinishCopy={ () => setHasCopied( false ) }
-				>
+				<Button variant="primary" ref={ copyRef }>
 					{ hasCopied
 						? 'Coordinaten gekopieerd!'
 						: 'Kopieer coordinaten' }
-				</ClipboardButton>
+				</Button>
 			) }
 		</Modal>
 	);
