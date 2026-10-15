@@ -61,6 +61,20 @@ import { addFilter } from '@wordpress/hooks';
 );
 ```
 
+## API key
+
+The Maps JS API is only loaded by this package when `window.google` isn't present yet (always the case in the editor canvas). Provide the key via a filter:
+
+```JS
+import { addFilter } from '@wordpress/hooks';
+
+addFilter(
+    'yard-blocks.googleMapsApiKey',
+    'yard-blocks.googleMapsApiKey',
+    () => 'YOUR_API_KEY'
+);
+```
+
 ## Include map into the frontend
 
 ```JS
