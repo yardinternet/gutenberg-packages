@@ -5,7 +5,8 @@ import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useRef } from '@wordpress/element';
 import { Popover, Icon, Tooltip } from '@wordpress/components';
 import {
-	__experimentalLinkControl as LinkControl, // eslint-disable-line @wordpress/no-unsafe-wp-apis
+	LinkControl as StableLinkControl,
+	__experimentalLinkControl, // eslint-disable-line @wordpress/no-unsafe-wp-apis
 	RichText,
 } from '@wordpress/block-editor';
 
@@ -18,6 +19,9 @@ import { useOnClickOutside } from '@yardinternet/gutenberg-hooks';
  * Internal dependencies
  */
 import './editor.css';
+
+// LinkControl is stable in recent WordPress; older versions only export the experimental one.
+const LinkControl = StableLinkControl || __experimentalLinkControl;
 
 export const Link = ( props ) => {
 	const {
