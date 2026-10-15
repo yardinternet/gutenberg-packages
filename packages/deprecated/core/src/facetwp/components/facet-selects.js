@@ -3,8 +3,11 @@
  */
 import Select from 'react-select';
 
-const { Fragment } = wp.element;
-const { __ } = wp.i18n;
+/**
+ * WordPress dependencies
+ */
+import { Fragment } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 const FacetSelects = ( props ) => {
 	const { setAttributes, attributes, facets, templates, templateOnChange } =

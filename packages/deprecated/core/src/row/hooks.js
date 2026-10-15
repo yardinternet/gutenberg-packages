@@ -4,7 +4,10 @@
 import { preset } from './layout/presets';
 import { filterPresetByLayoutIDs } from './layout';
 
-const { applyFilters } = wp.hooks;
+/**
+ * WordPress dependencies
+ */
+import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Use function inside the filter preset

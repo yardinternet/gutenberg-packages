@@ -3,8 +3,8 @@
  */
 import { Fragment } from '@wordpress/element';
 
-const { SelectControl, PanelBody } = wp.components;
-const { __ } = wp.i18n;
+import { SelectControl, PanelBody } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 const sizingClasses = [
 	{
