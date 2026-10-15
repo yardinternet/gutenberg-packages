@@ -1,14 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { Spinner } from '@wordpress/components';
+import { Spinner, SelectControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
 import { mapPostTypes } from '../utils';
-
-const { SelectControl } = wp.components;
-const { __ } = wp.i18n;
 
 const SelectPostTypeControl = ( props ) => {
 	const { setPostType, postTypes, postType } = props;

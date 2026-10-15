@@ -12,9 +12,13 @@ import {
 	PanelMarginPadding,
 } from '@yardinternet/gutenberg-editor-components';
 
-const { PanelBody, SelectControl, CheckboxControl, ToggleControl } =
-	wp.components;
-const { __ } = wp.i18n;
+import {
+	PanelBody,
+	SelectControl,
+	CheckboxControl,
+	ToggleControl,
+} from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 export default class Inspector extends Component {
 	render() {
