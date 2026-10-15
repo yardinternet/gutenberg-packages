@@ -1,15 +1,9 @@
 /**
  * External dependencies
  */
-import { map, countBy } from 'lodash';
 import debounce from 'debounce-promise';
 import Select, { components } from 'react-select';
 import AsyncSelect from 'react-select/async';
-import {
-	SortableContainer,
-	SortableElement,
-	SortableHandle,
-} from 'react-sortable-hoc';
 
 /**
  * WordPress dependencies
@@ -27,6 +21,7 @@ import {
 	PanelBody,
 	TextControl,
 	Dashicon,
+	Button,
 } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
@@ -80,14 +75,36 @@ const remoteNonWpSources = applyFilters(
 
 const errorFetchRemoteSources = __( 'data kan niet worden opgehaald' );
 
-const SortableMultiValue = SortableElement( ( props ) => (
-	<components.MultiValue { ...props } />
-) );
-const SortableMultiValueLabel = SortableHandle( ( props ) => (
-	<components.MultiValueLabel { ...props } />
-) );
-const SortableSelect = SortableContainer( Select );
-const AsyncSortableSelect = SortableContainer( AsyncSelect );
+// Replaces drag sorting (react-sortable-hoc relies on findDOMNode, which React 19 removes).
+const MultiValueLabel = ( props ) => {
+	const { data, selectProps } = props;
+	const move = ( event, offset ) => {
+		event.preventDefault();
+		event.stopPropagation();
+		selectProps.moveSelected( data, offset );
+	};
+	const stop = ( event ) => event.stopPropagation();
+
+	return (
+		<div style={ { display: 'flex', alignItems: 'center' } }>
+			<Button
+				size="small"
+				icon="arrow-left-alt2"
+				label={ __( 'Eerder tonen' ) }
+				onMouseDown={ stop }
+				onClick={ ( event ) => move( event, -1 ) }
+			/>
+			<components.MultiValueLabel { ...props } />
+			<Button
+				size="small"
+				icon="arrow-right-alt2"
+				label={ __( 'Later tonen' ) }
+				onMouseDown={ stop }
+				onClick={ ( event ) => move( event, 1 ) }
+			/>
+		</div>
+	);
+};
 
 function Inspector( props ) {
 	const {
@@ -178,8 +195,7 @@ function Inspector( props ) {
 
 	useEffect( () => {
 		if ( externalTaxonomies.length ) {
-			const mappedExternalTaxonomyTerms = map(
-				externalTaxonomies,
+			const mappedExternalTaxonomyTerms = externalTaxonomies.map(
 				( taxonomy ) => {
 					return {
 						name: taxonomy.panelName,
@@ -198,19 +214,15 @@ function Inspector( props ) {
 	 */
 	useEffect( () => {
 		if ( allTaxonomyTerms.length ) {
-			const resolving = countBy(
-				allTaxonomyTerms,
-				( taxonomy ) => taxonomy.resolving
-			);
+			const resolvedCount = allTaxonomyTerms.filter(
+				( taxonomy ) => taxonomy.resolving === true
+			).length;
 
 			/**
 			 * All taxonomies are retrieved by getEntityRecords these actions happens async
 			 * wait untill all term requests are resolved
 			 */
-			if (
-				! taxoResolved &&
-				resolving.true === allTaxonomyTerms.length
-			) {
+			if ( ! taxoResolved && resolvedCount === allTaxonomyTerms.length ) {
 				setTaxoResolved( true );
 			}
 		}
@@ -469,14 +481,16 @@ function Inspector( props ) {
 		} );
 	};
 
-	/**
-	 * Function is called when an user change the order in the sortable select
-	 */
-	const onSortEndSortableSelect = ( { oldIndex, newIndex } ) => {
-		const newValue = arrayMove( selectedPosts, oldIndex, newIndex );
+	const moveSelectedPost = ( post, offset ) => {
+		const from = selectedPosts.indexOf( post );
+		const to = from + offset;
+
+		if ( from < 0 || to < 0 || to >= selectedPosts.length ) {
+			return;
+		}
 
 		setAttributes( {
-			selectedPosts: newValue,
+			selectedPosts: arrayMove( selectedPosts, from, to ),
 		} );
 	};
 
@@ -726,7 +740,7 @@ function Inspector( props ) {
 
 			{ 'external' === postType &&
 				!! allExternalTaxonomyTerms.length &&
-				map( allExternalTaxonomyTerms, ( taxonomy ) => {
+				allExternalTaxonomyTerms.map( ( taxonomy ) => {
 					if ( ! taxInSelectedSource( selectedSources, taxonomy ) ) {
 						return null;
 					}
@@ -765,7 +779,7 @@ function Inspector( props ) {
 				} ) }
 
 			{ taxoResolved &&
-				map( allTaxonomyTerms, ( taxonomy ) => {
+				( allTaxonomyTerms || [] ).map( ( taxonomy ) => {
 					if (
 						! hasPostypeTaxonomy( taxonomies, taxonomy, postType )
 					) {
@@ -821,21 +835,16 @@ function Inspector( props ) {
 					/>
 					{ shouldRenderCustomSelectionSelect() && (
 						<div style={ { marginBottom: 20 } }>
-							<SortableSelect
-								axis="xy"
+							<Select
 								closeMenuOnSelect={ false }
-								components={ {
-									MultiValue: SortableMultiValue,
-									MultiValueLabel: SortableMultiValueLabel,
-								} }
+								components={ { MultiValueLabel } }
+								moveSelected={ moveSelectedPost }
 								isMulti
 								isOptionDisabled={ () =>
 									selectedPosts.length >= postsToShow
 								}
 								onChange={ onChangeSortableSelect }
-								onSortEnd={ onSortEndSortableSelect }
 								options={ posts.concat( remotePostsOptions ) }
-								useDragHandle
 								value={ selectedPosts }
 							/>
 						</div>
@@ -847,14 +856,11 @@ function Inspector( props ) {
 									'Vul je zoekterm in. Zoekt op hele woorden.'
 								) }
 							</p>
-							<AsyncSortableSelect
-								axis="xy"
+							<AsyncSelect
 								cacheOptions={ false }
 								closeMenuOnSelect={ false }
-								components={ {
-									MultiValue: SortableMultiValue,
-									MultiValueLabel: SortableMultiValueLabel,
-								} }
+								components={ { MultiValueLabel } }
+								moveSelected={ moveSelectedPost }
 								defaultOptions={ stateSearchedItems }
 								isMulti
 								isOptionDisabled={ () =>
@@ -862,9 +868,7 @@ function Inspector( props ) {
 								}
 								loadOptions={ debounce( loadOptions, 500 ) }
 								onChange={ onChangeSortableSelect }
-								onSortEnd={ onSortEndSortableSelect }
 								options={ posts.concat( remotePostsOptions ) }
-								useDragHandle
 								value={ selectedPosts }
 							/>
 						</div>
@@ -880,7 +884,7 @@ function Inspector( props ) {
 								} )
 							}
 							help={ __(
-								'Versleep de labels om de volgorde van de berichten te veranderen.'
+								'Gebruik de pijltjes bij de labels om de volgorde van de berichten te veranderen.'
 							) }
 						/>
 					) }
@@ -975,18 +979,24 @@ export default compose(
 		const query = { per_page: -1 };
 
 		if ( taxonomies ) {
-			allTaxonomyTerms = map( taxonomies, ( taxonomy ) => {
-				return {
-					name: taxonomy.name,
-					slug: taxonomy.slug,
-					data: getEntityRecords( 'taxonomy', taxonomy.slug, query ),
-					resolving: hasFinishedResolution(
-						'core',
-						'getEntityRecords',
-						[ 'taxonomy', taxonomy.slug, query ]
-					),
-				};
-			} );
+			allTaxonomyTerms = Object.values( taxonomies ).map(
+				( taxonomy ) => {
+					return {
+						name: taxonomy.name,
+						slug: taxonomy.slug,
+						data: getEntityRecords(
+							'taxonomy',
+							taxonomy.slug,
+							query
+						),
+						resolving: hasFinishedResolution(
+							'core',
+							'getEntityRecords',
+							[ 'taxonomy', taxonomy.slug, query ]
+						),
+					};
+				}
+			);
 		}
 
 		return {

@@ -96,7 +96,24 @@ const Btn = styled.button`
 	}
 `;
 
-function BasicForm( props ) {
+const DEFAULT_PROPS = {
+	btnIcon: <i className="far fa-search"></i>,
+	hasBtnText: false,
+	btnText: 'Zoek',
+	disabled: true,
+	searchUrl: '',
+	searchFieldName: 'q',
+	...extractFromBlockAttributes( attributes ),
+};
+
+function BasicForm( inputProps ) {
+	const props = { ...DEFAULT_PROPS };
+	Object.entries( inputProps ).forEach( ( [ key, value ] ) => {
+		if ( value !== undefined ) {
+			props[ key ] = value;
+		}
+	} );
+
 	const [ searchTerm, setSearchTerm ] = useState( '' );
 	const [ labelClasses, setLabelClasses ] = useState( '' );
 	const labelShrinkClass = 'gemeenten-block--pdc-search__label--active';
@@ -166,15 +183,5 @@ function BasicForm( props ) {
 		</Wrapper>
 	);
 }
-
-BasicForm.defaultProps = {
-	btnIcon: <i className="far fa-search"></i>,
-	hasBtnText: false,
-	btnText: 'Zoek',
-	disabled: true,
-	searchUrl: '',
-	searchFieldName: 'q',
-	...extractFromBlockAttributes( attributes ),
-};
 
 export default BasicForm;
