@@ -20,7 +20,6 @@ Import CSS into editor styles. Enqueue the compiled editor CSS on `enqueue_block
 
 ```CSS
 @import '~@yardinternet/gutenberg-core/src/collapse/editor';
-@import '~@yardinternet/gutenberg-core/src/spacer/editor';
 ```
 
 ## Hooks

@@ -4,6 +4,11 @@
 import { RangeControl } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
 
+/**
+ * Internal dependencies
+ */
+import '../editor.scss';
+
 const MIN = 0;
 const MAX = applyFilters( 'yard-blocks.gutenberg-core.spacer', 5 );
 
