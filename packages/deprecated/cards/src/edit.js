@@ -12,6 +12,7 @@ import Inspector from './inspector';
 import Cards from './components/cards';
 import BasicBlockAppender from './components/block-appender';
 import cardMetaData from './card/block.json';
+import '../editor.scss';
 
 function Edit( props ) {
 	const { clientId, attributes } = props;
