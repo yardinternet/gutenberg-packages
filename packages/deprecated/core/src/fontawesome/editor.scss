@@ -2,16 +2,9 @@
 
 $block: "yard-blocks-fontawesome";
 
-.edit-post-visual-editor {
+.editor-styles-wrapper {
 	.#{$block} {
 		display: flex;
-	}
-
-	[data-type="yard-blocks/font-awesome"] {
-		.editor-rich-text {
-			display: block;
-			width: 100%;
-		}
 	}
 
 	.#{$block}__autocomplete-container {
