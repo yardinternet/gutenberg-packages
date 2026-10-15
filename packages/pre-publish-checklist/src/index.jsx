@@ -3,7 +3,7 @@
  */
 import { useState, useEffect } from '@wordpress/element';
 import { registerPlugin } from '@wordpress/plugins';
-import { PluginPrePublishPanel } from '@wordpress/edit-post';
+import { PluginPrePublishPanel } from '@wordpress/editor';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
@@ -48,7 +48,7 @@ const PrePublishCheckList = ( settings, customCheck = [] ) => {
 			return {
 				currentPostType: select( 'core/editor' ).getCurrentPostType(),
 				isPublishSidebarOpened:
-					select( 'core/edit-post' ).isPublishSidebarOpened(),
+					select( 'core/editor' ).isPublishSidebarOpened(),
 				blocks: select( 'core/block-editor' ).getBlocks(),
 				title: select( 'core/editor' ).getEditedPostAttribute(
 					'title'
