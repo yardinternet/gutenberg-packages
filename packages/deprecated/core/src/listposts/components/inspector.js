@@ -780,9 +780,13 @@ function Inspector( props ) {
 						<div style={ { marginBottom: 20 } }>
 							<Select
 								closeMenuOnSelect={ false }
-								controlShouldRenderValue={ false }
+								controlShouldRenderValue={
+									! keepCustomSelectionOrder
+								}
 								isClearable={ false }
-								backspaceRemovesValue={ false }
+								backspaceRemovesValue={
+									! keepCustomSelectionOrder
+								}
 								placeholder={ __( 'Zoek en kies berichten…' ) }
 								isMulti
 								isOptionDisabled={ () =>
@@ -804,9 +808,13 @@ function Inspector( props ) {
 							<AsyncSelect
 								cacheOptions={ false }
 								closeMenuOnSelect={ false }
-								controlShouldRenderValue={ false }
+								controlShouldRenderValue={
+									! keepCustomSelectionOrder
+								}
 								isClearable={ false }
-								backspaceRemovesValue={ false }
+								backspaceRemovesValue={
+									! keepCustomSelectionOrder
+								}
 								placeholder={ __( 'Zoek en kies berichten…' ) }
 								defaultOptions={ stateSearchedItems }
 								isMulti
@@ -822,13 +830,6 @@ function Inspector( props ) {
 					) }
 					{ ( shouldRenderCustomSelectionSelect() ||
 						shouldRenderSearchCustomSelectionSelect() ) && (
-						<SelectedPosts
-							posts={ selectedPosts }
-							onChange={ onChangeSortableSelect }
-						/>
-					) }
-					{ ( shouldRenderCustomSelectionSelect() ||
-						shouldRenderSearchCustomSelectionSelect() ) && (
 						<CheckboxControl
 							label={ __( 'Behoud volgorde' ) }
 							checked={ keepCustomSelectionOrder }
@@ -838,10 +839,18 @@ function Inspector( props ) {
 								} )
 							}
 							help={ __(
-								'Pas de volgorde aan met de pijltjes in de lijst hierboven.'
+								'Bepaal zelf de volgorde met de pijltjes in de lijst hieronder.'
 							) }
 						/>
 					) }
+					{ keepCustomSelectionOrder &&
+						( shouldRenderCustomSelectionSelect() ||
+							shouldRenderSearchCustomSelectionSelect() ) && (
+							<SelectedPosts
+								posts={ selectedPosts }
+								onChange={ onChangeSortableSelect }
+							/>
+						) }
 					{ shouldRenderCustomSelectionSpinner() && (
 						<div>
 							<Spinner />
