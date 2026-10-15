@@ -1,17 +1,13 @@
 /**
- * WordPress dependencies
- */
-import ServerSideRender from '@wordpress/server-side-render';
-import { __ } from '@wordpress/i18n';
-
-/**
  * External dependencies
  */
 import { withBlockWrapper } from '@yardinternet/gutenberg-editor-components';
 
 /**
- * Internal dependencies
+ * WordPress dependencies
  */
+import ServerSideRender from '@wordpress/server-side-render';
+import { __ } from '@wordpress/i18n';
 
 const name = 'yard-blocks/breadcrumbs';
 const icon = 'fas fa-chevron-right';

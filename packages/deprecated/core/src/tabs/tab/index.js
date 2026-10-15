@@ -1,4 +1,12 @@
 /**
+ * External dependencies
+ */
+import {
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
+
+/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -8,14 +16,6 @@ import { __ } from '@wordpress/i18n';
  */
 import edit from './edit';
 import save from './save';
-
-/**
- * External dependencies
- */
-import {
-	withBlockWrapper,
-	withV1Save,
-} from '@yardinternet/gutenberg-editor-components';
 
 const icon = 'fas fa-folder';
 const name = 'yard-blocks/tabs-tab';

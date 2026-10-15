@@ -14,13 +14,13 @@
 	}
 }
 
-.block-list-appender {
-	flex-basis: 100%;
-	margin-top: 65px;
-}
-
 .wp-block-yard-block-cards {
 	margin: 0 !important;
+
+	.block-list-appender {
+		flex-basis: 100%;
+		margin-top: 65px;
+	}
 
 	> .block-editor-inner-blocks > .block-editor-block-list__layout {
 		display: flex;

@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import { withBlockWrapper } from '@yardinternet/gutenberg-editor-components';
+
+/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -9,11 +14,6 @@ import { __ } from '@wordpress/i18n';
 import { attributes, name } from './settings';
 
 import edit from './edit';
-
-/**
- * External dependencies
- */
-import { withBlockWrapper } from '@yardinternet/gutenberg-editor-components';
 
 const icon = 'fal fa-bars';
 

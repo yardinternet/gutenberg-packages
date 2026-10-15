@@ -33,7 +33,7 @@ function SelectedPosts( { posts = [], onChange } ) {
 
 				return (
 					<li
-						key={ `${ post.baseUrl ?? '' }-${ post.value }-${ index }` }
+						key={ `${ post.baseUrl ?? '' }-${ post.value }` }
 						style={ {
 							display: 'flex',
 							alignItems: 'center',

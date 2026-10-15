@@ -2,6 +2,10 @@
  * External dependencies
  */
 import classnames from 'classnames';
+import {
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -9,18 +13,6 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, InnerBlocks } from '@wordpress/block-editor';
 import { TextControl, SelectControl } from '@wordpress/components';
-
-/**
- * External dependencies
- */
-import {
-	withBlockWrapper,
-	withV1Save,
-} from '@yardinternet/gutenberg-editor-components';
-
-/**
- * Internal dependencies
- */
 
 const name = 'yard-blocks/sticky';
 const icon = 'fal fa-thumbtack';

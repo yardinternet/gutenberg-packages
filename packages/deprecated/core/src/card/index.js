@@ -1,10 +1,4 @@
 /**
- * Internal dependencies
- */
-import CardEdit from './edit';
-import CardSave from './save';
-
-/**
  * External dependencies
  */
 import {
@@ -16,6 +10,12 @@ import {
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Internal dependencies
+ */
+import CardEdit from './edit';
+import CardSave from './save';
 
 const name = 'yard-blocks/card';
 const icon = 'fas fa-copy'; // dffs

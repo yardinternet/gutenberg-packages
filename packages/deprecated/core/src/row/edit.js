@@ -42,10 +42,10 @@ class RowEdit extends Component {
 		const renderColumnsTemplate = () => {
 			const desktopDetails = findLayoutByID( layoutDesktop );
 
-			return Array.from(
-				{ length: Math.max( 0, desktopDetails.col || 0 ) },
-				( _, n ) => [ 'yard-blocks/column', { id: n + 1 } ]
-			);
+			return Array.from( { length: desktopDetails.col }, ( _, n ) => [
+				'yard-blocks/column',
+				{ id: n + 1 },
+			] );
 		};
 
 		/**

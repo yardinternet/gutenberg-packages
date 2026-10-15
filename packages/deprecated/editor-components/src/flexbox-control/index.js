@@ -35,7 +35,6 @@ function FlexboxControl( {
 					{ options.map( ( option ) => (
 						<Tooltip key={ option.value } text={ option.label }>
 							<Button
-								__next40pxDefaultSize
 								style={ {
 									height: styleOptions.height,
 									flexBasis: '33.3%',
@@ -55,7 +54,6 @@ function FlexboxControl( {
 				</ButtonGroup>
 				{ !! value.length && (
 					<Button
-						__next40pxDefaultSize
 						variant="tertiary"
 						onClick={ () => onClickFlexControl( '' ) }
 					>
