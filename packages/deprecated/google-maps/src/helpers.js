@@ -1,4 +1,9 @@
 /**
+ * WordPress dependencies
+ */
+import { applyFilters } from '@wordpress/hooks';
+
+/**
  * Internal dependencies
  */
 import { createInfowindowMarker } from './infowindow';
@@ -43,13 +48,26 @@ export function loadGoogleMaps() {
 		return win.yardGoogleMapsPromise;
 	}
 
+	// Read at call time so filters added after this module loads still apply.
+	const apiKey = applyFilters( 'yard-blocks.googleMapsApiKey', '' );
+
+	if ( ! apiKey ) {
+		return Promise.reject(
+			new Error(
+				'Google Maps API key missing, add it via the yard-blocks.googleMapsApiKey filter.'
+			)
+		);
+	}
+
 	win.yardGoogleMapsPromise = new Promise( ( resolve, reject ) => {
 		win.resolveGoogleMapsPromise = () => {
 			resolve();
 		};
 
 		loadScript(
-			`https://maps.googleapis.com/maps/api/js?key=AIzaSyB74QitrBPl_gsHZ0jU5eP9TNq_vy-iX9Q&callback=resolveGoogleMapsPromise&sensor=true`,
+			`https://maps.googleapis.com/maps/api/js?key=${ encodeURIComponent(
+				apiKey
+			) }&callback=resolveGoogleMapsPromise`,
 			true
 		).catch( () => {
 			reject();
