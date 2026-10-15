@@ -25,13 +25,21 @@ class Map extends Component {
 	}
 
 	componentDidMount() {
-		if ( typeof google === 'undefined' ) {
-			this.loadGoogleMaps()
+		// The map element lives in the editor canvas iframe, so the API has to be loaded into that window.
+		const win = this.mapRef.current.ownerDocument.defaultView;
+
+		if ( typeof win.google === 'undefined' ) {
+			this.loadGoogleMaps( win )
 				.then( () => {
+					if ( ! this.mapRef.current ) {
+						return;
+					}
+					this.google = win.google;
 					this.initMap();
 				} )
 				.catch( () => this.setState( { error: ! this.state.error } ) );
 		} else {
+			this.google = win.google;
 			this.initMap();
 		}
 	}
@@ -41,7 +49,7 @@ class Map extends Component {
 	 */
 	initMap() {
 		const { mapOptions } = this.props;
-		this.map = new google.maps.Map(
+		this.map = new this.google.maps.Map(
 			this.mapRef.current,
 			JSON.parse( mapOptions )
 		);
@@ -76,20 +84,29 @@ class Map extends Component {
 	/**
 	 * Load google maps
 	 *
+	 * @param {Window} win window to load the API into
 	 * @return {Promise} resolves when gmaps is loaded
 	 */
-	loadGoogleMaps() {
-		return new Promise( ( resolve, reject ) => {
-			window.resolveGoogleMapsPromise = () => {
+	loadGoogleMaps( win ) {
+		// One load per window: the block can remount before the first load finishes.
+		if ( win.yardGoogleMapsPromise ) {
+			return win.yardGoogleMapsPromise;
+		}
+
+		win.yardGoogleMapsPromise = new Promise( ( resolve, reject ) => {
+			win.resolveGoogleMapsPromise = () => {
 				resolve();
 			};
 
 			loadScript(
-				`https://maps.googleapis.com/maps/api/js?key=${ blockSettings.google_map.settings.google_map_api_key }&callback=resolveGoogleMapsPromise&sensor=true` // eslint-disable-line
+				`https://maps.googleapis.com/maps/api/js?key=${ blockSettings.google_map.settings.google_map_api_key }&callback=resolveGoogleMapsPromise&sensor=true`, // eslint-disable-line
+				win.document
 			).catch( () => {
 				reject();
 			} );
 		} );
+
+		return win.yardGoogleMapsPromise;
 	}
 
 	/**
@@ -100,7 +117,7 @@ class Map extends Component {
 
 		const marker = {
 			id: point.id,
-			gMarker: new google.maps.Marker( {
+			gMarker: new this.google.maps.Marker( {
 				position: point.latLng,
 				icon: Object.keys( this.props.markerIcon ).length
 					? this.props.markerIcon
@@ -149,7 +166,7 @@ class Map extends Component {
 	 */
 	fitBounds = ( bool ) => {
 		if ( bool ) {
-			const bounds = new google.maps.LatLngBounds();
+			const bounds = new this.google.maps.LatLngBounds();
 
 			this.state.markers.map( ( marker ) => {
 				bounds.extend( marker.gMarker.position );

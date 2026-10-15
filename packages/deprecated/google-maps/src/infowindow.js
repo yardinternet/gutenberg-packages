@@ -1,11 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { render } from '@wordpress/element';
+import { createRoot } from '@wordpress/element';
 /**
  * Internal dependencies
  */
 import InfoWindow from './components/infowindow';
+import { getGoogle } from './map-window';
 
 // Holds all infowindows on the map
 const infowindowCollection = [];
@@ -46,10 +47,10 @@ export function createInfowindowPolygon( props ) {
 		address,
 	} );
 
-	google.maps.event.addListener( polygon, 'click', function () {
+	getGoogle().maps.event.addListener( polygon, 'click', function () {
 		closeAllInfowindows();
 		infowindowPolygon.setPosition(
-			new google.maps.LatLng(
+			new ( getGoogle().maps.LatLng )(
 				polygon.infowindowLat,
 				polygon.infowindowLng
 			)
@@ -123,7 +124,7 @@ function createInfowindow( {
 } ) {
 	const div = document.createElement( 'div' );
 
-	render(
+	createRoot( div ).render(
 		<InfoWindow
 			title={ title }
 			content={ content }
@@ -135,11 +136,10 @@ function createInfowindow( {
 			email={ email }
 			contactPerson={ contactPerson }
 			address={ address }
-		/>,
-		div
+		/>
 	);
 
-	const infowindow = new google.maps.InfoWindow( {
+	const infowindow = new ( getGoogle().maps.InfoWindow )( {
 		content: div,
 	} );
 

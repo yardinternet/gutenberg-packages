@@ -2,6 +2,7 @@
  * Internal dependencies
  */
 import { createInfowindowMarker } from './infowindow';
+import { getGoogle, getMapWindow } from './map-window';
 
 /**
  * External dependencies
@@ -17,14 +18,15 @@ import tinycolor from 'tinycolor2';
  */
 export function loadScript( src = '', async = false ) {
 	return new Promise( function ( resolve, reject ) {
-		const script = document.createElement( 'script' );
+		const doc = getMapWindow().document;
+		const script = doc.createElement( 'script' );
 		script.src = src;
 		script.async = async;
 		script.onload = () => resolve( script );
 		script.onerror = () =>
 			reject( new Error( 'Script load error: ' + src ) );
 
-		document.body.appendChild( script );
+		doc.body.appendChild( script );
 	} );
 }
 
@@ -34,8 +36,15 @@ export function loadScript( src = '', async = false ) {
  * @return {Promise} resolves when gmaps is loaded
  */
 export function loadGoogleMaps() {
-	return new Promise( ( resolve, reject ) => {
-		window.resolveGoogleMapsPromise = () => {
+	const win = getMapWindow();
+
+	// One load per window: the block can remount before the first load finishes.
+	if ( win.yardGoogleMapsPromise ) {
+		return win.yardGoogleMapsPromise;
+	}
+
+	win.yardGoogleMapsPromise = new Promise( ( resolve, reject ) => {
+		win.resolveGoogleMapsPromise = () => {
 			resolve();
 		};
 
@@ -46,6 +55,8 @@ export function loadGoogleMaps() {
 			reject();
 		} );
 	} );
+
+	return win.yardGoogleMapsPromise;
 }
 
 /**
@@ -94,7 +105,7 @@ export function prepareMarkerClusterGroups( map, plotMarkerGroups ) {
 		const groupHolder = [];
 
 		group.markers.map( function ( item ) {
-			let marker = new google.maps.Marker( {
+			let marker = new ( getGoogle().maps.Marker )( {
 				position: item.latLng,
 				icon:
 					group.markerImage && group.markerImage.url
