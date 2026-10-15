@@ -39,7 +39,7 @@ function Header( {
 
 			<Button
 				className={ `yard-blocks-collapse-item__button` }
-				isPrimary={ true }
+				variant="primary"
 				aria-expanded={ isOpen ? 'true' : 'false' }
 				aria-controls={ `collapse-${ id }` }
 				onClick={ onToggle }

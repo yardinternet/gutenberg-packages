@@ -110,13 +110,17 @@ function ListItem( { item, index, onRemove, onModify } ) {
 			<div style={ { display: 'flex', marginLeft: 'auto' } }>
 				<Button
 					style={ { marginRight: '5px' } }
-					isSmall
-					isSecondary
+					size="small"
+					variant="secondary"
 					onClick={ () => onModify( index ) }
 				>
 					<Dashicon icon="edit" />
 				</Button>
-				<Button isSmall isSecondary onClick={ () => onRemove( index ) }>
+				<Button
+					size="small"
+					variant="secondary"
+					onClick={ () => onRemove( index ) }
+				>
 					<Dashicon icon="trash" />
 				</Button>
 			</div>

@@ -9,14 +9,21 @@ const Track = ( { currentSlide, innerBlocks, selectSlide, insertSlide } ) => {
 			{ innerBlocks?.map( ( slide, index ) => (
 				<Button
 					key={ slide.clientId }
-					isPrimary={ slide.clientId === currentSlide }
-					isSecondary
+					variant={
+						slide.clientId === currentSlide
+							? 'primary'
+							: 'secondary'
+					}
 					onClick={ () => selectSlide( slide.clientId ) }
 				>
 					{ index + 1 }
 				</Button>
 			) ) }
-			<Button key={ 'plus' } isSecondary onClick={ () => insertSlide() }>
+			<Button
+				key={ 'plus' }
+				variant="secondary"
+				onClick={ () => insertSlide() }
+			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"

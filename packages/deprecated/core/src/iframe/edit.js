@@ -85,7 +85,7 @@ function Edit( props ) {
 							}
 						/>
 						<Button
-							isPrimary
+							variant="primary"
 							onClick={ () => setLaunchValidationURL( true ) }
 						>
 							{ __( 'Valideer' ) }

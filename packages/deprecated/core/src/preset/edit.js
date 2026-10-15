@@ -119,7 +119,7 @@ const Edit = ( { clientId } ) => {
 								/>
 							</div>
 							<Button
-								isPrimary
+								variant="primary"
 								onClick={ () => loadPreset( presetId ) }
 							>
 								{ __( 'Patroon inladen' ) }

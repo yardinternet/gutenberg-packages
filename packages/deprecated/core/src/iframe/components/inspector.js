@@ -61,7 +61,7 @@ function Inspector( { attributes, setAttributes } ) {
 					}
 				/>
 				<Button
-					isPrimary
+					variant="primary"
 					onClick={ () => setLaunchValidationURL( true ) }
 				>
 					{ __( 'Valideer' ) }
