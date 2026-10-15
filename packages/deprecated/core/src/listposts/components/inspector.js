@@ -2,7 +2,7 @@
  * External dependencies
  */
 import debounce from 'debounce-promise';
-import Select, { components } from 'react-select';
+import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
 
 /**
@@ -21,7 +21,6 @@ import {
 	PanelBody,
 	TextControl,
 	Dashicon,
-	Button,
 } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
@@ -29,6 +28,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
+import SelectedPosts from './selected-posts';
 import {
 	populateTaxonomyValues,
 	populateExternalTaxonomyValues,
@@ -74,37 +74,6 @@ const remoteNonWpSources = applyFilters(
 );
 
 const errorFetchRemoteSources = __( 'data kan niet worden opgehaald' );
-
-// Replaces drag sorting (react-sortable-hoc relies on findDOMNode, which React 19 removes).
-const MultiValueLabel = ( props ) => {
-	const { data, selectProps } = props;
-	const move = ( event, offset ) => {
-		event.preventDefault();
-		event.stopPropagation();
-		selectProps.moveSelected( data, offset );
-	};
-	const stop = ( event ) => event.stopPropagation();
-
-	return (
-		<div style={ { display: 'flex', alignItems: 'center' } }>
-			<Button
-				size="small"
-				icon="arrow-left-alt2"
-				label={ __( 'Eerder tonen' ) }
-				onMouseDown={ stop }
-				onClick={ ( event ) => move( event, -1 ) }
-			/>
-			<components.MultiValueLabel { ...props } />
-			<Button
-				size="small"
-				icon="arrow-right-alt2"
-				label={ __( 'Later tonen' ) }
-				onMouseDown={ stop }
-				onClick={ ( event ) => move( event, 1 ) }
-			/>
-		</div>
-	);
-};
 
 function Inspector( props ) {
 	const {
@@ -462,35 +431,9 @@ function Inspector( props ) {
 		} ) );
 	};
 
-	/**
-	 * Helper function to change the position of the posts that is moved in the sortable select
-	 */
-	const arrayMove = ( array, from, to ) => {
-		const slicedArray = array.slice();
-		slicedArray.splice(
-			to < 0 ? array.length + to : to,
-			0,
-			slicedArray.splice( from, 1 )[ 0 ]
-		);
-		return slicedArray;
-	};
-
 	const onChangeSortableSelect = ( value ) => {
 		setAttributes( {
 			selectedPosts: value ? value : [],
-		} );
-	};
-
-	const moveSelectedPost = ( post, offset ) => {
-		const from = selectedPosts.indexOf( post );
-		const to = from + offset;
-
-		if ( from < 0 || to < 0 || to >= selectedPosts.length ) {
-			return;
-		}
-
-		setAttributes( {
-			selectedPosts: arrayMove( selectedPosts, from, to ),
 		} );
 	};
 
@@ -837,8 +780,10 @@ function Inspector( props ) {
 						<div style={ { marginBottom: 20 } }>
 							<Select
 								closeMenuOnSelect={ false }
-								components={ { MultiValueLabel } }
-								moveSelected={ moveSelectedPost }
+								controlShouldRenderValue={ false }
+								isClearable={ false }
+								backspaceRemovesValue={ false }
+								placeholder={ __( 'Zoek en kies berichten…' ) }
 								isMulti
 								isOptionDisabled={ () =>
 									selectedPosts.length >= postsToShow
@@ -859,8 +804,10 @@ function Inspector( props ) {
 							<AsyncSelect
 								cacheOptions={ false }
 								closeMenuOnSelect={ false }
-								components={ { MultiValueLabel } }
-								moveSelected={ moveSelectedPost }
+								controlShouldRenderValue={ false }
+								isClearable={ false }
+								backspaceRemovesValue={ false }
+								placeholder={ __( 'Zoek en kies berichten…' ) }
 								defaultOptions={ stateSearchedItems }
 								isMulti
 								isOptionDisabled={ () =>
@@ -875,6 +822,13 @@ function Inspector( props ) {
 					) }
 					{ ( shouldRenderCustomSelectionSelect() ||
 						shouldRenderSearchCustomSelectionSelect() ) && (
+						<SelectedPosts
+							posts={ selectedPosts }
+							onChange={ onChangeSortableSelect }
+						/>
+					) }
+					{ ( shouldRenderCustomSelectionSelect() ||
+						shouldRenderSearchCustomSelectionSelect() ) && (
 						<CheckboxControl
 							label={ __( 'Behoud volgorde' ) }
 							checked={ keepCustomSelectionOrder }
@@ -884,7 +838,7 @@ function Inspector( props ) {
 								} )
 							}
 							help={ __(
-								'Gebruik de pijltjes bij de labels om de volgorde van de berichten te veranderen.'
+								'Pas de volgorde aan met de pijltjes in de lijst hierboven.'
 							) }
 						/>
 					) }
