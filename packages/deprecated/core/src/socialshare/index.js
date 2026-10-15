@@ -1,4 +1,12 @@
 /**
+ * External dependencies
+ */
+import {
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
+
+/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -10,14 +18,6 @@ import metadata from './block.json';
 import SocialShare from './components/socialshare';
 import deprecated from './deprecated';
 import edit from './edit';
-
-/**
- * External dependencies
- */
-import {
-	withBlockWrapper,
-	withV1Save,
-} from '@yardinternet/gutenberg-editor-components';
 
 const icon = 'far fa-share-alt';
 const { name, attributes } = metadata;

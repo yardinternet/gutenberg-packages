@@ -1,4 +1,12 @@
 /**
+ * External dependencies
+ */
+import {
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
+
+/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -9,14 +17,6 @@ import { __ } from '@wordpress/i18n';
 import metadata from './block.json';
 import edit from './edit';
 import save from './save';
-
-/**
- * External dependencies
- */
-import {
-	withBlockWrapper,
-	withV1Save,
-} from '@yardinternet/gutenberg-editor-components';
 
 const { name, attributes } = metadata;
 const icon = 'fas fa-rectangle-wide';

@@ -6,7 +6,7 @@ import { createRoot } from '@wordpress/element';
  * Internal dependencies
  */
 import InfoWindow from './components/infowindow';
-import { getGoogle } from './map-window';
+import { getGoogle, getMapWindow } from './map-window';
 
 // Holds all infowindows on the map
 const infowindowCollection = [];
@@ -122,7 +122,7 @@ function createInfowindow( {
 	contactPerson,
 	address,
 } ) {
-	const div = document.createElement( 'div' );
+	const div = getMapWindow().document.createElement( 'div' );
 
 	createRoot( div ).render(
 		<InfoWindow

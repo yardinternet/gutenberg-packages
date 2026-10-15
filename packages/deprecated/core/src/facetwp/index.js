@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import { withBlockWrapper } from '@yardinternet/gutenberg-editor-components';
+
+/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -7,11 +12,6 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import edit from './edit';
-
-/**
- * External dependencies
- */
-import { withBlockWrapper } from '@yardinternet/gutenberg-editor-components';
 
 const name = 'yard-blocks/facet-wp';
 const icon = 'fal fa-gem';
