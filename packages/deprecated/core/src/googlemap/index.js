@@ -8,10 +8,16 @@ import { __ } from '@wordpress/i18n';
  */
 import edit from './edit';
 
+/**
+ * External dependencies
+ */
+import { withBlockWrapper } from '@yardinternet/gutenberg-editor-components';
+
 const name = 'yard-blocks/google-map';
 const icon = 'fal fa-map';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Google maps' ),
 	description: __( 'Voeg een Google map insluiting toe aan de pagina.' ),
 	attributes: {
@@ -39,7 +45,7 @@ const settings = {
 	},
 	supports: {},
 
-	edit,
+	edit: withBlockWrapper( edit ),
 
 	save: () => null,
 };

@@ -20,7 +20,7 @@ const { name, attributes } = metadata;
 export { metadata, name };
 
 export const settings = {
-	apiVersion: 2,
+	apiVersion: 3,
 	title: __( 'Tolkie widget' ),
 	category: 'yard-blocks',
 	description: __( 'Voeg de Tolkie widget toe aan een pagina.' ),

@@ -22,7 +22,7 @@ const { name, attributes } = metadata;
 const icon = 'far fa-photo-film';
 
 const settings = {
-	apiVersion: 2,
+	apiVersion: 3,
 	title: __( 'Slider', 'yard-blocks' ),
 	description: __( 'Voeg slider toe' ),
 	category: 'yard-blocks',

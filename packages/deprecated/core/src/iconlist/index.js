@@ -21,6 +21,7 @@ const { name, attributes } = metadata;
 const icon = 'fas fa-th';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Iconenlijst', 'yard-blocks' ),
 	description: __(
 		'Voeg een lijst met FontAwesome iconen toe. Verander de tekst en iconen afzonderlijk van elkaar.'

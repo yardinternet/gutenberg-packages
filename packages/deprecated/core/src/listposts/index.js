@@ -1,7 +1,10 @@
 /**
  * External dependencies
  */
-import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+import {
+	BlockIcon,
+	withBlockWrapper,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -34,6 +37,7 @@ export const Icon = <BlockIcon faClasses="fal fa-list-alt" />;
 const icon = 'fal fa-list-alt';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Berichtenlijst', 'yard-blocks' ),
 	description: __(
 		'Voeg allerlei typen content toe en pas deze aan naar wens.'
@@ -42,7 +46,7 @@ const settings = {
 	supports: {
 		align: [ 'full', 'wide' ],
 	},
-	edit,
+	edit: withBlockWrapper( edit ),
 	save: () => () => null,
 };
 

@@ -1,7 +1,11 @@
 /**
  * External dependencies
  */
-import { BlockIcon } from '@yardinternet/gutenberg-editor-components';
+import {
+	BlockIcon,
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
 
 /**
  * WordPress dependencies
@@ -21,14 +25,15 @@ import deprecated from './deprecated';
 import './card';
 
 export const settings = {
+	apiVersion: 3,
 	title: __( 'Kaarten' ),
 	description: __(
 		'Kies een kaart sjabloon en plaats de kaart waarvan je de inhoud vrij kunt invullen.'
 	),
 	example: {},
 	supports: {},
-	edit,
-	save,
+	edit: withBlockWrapper( edit ),
+	save: withV1Save( save ),
 	deprecated,
 };
 

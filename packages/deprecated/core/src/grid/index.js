@@ -6,6 +6,8 @@ import {
 	getMarginAttributes,
 	getPaddingAttributes,
 	backgroundAttributes,
+	withBlockWrapper,
+	withV1Save,
 } from '@yardinternet/gutenberg-editor-components';
 
 /**
@@ -26,12 +28,13 @@ const { name, attributes, supports } = metadata;
 const Icon = <BlockIcon faClasses="fas fa-th" />;
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Raster' ),
 	description: __(
 		'Creëer met het raster verschillende layouts. Rasters kunnen worden gezien als het raamwerk van de pagina.'
 	),
 	category: 'yard-blocks',
-	edit,
+	edit: withBlockWrapper( edit ),
 	attributes: {
 		...attributes,
 		...backgroundAttributes,
@@ -43,7 +46,7 @@ const settings = {
 	},
 	deprecated,
 	supports,
-	save,
+	save: withV1Save( save ),
 };
 
 export { settings, name };

@@ -10,10 +10,23 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, InnerBlocks } from '@wordpress/block-editor';
 import { TextControl, SelectControl } from '@wordpress/components';
 
+/**
+ * External dependencies
+ */
+import {
+	withBlockWrapper,
+	withV1Save,
+} from '@yardinternet/gutenberg-editor-components';
+
+/**
+ * Internal dependencies
+ */
+
 const name = 'yard-blocks/sticky';
 const icon = 'fal fa-thumbtack';
 
 const settings = {
+	apiVersion: 3,
 	title: __( 'Vastzetelement' ),
 	description: __(
 		'Zet een blok vast aan de bovenkant of onderkant van de pagina.'
@@ -27,7 +40,7 @@ const settings = {
 			default: 'bottom',
 		},
 	},
-	edit: ( props ) => {
+	edit: withBlockWrapper( ( props ) => {
 		const {
 			setAttributes,
 			attributes: { showOnScrollSelector, position },
@@ -71,9 +84,9 @@ const settings = {
 				</div>
 			</>
 		);
-	},
+	} ),
 
-	save: ( props ) => {
+	save: withV1Save( ( props ) => {
 		const { className, attributes } = props;
 		const { showOnScrollSelector, position } = attributes;
 
@@ -92,7 +105,7 @@ const settings = {
 				</div>
 			</div>
 		);
-	},
+	} ),
 };
 
 export { icon, name, settings };
