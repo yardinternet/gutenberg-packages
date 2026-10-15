@@ -3,15 +3,6 @@
  */
 import { RangeControl } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
-/**
- * External dependencies
- */
-import { Global } from '@emotion/react';
-
-/**
- * Internal dependencies
- */
-import editorStyles from './../editor-styles';
 
 const MIN = 0;
 const MAX = applyFilters( 'yard-blocks.gutenberg-core.spacer', 5 );
@@ -24,7 +15,6 @@ function Edit( {
 } ) {
 	return (
 		<>
-			<Global styles={ editorStyles } />
 			<div
 				className={ `yard-blocks-spacer-wrapper` }
 				style={ { backgroundColor } }

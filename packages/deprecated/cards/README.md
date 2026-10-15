@@ -25,6 +25,12 @@ Import the frontend styles from the theme
 @import "~@yardinternet/gutenberg-cards/style";
 ```
 
+Import the editor styles into the editor stylesheet that is enqueued on `enqueue_block_assets`, so they load inside the iframed editor canvas
+
+```
+@import "~@yardinternet/gutenberg-cards/editor";
+```
+
 ### Hooks
 
 #### Template
