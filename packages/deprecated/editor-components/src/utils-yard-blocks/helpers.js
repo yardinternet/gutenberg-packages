@@ -1,9 +1,4 @@
 /**
- * External dependencies
- */
-import { find, get, pick } from 'lodash';
-
-/**
  * WordPress dependencies
  */
 import { createBlock } from '@wordpress/blocks';
@@ -50,19 +45,20 @@ export function insertBlockAtEnd( {
 /**
  * Appends loaded script to DOM
  *
- * @param {*} src url
+ * @param {*}        src url
+ * @param {Document} doc document to load the script into, e.g. the editor canvas iframe
  * @return {Promise} promise
  */
-export function loadScript( src ) {
+export function loadScript( src, doc = document ) {
 	return new Promise( function ( resolve, reject ) {
-		const script = document.createElement( 'script' );
+		const script = doc.createElement( 'script' );
 		script.src = src;
 		script.async = true;
 		script.onload = () => resolve( script );
 		script.onerror = () =>
 			reject( new Error( 'Script load error: ' + src ) );
 
-		document.body.appendChild( script );
+		doc.body.appendChild( script );
 	} );
 }
 
@@ -74,7 +70,9 @@ export function loadScript( src ) {
  * @return {string} - primary
  */
 export function getColorClassByColor( colors, color ) {
-	return get( find( colors, { color } ), 'slug' );
+	return Object.values( colors || {} ).find(
+		( item ) => item?.color === color
+	)?.slug;
 }
 
 /**
@@ -96,17 +94,21 @@ export function getBackgroundClassByColor( colors, color ) {
  * @param {string} imageSize
  */
 export const pickRelevantMediaFiles = ( image = {}, imageSize = 'full' ) => {
-	const imageProps = pick( image, [ 'alt', 'id', 'link', 'caption' ] );
+	const imageProps = Object.fromEntries(
+		[ 'alt', 'id', 'link', 'caption' ]
+			.filter( ( key ) => key in Object( image ) )
+			.map( ( key ) => [ key, image[ key ] ] )
+	);
 	imageProps.url =
-		get( image, [ 'sizes', imageSize, 'url' ] ) ||
-		get( image, [ 'media_details', 'sizes', imageSize, 'source_url' ] ) ||
+		image?.sizes?.[ imageSize ]?.url ||
+		image?.media_details?.sizes?.[ imageSize ]?.source_url ||
 		image.url;
 
 	return imageProps;
 };
 
 /**
- * Convert the image object so that lodash function 'pick' can use the image object.
+ * Convert the image object so that pickRelevantMediaFiles can use it.
  *
  * @param {Object} image
  */

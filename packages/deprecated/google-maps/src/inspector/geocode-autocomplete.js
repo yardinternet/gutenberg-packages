@@ -7,6 +7,11 @@ import { __ } from '@wordpress/i18n';
  */
 import AsyncSelect from 'react-select/async';
 
+/**
+ * Internal dependencies
+ */
+import { getGoogle } from '../map-window';
+
 function GeocodeAutocomplete( {
 	styles = {},
 	onChange = () => {},
@@ -20,7 +25,7 @@ function GeocodeAutocomplete( {
 	 */
 	const geocodeAdress = ( value ) => {
 		return new Promise( ( resolve, reject ) => {
-			new google.maps.Geocoder().geocode(
+			new ( getGoogle().maps.Geocoder )().geocode(
 				{ address: value },
 				( results, status ) => {
 					if ( status === 'OK' ) {
