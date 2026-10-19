@@ -146,7 +146,7 @@ importers:
     packages/deprecated/block-filters:
         dependencies:
             '@yardinternet/gutenberg-editor-components':
-                specifier: ^1.5.5
+                specifier: ^1.6.0
                 version: link:../editor-components
             filesize:
                 specifier: ^6.4.0
