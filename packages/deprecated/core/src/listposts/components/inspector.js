@@ -9,9 +9,8 @@ import AsyncSelect from 'react-select/async';
  * WordPress dependencies
  */
 import { applyFilters } from '@wordpress/hooks';
-import { Fragment, useState, useEffect } from '@wordpress/element';
-import { withSelect } from '@wordpress/data';
-import { compose } from '@wordpress/compose';
+import { Fragment, useState, useEffect, useMemo } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
 import {
 	Spinner,
 	RangeControl,
@@ -75,6 +74,8 @@ const remoteNonWpSources = applyFilters(
 
 const errorFetchRemoteSources = __( 'data kan niet worden opgehaald' );
 
+const TERMS_QUERY = { per_page: -1 };
+
 function Inspector( props ) {
 	const {
 		attributes,
@@ -85,8 +86,53 @@ function Inspector( props ) {
 		customViews,
 		taxonomies,
 		externalTaxonomies,
-		allTaxonomyTerms,
 	} = props;
+
+	const taxonomyList = useMemo(
+		() => Object.values( taxonomies || {} ),
+		[ taxonomies ]
+	);
+
+	// useSelect shallow-compares its result: keep store refs flat and stable,
+	// derive the per-taxonomy objects in useMemo instead.
+	const termsBySlug = useSelect(
+		( select ) =>
+			Object.fromEntries(
+				taxonomyList.map( ( { slug } ) => [
+					slug,
+					select( 'core' ).getEntityRecords(
+						'taxonomy',
+						slug,
+						TERMS_QUERY
+					),
+				] )
+			),
+		[ taxonomyList ]
+	);
+	const resolvedBySlug = useSelect(
+		( select ) =>
+			Object.fromEntries(
+				taxonomyList.map( ( { slug } ) => [
+					slug,
+					select( 'core/data' ).hasFinishedResolution(
+						'core',
+						'getEntityRecords',
+						[ 'taxonomy', slug, TERMS_QUERY ]
+					),
+				] )
+			),
+		[ taxonomyList ]
+	);
+	const allTaxonomyTerms = useMemo(
+		() =>
+			taxonomyList.map( ( { name, slug } ) => ( {
+				name,
+				slug,
+				data: termsBySlug[ slug ],
+				resolving: resolvedBySlug[ slug ],
+			} ) ),
+		[ taxonomyList, termsBySlug, resolvedBySlug ]
+	);
 	const {
 		stickyPostSelection,
 		selectedStickyPostID,
@@ -722,7 +768,7 @@ function Inspector( props ) {
 				} ) }
 
 			{ taxoResolved &&
-				( allTaxonomyTerms || [] ).map( ( taxonomy ) => {
+				allTaxonomyTerms.map( ( taxonomy ) => {
 					if (
 						! hasPostypeTaxonomy( taxonomies, taxonomy, postType )
 					) {
@@ -933,37 +979,4 @@ function Inspector( props ) {
 	);
 }
 
-export default compose(
-	withSelect( ( select, ownProps ) => {
-		const { getEntityRecords } = select( 'core' );
-		const { hasFinishedResolution } = select( 'core/data' );
-		const { taxonomies } = ownProps;
-		let allTaxonomyTerms = false;
-		const query = { per_page: -1 };
-
-		if ( taxonomies ) {
-			allTaxonomyTerms = Object.values( taxonomies ).map(
-				( taxonomy ) => {
-					return {
-						name: taxonomy.name,
-						slug: taxonomy.slug,
-						data: getEntityRecords(
-							'taxonomy',
-							taxonomy.slug,
-							query
-						),
-						resolving: hasFinishedResolution(
-							'core',
-							'getEntityRecords',
-							[ 'taxonomy', taxonomy.slug, query ]
-						),
-					};
-				}
-			);
-		}
-
-		return {
-			allTaxonomyTerms,
-		};
-	} )
-)( Inspector );
+export default Inspector;
