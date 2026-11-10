@@ -71,6 +71,9 @@ function registerBlockType( block ) {
 				deprecated: [
 					// Old content still validates, so `isEligible` forces the migration.
 					{
+						// Deprecations don't inherit these, so the saved markup wouldn't match.
+						apiVersion: settings.apiVersion,
+						supports: settings.supports,
 						attributes,
 						save,
 						isEligible: ( { lang } ) =>
