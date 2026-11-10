@@ -8,7 +8,7 @@ import { cloneElement } from '@wordpress/element';
  * Internal dependencies
  */
 import edit from './edit.jsx';
-import { languageSelectOptions } from '../../../util/i18n';
+import { languageSelectOptions, toLanguageTag } from '../../../util/i18n';
 
 const ADD_LANGUAGE_ATTRIBUTE_NAMESPACE = 'yard.add-language-attribute';
 
@@ -44,28 +44,42 @@ function registerBlockType( block ) {
 
 			const originalSave = settings.save;
 
+			const attributes = {
+				...settings.attributes,
+				lang: {
+					type: 'string',
+					default: '',
+				},
+			};
+
+			const save = ( props ) => {
+				const { lang } = props.attributes;
+
+				const element = originalSave( props );
+
+				if ( lang ) {
+					return cloneElement( element, { lang } );
+				}
+
+				return element;
+			};
+
 			return {
 				...settings,
-				attributes: {
-					...settings.attributes,
-					lang: {
-						type: 'string',
-						default: '',
-					},
-				},
-				save: ( props ) => {
-					const { attributes } = props;
-					const { lang } = attributes;
-
-					const element = originalSave( props );
-
-					if ( lang ) {
-						return cloneElement( element, { lang } );
-					}
-
-					return element;
-				},
+				attributes,
+				save,
 				deprecated: [
+					// Old content still validates, so `isEligible` forces the migration.
+					{
+						attributes,
+						save,
+						isEligible: ( { lang } ) =>
+							!! lang && toLanguageTag( lang ) !== lang,
+						migrate: ( { lang, ...rest } ) => ( {
+							...rest,
+							lang: toLanguageTag( lang ),
+						} ),
+					},
 					{
 						attributes: {
 							...settings.attributes,
