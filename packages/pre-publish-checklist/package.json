@@ -5,8 +5,8 @@
 	"author": "Lara van Diemen <lara@yard.nl>",
 	"homepage": "https://github.com/yardinternet/gutenberg-packages#readme",
 	"license": "ISC",
-	"main": "src/index.js",
-	"module": "src/index.js",
+	"main": "src/index.jsx",
+	"module": "src/index.jsx",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com"
 	},

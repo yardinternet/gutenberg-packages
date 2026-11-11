@@ -79,12 +79,12 @@ const PrePublishCheckList = ( settings, customCheck = [] ) => {
 	}, [ currentPostType ] );
 
 	useEffect( () => {
-		if ( ! lockPost ) {
+		if ( ! lockPost || ! isPublishSidebarOpened ) {
 			unlockPostSaving();
 			return;
 		}
 		lockPostSaving();
-	}, [ lockPost ] );
+	}, [ lockPost, isPublishSidebarOpened ] );
 
 	useEffect( () => {
 		checkTitle( currentSettings, title, updateErrorLogs );
