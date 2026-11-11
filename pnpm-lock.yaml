@@ -10007,10 +10007,10 @@ packages:
                 integrity: sha512-QWBrQsMpH7gPr965dsKD/3cKWiNoTjpATQf++Xq63N6sKRGMwlVXz41O1IZTMfZQgBctD/K5Zt06+/I6pP6+HA==,
             }
 
-    legacy-javascript@0.0.3:
+    legacy-javascript@0.0.4:
         resolution:
             {
-                integrity: sha512-1r6MT4dVaJyXt4G07Cm2cQ0AUaLJdefiEp4SmIAylA++gnEQ82YvmzE58RkM5EP0fk5hROLCslUPGnwIYdZQVA==,
+                integrity: sha512-UTmeKBVxnfJcpmpOvzzNnLsQT99BXHpPlc/ZKddIRmWmrR0fw6335I3lq4+sJoP60UTbBNaYsGYVPc65YB1x3A==,
             }
 
     lerna@10.0.1:
@@ -16739,7 +16739,7 @@ snapshots:
 
     '@paulirish/trace_engine@0.0.65':
         dependencies:
-            legacy-javascript: 0.0.3
+            legacy-javascript: 0.0.4
             third-party-web: 0.30.0
 
     '@peculiar/asn1-cms@2.9.4':
@@ -22191,7 +22191,7 @@ snapshots:
             picocolors: 1.1.1
             shell-quote: 1.10.0
 
-    legacy-javascript@0.0.3: {}
+    legacy-javascript@0.0.4: {}
 
     lerna@10.0.1(@types/node@26.6.1)(babel-plugin-macros@3.1.0)(typescript@6.0.3):
         dependencies:
