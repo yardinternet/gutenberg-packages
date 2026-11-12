@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { RangeControl, PanelBody } from '@wordpress/components';
+import { RangeControl, PanelBody, ToggleControl } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
@@ -12,6 +12,7 @@ export default function Inspector( props ) {
 		slidesPerPageLaptop,
 		slidesPerPageTablet,
 		slidesPerPageMobile,
+		showPagination,
 	} = attributes;
 
 	return (
@@ -68,6 +69,13 @@ export default function Inspector( props ) {
 					}
 					min={ 1 }
 					max={ 5 }
+				/>
+				<ToggleControl
+					label={ __( 'Paginering tonen?' ) }
+					checked={ showPagination }
+					onChange={ ( value ) =>
+						setAttributes( { showPagination: value } )
+					}
 				/>
 			</PanelBody>
 		</InspectorControls>
